@@ -60,7 +60,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF
 
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs anaconda)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time vi_mode_joined ssh)
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time vi_mode)
@@ -220,7 +220,10 @@ plugins=(
   tmux
   zsh-syntax-highlighting
   extract
+  zsh-autosuggestions
+  zsh-completions
 )
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -260,16 +263,32 @@ alias -s h=vim
 # Include Z
 . ~/z.sh
 
-export PATH=/usr/local/cuda-8.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
-export CUDA_HOME=/usr/local/cuda-8.0
-
 source /opt/ros/indigo/setup.zsh
 source /home/ustc-1314/catkin_ws/devel/setup.zsh
 source /home/ustc-1314/iroboscan/CatkinWorkSpace/devel/setup.zsh
+source /home/ustc-1314/rl_scanning/EnvironmentWorkSpace/devel/setup.zsh
 
 export TURTLEBOT_3D_SENSOR=kinect
 export TURTLEBOT_BATTERY=/sys/class/power_supply/BAT1
+#export ROS_MASTER_URI=http://192.168.0.100:11311
+#export ROS_IP=192.168.0.100
 export ROS_MASTER_URI=http://localhost:11311
 
 eval `dircolors /home/ustc-1314/.dir_colors/dircolors`
+
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+#  __conda_setup="$(CONDA_REPORT_ERRORS=false '/home/ustc-1314/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+#  if [ $? -eq 0 ]; then
+#      \eval "$__conda_setup"
+#  else
+#      if [ -f "/home/ustc-1314/anaconda3/etc/profile.d/conda.sh" ]; then
+#          . "/home/ustc-1314/anaconda3/etc/profile.d/conda.sh"
+#          CONDA_CHANGEPS1=false conda activate base
+#      else
+#          \export PATH="/home/ustc-1314/anaconda3/bin:$PATH"
+#      fi
+#  fi
+#  unset __conda_setup
+# <<< conda init <<<

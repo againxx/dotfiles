@@ -180,10 +180,6 @@ map <F12> :MBEbn<CR>
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 
-let g:ycm_semantic_triggers = {
-\   'roslaunch' : ['="', '$(', '/'],
-\   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
-\ }
 
 "Tagbar
 nnoremap <F3> :TagbarToggle<CR>
@@ -197,7 +193,8 @@ let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '>*'
 let g:ycm_always_populate_location_list = 1
 let g:ycm_key_list_previous_completion = ['<c-k>', '<Up>']
-let g:ycm_python_binary_path = '/usr/bin/python3'
+" let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
