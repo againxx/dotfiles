@@ -79,3 +79,4 @@ nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
 nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
+nnoremap <silent> <space>k :<C-u>CocList maps<cr>
