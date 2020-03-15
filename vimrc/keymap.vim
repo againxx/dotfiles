@@ -55,7 +55,7 @@ endfunction
 " coc-lists
 nnoremap <silent> <space>r :<C-u>CocList -N mru -A<cr>
 nnoremap <silent> <space>f :<C-u>CocList files<cr>
-nnoremap <silent> <space>t :<C-u>CocList buffers<cr>
+nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 " Search coc commands
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
@@ -72,3 +72,4 @@ nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
+nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
