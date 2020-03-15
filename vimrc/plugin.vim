@@ -7,6 +7,7 @@ let g:airline#extensions#ale#enabled = 1
 let airline#extensions#tmuxline#color_template = 'normal'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
+let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
 let g:airline_section_y = ''
 let g:airline_mode_map = {
   \ '__'     : '-',
