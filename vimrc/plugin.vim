@@ -4,11 +4,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
+let airline#extensions#ale#error_symbol = '✖ '
+let airline#extensions#ale#warning_symbol = '● '
+let g:airline#extensions#whitespace#trailing_format = '%s'
+let g:airline#extensions#whitespace#symbol = '✁'
+let airline#extensions#ale#show_line_numbers = 0
 let airline#extensions#tmuxline#color_template = 'normal'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
 let g:airline_section_y = ''
+let g:airline_section_warning= '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} %{airline#util#wrap(airline#extensions#coc#get_warning(),0)}%{airline#util#wrap(airline#extensions#ale#get_warning(),0)}'
 let g:airline_mode_map = {
   \ '__'     : '-',
   \ 'c'      : 'C',

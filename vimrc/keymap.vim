@@ -8,6 +8,12 @@ map <F12> :bn<CR>
 " Fold
 " nnoremap <space> za
 
+" window navigate
+nnoremap <C-l> <c-w>l
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+
 " Mardown-Preview
 nmap <leader>mp <Plug>MarkdownPreview
 
