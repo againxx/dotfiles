@@ -1,21 +1,26 @@
-set hidden 		" Allow buffer switch without saving
-set showcmd		" Show (partial) command in status line.
+set lazyredraw
+set hidden 		    " Allow buffer switch without saving
+set showcmd		    " Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set hlsearch		" highlight all search matches
-set wildmode=longest,list
-set nu
+set wildmenu
+set wildmode=list:longest,full
+set autoread
+set noshowmode
+set number
 set relativenumber
 set backspace=indent,eol,start
-set foldmethod=indent
+" set foldmethod=indent
 " set foldlevel=99      " unfold at begin
+set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set cindent
+" set cindent
 " set laststatus=2 	" this value is now default 2, used by airline
 set ttimeoutlen=100     " fcitx.im
 " Use the same symbols as TextMate for tabstops and EOLs

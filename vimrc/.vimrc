@@ -5,6 +5,10 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Linting & Fixing
 Plug 'dense-analysis/ale'
 
+" Tags
+Plug 'liuchengxu/vista.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
+
 " Airline
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -21,12 +25,15 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'pboettch/vim-cmake-syntax'
 
-" Search & Move
+" Search & Move & Text Object
 Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'michaeljsmith/vim-indent-object'
 
 " Comment & Surround & Parenthsis
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " repeat plugin map with '.', work with vim-surround
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 

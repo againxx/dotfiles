@@ -1,5 +1,9 @@
 " NERDTree
-map <F2> :NERDTreeToggle<CR>
+" map <F2> :NERDTreeToggle<CR>
+nnoremap <silent> <space>e :CocCommand explorer<CR>
+
+" Vista
+map <F3> :Vista!!<CR>
 
 " Minibufexpl
 map <F11> :bp<CR>
@@ -13,12 +17,6 @@ nnoremap <C-l> <c-w>l
 nnoremap <C-h> <c-w>h
 nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
-
-" Mardown-Preview
-nmap <leader>mp <Plug>MarkdownPreview
-
-" Sudo save
-nmap <leader>sw :w !sudo tee %<CR>
 
 " Multi-visual
 let g:VM_maps = {}
@@ -44,8 +42,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -58,6 +54,10 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Scroll floating window up and down
+" nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
+" nnoremap <expr><C-p> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-p>"
+
 " coc-lists
 nnoremap <silent> <space>r :<C-u>CocList -N mru -A<cr>
 nnoremap <silent> <space>f :<C-u>CocList files<cr>
@@ -68,7 +68,8 @@ nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 " Search vim commands
 nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>CocList outline<cr>
 " Show all diagnostics.

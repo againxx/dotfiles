@@ -58,9 +58,10 @@ let NERDTreeWinSize=30
 
 " Space-vim-dark
 colorscheme space-vim-dark
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+hi Normal       ctermbg=NONE guibg=NONE
+hi LineNr       ctermbg=NONE guibg=NONE
+hi SignColumn   ctermbg=NONE guibg=NONE
+hi CursorLineNr ctermbg=NONE guibg=NONE
 
 " Incsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -73,6 +74,9 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
 
 " Rainbow
 let g:rainbow_active = 1 " set to 0 if you want to enable it later via :RainbowToggle
@@ -89,18 +93,67 @@ let g:ale_sign_warning = '--'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEWarning ctermbg=235
-" In ~/.vim/vimrc, or somewhere similar.
 let g:ale_linters = {
 \   'python': ['pylint'],
 \}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['yapf'],
+\}
+hi ALEWarning ctermbg=NONE guibg=NONE
+
+" Vista
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" let g:vista_icon_indent = ["▸ ", ""]
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'coc'
+let g:vista_executive_for = {
+  \ 'cpp': 'coc',
+  \ 'python': 'coc',
+  \ 'vim': 'ctags',
+  \ }
+let g:vista_close_on_jump = 1 
+let g:vista_sidebar_width = 40
+let g:vista_keep_fzf_colors = 1
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Coc
-" Close the preview window when completion is done
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" hi link CocHighlightText StatusLine
-hi CocHighlightText ctermbg=236
 let g:coc_snippet_next = '<tab>'
+" hi link CocHighlightText StatusLine
+hi CocHighlightText ctermbg=236 guibg=#34323e
+
+" coc-explorer
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\      'root-uri': '~/.vim',
+\   },
+\   'floating': {
+\      'position': 'floating',
+\   },
+\   'floatingLeftside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 50,
+\   },
+\   'rightside': {
+\      'position': 'right',
+\   },
+\   'simplify': {
+\     'file.root.template': '[icon] [title] [root] [fullpath]',
+\     'file.child.template': '[selection | clip | 1] [indent][icon] [filename omitCenter 1]',
+\   }
+\ }
