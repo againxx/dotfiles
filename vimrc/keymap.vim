@@ -10,7 +10,11 @@ map <F11> :bp<CR>
 map <F12> :bn<CR>
 
 " Fold
-" nnoremap <space> za
+" nnoremap <space><space> za
+
+" WhichKey
+nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
+" nnoremap <silent> g :<C-u>WhichKey 'g'<CR>
 
 " window navigate
 nnoremap <C-l> <c-w>l
@@ -20,8 +24,8 @@ nnoremap <C-k> <c-w>k
 
 " Multi-visual
 let g:VM_maps = {}
-let g:VM_maps['Select Cursor Down'] = '\\j'
-let g:VM_maps['Select Cursor Up']   = '\\k'
+let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
+let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 
 " Ale
 " Use `[g` and `]g` to navigate diagnostics
@@ -33,15 +37,21 @@ nmap <silent> ]g <Plug>(ale_next_wrap_error)
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " Use <Tab> to confirm completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<Tab>"
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<Tab>"
+else
+  inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<Tab>"
+endif
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gl <Plug>(coc-declration)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -53,6 +63,11 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Use <Tab> for select text for visual placeholder of snippet.
+vmap <Tab> <Plug>(coc-snippets-select)
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
 
 " Scroll floating window up and down
 " nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
@@ -81,3 +96,4 @@ nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
 nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>k :<C-u>CocList maps<cr>
+nnoremap <silent> <space>p :<C-u>CocList snippets<cr>

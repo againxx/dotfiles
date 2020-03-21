@@ -1,5 +1,8 @@
+" Vim-plug
+let g:plug_url_format = 'https://github.com/%s.git'
+
 " Airline
-let g:airline_theme="violet"
+let g:airline_theme = 'violet'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
@@ -58,10 +61,6 @@ let NERDTreeWinSize=30
 
 " Space-vim-dark
 colorscheme space-vim-dark
-hi Normal       ctermbg=NONE guibg=NONE
-hi LineNr       ctermbg=NONE guibg=NONE
-hi SignColumn   ctermbg=NONE guibg=NONE
-hi CursorLineNr ctermbg=NONE guibg=NONE
 
 " Incsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -74,9 +73,12 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
+nmap y/ <Plug>(incsearch-fuzzy-/)
+nmap y? <Plug>(incsearch-fuzzy-?)
+nmap yg/ <Plug>(incsearch-fuzzy-stay)
+
+" Sneak
+" let g:sneak#label = 1
 
 " Rainbow
 let g:rainbow_active = 1 " set to 0 if you want to enable it later via :RainbowToggle
@@ -95,12 +97,12 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'python': ['pylint'],
+\   'cpp': ['ccls']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['yapf'],
 \}
-hi ALEWarning ctermbg=NONE guibg=NONE
 
 " Vista
 " Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
@@ -132,9 +134,11 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Coc
-let g:coc_snippet_next = '<tab>'
-" hi link CocHighlightText StatusLine
-hi CocHighlightText ctermbg=236 guibg=#34323e
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+" let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsJumpForwardTrigger="<Tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 " coc-explorer
 let g:coc_explorer_global_presets = {
@@ -157,3 +161,18 @@ let g:coc_explorer_global_presets = {
 \     'file.child.template': '[selection | clip | 1] [indent][icon] [filename omitCenter 1]',
 \   }
 \ }
+
+" vim-snippets
+let g:ultisnips_python_quoting_style = 'double'
+let g:ultisnips_python_triple_quoting_style = 'double'
+let g:ultisnips_python_style = 'normal'
+
+" custom highlight
+hi Normal       ctermbg=NONE guibg=NONE
+hi LineNr       ctermbg=NONE guibg=NONE
+hi SignColumn   ctermbg=NONE guibg=NONE
+hi CursorLineNr ctermbg=NONE guibg=NONE
+hi pythonParam  ctermfg=174 guifg=#d78787 ctermbg=NONE guibg=NONE 
+hi pythonSelf   ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE 
+hi ALEWarning   ctermbg=NONE guibg=NONE
+hi CocHighlightText ctermbg=236 guibg=#34323e

@@ -19,11 +19,15 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
+" Switch between header and  source file
+Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
+
 " Colorcheme & Highlighting
 Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'liuchengxu/space-vim-dark'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'pboettch/vim-cmake-syntax'
+" Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
+Plug 'againxx/python-syntax', { 'for': 'python' }
 
 " Search & Move & Text Object
 Plug 'haya14busa/incsearch.vim'
@@ -38,16 +42,19 @@ Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 
 " Snippets
+" Plug 'SirVer/ultisnips'
 Plug 'againxx/vim-snippets'
 
 " Multi cursors
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 
 " Markdwon
-Plug 'godlygeek/tabular' " this plugin is needed by vim-markdown
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " use pre build
-Plug 'vim-scripts/fcitx.vim'
+" this plugin is needed by vim-markdown
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' } " use pre build
+" This plugin is slow, loading only for markdown
+Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
 
 call plug#end()
 

@@ -9,6 +9,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " nmap <leader>rf <Plug>(coc-refactor)
 " Reload vimrc file
 nnoremap <leader>rl :source ~/.vimrc<CR>
+nnoremap <leader>qq :silent! bdelete!<CR>
 
 " Coc
 " Formatting selected code.
