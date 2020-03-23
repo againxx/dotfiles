@@ -1,23 +1,98 @@
-" Mardown-Preview
-nmap <leader>mp <Plug>MarkdownPreview
+" WhichKey
+nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
+" Define prefix dictionary
+let g:which_key_map =  {}
+let g:which_key_map.e = {
+      \ 'name' : '+edit' ,
+      \ 'v' : 'edit-vimrc',
+      \ 'l' : 'edit-leadermap',
+      \ 'k' : 'edit-keymap',
+      \ 'p' : 'edit-plugin-setting',
+      \ 'a' : 'edit-autocmd',
+      \ 'g' : 'edit-general-setting',
+      \ 'b' : 'edit-abbrev',
+      \ }
+
+let g:which_key_map.d = {
+      \ 'name' : '+directory' ,
+      \ 'v' : 'virmc-dir',
+      \ 'c' : 'current-dir',
+      \ }
+
+let g:which_key_map.q = {
+      \ 'name' : '+quit' ,
+      \ 'q' : 'quit-buffer',
+      \ 't' : 'quit-tab',
+      \ }
+
+let g:which_key_map.r = {
+      \ 'name' : '+refactor' ,
+      \ 'n' : 'rename',
+      \ 'f' : 'format',
+      \ 'x' : 'fix',
+      \ }
+
+let g:which_key_map.v = {
+      \ 'name' : '+view' ,
+      \ 'm' : 'markdown-preview',
+      \ 'c' : 'error-code',
+      \ 'h' : 'highlight-group',
+      \ }
+
+let g:which_key_map['\'] = {
+      \ 'name' : '+multi-cursor' ,
+      \ 'j' : 'select-cursor-down',
+      \ 'k' : 'select-cursor-up',
+      \ 'A' : 'select-all',
+      \ '\' : 'add-cursor-at-pos',
+      \ '/' : 'start-regex-search',
+      \ }
 
 " Sudo save
-nnoremap <leader>sw :w !sudo tee %<CR>
+nnoremap <leader>ws :w !sudo tee %<CR>
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-" nmap <leader>rf <Plug>(coc-refactor)
-" Reload vimrc file
-nnoremap <leader>rl :source ~/.vimrc<CR>
-nnoremap <leader>qq :silent! bdelete!<CR>
+" Multi-visual
+let g:VM_maps = {}
+let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
+let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
+
+" Source vimrc file
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+function! s:autoVerticalSplit(fname)
+    if winlayout()[0] == 'leaf'
+        exec 'vsplit '.a:fname
+    else
+        exec 'edit '.a:fname
+    endif
+endfunction
+
+" Edit files
+nnoremap <leader>ev :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/.vimrc')<CR>
+nnoremap <leader>el :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/leadermap.vim')<CR>
+nnoremap <leader>ek :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
+nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vim')<CR>
+nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
+nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
+nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vim')<CR>
+
+" Change directory
+nnoremap <leader>dv :cd ~/vim_zsh_tmux/vimrc<CR>
+nnoremap <leader>dc :cd %:p:h<CR>
+
+nnoremap <leader>qq :bdelete<CR>
+nnoremap <leader>qt :tabclose<CR>
+" nnoremap <leader>qb :MBEbd<CR>
 
 " Coc
 " Formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+xmap <leader>rf <Plug>(coc-format-selected)
+nmap <leader>rf <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>rx <Plug>(coc-fix-current)
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" nmap <leader>rf <Plug>(coc-refactor)
 
 " coc-actions
 " Remap for do codeAction of selected region
@@ -26,3 +101,20 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" Ale
+" Reset b:ale_echo_msg_format to show error code
+function! s:toggleAleErrorCode()
+    if exists("b:ale_echo_msg_format")
+        unlet b:ale_echo_msg_format
+    else
+        let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
+    endif
+endfunction
+
+nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
+" Mardown-Preview
+nnoremap <leader>vm :MarkdownPreview<CR>
+nnoremap <leader>vh :call SyntaxAttr()<CR>
+
+nnoremap <leader>nt :tabnew %<CR>

@@ -1,15 +1,16 @@
 {
     "suggest.noselect": false,
-    "suggest.maxCompleteItemCount": 150,
+    "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
     "diagnostic.displayByAle": true,
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
+    "python.analysis.logLevel": "Error",
     "highlight.document.enable": true,
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
-    "snippets.loadFromExtensions": false,
+    "snippets.loadFromExtensions": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
@@ -34,5 +35,6 @@
                 }
             }
         }
-    }
+    },
+    "coc.preferences.extensionUpdateCheck": "daily"
 }

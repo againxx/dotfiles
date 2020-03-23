@@ -28,6 +28,7 @@ Plug 'liuchengxu/space-vim-dark'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
 Plug 'againxx/python-syntax', { 'for': 'python' }
+Plug 'vim-scripts/SyntaxAttr.vim'
 
 " Search & Move & Text Object
 Plug 'haya14busa/incsearch.vim'

@@ -1,6 +1,10 @@
 " Vim-plug
 let g:plug_url_format = 'https://github.com/%s.git'
 
+" minibufexpl
+" let g:miniBufExplorerAutoStart = 0
+" let g:miniBufExplBuffersNeeded = 99
+
 " Airline
 let g:airline_theme = 'violet'
 let g:airline#extensions#tabline#enabled = 1
@@ -17,27 +21,29 @@ let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
 let g:airline_section_y = ''
-let g:airline_section_warning= '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} %{airline#util#wrap(airline#extensions#coc#get_warning(),0)}%{airline#util#wrap(airline#extensions#ale#get_warning(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} '.
+\   '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'.
+\   '%{airline#util#wrap(airline#extensions#ale#get_warning(),0)}'
 let g:airline_mode_map = {
-  \ '__'     : '-',
-  \ 'c'      : 'C',
-  \ 'i'      : 'I',
-  \ 'ic'     : 'I',
-  \ 'ix'     : 'I',
-  \ 'n'      : 'N',
-  \ 'multi'  : 'M',
-  \ 'ni'     : 'N',
-  \ 'no'     : 'N',
-  \ 'R'      : 'R',
-  \ 'Rv'     : 'R',
-  \ 's'      : 'S',
-  \ 'S'      : 'S',
-  \ ''     : 'S',
-  \ 't'      : 'T',
-  \ 'v'      : 'V',
-  \ 'V'      : 'V',
-  \ ''     : 'V',
-  \ }
+\   '__'     : '-',
+\   'c'      : 'C',
+\   'i'      : 'I',
+\   'ic'     : 'I',
+\   'ix'     : 'I',
+\   'n'      : 'N',
+\   'multi'  : 'M',
+\   'ni'     : 'N',
+\   'no'     : 'N',
+\   'R'      : 'R',
+\   'Rv'     : 'R',
+\   's'      : 'S',
+\   'S'      : 'S',
+\   ''     : 'S',
+\   't'      : 'T',
+\   'v'      : 'V',
+\   'V'      : 'V',
+\   ''     : 'V',
+\ }
 
 " tmuxline
 " let g:tmuxline_preset = {
@@ -52,8 +58,8 @@ let g:airline_mode_map = {
 let g:tmuxline_preset = 'nightly_fox'
 
 " NERDTree
-let NERDTreeWinPos='right'
-let NERDTreeWinSize=30
+let g:NERDTreeWinPos = 'right'
+let g:NERDTreeWinSize = 30
 
 " Onehalf
 " colorscheme onehalfdark
@@ -87,7 +93,7 @@ let g:rainbow_conf = {
 \   'separately': {
 \       'cmake': 0,
 \   }
-\}
+\ }
 
 " Ale
 let g:ale_sign_error = '->'
@@ -98,11 +104,10 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'python': ['pylint'],
 \   'cpp': ['ccls']
-\}
+\ }
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['yapf'],
-\}
+\   '*': ['remove_trailing_lines', 'trim_whitespace']
+\ }
 
 " Vista
 " Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
@@ -111,27 +116,28 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " See all the avaliable executives via `:echo g:vista#executives`.
 let g:vista_default_executive = 'coc'
 let g:vista_executive_for = {
-  \ 'cpp': 'coc',
-  \ 'python': 'coc',
-  \ 'vim': 'ctags',
-  \ }
-let g:vista_close_on_jump = 1 
+\   'cpp': 'coc',
+\   'python': 'coc',
+\   'vim': 'ctags'
+\ }
+let g:vista_close_on_jump = 1
 let g:vista_sidebar_width = 40
 let g:vista_keep_fzf_colors = 1
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_colors = {
+\   'fg':      ['fg', 'Normal'],
+\   'bg':      ['bg', 'Normal'],
+\   'hl':      ['fg', 'Comment'],
+\   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\   'hl+':     ['fg', 'Statement'],
+\   'info':    ['fg', 'PreProc'],
+\   'border':  ['fg', 'Ignore'],
+\   'prompt':  ['fg', 'Conditional'],
+\   'pointer': ['fg', 'Exception'],
+\   'marker':  ['fg', 'Keyword'],
+\   'spinner': ['fg', 'Label'],
+\   'header':  ['fg', 'Comment']
+\ }
 
 " Coc
 let g:coc_snippet_next = '<Tab>'
@@ -167,12 +173,19 @@ let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_triple_quoting_style = 'double'
 let g:ultisnips_python_style = 'normal'
 
+" vim-markdown
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_new_list_item_indent = 0
+" markdown-preview
+let g:mkdp_refresh_slow = 1
+
 " custom highlight
-hi Normal       ctermbg=NONE guibg=NONE
-hi LineNr       ctermbg=NONE guibg=NONE
-hi SignColumn   ctermbg=NONE guibg=NONE
-hi CursorLineNr ctermbg=NONE guibg=NONE
-hi pythonParam  ctermfg=174 guifg=#d78787 ctermbg=NONE guibg=NONE 
-hi pythonSelf   ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE 
-hi ALEWarning   ctermbg=NONE guibg=NONE
+hi Normal           ctermbg=NONE guibg=NONE
+hi LineNr           ctermbg=NONE guibg=NONE
+hi SignColumn       ctermbg=NONE guibg=NONE
+hi CursorLineNr     ctermbg=NONE guibg=NONE
+hi pythonParam      ctermfg=174 guifg=#d78787 ctermbg=NONE guibg=NONE
+hi pythonSelf       ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE
+hi ALEWarning       ctermbg=NONE guibg=NONE
 hi CocHighlightText ctermbg=236 guibg=#34323e

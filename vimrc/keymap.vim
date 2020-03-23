@@ -6,14 +6,13 @@ nnoremap <silent> <space>e :CocCommand explorer<CR>
 map <F3> :Vista!!<CR>
 
 " Minibufexpl
-map <F11> :bp<CR>
-map <F12> :bn<CR>
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
 
 " Fold
 " nnoremap <space><space> za
 
 " WhichKey
-nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
 " nnoremap <silent> g :<C-u>WhichKey 'g'<CR>
 
 " window navigate
@@ -22,15 +21,14 @@ nnoremap <C-h> <c-w>h
 nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 
-" Multi-visual
-let g:VM_maps = {}
-let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
-let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
-
 " Ale
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(ale_previous_wrap_error)
-nmap <silent> ]g <Plug>(ale_next_wrap_error)
+" Use `[e\[w` and `]e\]w` to navigate diagnostics
+nmap <silent> [e <Plug>(ale_previous_wrap_error)
+nmap <silent> ]e <Plug>(ale_next_wrap_error)
+nmap <silent> [w <Plug>(ale_previous_wrap_warning)
+nmap <silent> ]w <Plug>(ale_next_wrap_warning)
+nmap <silent> [g <Plug>(ale_previous_wrap)
+nmap <silent> ]g <Plug>(ale_next_wrap)
 
 " Coc
 " Use <C-j> and <C-k> to navigate the completion list:
@@ -45,6 +43,9 @@ else
 endif
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
+" Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+\   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -70,8 +71,8 @@ vmap <Tab> <Plug>(coc-snippets-select)
 imap <C-l> <Plug>(coc-snippets-expand)
 
 " Scroll floating window up and down
-" nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
-" nnoremap <expr><C-p> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-p>"
+nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
+nnoremap <expr><C-p> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-p>"
 
 " coc-lists
 nnoremap <silent> <space>r :<C-u>CocList -N mru -A<cr>
@@ -86,7 +87,7 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o :<C-u>CocListResume<cr>
 " Show all diagnostics.
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Show locationlist
@@ -95,5 +96,7 @@ nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
 nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
-nnoremap <silent> <space>k :<C-u>CocList maps<cr>
-nnoremap <silent> <space>p :<C-u>CocList snippets<cr>
+nnoremap <silent> <space>m :<C-u>CocList maps<cr>
+nnoremap <silent> <space>p :<C-u>CocList grep<cr>
+nnoremap <silent> <space>j :<C-u>CocNext<cr>
+nnoremap <silent> <space>k :<C-u>CocPrev<cr>
