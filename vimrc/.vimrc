@@ -5,9 +5,13 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Linting & Fixing
 Plug 'dense-analysis/ale'
 
+" Git
+Plug 'tpope/vim-fugitive'
+
 " Tags
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
+Plug 'junegunn/fzf.vim'
 
 " Airline
 Plug 'bling/vim-airline'
@@ -18,6 +22,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" Delete buffers and close files in Vim without closing windows and tabs
+Plug 'moll/vim-bbye'
 
 " Switch between header and  source file
 Plug 'vim-scripts/a.vim', { 'for': 'cpp' }

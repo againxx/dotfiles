@@ -191,7 +191,7 @@ POWERLEVEL9K_VI_COMMAND_MODE_STRING="%F{009}\uE7C5"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"  # zsh will repeat the command in output in neovim terminal with this line commented
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -246,7 +246,7 @@ autoload -U compinit && compinit
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 bindkey -v
 KEYTIMEOUT=1
 # else

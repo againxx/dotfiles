@@ -2,6 +2,9 @@
 " map <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <space>e :CocCommand explorer<CR>
 
+" Terminal
+nnoremap <space>x :terminal<CR>
+
 " Vista
 map <F3> :Vista!!<CR>
 
@@ -14,12 +17,6 @@ nnoremap ]b :bn<CR>
 
 " WhichKey
 " nnoremap <silent> g :<C-u>WhichKey 'g'<CR>
-
-" window navigate
-nnoremap <C-l> <c-w>l
-nnoremap <C-h> <c-w>h
-nnoremap <C-j> <c-w>j
-nnoremap <C-k> <c-w>k
 
 " Ale
 " Use `[e\[w` and `]e\]w` to navigate diagnostics
@@ -69,10 +66,21 @@ endfunction
 vmap <Tab> <Plug>(coc-snippets-select)
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_prev = '<C-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Scroll floating window up and down
 nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
 nnoremap <expr><C-p> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-p>"
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 " coc-lists
 nnoremap <silent> <space>r :<C-u>CocList -N mru -A<cr>

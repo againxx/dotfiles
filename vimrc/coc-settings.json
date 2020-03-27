@@ -1,4 +1,5 @@
 {
+    "coc.preferences.extensionUpdateCheck": "weekly",
     "suggest.noselect": false,
     "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
@@ -7,6 +8,7 @@
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
+    "python.condaPath": "/home/ustc-1314/anaconda3/envs/rl_scanning/bin/python",
     "highlight.document.enable": true,
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
@@ -17,10 +19,19 @@
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "git.signOffset": 1,
     "yank.list.maxsize": 50,
-    "http.proxy": "127.0.0.1:8123",
     "coc-actions.hideCursor": false,
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": false,
+    "explorer.sources": [
+        {
+            "name": "buffer",
+            "expand": true
+        },
+        {
+            "name": "file",
+            "expand": true
+        }
+    ],
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -35,6 +46,5 @@
                 }
             }
         }
-    },
-    "coc.preferences.extensionUpdateCheck": "daily"
+    }
 }

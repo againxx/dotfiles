@@ -122,26 +122,38 @@ let g:vista_executive_for = {
 \ }
 let g:vista_close_on_jump = 1
 let g:vista_sidebar_width = 40
-let g:vista_keep_fzf_colors = 1
-let g:fzf_colors = {
-\   'fg':      ['fg', 'Normal'],
-\   'bg':      ['bg', 'Normal'],
-\   'hl':      ['fg', 'Comment'],
-\   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-\   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-\   'hl+':     ['fg', 'Statement'],
-\   'info':    ['fg', 'PreProc'],
-\   'border':  ['fg', 'Ignore'],
-\   'prompt':  ['fg', 'Conditional'],
-\   'pointer': ['fg', 'Exception'],
-\   'marker':  ['fg', 'Keyword'],
-\   'spinner': ['fg', 'Label'],
-\   'header':  ['fg', 'Comment']
+" let g:fzf_colors = {
+" \   'fg':      ['fg', 'Normal'],
+" \   'bg':      ['bg', 'Normal'],
+" \   'hl':      ['fg', 'Comment'],
+" \   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+" \   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+" \   'hl+':     ['fg', 'Statement'],
+" \   'info':    ['fg', 'PreProc'],
+" \   'border':  ['fg', 'Ignore'],
+" \   'prompt':  ['fg', 'Conditional'],
+" \   'pointer': ['fg', 'Exception'],
+" \   'marker':  ['fg', 'Keyword'],
+" \   'spinner': ['fg', 'Label'],
+" \   'header':  ['fg', 'Comment']
+" \ }
+" let g:vista_keep_fzf_colors = 1
+
+let g:fzf_layout = {
+\   'window': {
+\       'width': 0.9,
+\       'height': 0.9,
+\       'xoffset': 0.5,
+\       'border': 'sharp'
+\   }
 \ }
 
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['up:60%']
+
 " Coc
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
 " let g:UltiSnipsExpandTrigger="<C-l>"
 " let g:UltiSnipsJumpForwardTrigger="<Tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
@@ -179,6 +191,17 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_new_list_item_indent = 0
 " markdown-preview
 let g:mkdp_refresh_slow = 1
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {'fleqn': 1},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {}
+    \ }
 
 " custom highlight
 hi Normal           ctermbg=NONE guibg=NONE
@@ -187,5 +210,7 @@ hi SignColumn       ctermbg=NONE guibg=NONE
 hi CursorLineNr     ctermbg=NONE guibg=NONE
 hi pythonParam      ctermfg=174 guifg=#d78787 ctermbg=NONE guibg=NONE
 hi pythonSelf       ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE
+hi pythonMethod     ctermfg=216 guifg=#ffaf87 ctermbg=NONE guibg=NONE
+" hi pythonMethod     ctermfg=215 guifg=#ffaf5f ctermbg=NONE guibg=NONE
 hi ALEWarning       ctermbg=NONE guibg=NONE
 hi CocHighlightText ctermbg=236 guibg=#34323e
