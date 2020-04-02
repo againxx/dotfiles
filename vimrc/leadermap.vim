@@ -1,12 +1,12 @@
 " WhichKey
 nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
 " Define prefix dictionary
-let g:which_key_map =  {}
-let g:which_key_map.e = {
+let g:which_leader_map =  {}
+let g:which_leader_map.e = {
 \   'name' : '+edit' ,
 \   'v' : 'edit-vimrc',
 \   'l' : 'edit-leadermap',
-\   'k' : 'edit-keymap',
+\   'm' : 'edit-keymap',
 \   'p' : 'edit-plugin-setting',
 \   'a' : 'edit-autocmd',
 \   'g' : 'edit-general-setting',
@@ -14,27 +14,27 @@ let g:which_key_map.e = {
 \   'c' : 'edit-coc-config',
 \ }
 
-let g:which_key_map.d = {
+let g:which_leader_map.d = {
 \   'name' : '+directory' ,
 \   'v' : 'virmc-dir',
 \   'c' : 'current-dir',
 \ }
 
-let g:which_key_map.q = {
+let g:which_leader_map.q = {
 \   'name' : '+quit' ,
 \   'q' : 'quit-buffer',
-\   'a' : 'quit-buffer-all',
+\   'w' : 'quit-buffer&window',
 \   't' : 'quit-tab',
 \ }
 
-let g:which_key_map.r = {
+let g:which_leader_map.r = {
 \   'name' : '+refactor' ,
 \   'n' : 'rename',
 \   'f' : 'format',
 \   'x' : 'fix',
 \ }
 
-let g:which_key_map.v = {
+let g:which_leader_map.v = {
 \   'name' : '+view' ,
 \   'm' : 'markdown-preview',
 \   'c' : 'error-code',
@@ -43,7 +43,7 @@ let g:which_key_map.v = {
 \   'p' : 'fzf-preview',
 \ }
 
-let g:which_key_map['\'] = {
+let g:which_leader_map['\'] = {
 \   'name' : '+multi-cursor' ,
 \   'j' : 'select-cursor-down',
 \   'k' : 'select-cursor-up',
@@ -51,6 +51,22 @@ let g:which_key_map['\'] = {
 \   '\' : 'add-cursor-at-pos',
 \   '/' : 'start-regex-search',
 \ }
+
+let g:which_leader_map.n = {
+\   'name' : '+new' ,
+\   'd' : 'new-todo',
+\   't' : 'new-tab',
+\ }
+
+let g:which_leader_map.c = {
+\   'name' : '+change' ,
+\   'l' : 'left-equation',
+\   'p' : 'fzf-preview',
+\   's' : 'airline-sep',
+\ }
+
+let g:which_leader_map.a = 'coc-actions'
+let g:which_leader_map.f = 'coc-lists-grep'
 
 " Sudo save
 nnoremap <leader>ws :w !sudo tee %<CR>
@@ -74,7 +90,7 @@ endfunction
 " Edit files
 nnoremap <leader>ev :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/.vimrc')<CR>
 nnoremap <leader>el :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/leadermap.vim')<CR>
-nnoremap <leader>ek :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
+nnoremap <leader>em :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
 nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vim')<CR>
 nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
@@ -87,7 +103,7 @@ nnoremap <leader>dv :cd ~/vim_zsh_tmux/vimrc<CR>
 nnoremap <leader>dc :cd %:p:h<CR>
 
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:AirlineRefresh<CR>
-nnoremap <silent> <leader>qa :silent! bdelete!<CR>
+nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 " nnoremap <leader>qb :MBEbd<CR>
 
@@ -104,10 +120,29 @@ nmap <leader>rn <Plug>(coc-rename)
 " coc-actions
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
+    execute 'CocCommand actions.open '.a:type
 endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open '.visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" coc-lists grep
+vnoremap <leader>f :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+nnoremap <leader>f :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
+
+function! s:grepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList grep '.word
+endfunction
 
 " Ale
 " Reset b:ale_echo_msg_format to show error code
@@ -150,11 +185,28 @@ function! s:toggleFZFPreview()
     endif
 endfunction
 
+" Airline Separate
+function! s:toggleAirlineSep()
+    if g:airline_left_sep == ''
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+    else
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+    endif
+endfunction
+
 nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
 nnoremap <leader>vm :MarkdownPreview<CR>
-nnoremap <leader>vl :call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <leader>vp :call <SID>toggleFZFPreview()<CR>
 nnoremap <leader>vh :call SyntaxAttr()<CR>
 
 nnoremap <leader>nt :tabnew %<CR>
 nnoremap <leader>nd :CocCommand todolist.create<CR>
+
+nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
+nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
+nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>

@@ -1,3 +1,13 @@
+" map Y to yank from the cursor to the end of line
+nnoremap Y y$
+
+" Temporary disable <Backspace>
+inoremap <BS> <nop>
+
+" Buffer navigation
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+
 " NERDTree
 " map <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <space>e :CocCommand explorer<CR>
@@ -8,10 +18,6 @@ nnoremap <space>x :terminal<CR>
 " Vista
 map <F3> :Vista!!<CR>
 
-" Minibufexpl
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
-
 " Fold
 " nnoremap <space><space> za
 
@@ -20,12 +26,12 @@ nnoremap ]b :bn<CR>
 
 " Ale
 " Use `[e\[w` and `]e\]w` to navigate diagnostics
-nmap <silent> [e <Plug>(ale_previous_wrap_error)
-nmap <silent> ]e <Plug>(ale_next_wrap_error)
-nmap <silent> [w <Plug>(ale_previous_wrap_warning)
-nmap <silent> ]w <Plug>(ale_next_wrap_warning)
-nmap <silent> [g <Plug>(ale_previous_wrap)
-nmap <silent> ]g <Plug>(ale_next_wrap)
+nnoremap <silent> [e <Plug>(ale_previous_wrap_error)
+nnoremap <silent> ]e <Plug>(ale_next_wrap_error)
+nnoremap <silent> [w <Plug>(ale_previous_wrap_warning)
+nnoremap <silent> ]w <Plug>(ale_next_wrap_warning)
+nnoremap <silent> [g <Plug>(ale_previous_wrap)
+nnoremap <silent> ]g <Plug>(ale_next_wrap)
 
 " Coc
 " Use <C-j> and <C-k> to navigate the completion list:
@@ -101,10 +107,12 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Show locationlist
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
+nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
 nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>m :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
+nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
+" nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>

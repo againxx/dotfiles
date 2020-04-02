@@ -1,4 +1,5 @@
 # Tmux
+export WHICH_TERMINAL=`ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))"`
 export TERM=screen-256color
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOSTART_ONCE=false
@@ -14,7 +15,7 @@ export ZSH=/home/ustc-1314/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 POWERLEVEL9K_MODE='nerdfont-complete'
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235
 DEFAULT_COLOR=$DEFAULT_FOREGROUND
@@ -60,7 +61,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs anaconda)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time vi_mode ssh)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time vi_mode)
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time vi_mode)
 
@@ -166,6 +167,10 @@ POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="$DEFAULT_BACKGROUND"
 # POWERLEVEL9K_VI_COMMAND_MODE_STRING="%F{red}\uF27D"
 POWERLEVEL9K_VI_INSERT_MODE_STRING="%F{magenta}\uF08C"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="%F{009}\uE7C5"
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="$(( $DEFAULT_BACKGROUND - 1 ))"
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="$(( $DEFAULT_BACKGROUND - 1 ))"
+# Extra or missing spaces in prompt compared to Powerlevel9k (used by Powerlevel10k)
+ZLE_RPROMPT_INDENT=0
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -273,6 +278,7 @@ bindkey "^J" forward-word
 alias -s py=nvim
 alias -s cpp=nvim
 alias -s h=nvim
+alias -s md=nvim
 
 # Include Z
 # . ~/z.sh

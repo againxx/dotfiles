@@ -11,16 +11,36 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = '' " ﱰ惡
+let g:airline_symbols.colomnnr = '' " 
+let g:airline_symbols.beforemode = ' ' "       
+let g:airline_symbols.branch = ' ' " שׂ
 let airline#extensions#ale#error_symbol = '✖ '
-let airline#extensions#ale#warning_symbol = '● '
+let airline#extensions#ale#warning_symbol = '● ' " 
 let g:airline#extensions#whitespace#trailing_format = '%s'
-let g:airline#extensions#whitespace#symbol = '✁'
+let g:airline#extensions#whitespace#symbol = '' " ✁
+if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
+    let g:airline_left_sep = '' " 
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = '' "    
+    let g:airline_right_alt_sep = ''
+else
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+endif
 let airline#extensions#ale#show_line_numbers = 0
 let airline#extensions#tmuxline#color_template = 'normal'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_section_b = "%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
+let g:airline_section_a = '%{g:airline_symbols.beforemode} %#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
+let g:airline_section_b = "%{ChangeCocGitBranchSymbol()}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
 let g:airline_section_y = ''
+let g:airline_section_z = '%p%% %{g:airline_symbols.linenr} %#__accent_bold#%l %{g:airline_symbols.colomnnr} %v%#__restore__#'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} '.
 \   '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'.
 \   '%{airline#util#wrap(airline#extensions#ale#get_warning(),0)}'
@@ -65,9 +85,6 @@ let g:NERDTreeWinSize = 30
 " colorscheme onehalfdark
 " let g:airline_theme='onehalfdark'
 
-" Space-vim-dark
-colorscheme space-vim-dark
-
 " Incsearch
 let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
@@ -102,7 +119,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
-\   'python': ['pylint'],
+\   'python': ['pylint', 'mypy'],
 \   'cpp': ['ccls']
 \ }
 let g:ale_fixers = {
@@ -202,15 +219,14 @@ let g:mkdp_preview_options = {
     \ 'sequence_diagrams': {},
     \ 'flowchart_diagrams': {}
     \ }
+let g:mkdp_markdown_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/markdown/solarized-light.css'
+let g:mkdp_highlight_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/highlight/solarized-light.css'
 
-" custom highlight
-hi Normal           ctermbg=NONE guibg=NONE
-hi LineNr           ctermbg=NONE guibg=NONE
-hi SignColumn       ctermbg=NONE guibg=NONE
-hi CursorLineNr     ctermbg=NONE guibg=NONE
-hi pythonParam      ctermfg=174 guifg=#d78787 ctermbg=NONE guibg=NONE
-hi pythonSelf       ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE
-hi pythonMethod     ctermfg=216 guifg=#ffaf87 ctermbg=NONE guibg=NONE
-" hi pythonMethod     ctermfg=215 guifg=#ffaf5f ctermbg=NONE guibg=NONE
-hi ALEWarning       ctermbg=NONE guibg=NONE
-hi CocHighlightText ctermbg=236 guibg=#34323e
+function! ChangeCocGitBranchSymbol()
+    let l:original_status = get(g:,'coc_git_status','')
+    if strlen(l:original_status) > 3
+        return g:airline_symbols.branch . strpart(l:original_status, 3)
+    else
+        return ''
+    endif
+endfunction

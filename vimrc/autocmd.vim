@@ -2,14 +2,26 @@ augroup filetypes
     autocmd!
     autocmd FileType python setlocal foldmethod=indent foldlevel=1
     autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
-    autocmd FileType markdown setlocal iskeyword+=92
-    autocmd FileType markdown let b:coc_additional_keywords = ['\']
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
     \   | set laststatus=0
     \   | execute "autocmd BufLeave <buffer> set laststatus=2"
     \   | endif
+augroup END
+
+augroup markdown
+    autocmd!
+    autocmd FileType markdown setlocal iskeyword+=92
+    autocmd FileType markdown let b:coc_additional_keywords = ['\']
+    autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
+    autocmd FileType markdown inoremap <buffer> ;b ****<Esc>hi
+    autocmd FileType markdown inoremap <buffer> ;i **<Esc>i
+    autocmd FileType markdown inoremap <buffer> ;m $$<Esc>i
+    autocmd FileType markdown inoremap <buffer> ;M $$$$<Esc>hi
+    autocmd FileType markdown inoremap <buffer> ;c ```<CR>```<Esc>ka
+    autocmd FileType markdown inoremap <buffer> ;t <Space><bar><Space>
+    autocmd FileType markdown inoremap <buffer> ;; ;
 augroup END
 
 augroup common
@@ -19,7 +31,7 @@ augroup common
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions" | call CocActionAsync('highlight') | endif
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    autocmd! User vim-which-key call which_key#register('\', 'g:which_key_map')
+    autocmd! User vim-which-key call which_key#register('\', 'g:which_leader_map')
 augroup END
 
 " You can add a mapping to `/` in order to open the vista finder for
