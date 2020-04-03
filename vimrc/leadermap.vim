@@ -12,6 +12,7 @@ let g:which_leader_map.e = {
 \   'g' : 'edit-general-setting',
 \   'b' : 'edit-abbrev',
 \   'c' : 'edit-coc-config',
+\   's' : 'edit-snippets',
 \ }
 
 let g:which_leader_map.d = {
@@ -63,6 +64,16 @@ let g:which_leader_map.c = {
 \   'l' : 'left-equation',
 \   'p' : 'fzf-preview',
 \   's' : 'airline-sep',
+\   'i' : 'indent-guides',
+\ }
+
+let g:which_leader_map.t = {
+\   'name' : '+table' ,
+\   'm' : 'table-toggle',
+\   'a' : 'table-realign',
+\   'c' : 'table-center',
+\   'l' : 'table-left',
+\   'r' : 'table-right',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -77,7 +88,7 @@ let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
 let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 
 " Source vimrc file, refresh airline to show the arrow
-nnoremap <leader>sv :source $MYVIMRC <bar> AirlineRefresh<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC <bar> AirlineRefresh<CR>
 
 function! s:autoVerticalSplit(fname)
     if winlayout()[0] == 'leaf'
@@ -96,6 +107,7 @@ nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.v
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
 nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
+nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 
 
 " Change directory
@@ -192,6 +204,11 @@ function! s:toggleAirlineSep()
         let g:airline_left_alt_sep = ''
         let g:airline_right_sep = ''
         let g:airline_right_alt_sep = ''
+    elseif g:airline_left_sep == ''
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
     else
         let g:airline_left_sep = ''
         let g:airline_left_alt_sep = ''
@@ -210,3 +227,10 @@ nnoremap <leader>nd :CocCommand todolist.create<CR>
 nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
 nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
+nmap <leader>ci <Plug>IndentGuidesToggle
+
+" Table-mode
+let g:table_mode_realign_map = '<leader>ta'
+nnoremap <silent> <leader>tr :silent! s/-<bar>/:<bar>/g<CR>:silent! s/<bar>:/<bar>-/g<CR>
+nnoremap <silent> <leader>tl :silent! s/<bar>-/<bar>:/g<CR>:silent! s/:<bar>/-<bar>/g<CR>
+nnoremap <silent> <leader>tc :silent! s/<bar>-/<bar>:/g<CR>:silent! s/-<bar>/:<bar>/g<CR>

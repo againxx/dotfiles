@@ -6,7 +6,6 @@ let g:plug_url_format = 'https://github.com/%s.git'
 " let g:miniBufExplBuffersNeeded = 99
 
 " Airline
-let g:airline_theme = 'violet'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
@@ -14,10 +13,10 @@ let g:airline#extensions#ale#enabled = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.linenr = '' " ﱰ惡
+let g:airline_symbols.linenr= ' ' " ﱰ惡  塞
 let g:airline_symbols.colomnnr = '' " 
 let g:airline_symbols.beforemode = ' ' "       
-let g:airline_symbols.branch = ' ' " שׂ
+let g:airline_symbols.branch = '' " שׂ
 let airline#extensions#ale#error_symbol = '✖ '
 let airline#extensions#ale#warning_symbol = '● ' " 
 let g:airline#extensions#whitespace#trailing_format = '%s'
@@ -39,6 +38,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_a = '%{g:airline_symbols.beforemode} %#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
 let g:airline_section_b = "%{ChangeCocGitBranchSymbol()}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
+let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#vista#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#prepend("",0)}%{airline#util#wrap(airline#parts#filetype(),0)}%{AppendFileTypeSymbol()}'
 let g:airline_section_y = ''
 let g:airline_section_z = '%p%% %{g:airline_symbols.linenr} %#__accent_bold#%l %{g:airline_symbols.colomnnr} %v%#__restore__#'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} '.
@@ -209,23 +209,52 @@ let g:vim_markdown_new_list_item_indent = 0
 " markdown-preview
 let g:mkdp_refresh_slow = 1
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {'fleqn': 1},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {}
-    \ }
+\   'mkit': {},
+\   'katex': {'fleqn': 1},
+\   'uml': {},
+\   'maid': {},
+\   'disable_sync_scroll': 0,
+\   'sync_scroll_type': 'middle',
+\   'hide_yaml_meta': 1,
+\   'sequence_diagrams': {},
+\   'flowchart_diagrams': {}
+\ }
 let g:mkdp_markdown_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/markdown/solarized-light.css'
 let g:mkdp_highlight_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/highlight/solarized-light.css'
+
+" vim-indent-guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_exclude_filetypes = [
+\   'help',
+\   'coc-explorer',
+\   'vista',
+\   'fzf'
+\ ]
 
 function! ChangeCocGitBranchSymbol()
     let l:original_status = get(g:,'coc_git_status','')
     if strlen(l:original_status) > 3
         return g:airline_symbols.branch . strpart(l:original_status, 3)
+    else
+        return ''
+    endif
+endfunction
+
+function! AppendFileTypeSymbol()
+    if &filetype == 'vim'
+        return '  '
+    elseif &filetype == 'python'
+        return '  '
+    elseif &filetype == 'cpp'
+        return '  '
+    elseif &filetype == 'markdown'
+        return '  '
+    elseif &filetype == 'cmake'
+        return '  '
     else
         return ''
     endif

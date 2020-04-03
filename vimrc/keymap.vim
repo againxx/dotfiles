@@ -1,5 +1,9 @@
 " map Y to yank from the cursor to the end of line
 nnoremap Y y$
+" map Y to yank to system clipboard in visual mode
+vnoremap Y "+y
+
+nnoremap <C-h> :nohlsearch<CR>
 
 " Temporary disable <Backspace>
 inoremap <BS> <nop>
@@ -100,6 +104,7 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " Search workspace symbols.
 " nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
+nnoremap <silent> <space>S :<C-u>CocList --normal sources<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>CocListResume<cr>
 " Show all diagnostics.

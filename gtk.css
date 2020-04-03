@@ -46,12 +46,10 @@
 {
     bind "<ctrl>d" { "move-cursor" (display-lines, 5, 0); }      /* 5 lines down */
     bind "<ctrl>u" { "move-cursor" (display-lines, -5, 0); }     /* 5 lines up */
-    bind "<ctrl>e" { "move-cursor" (display-lines, -1, 0); }     /* down */
-    bind "<ctrl>y" { "move-cursor" (display-lines, 1, 0); }      /* up */
-    bind "j" { "move-cursor" (display-lines, 1, 0); }            /* down */
-    bind "k" { "move-cursor" (display-lines, -1, 0); }           /* up */
-    bind "l" { "move-cursor" (logical-positions, 1, 0); }        /* right */
-    bind "h" { "move-cursor" (logical-positions, -1, 0); }       /* left */
+    bind "<ctrl>j" { "move-cursor" (display-lines, 1, 0); }     /* up */
+    bind "<ctrl>k" { "move-cursor" (display-lines, -1, 0); }      /* down */
+    bind "<ctrl>n" { "move-cursor" (display-lines, 1, 0); }     /* up */
+    bind "<ctrl>p" { "move-cursor" (display-lines, -1, 0); }      /* down */
 }
 
 @binding-set gtk-my-tree-view
