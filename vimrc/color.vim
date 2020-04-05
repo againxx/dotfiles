@@ -47,6 +47,8 @@ if g:colors_name == 'ayu'
     hi CocHighlightText guibg=#151A1E
     " hi CocHighlightText guibg=#232B32
     let g:VM_highlight_matches = ''
+    hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
+    hi IndentGuidesEven ctermbg=NONE guibg=#293137
 endif
 
 if g:colors_name == 'onehalfdark'

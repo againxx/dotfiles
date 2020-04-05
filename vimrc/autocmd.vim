@@ -27,6 +27,22 @@ augroup markdown
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
     autocmd FileType markdown inoremap <buffer> ;4 ####<Space>
+    autocmd FileType markdown let b:switch_custom_definitions = [
+    \   {
+    \       '\(|:\=-\+\)\+|': {
+    \           '|\@<=-\(-\=|\)\@!': ':',
+    \           '|\@<=[:-]\=-|\@=': ':-:',
+    \           '\(|-\=\)\@<!-|\@=': ':',
+    \       },
+    \       '\(|:-\+:\)\+|': {
+    \           '|\@<=:': '-'
+    \       },
+    \       '\(|-\+:\)\+|': {
+    \           '|\@<=-': ':',
+    \           ':|\@=': '-'
+    \       }
+    \   }
+    \ ]
     autocmd FileType markdown inoreabbrev <expr> <buffer> <bar><bar>
     \   <SID>isAtStartOfLine('\|\|') ?
     \   '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
@@ -41,6 +57,7 @@ augroup common
     \   | call CocActionAsync('highlight') | endif
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd! User vim-which-key call which_key#register('\', 'g:which_leader_map')
+    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 
 " You can add a mapping to `/` in order to open the vista finder for

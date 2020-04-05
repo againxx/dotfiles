@@ -63,17 +63,14 @@ let g:which_leader_map.c = {
 \   'name' : '+change' ,
 \   'l' : 'left-equation',
 \   'p' : 'fzf-preview',
-\   's' : 'airline-sep',
+\   's' : 'statusline-sep',
 \   'i' : 'indent-guides',
 \ }
 
 let g:which_leader_map.t = {
 \   'name' : '+table' ,
 \   'm' : 'table-toggle',
-\   'a' : 'table-realign',
-\   'c' : 'table-center',
-\   'l' : 'table-left',
-\   'r' : 'table-right',
+\   'r' : 'table-realign',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -88,7 +85,8 @@ let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
 let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 
 " Source vimrc file, refresh airline to show the arrow
-nnoremap <silent> <leader>sv :source $MYVIMRC <bar> AirlineRefresh<CR>
+" nnoremap <silent> <leader>sv :source $MYVIMRC <bar> AirlineRefresh<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 
 function! s:autoVerticalSplit(fname)
     if winlayout()[0] == 'leaf'
@@ -114,7 +112,7 @@ nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>dv :cd ~/vim_zsh_tmux/vimrc<CR>
 nnoremap <leader>dc :cd %:p:h<CR>
 
-nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:AirlineRefresh<CR>
+nnoremap <silent> <leader>qq :silent! Bdelete!<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 " nnoremap <leader>qb :MBEbd<CR>
@@ -230,7 +228,4 @@ nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
 nmap <leader>ci <Plug>IndentGuidesToggle
 
 " Table-mode
-let g:table_mode_realign_map = '<leader>ta'
-nnoremap <silent> <leader>tr :silent! s/-<bar>/:<bar>/g<CR>:silent! s/<bar>:/<bar>-/g<CR>
-nnoremap <silent> <leader>tl :silent! s/<bar>-/<bar>:/g<CR>:silent! s/:<bar>/-<bar>/g<CR>
-nnoremap <silent> <leader>tc :silent! s/<bar>-/<bar>:/g<CR>:silent! s/-<bar>/:<bar>/g<CR>
+let g:table_mode_realign_map = '<leader>tr'

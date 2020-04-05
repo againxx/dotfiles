@@ -1,70 +1,6 @@
 " Vim-plug
 let g:plug_url_format = 'https://github.com/%s.git'
 
-" minibufexpl
-" let g:miniBufExplorerAutoStart = 0
-" let g:miniBufExplBuffersNeeded = 99
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tmuxline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.linenr= ' ' " ﱰ惡  塞
-let g:airline_symbols.colomnnr = '' " 
-let g:airline_symbols.beforemode = ' ' "       
-let g:airline_symbols.branch = '' " שׂ
-let airline#extensions#ale#error_symbol = '✖ '
-let airline#extensions#ale#warning_symbol = '● ' " 
-let g:airline#extensions#whitespace#trailing_format = '%s'
-let g:airline#extensions#whitespace#symbol = '' " ✁
-if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
-    let g:airline_left_sep = '' " 
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = '' "    
-    let g:airline_right_alt_sep = ''
-else
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-endif
-let airline#extensions#ale#show_line_numbers = 0
-let airline#extensions#tmuxline#color_template = 'normal'
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_section_a = '%{g:airline_symbols.beforemode} %#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
-let g:airline_section_b = "%{ChangeCocGitBranchSymbol()}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}"
-let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#vista#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#prepend("",0)}%{airline#util#wrap(airline#parts#filetype(),0)}%{AppendFileTypeSymbol()}'
-let g:airline_section_y = ''
-let g:airline_section_z = '%p%% %{g:airline_symbols.linenr} %#__accent_bold#%l %{g:airline_symbols.colomnnr} %v%#__restore__#'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#whitespace#check(),0)} '.
-\   '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'.
-\   '%{airline#util#wrap(airline#extensions#ale#get_warning(),0)}'
-let g:airline_mode_map = {
-\   '__'     : '-',
-\   'c'      : 'C',
-\   'i'      : 'I',
-\   'ic'     : 'I',
-\   'ix'     : 'I',
-\   'n'      : 'N',
-\   'multi'  : 'M',
-\   'ni'     : 'N',
-\   'no'     : 'N',
-\   'R'      : 'R',
-\   'Rv'     : 'R',
-\   's'      : 'S',
-\   'S'      : 'S',
-\   ''     : 'S',
-\   't'      : 'T',
-\   'v'      : 'V',
-\   'V'      : 'V',
-\   ''     : 'V',
-\ }
-
 " tmuxline
 " let g:tmuxline_preset = {
 "       \'a'    : '#S',
@@ -78,12 +14,8 @@ let g:airline_mode_map = {
 let g:tmuxline_preset = 'nightly_fox'
 
 " NERDTree
-let g:NERDTreeWinPos = 'right'
-let g:NERDTreeWinSize = 30
-
-" Onehalf
-" colorscheme onehalfdark
-" let g:airline_theme='onehalfdark'
+" let g:NERDTreeWinPos = 'right'
+" let g:NERDTreeWinSize = 30
 
 " Incsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -99,6 +31,10 @@ map g# <Plug>(incsearch-nohl-g#)
 nmap y/ <Plug>(incsearch-fuzzy-/)
 nmap y? <Plug>(incsearch-fuzzy-?)
 nmap yg/ <Plug>(incsearch-fuzzy-stay)
+
+" Visual-multi
+let g:VM_set_statusline = 2
+let g:VM_silent_exit = 1
 
 " Sneak
 " let g:sneak#label = 1
@@ -226,7 +162,7 @@ let g:mkdp_highlight_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custo
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_default_mapping = 0
 let g:indent_guides_exclude_filetypes = [
 \   'help',
@@ -234,28 +170,3 @@ let g:indent_guides_exclude_filetypes = [
 \   'vista',
 \   'fzf'
 \ ]
-
-function! ChangeCocGitBranchSymbol()
-    let l:original_status = get(g:,'coc_git_status','')
-    if strlen(l:original_status) > 3
-        return g:airline_symbols.branch . strpart(l:original_status, 3)
-    else
-        return ''
-    endif
-endfunction
-
-function! AppendFileTypeSymbol()
-    if &filetype == 'vim'
-        return '  '
-    elseif &filetype == 'python'
-        return '  '
-    elseif &filetype == 'cpp'
-        return '  '
-    elseif &filetype == 'markdown'
-        return '  '
-    elseif &filetype == 'cmake'
-        return '  '
-    else
-        return ''
-    endif
-endfunction

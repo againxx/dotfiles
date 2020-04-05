@@ -35,3 +35,4 @@ set signcolumn=yes
 set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+set modeline

@@ -15,12 +15,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 
 "----------Stausline----------
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline'] }
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'maximbaz/lightline-ale'
 
 "----------Window & Buffer & Keybindings----------
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Delete buffers and close files in Vim without closing windows and tabs
@@ -34,9 +37,7 @@ Plug 'ayu-theme/ayu-vim'
 
 "----------Highlighting----------
 Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
-Plug 'againxx/python-syntax', { 'for': 'python' }
 Plug 'vim-scripts/SyntaxAttr.vim'
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 "----------Search & Move----------
 Plug 'haya14busa/incsearch.vim'
@@ -56,6 +57,8 @@ Plug 'againxx/vim-snippets'
 "----------Python----------
 Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'againxx/python-syntax', { 'for': 'python' }
 
 "----------Cpp----------
 " Switch between header and source file
@@ -68,7 +71,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' } " use pre build
 " This plugin is slow, loading only for markdown
 Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
 "----------Utility----------
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
@@ -76,6 +79,7 @@ Plug 'tpope/vim-capslock'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro
 Plug 'Konfekt/FastFold'
+Plug 'AndrewRadev/switch.vim'
 
 call plug#end()
 

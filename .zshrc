@@ -30,7 +30,7 @@ source ~/vim_zsh_tmux/powlevel9k_conf.zsh
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -48,6 +48,7 @@ DISABLE_AUTO_TITLE="true"  # zsh will repeat the command in output in neovim ter
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# This configuration is overrided by fzf
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -68,18 +69,18 @@ DISABLE_AUTO_TITLE="true"  # zsh will repeat the command in output in neovim ter
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  python
-  pip
-  vi-mode
-  tmux
-  zsh-syntax-highlighting
-  extract
-  zsh-autosuggestions
-  zsh-completions
-  autojump
-  colored-man-pages
-  conda-zsh-completion
+    git
+    python
+    pip
+    vi-mode
+    tmux
+    zsh-syntax-highlighting
+    extract
+    zsh-autosuggestions
+    zsh-completions
+    autojump
+    colored-man-pages
+    conda-zsh-completion
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -88,22 +89,19 @@ source $ZSH/oh-my-zsh.sh
 # Reference: https://github.com/esc/conda-zsh-completion/issues/26
 autoload -U compinit && compinit
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+# export LANG=zh_CN.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='nvim'
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='nvim'
+fi
+
 bindkey -v
 KEYTIMEOUT=1
-# else
-#   export EDITOR='mvim'
-# fi
-
 ### bindkey ctrl+j for partial accept zsh-autosuggestions
 ### bindkey ctrl+l for complete accept zsh-autosuggestions
 ### bindkey alt+l for clear screen
@@ -137,9 +135,14 @@ alias -s py=nvim
 alias -s cpp=nvim
 alias -s h=nvim
 alias -s md=nvim
+alias -s txt=nvim
 
 # Include Z
 # . ~/z.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # ROS working space related
 # source /opt/ros/indigo/setup.zsh
@@ -154,6 +157,7 @@ alias -s md=nvim
 # export ROS_IP=192.168.0.100
 # export ROS_MASTER_URI=http://localhost:11311
 
+# For colourize ls dir
 # eval `dircolors /home/ustc-1314/.dir_colors/dircolors`
 
 # >>> conda initialize >>>
@@ -172,3 +176,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+kitty + complete setup zsh | source /dev/stdin

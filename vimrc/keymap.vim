@@ -3,10 +3,17 @@ nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
 vnoremap Y "+y
 
+" text object for parameter
+" onoremap i, :<C-u>normal! bvt,<CR>
+
 nnoremap <C-h> :nohlsearch<CR>
 
-" Temporary disable <Backspace>
+" Temporary disable <Backspace> & <Up> & <Down>
 inoremap <BS> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
 
 " Buffer navigation
 nnoremap [b :bp<CR>
@@ -20,7 +27,7 @@ nnoremap <silent> <space>e :CocCommand explorer<CR>
 nnoremap <space>x :terminal<CR>
 
 " Vista
-map <F3> :Vista!!<CR>
+map <silent> <F3> :Vista!!<CR>
 
 " Fold
 " nnoremap <space><space> za
