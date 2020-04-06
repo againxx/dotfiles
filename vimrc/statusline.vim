@@ -1,8 +1,6 @@
-source ~/Programming_Tools/lightline-colorscheme/my_ayu_mirage.vim
-
 let g:lightline = {}
 let g:lightline.colorscheme = 'my_ayu_mirage'
-let g:lightline#symbols = {
+let g:lightline.symbols = {
 \   'linenr': ' ',
 \   'colomnnr': '',
 \   'beforemode': ' ',
@@ -40,7 +38,7 @@ let g:lightline.tabline = {
 \ }
 
 let g:lightline.component = {
-\   'mode': '%{g:lightline#symbols.beforemode} %{lightline#mode()}',
+\   'mode': '%{g:lightline.symbols.beforemode} %{lightline#mode()}',
 \   'absolutepath': '%F',
 \   'relativepath': '%f',
 \   'filename': '%<%t',
@@ -52,7 +50,7 @@ let g:lightline.component = {
 \   'fileformat': '%{&ff}',
 \   'percentwin': '%P',
 \   'spell': '%{&spell?&spelllang:""}',
-\   'lineinfo': '%p%% %{g:lightline#symbols.linenr} %l %{g:lightline#symbols.colomnnr} %v',
+\   'lineinfo': '%p%% %{g:lightline.symbols.linenr} %l %{g:lightline.symbols.colomnnr} %v',
 \   'line': '%l',
 \   'column': '%c',
 \   'close': '%999X X ',
@@ -144,7 +142,7 @@ endfunction
 function! LightlineCocGitBranch()
     let l:git_status = get(g:,'coc_git_status','')
     if strlen(l:git_status) > 0
-        return g:lightline#symbols.branch . strcharpart(l:git_status, 1) .
+        return g:lightline.symbols.branch . strcharpart(l:git_status, 1) .
         \   get(b:,'coc_git_status','') . get(b:,'coc_git_blame','')
     else
         return ''
@@ -168,7 +166,7 @@ function! LightlineLinterWarningsWithWhitespaceCheck()
         return ''
     else
         let l:warnings = lightline#ale#warnings()
-        let l:whitespace = LightlineWhitespaceCheck()
+        let l:whitespace = lightline#whitespace#check()
         if strlen(l:warnings) == 0
             return l:whitespace
         elseif strlen(l:whitespace) == 0

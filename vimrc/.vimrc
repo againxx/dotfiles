@@ -21,6 +21,7 @@ Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline'] }
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'maximbaz/lightline-ale'
+Plug 'againxx/lightline-utils'
 
 "----------Window & Buffer & Keybindings----------
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }

@@ -42,6 +42,7 @@ let g:which_leader_map.v = {
 \   'h' : 'highlight-group',
 \   'l' : 'katex-equation-left',
 \   'p' : 'fzf-preview',
+\   'i' : 'indent-guides',
 \ }
 
 let g:which_leader_map['\'] = {
@@ -64,7 +65,6 @@ let g:which_leader_map.c = {
 \   'l' : 'left-equation',
 \   'p' : 'fzf-preview',
 \   's' : 'statusline-sep',
-\   'i' : 'indent-guides',
 \ }
 
 let g:which_leader_map.t = {
@@ -218,6 +218,7 @@ endfunction
 nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
 nnoremap <leader>vm :MarkdownPreview<CR>
 nnoremap <leader>vh :call SyntaxAttr()<CR>
+nmap <leader>vi <Plug>IndentGuidesToggle
 
 nnoremap <leader>nt :tabnew %<CR>
 nnoremap <leader>nd :CocCommand todolist.create<CR>
@@ -225,7 +226,6 @@ nnoremap <leader>nd :CocCommand todolist.create<CR>
 nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
 nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
-nmap <leader>ci <Plug>IndentGuidesToggle
 
 " Table-mode
 let g:table_mode_realign_map = '<leader>tr'

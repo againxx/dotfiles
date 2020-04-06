@@ -17,6 +17,7 @@
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.signOffset": 1,
     "yank.list.maxsize": 50,
     "coc-actions.hideCursor": false,

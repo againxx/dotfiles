@@ -1,8 +1,8 @@
-augroup filetypes
+augroup other_filetypes
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
-    " autocmd FileType python let b:current_syntax = "python"
+    " autocmd FileType python let b:current_syntax = 'python'
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
@@ -11,10 +11,12 @@ augroup filetypes
     \   | endif
 augroup END
 
-augroup markdown
+augroup markdown_filetypes
     autocmd!
     autocmd FileType markdown setlocal iskeyword+=92
     autocmd FileType markdown let b:coc_additional_keywords = ['\']
+    " one or two spaces aren't considered as trailing
+    autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
     autocmd FileType markdown inoremap <buffer> ;b ****<Esc>hi
     autocmd FileType markdown inoremap <buffer> ;i **<Esc>i

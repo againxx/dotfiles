@@ -23,3 +23,11 @@ nnoremap <M-l> <c-w>l
 nnoremap <M-h> <c-w>h
 nnoremap <M-j> <c-w>j
 nnoremap <M-k> <c-w>k
+
+" buffer navigation
+nmap <M-1> <Plug>lightline#bufferline#go(1)
+nmap <M-2> <Plug>lightline#bufferline#go(2)
+nmap <M-3> <Plug>lightline#bufferline#go(3)
+nmap <M-4> <Plug>lightline#bufferline#go(4)
+nmap <M-5> <Plug>lightline#bufferline#go(5)
+nmap <M-6> <Plug>lightline#bufferline#go(6)
