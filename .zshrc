@@ -125,7 +125,7 @@ bindkey -M vicmd "_" vi-first-non-blank
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ra="ranger"
+# alias ra="ranger" # use ra() function instead
 alias pch="proxychains"
 alias zshconf="nvim ~/.zshrc"
 alias tmuxconf="nvim ~/.tmux.conf"
@@ -136,6 +136,23 @@ alias -s cpp=nvim
 alias -s h=nvim
 alias -s md=nvim
 alias -s txt=nvim
+
+mkcd() {
+    mkdir -p $1; cd $1
+}
+
+ra() {
+  if [ "$1" != "" ]; then
+    if [ -d "$1" ]; then
+      ranger "$1"
+    else
+      ranger "$(autojump $1)"
+    fi
+  else
+    ranger
+  fi
+	return $?
+}
 
 # Include Z
 # . ~/z.sh

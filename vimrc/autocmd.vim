@@ -13,7 +13,7 @@ augroup END
 
 augroup markdown_filetypes
     autocmd!
-    autocmd FileType markdown setlocal iskeyword+=92
+    autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
     autocmd FileType markdown let b:coc_additional_keywords = ['\']
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
@@ -24,6 +24,7 @@ augroup markdown_filetypes
     autocmd FileType markdown inoremap <buffer> ;M $$$$<Esc>hi
     autocmd FileType markdown inoremap <buffer> ;c ```<CR>```<Esc>ka
     autocmd FileType markdown inoremap <buffer> ;d ~~~~<Esc>hi
+    autocmd FileType markdown inoremap <buffer> ;t [<Space>]<Space>
     autocmd FileType markdown inoremap <buffer> ;; ;
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>

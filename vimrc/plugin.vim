@@ -1,7 +1,9 @@
 " Vim-plug
 let g:plug_url_format = 'https://github.com/%s.git'
 
-" tmuxline
+" ===
+" === tmuxline
+" ===
 " let g:tmuxline_preset = {
 "       \'a'    : '#S',
 "       \'b'    : '#W',
@@ -17,7 +19,9 @@ let g:tmuxline_preset = 'nightly_fox'
 " let g:NERDTreeWinPos = 'right'
 " let g:NERDTreeWinSize = 30
 
-" Incsearch
+" ===
+" === Incsearch
+" ===
 let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -32,14 +36,18 @@ nmap y/ <Plug>(incsearch-fuzzy-/)
 nmap y? <Plug>(incsearch-fuzzy-?)
 nmap yg/ <Plug>(incsearch-fuzzy-stay)
 
-" Visual-multi
+" ===
+" === Visual-multi
+" ===
 let g:VM_set_statusline = 2
 let g:VM_silent_exit = 1
 
 " Sneak
 " let g:sneak#label = 1
 
-" Rainbow
+" ===
+" === Rainbow
+" ===
 let g:rainbow_active = 1 " set to 0 if you want to enable it later via :RainbowToggle
 " Disable it for CMake files, since it breaks cmake syntax highlighting
 let g:rainbow_conf = {
@@ -48,7 +56,9 @@ let g:rainbow_conf = {
 \   }
 \ }
 
-" Ale
+" ===
+" === Ale
+" ===
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '--'
 let g:ale_echo_msg_error_str = 'E'
@@ -62,7 +72,9 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \ }
 
-" Vista
+" ===
+" === Vista
+" ===
 " Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " let g:vista_icon_indent = ["▸ ", ""]
@@ -75,23 +87,6 @@ let g:vista_executive_for = {
 \ }
 let g:vista_close_on_jump = 1
 let g:vista_sidebar_width = 40
-" let g:fzf_colors = {
-" \   'fg':      ['fg', 'Normal'],
-" \   'bg':      ['bg', 'Normal'],
-" \   'hl':      ['fg', 'Comment'],
-" \   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-" \   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-" \   'hl+':     ['fg', 'Statement'],
-" \   'info':    ['fg', 'PreProc'],
-" \   'border':  ['fg', 'Ignore'],
-" \   'prompt':  ['fg', 'Conditional'],
-" \   'pointer': ['fg', 'Exception'],
-" \   'marker':  ['fg', 'Keyword'],
-" \   'spinner': ['fg', 'Label'],
-" \   'header':  ['fg', 'Comment']
-" \ }
-" let g:vista_keep_fzf_colors = 1
-
 let g:fzf_layout = {
 \   'window': {
 \       'width': 0.9,
@@ -106,11 +101,9 @@ let g:fzf_layout = {
 " For example:
 let g:vista_fzf_preview = ['up:60%']
 
-" Coc
-" let g:UltiSnipsExpandTrigger="<C-l>"
-" let g:UltiSnipsJumpForwardTrigger="<Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-
+" ===
+" === Coc
+" ===
 " coc-explorer
 let g:coc_explorer_global_presets = {
 \   '.vim': {
@@ -133,11 +126,19 @@ let g:coc_explorer_global_presets = {
 \   }
 \ }
 
-" vim-snippets
+" ===
+" === Snippets
+" ===
+" let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsJumpForwardTrigger="<Tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_triple_quoting_style = 'double'
 let g:ultisnips_python_style = 'normal'
 
+" ===
+" === Markdown
+" ===
 " vim-markdown
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_style_pythonic = 1
@@ -158,7 +159,9 @@ let g:mkdp_preview_options = {
 let g:mkdp_markdown_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/markdown/solarized-light.css'
 let g:mkdp_highlight_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/highlight/solarized-light.css'
 
-" vim-indent-guides
+" ===
+" === vim-indent-guides
+" ===
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
@@ -170,3 +173,19 @@ let g:indent_guides_exclude_filetypes = [
 \   'vista',
 \   'fzf'
 \ ]
+
+" ===
+" === vimwiki
+" ===
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [
+\   {
+\       'path': '~/Documents/Notes',
+\       'syntax': 'markdown',
+\       'ext': '.md'
+\   }
+\ ]
+
+let g:vimwiki_key_mappings = {
+\   'table_mappings': 0,
+\ }

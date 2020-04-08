@@ -1,85 +1,103 @@
-" WhichKey
+" ===
+" === WhichKey
+" ===
 nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
 " Define prefix dictionary
 let g:which_leader_map =  {}
 let g:which_leader_map.e = {
-\   'name' : '+edit' ,
-\   'v' : 'edit-vimrc',
-\   'l' : 'edit-leadermap',
-\   'm' : 'edit-keymap',
-\   'p' : 'edit-plugin-setting',
-\   'a' : 'edit-autocmd',
-\   'g' : 'edit-general-setting',
-\   'b' : 'edit-abbrev',
-\   'c' : 'edit-coc-config',
-\   's' : 'edit-snippets',
+\   'name': '+edit',
+\   'v':    'edit-vimrc',
+\   'l':    'edit-leadermap',
+\   'm':    'edit-keymap',
+\   'p':    'edit-plugin-setting',
+\   'a':    'edit-autocmd',
+\   'g':    'edit-general-setting',
+\   'b':    'edit-abbrev',
+\   'c':    'edit-coc-config',
+\   's':    'edit-snippets',
 \ }
 
 let g:which_leader_map.d = {
-\   'name' : '+directory' ,
-\   'v' : 'virmc-dir',
-\   'c' : 'current-dir',
+\   'name': '+directory',
+\   'v':    'virmc-dir',
+\   'c':    'current-dir',
 \ }
 
 let g:which_leader_map.q = {
-\   'name' : '+quit' ,
-\   'q' : 'quit-buffer',
-\   'w' : 'quit-buffer&window',
-\   't' : 'quit-tab',
+\   'name': '+quit',
+\   'q':    'quit-buffer',
+\   'w':    'quit-buffer&window',
+\   't':    'quit-tab',
 \ }
 
 let g:which_leader_map.r = {
-\   'name' : '+refactor' ,
-\   'n' : 'rename',
-\   'f' : 'format',
-\   'x' : 'fix',
+\   'name': '+refactor',
+\   'n':    'rename',
+\   'f':    'format',
+\   'x':    'fix',
 \ }
 
 let g:which_leader_map.v = {
-\   'name' : '+view' ,
-\   'm' : 'markdown-preview',
-\   'c' : 'error-code',
-\   'h' : 'highlight-group',
-\   'l' : 'katex-equation-left',
-\   'p' : 'fzf-preview',
-\   'i' : 'indent-guides',
+\   'name': '+view',
+\   'm':    'markdown-preview',
+\   'c':    'error-code',
+\   'h':    'highlight-group',
+\   'l':    'katex-equation-left',
+\   'p':    'fzf-preview',
+\   'i':    'indent-guides',
 \ }
 
 let g:which_leader_map['\'] = {
-\   'name' : '+multi-cursor' ,
-\   'j' : 'select-cursor-down',
-\   'k' : 'select-cursor-up',
-\   'A' : 'select-all',
-\   '\' : 'add-cursor-at-pos',
-\   '/' : 'start-regex-search',
+\   'name': '+multi-cursor',
+\   'j':    'select-cursor-down',
+\   'k':    'select-cursor-up',
+\   'A':    'select-all',
+\   '\':    'add-cursor-at-pos',
+\   '/':    'start-regex-search',
 \ }
 
 let g:which_leader_map.n = {
-\   'name' : '+new' ,
-\   'd' : 'new-todo',
-\   't' : 'new-tab',
+\   'name': '+new',
+\   'd':    'new-todo',
+\   't':    'new-tab',
 \ }
 
 let g:which_leader_map.c = {
-\   'name' : '+change' ,
-\   'l' : 'left-equation',
-\   'p' : 'fzf-preview',
-\   's' : 'statusline-sep',
+\   'name': '+change',
+\   'l':    'left-equation',
+\   'p':    'fzf-preview',
+\   's':    'statusline-sep',
 \ }
 
 let g:which_leader_map.t = {
-\   'name' : '+table' ,
-\   'm' : 'table-toggle',
-\   'r' : 'table-realign',
+\   'name': '+table',
+\   'm':    'table-toggle',
+\   'r':    'table-realign',
+\ }
+
+let g:which_leader_map.s = {
+\   'name': '+save',
+\   's':    'sudo save',
+\ }
+
+let g:which_leader_map.w = {
+\   'name': '+wiki',
+\   'w':    'default wiki index',
+\   't':    'default wiki index in new tab',
+\   's':    'select and open wiki index',
+\   'd':    'delete wiki file',
+\   'r':    'rename wiki file',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
 let g:which_leader_map.f = 'coc-lists-grep'
 
 " Sudo save
-nnoremap <leader>ws :w !sudo tee %<CR>
+nnoremap <leader>ss :w !sudo tee %<CR>
 
-" Multi-visual
+" ===
+" === Multi-visual
+" ===
 let g:VM_maps = {}
 let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
 let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
@@ -96,7 +114,9 @@ function! s:autoVerticalSplit(fname)
     endif
 endfunction
 
-" Edit files
+" ===
+" === Edit files
+" ===
 nnoremap <leader>ev :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/.vimrc')<CR>
 nnoremap <leader>el :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/leadermap.vim')<CR>
 nnoremap <leader>em :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
@@ -104,20 +124,28 @@ nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vi
 nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
 nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vim')<CR>
+nnoremap <leader>ew :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/wiki.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 
 
-" Change directory
+" ===
+" === Change directory
+" ===
 nnoremap <leader>dv :cd ~/vim_zsh_tmux/vimrc<CR>
 nnoremap <leader>dc :cd %:p:h<CR>
 
+" ===
+" === Quit
+" ===
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 " nnoremap <leader>qb :MBEbd<CR>
 
-" Coc
+" ===
+" === Coc
+" ===
 " Formatting selected code.
 xmap <leader>rf <Plug>(coc-format-selected)
 nmap <leader>rf <Plug>(coc-format-selected)
@@ -139,6 +167,36 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 vnoremap <leader>f :<C-u>call <SID>grepFromSelected(visualmode())<CR>
 nnoremap <leader>f :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
 
+" ===
+" === View
+" ===
+nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
+nnoremap <leader>vm :MarkdownPreview<CR>
+nnoremap <leader>vh :call SyntaxAttr()<CR>
+nmap <leader>vi <Plug>IndentGuidesToggle
+
+" ===
+" === New
+" ===
+nnoremap <leader>nt :tabnew %<CR>
+nnoremap <leader>nd :CocCommand todolist.create<CR>
+
+" ===
+" === Change settings
+" ===
+nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
+nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
+nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
+
+" ===
+" === Table-mode
+" ===
+nnoremap <leader>tm :TableModeToggle<CR>
+let g:table_mode_realign_map = '<leader>tr'
+
+" ===
+" === Functions
+" ===
 function! s:grepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
@@ -214,18 +272,3 @@ function! s:toggleAirlineSep()
         let g:airline_right_alt_sep = ''
     endif
 endfunction
-
-nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
-nnoremap <leader>vm :MarkdownPreview<CR>
-nnoremap <leader>vh :call SyntaxAttr()<CR>
-nmap <leader>vi <Plug>IndentGuidesToggle
-
-nnoremap <leader>nt :tabnew %<CR>
-nnoremap <leader>nd :CocCommand todolist.create<CR>
-
-nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
-
-" Table-mode
-let g:table_mode_realign_map = '<leader>tr'

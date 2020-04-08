@@ -9,8 +9,8 @@ let g:lightline.symbols = {
 \ }
 
 let g:lightline#bufferline#min_buffer_count = 1
-let g:lightline#bufferline#modified = ' '
-let g:lightline#bufferline#read_only = ' '
+let g:lightline#bufferline#modified = ' ' " 
+let g:lightline#bufferline#read_only = ' ' " 
 let g:lightline#bufferline#unnamed = ''
 let g:lightline#ale#indicator_checking = '...'
 let g:lightline#ale#indicator_warnings = '● '
@@ -135,6 +135,8 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' '
     elseif &filetype == 'list'
         let l:ftWithSymbol .= ' '
+    elseif &filetype == 'vimwiki'
+        let l:ftWithSymbol .= ' 龎'
     endif
     return l:ftWithSymbol
 endfunction

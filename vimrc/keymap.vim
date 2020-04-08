@@ -2,11 +2,20 @@
 nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
 vnoremap Y "+y
+" map yp to paste from system clipboard
+nnoremap yp "+p
+nnoremap yP "+P
+" map Q to quit vim, gQ is keep for ex-mode
+" nnoremap Q :q<CR>
 
 " text object for parameter
 " onoremap i, :<C-u>normal! bvt,<CR>
 
 nnoremap <C-h> :nohlsearch<CR>
+
+" Make <C-e> and <C-y> move faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " Temporary disable <Backspace> & <Up> & <Down>
 inoremap <BS> <nop>
@@ -14,6 +23,7 @@ inoremap <Up> <nop>
 inoremap <Down> <nop>
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
+map <F1> <nop>
 
 " Buffer navigation
 nnoremap [b :bp<CR>
@@ -35,14 +45,20 @@ map <silent> <F3> :Vista!!<CR>
 " WhichKey
 " nnoremap <silent> g :<C-u>WhichKey 'g'<CR>
 
+" Vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Ale
 " Use `[e\[w` and `]e\]w` to navigate diagnostics
-nnoremap <silent> [e <Plug>(ale_previous_wrap_error)
-nnoremap <silent> ]e <Plug>(ale_next_wrap_error)
-nnoremap <silent> [w <Plug>(ale_previous_wrap_warning)
-nnoremap <silent> ]w <Plug>(ale_next_wrap_warning)
-nnoremap <silent> [g <Plug>(ale_previous_wrap)
-nnoremap <silent> ]g <Plug>(ale_next_wrap)
+nmap <silent> [e <Plug>(ale_previous_wrap_error)
+nmap <silent> ]e <Plug>(ale_next_wrap_error)
+nmap <silent> [w <Plug>(ale_previous_wrap_warning)
+nmap <silent> ]w <Plug>(ale_next_wrap_warning)
+nmap <silent> [g <Plug>(ale_previous_wrap)
+nmap <silent> ]g <Plug>(ale_next_wrap)
 
 " Coc
 " Use <C-j> and <C-k> to navigate the completion list:

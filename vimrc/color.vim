@@ -1,20 +1,26 @@
-" Space-vim-dark
+" ===
+" === Space-vim-dark
+" ===
 " set background=dark
 " colorscheme space-vim-dark
 " let g:airline_theme = 'violet'
 
-" Ayu
-if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
-    let g:ayucolor = 'mirage'
-    colorscheme ayu
-    let g:airline_theme = 'ayu_mirage'
-else
+" ===
+" === Ayu & One half
+" ===
+" if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
+let g:ayucolor = 'mirage'
+colorscheme ayu
+let g:airline_theme = 'ayu_mirage'
+" else
     " One half
-    colorscheme onehalfdark
-    let g:airline_theme = 'onehalfdark'
-endif
+    " colorscheme onehalfdark
+    " let g:airline_theme = 'onehalfdark'
+" endif
 
-" custom highlight
+" ===
+" === Custom Highlight
+" ===
 if g:colors_name == 'space-vim-dark'
     hi Normal           ctermbg=NONE guibg=NONE
     hi LineNr           ctermbg=NONE guibg=NONE
@@ -32,42 +38,40 @@ if g:colors_name == 'space-vim-dark'
 endif
 
 if g:colors_name == 'ayu'
-    " hi Normal           ctermbg=NONE guibg=NONE
-    " hi LineNr           ctermbg=NONE guibg=NONE
     hi SignColumn       ctermbg=NONE guibg=NONE
     hi CursorLineNr     ctermbg=NONE guibg=NONE
     hi ALEWarning       ctermbg=NONE guibg=NONE
     hi pythonSelf       guifg=#A37ACC guibg=NONE
     hi pythonParam      guifg=#F07178 guibg=NONE
+    hi ALEErrorSign     cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
+    hi CocHighlightText guibg=#151A1E
+    hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
+    hi IndentGuidesEven ctermbg=NONE guibg=#293137
+    " hi CocHighlightText guibg=#232B32
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link Statusline airline_c
     hi! link pythonDocstring pythonComment
-    hi ALEErrorSign     cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
     hi! link ALEWarningSign CocWarningSign
-    hi CocHighlightText guibg=#151A1E
-    " hi CocHighlightText guibg=#232B32
     let g:VM_highlight_matches = ''
-    hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
-    hi IndentGuidesEven ctermbg=NONE guibg=#293137
 endif
 
 if g:colors_name == 'onehalfdark'
-    hi Normal           ctermbg=NONE guibg=NONE
-    hi LineNr           ctermbg=NONE guibg=NONE
-    hi SignColumn       ctermbg=NONE guibg=NONE
-    hi CursorLineNr     ctermbg=NONE guibg=NONE
-    hi ALEWarning       ctermbg=NONE guibg=NONE
-    hi GitGutterAdd     ctermbg=NONE guibg=NONE
-    hi GitGutterChange  ctermbg=NONE guibg=NONE
-    hi GitGutterDelete  ctermbg=NONE guibg=NONE
-    hi GitGutterChangeDelete ctermbg=NONE guibg=NONE
-    hi Error            ctermbg=NONE guibg=NONE
-    hi CocHighlightText guibg=#22252C
-    hi pythonParam      guifg=#56b6c2 guibg=NONE
+    hi Normal                ctermbg =NONE    guibg =NONE
+    hi LineNr                ctermbg =NONE    guibg =NONE
+    hi SignColumn            ctermbg =NONE    guibg =NONE
+    hi CursorLineNr          ctermbg =NONE    guibg =NONE
+    hi ALEWarning            ctermbg =NONE    guibg =NONE
+    hi GitGutterAdd          ctermbg =NONE    guibg =NONE
+    hi GitGutterChange       ctermbg =NONE    guibg =NONE
+    hi GitGutterDelete       ctermbg =NONE    guibg =NONE
+    hi GitGutterChangeDelete ctermbg =NONE    guibg =NONE
+    hi Error                 ctermbg =NONE    guibg =NONE
+    hi IndentGuidesOdd       ctermbg =NONE    guibg =#2E3437
+    hi IndentGuidesEven      ctermbg =NONE    guibg =#30303C
+    hi CocHighlightText      guibg   =#22252C
+    hi pythonParam           guifg   =#56b6c2 guibg =NONE
     " hi IndentGuidesOdd  ctermbg=NONE guibg=#3E4A42
     " hi IndentGuidesEven ctermbg=NONE guibg=#483B56
     " hi IndentGuidesOdd  ctermbg=NONE guibg=#333B3B
     " hi IndentGuidesEven ctermbg=NONE guibg=#383445
-    hi IndentGuidesOdd  ctermbg=NONE guibg=#2E3437
-    hi IndentGuidesEven ctermbg=NONE guibg=#30303C
 endif

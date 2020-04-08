@@ -1,86 +1,119 @@
 call plug#begin('~/.vim/plugged')
 
-"----------Coc family----------
+" ===
+" === Autocompletion
+" ===
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-"----------Linting & Fixing----------
+" ===
+" === Linting & Fixing
+" ===
 Plug 'dense-analysis/ale'
 
-"----------Git----------
+" ===
+" === Git
+" ===
 Plug 'tpope/vim-fugitive'
 
-"----------Tags----------
+" ===
+" === Tags
+" ===
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 
-"----------Stausline----------
+" ===
+" === Stausline
+" ===
 " Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline'] }
+Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'maximbaz/lightline-ale'
 Plug 'againxx/lightline-utils'
 
-"----------Window & Buffer & Keybindings----------
+" ===
+" === Window & Buffer & Keybindings
+" ===
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Delete buffers and close files in Vim without closing windows and tabs
 Plug 'moll/vim-bbye'
 
-"----------Colorscheme----------
-Plug 'sonph/onehalf', { 'rtp': 'vim/' }
+" ===
+" === Colorscheme
+" ===
+" Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 " Plug 'liuchengxu/space-vim-dark'
 Plug 'ayu-theme/ayu-vim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 
-"----------Highlighting----------
+" ===
+" === Highlighting
+" ===
 Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
 Plug 'vim-scripts/SyntaxAttr.vim'
+Plug 'againxx/python-syntax', { 'for': 'python' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 
-"----------Search & Move----------
+" ===
+" === Search & Move
+" ===
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'justinmk/vim-sneak'
 
-"----------Comment & Surround & Parenthsis----------
+" ===
+" === Comment & Surround & Parenthsis
+" ===
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " repeat plugin map with '.', work with vim-surround
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 
-"----------Snippets----------
+" ===
+" === Snippets
+" ===
 " Plug 'SirVer/ultisnips'
 Plug 'againxx/vim-snippets'
 
-"----------Python----------
+" ===
+" === Python
+" ===
 Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'againxx/python-syntax', { 'for': 'python' }
 
-"----------Cpp----------
+" ===
+" === Cpp
+" ===
 " Switch between header and source file
 Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
 
-"----------Markdwon----------
-" this plugin is needed by vim-markdown
+" ===
+" === Markdwon
+" ===
+" this plugin is needed by vim-markdown and can be used to align text
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' } " use pre build
 " This plugin is slow, loading only for markdown
 Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-"----------Utility----------
-Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
+" ===
+" === Utility
+" ===
+Plug 'mg979/vim-visual-multi' 
 Plug 'tpope/vim-capslock'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro
 Plug 'Konfekt/FastFold'
 Plug 'AndrewRadev/switch.vim'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 

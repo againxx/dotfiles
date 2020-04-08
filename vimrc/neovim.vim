@@ -14,7 +14,9 @@ tnoremap <M-[> <C-\><C-n>
 " tnoremap <M-[> <Esc>
 " tnoremap <C-v><Esc> <Esc>
 
-" window navigate
+" ===
+" === Window Navigate
+" ===
 tnoremap <M-h> <c-\><c-n><c-w>h
 tnoremap <M-j> <c-\><c-n><c-w>j
 tnoremap <M-k> <c-\><c-n><c-w>k
@@ -24,7 +26,9 @@ nnoremap <M-h> <c-w>h
 nnoremap <M-j> <c-w>j
 nnoremap <M-k> <c-w>k
 
-" buffer navigation
+" ===
+" === Buffer Navigation
+" ===
 nmap <M-1> <Plug>lightline#bufferline#go(1)
 nmap <M-2> <Plug>lightline#bufferline#go(2)
 nmap <M-3> <Plug>lightline#bufferline#go(3)
