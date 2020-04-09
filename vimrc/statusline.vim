@@ -101,12 +101,12 @@ let g:lightline.mode_map = {
 
 if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
     let g:lightline.separator = {
-    \   'left': '',
-    \   'right': ''
+    \   'left': ' ',
+    \   'right': ' '
     \ }
     let g:lightline.subseparator = {
-    \   'left': '',
-    \   'right': ''
+    \   'left': '¦',
+    \   'right': '¦'
     \ }
 else
     let g:lightline.separator = {
@@ -135,7 +135,7 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' '
     elseif &filetype == 'list'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'vimwiki'
+    elseif &filetype == 'vimwiki' || &filetype == 'vimwiki.markdown'
         let l:ftWithSymbol .= ' 龎'
     endif
     return l:ftWithSymbol

@@ -1,3 +1,6 @@
+" ===
+" === Yank & Paste
+" ===
 " map Y to yank from the cursor to the end of line
 nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
@@ -9,9 +12,10 @@ nnoremap yP "+P
 " nnoremap Q :q<CR>
 
 " text object for parameter
-" onoremap i, :<C-u>normal! bvt,<CR>
-
+onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 nnoremap <C-h> :nohlsearch<CR>
+" map gb to reselect previous yank text
+nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
 
 " Make <C-e> and <C-y> move faster
 nnoremap <C-e> 3<C-e>
@@ -39,19 +43,31 @@ nnoremap <space>x :terminal<CR>
 " Vista
 map <silent> <F3> :Vista!!<CR>
 
-" Fold
-" nnoremap <space><space> za
-
-" WhichKey
-" nnoremap <silent> g :<C-u>WhichKey 'g'<CR>
-
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Ale
+" ===
+" === Incsearch
+" ===
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+nmap y/ <Plug>(incsearch-fuzzy-/)
+nmap y? <Plug>(incsearch-fuzzy-?)
+nmap yg/ <Plug>(incsearch-fuzzy-stay)
+
+" ===
+" === Ale
+" ===
 " Use `[e\[w` and `]e\]w` to navigate diagnostics
 nmap <silent> [e <Plug>(ale_previous_wrap_error)
 nmap <silent> ]e <Plug>(ale_next_wrap_error)
@@ -60,7 +76,9 @@ nmap <silent> ]w <Plug>(ale_next_wrap_warning)
 nmap <silent> [g <Plug>(ale_previous_wrap)
 nmap <silent> ]g <Plug>(ale_next_wrap)
 
-" Coc
+" ===
+" === Coc
+" ===
 " Use <C-j> and <C-k> to navigate the completion list:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"

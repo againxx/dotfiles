@@ -11,7 +11,7 @@ augroup other_filetypes
     \   | endif
 augroup END
 
-augroup markdown_filetypes
+augroup markdown_filetype
     autocmd!
     autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
     autocmd FileType markdown let b:coc_additional_keywords = ['\']

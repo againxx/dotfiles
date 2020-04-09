@@ -27,3 +27,8 @@ class j(Command):
         directory = directory.decode("utf-8", "ignore")
         directory = directory.rstrip('\n')
         self.fm.execute_console("cd " + directory)
+
+    def tab(self, tabnum):
+        # This is a generic tab-completion function that iterates through the
+        completion_directories = subprocess.check_output(["autojump", "--complete", self.arg(1)]).split('\n')
+        return ["j " + candidate for candidate in completion_directories if candidate != '']

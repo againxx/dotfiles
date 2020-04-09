@@ -45,6 +45,7 @@ let g:which_leader_map.v = {
 \   'l':    'katex-equation-left',
 \   'p':    'fzf-preview',
 \   'i':    'indent-guides',
+\   'a':    'ascii-value',
 \ }
 
 let g:which_leader_map['\'] = {
@@ -138,7 +139,7 @@ nnoremap <leader>dc :cd %:p:h<CR>
 " ===
 " === Quit
 " ===
-nnoremap <silent> <leader>qq :silent! Bdelete!<CR>
+nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 " nnoremap <leader>qb :MBEbd<CR>
@@ -174,6 +175,8 @@ nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
 nnoremap <leader>vm :MarkdownPreview<CR>
 nnoremap <leader>vh :call SyntaxAttr()<CR>
 nmap <leader>vi <Plug>IndentGuidesToggle
+nnoremap <leader>va ga
+vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
 
 " ===
 " === New
@@ -186,7 +189,7 @@ nnoremap <leader>nd :CocCommand todolist.create<CR>
 " ===
 nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <leader>cs :call <SID>toggleAirlineSep()<CR>
+nnoremap <silent> <leader>cs :call <SID>toggleLightlineSep()<CR>
 
 " ===
 " === Table-mode
@@ -253,22 +256,54 @@ function! s:toggleFZFPreview()
     endif
 endfunction
 
-" Airline Separate
-function! s:toggleAirlineSep()
-    if g:airline_left_sep == ''
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-    elseif g:airline_left_sep == ''
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
+" Lightline Separate
+function! s:toggleLightlineSep()
+    if g:lightline.separator.left == ''
+        let g:lightline.separator = {
+        \   'left': '',
+        \   'right': ''
+        \ }
+        let g:lightline.subseparator = {
+        \   'left': '',
+        \   'right': ''
+        \ }
+    elseif g:lightline.separator.left == ''
+        let g:lightline.separator = {
+        \   'left': ' ',
+        \   'right': ' '
+        \ }
+        let g:lightline.subseparator = {
+        \   'left': '¦',
+        \   'right': '¦'
+        \ }
     else
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
+        let g:lightline.separator = {
+        \   'left': '',
+        \   'right': ''
+        \ }
+        let g:lightline.subseparator = {
+        \   'left': '',
+        \   'right': ''
+        \ }
     endif
+    call lightline#toggle()
+    call lightline#toggle()
+endfunction
+
+" echo different formats and the corresponding char for a given number
+function! s:echoFormatsAndChar(num) abort
+    let l:input_num = a:num
+    let l:hex_reg = '\v^(\\x|0x|\\u|u\+)'
+    if l:input_num =~? '\v^\d+$' " decimal
+        let l:output_num = '0x' . printf('%x', l:input_num)
+    else " hexdecimal
+        if l:input_num =~? l:hex_reg
+            let l:input_num = '0x' . substitute(l:input_num, l:hex_reg, '', 'g')
+        else
+            let l:input_num = '0x' . l:input_num
+        endif
+        let l:output_num = printf('%d', l:input_num)
+    endif
+    let @" = nr2char(l:output_num)
+    echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
 endfunction

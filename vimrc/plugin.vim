@@ -19,22 +19,7 @@ let g:tmuxline_preset = 'nightly_fox'
 " let g:NERDTreeWinPos = 'right'
 " let g:NERDTreeWinSize = 30
 
-" ===
-" === Incsearch
-" ===
 let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-nmap y/ <Plug>(incsearch-fuzzy-/)
-nmap y? <Plug>(incsearch-fuzzy-?)
-nmap yg/ <Plug>(incsearch-fuzzy-stay)
 
 " ===
 " === Visual-multi
@@ -189,3 +174,5 @@ let g:vimwiki_list = [
 let g:vimwiki_key_mappings = {
 \   'table_mappings': 0,
 \ }
+let g:vimwiki_folding = 'custom'
+let g:vimwiki_filetypes = ['markdown']
