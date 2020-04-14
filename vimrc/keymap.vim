@@ -8,8 +8,6 @@ vnoremap Y "+y
 " map yp to paste from system clipboard
 nnoremap yp "+p
 nnoremap yP "+P
-" map Q to quit vim, gQ is keep for ex-mode
-" nnoremap Q :q<CR>
 
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
@@ -21,6 +19,9 @@ nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+vnoremap <C-j> :move '>+1<CR>gv=gv
+vnoremap <C-k> :move '<-2<CR>gv=gv
+
 " Temporary disable <Backspace> & <Up> & <Down>
 inoremap <BS> <nop>
 inoremap <Up> <nop>
@@ -28,6 +29,7 @@ inoremap <Down> <nop>
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
 map <F1> <nop>
+imap <F1> <nop>
 
 " Buffer navigation
 nnoremap [b :bp<CR>
@@ -35,13 +37,10 @@ nnoremap ]b :bn<CR>
 
 " NERDTree
 " map <F2> :NERDTreeToggle<CR>
-nnoremap <silent> <space>e :CocCommand explorer<CR>
 
 " Terminal
 nnoremap <space>x :terminal<CR>
 
-" Vista
-map <silent> <F3> :Vista!!<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -73,8 +72,11 @@ nmap <silent> [e <Plug>(ale_previous_wrap_error)
 nmap <silent> ]e <Plug>(ale_next_wrap_error)
 nmap <silent> [w <Plug>(ale_previous_wrap_warning)
 nmap <silent> ]w <Plug>(ale_next_wrap_warning)
-nmap <silent> [g <Plug>(ale_previous_wrap)
-nmap <silent> ]g <Plug>(ale_next_wrap)
+" nmap <silent> [g <Plug>(ale_previous_wrap)
+" nmap <silent> ]g <Plug>(ale_next_wrap)
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
 
 " ===
 " === Coc
@@ -134,7 +136,7 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " coc-lists
-nnoremap <silent> <space>r :<C-u>CocList -N mru -A<cr>
+nnoremap <silent> <space>m :<C-u>CocList -N mru -A<cr>
 nnoremap <silent> <space>f :<C-u>CocList files<cr>
 nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
@@ -146,19 +148,63 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList --normal sources<cr>
+nnoremap <silent> <space>r :<C-u>CocListResume<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>o :<C-u>CocListResume<cr>
+nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Show locationlist
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
+nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<cr>
-nnoremap <silent> <space>u :<C-u>CocList snippets<cr>
+nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
-nnoremap <silent> <space>m :<C-u>CocList maps<cr>
+nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
+nnoremap <silent> <space>P :<C-u>CocList snippets<cr>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
+nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
+
+function! s:toggleVista()
+    if vista#sidebar#IsOpen()
+        execute "Vista!"
+        if &showtabline != 2
+            set showtabline=2
+        endif
+        call lightline#update()
+    else
+        execute "Vista"
+    endif
+endfunction
+
+" ===
+" === Whichkey
+" ===
+let g:which_wikilist_lower_map =  {}
+let g:which_wikilist_lower_map.r = 'renumber-current'
+let g:which_wikilist_lower_map.l = 'increase-item-level'
+let g:which_wikilist_lower_map.h = 'decrease-item-level'
+let g:which_wikilist_lower_map.n = 'increase-checkbox-done'
+let g:which_wikilist_lower_map.p = 'decrease-checkbox-done'
+let g:which_wikilist_lower_map.t = 'remove-item-checkbox'
+let g:which_wikilist_lower_map.x = 'toggle-checkbox-disabled'
+let g:which_wikilist_lower_map['*'] = 'make_*_list/change_item_*'
+let g:which_wikilist_lower_map['-'] = 'make_-_list/change_item_-'
+let g:which_wikilist_lower_map['+'] = 'make_+_list/change_item_+'
+let g:which_wikilist_lower_map['1'] = 'make_1_lsit/change_item_num'
+let g:which_wikilist_upper_map =  {}
+let g:which_wikilist_upper_map.r = 'renumber-all'
+let g:which_wikilist_upper_map.R = 'renumber-all'
+let g:which_wikilist_upper_map.l = 'increase-list-level'
+let g:which_wikilist_upper_map.L = 'increase-list-level'
+let g:which_wikilist_upper_map.h = 'decrease-list-level'
+let g:which_wikilist_upper_map.H = 'decrease-list-level'
+let g:which_wikilist_upper_map.t = 'remove-list-checkbox'
+let g:which_wikilist_upper_map['*'] = 'change_list_*'
+let g:which_wikilist_upper_map['-'] = 'change_list_-'
+let g:which_wikilist_upper_map['+'] = 'change_list_+'
+let g:which_wikilist_upper_map['1'] = 'change_list_num'

@@ -38,6 +38,7 @@ if g:colors_name == 'space-vim-dark'
 endif
 
 if g:colors_name == 'ayu'
+    hi Normal           ctermbg=NONE guibg=NONE
     hi SignColumn       ctermbg=NONE guibg=NONE
     hi CursorLineNr     ctermbg=NONE guibg=NONE
     hi ALEWarning       ctermbg=NONE guibg=NONE
@@ -47,29 +48,38 @@ if g:colors_name == 'ayu'
     hi CocHighlightText guibg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
+    " vim-markdown
+    hi htmlH1           gui=bold guifg=#D4BFFF guibg=NONE
+    hi htmlH2           gui=bold guifg=#BBE67E guibg=NONE
+    hi htmlH3           gui=bold guifg=#5CCFE6 guibg=NONE
+    hi htmlH4           gui=bold guifg=#FFAE57 guibg=NONE
+    hi htmlH5           guifg=#F07178 guibg=NONE
+    hi htmlH6           guifg=#95E6CB guibg=NONE
+    hi MatchParen       gui=underline guifg=#95E6CB
     " hi CocHighlightText guibg=#232B32
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link Statusline airline_c
+    hi! link Conceal Function
     hi! link pythonDocstring pythonComment
     hi! link ALEWarningSign CocWarningSign
     let g:VM_highlight_matches = ''
 endif
 
 if g:colors_name == 'onehalfdark'
-    hi Normal                ctermbg =NONE    guibg =NONE
-    hi LineNr                ctermbg =NONE    guibg =NONE
-    hi SignColumn            ctermbg =NONE    guibg =NONE
-    hi CursorLineNr          ctermbg =NONE    guibg =NONE
-    hi ALEWarning            ctermbg =NONE    guibg =NONE
-    hi GitGutterAdd          ctermbg =NONE    guibg =NONE
-    hi GitGutterChange       ctermbg =NONE    guibg =NONE
-    hi GitGutterDelete       ctermbg =NONE    guibg =NONE
-    hi GitGutterChangeDelete ctermbg =NONE    guibg =NONE
-    hi Error                 ctermbg =NONE    guibg =NONE
-    hi IndentGuidesOdd       ctermbg =NONE    guibg =#2E3437
-    hi IndentGuidesEven      ctermbg =NONE    guibg =#30303C
-    hi CocHighlightText      guibg   =#22252C
-    hi pythonParam           guifg   =#56b6c2 guibg =NONE
+    hi Normal                ctermbg=NONE    guibg=NONE
+    hi LineNr                ctermbg=NONE    guibg=NONE
+    hi SignColumn            ctermbg=NONE    guibg=NONE
+    hi CursorLineNr          ctermbg=NONE    guibg=NONE
+    hi ALEWarning            ctermbg=NONE    guibg=NONE
+    hi GitGutterAdd          ctermbg=NONE    guibg=NONE
+    hi GitGutterChange       ctermbg=NONE    guibg=NONE
+    hi GitGutterDelete       ctermbg=NONE    guibg=NONE
+    hi GitGutterChangeDelete ctermbg=NONE    guibg=NONE
+    hi Error                 ctermbg=NONE    guibg=NONE
+    hi IndentGuidesOdd       ctermbg=NONE    guibg=#2E3437
+    hi IndentGuidesEven      ctermbg=NONE    guibg=#30303C
+    hi CocHighlightText        guibg=#22252C
+    hi pythonParam             guifg=#56b6c2 guibg=NONE
     " hi IndentGuidesOdd  ctermbg=NONE guibg=#3E4A42
     " hi IndentGuidesEven ctermbg=NONE guibg=#483B56
     " hi IndentGuidesOdd  ctermbg=NONE guibg=#333B3B

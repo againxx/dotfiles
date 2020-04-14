@@ -9,6 +9,14 @@ augroup other_filetypes
     \   | set laststatus=0
     \   | execute "autocmd BufLeave <buffer> set laststatus=2"
     \   | endif
+    autocmd FileType vimwiki.markdown execute
+    \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
+    autocmd FileType vimwiki.markdown execute
+    \   "autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')"
+    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
+    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
+    autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
+    autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
 augroup END
 
 augroup markdown_filetype
@@ -18,13 +26,18 @@ augroup markdown_filetype
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
-    autocmd FileType markdown inoremap <buffer> ;b ****<Esc>hi
-    autocmd FileType markdown inoremap <buffer> ;i **<Esc>i
-    autocmd FileType markdown inoremap <buffer> ;m $$<Esc>i
+    autocmd Filetype markdown inoremap <buffer> ;f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+    autocmd Filetype markdown inoremap <buffer> ;w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
+    autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
+    autocmd Filetype markdown inoremap <buffer> ;d ~~~~ <++><Esc>F~hi
+    autocmd Filetype markdown inoremap <buffer> ;i ** <++><Esc>F*i
+    autocmd Filetype markdown inoremap <buffer> ;e `` <++><Esc>F`i
+    autocmd FileType markdown inoremap <buffer> ;m $$<++><Esc>F$i
     autocmd FileType markdown inoremap <buffer> ;M $$$$<Esc>hi
     autocmd FileType markdown inoremap <buffer> ;c ```<CR>```<Esc>ka
-    autocmd FileType markdown inoremap <buffer> ;d ~~~~<Esc>hi
-    autocmd FileType markdown inoremap <buffer> ;t [<Space>]<Space>
+    autocmd FileType markdown inoremap <buffer> ;t -<Space>[<Space>]<Space>
+    autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a
+    autocmd Filetype markdown inoremap <buffer> ;a [](<++>) <++><Esc>F[a
     autocmd FileType markdown inoremap <buffer> ;; ;
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
@@ -59,7 +72,7 @@ augroup common
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions"
     \   | call CocActionAsync('highlight') | endif
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    autocmd! User vim-which-key call which_key#register('\', 'g:which_leader_map')
+    autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 

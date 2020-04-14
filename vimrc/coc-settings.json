@@ -1,9 +1,16 @@
 {
     "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.rootPatterns": [
+        ".vim",
+        ".git",
+        ".hg",
+        ".projections.json"
+    ],
     "suggest.noselect": false,
     "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
     "diagnostic.displayByAle": true,
+    "list.source.files.args": ["--hidden", "--files"],
     "python.jediEnabled": true,
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
@@ -23,6 +30,16 @@
     "coc-actions.hideCursor": false,
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": false,
+    "explorer.file.column.git.icon.modified": "✹",
+    "explorer.file.column.git.icon.added": "✚",
+    "explorer.file.column.git.icon.unmerged": "═",
+    "explorer.file.column.git.icon.renamed": "➜",
+    "explorer.file.column.git.icon.deleted": "✖",
+    "explorer.file.column.git.icon.untracked": "",
+    "explorer.file.column.git.icon.copied": "",
+    "explorer.file.column.git.icon.mixed": "✭",
+    "explorer.file.column.git.icon.unmodified": " ",
+    "explorer.file.column.git.icon.ignored": "﯏",
     "explorer.sources": [
         {
             "name": "buffer",

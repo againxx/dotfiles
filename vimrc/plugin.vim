@@ -19,6 +19,11 @@ let g:tmuxline_preset = 'nightly_fox'
 " let g:NERDTreeWinPos = 'right'
 " let g:NERDTreeWinSize = 30
 
+" ===
+" === Undotree
+" ===
+let g:undotree_SetFocusWhenToggle = 1
+
 let g:incsearch#auto_nohlsearch = 1
 
 " ===
@@ -89,6 +94,23 @@ let g:vista_fzf_preview = ['up:60%']
 " ===
 " === Coc
 " ===
+" Extensions
+let g:coc_global_extensions = [
+\   'coc-json',
+\   'coc-python',
+\   'coc-yank',
+\   'coc-lists',
+\   'coc-git',
+\   'coc-explorer',
+\   'coc-actions',
+\   'coc-cmake',
+\   'coc-highlight',
+\   'coc-pairs',
+\   'coc-vimlsp',
+\   'coc-snippets',
+\   'coc-todolist',
+\ ]
+
 " coc-explorer
 let g:coc_explorer_global_presets = {
 \   '.vim': {
@@ -112,14 +134,13 @@ let g:coc_explorer_global_presets = {
 \ }
 
 " ===
-" === Snippets
+" === Python-special
 " ===
-" let g:UltiSnipsExpandTrigger="<C-l>"
-" let g:UltiSnipsJumpForwardTrigger="<Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_triple_quoting_style = 'double'
 let g:ultisnips_python_style = 'normal'
+" Python-syntax
+let g:python_syntax_space_errors = 0
 
 " ===
 " === Markdown
@@ -130,6 +151,7 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_new_list_item_indent = 0
 " markdown-preview
 let g:mkdp_refresh_slow = 1
+let g:mkdp_auto_close = 0
 let g:mkdp_preview_options = {
 \   'mkit': {},
 \   'katex': {'fleqn': 1},
@@ -141,8 +163,8 @@ let g:mkdp_preview_options = {
 \   'sequence_diagrams': {},
 \   'flowchart_diagrams': {}
 \ }
-let g:mkdp_markdown_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/markdown/solarized-light.css'
-let g:mkdp_highlight_css = '/home/ustc-1314/Programming_Tools/markdown-tex/custom_css/highlight/solarized-light.css'
+let g:mkdp_markdown_css = $HOME.'/Git_Repo/markdown-tex/custom_css/markdown/solarized-light.css'
+let g:mkdp_highlight_css = $HOME.'/Git_Repo/markdown-tex/custom_css/highlight/solarized-light.css'
 
 " ===
 " === vim-indent-guides
@@ -172,7 +194,12 @@ let g:vimwiki_list = [
 \ ]
 
 let g:vimwiki_key_mappings = {
+\   'table_format': 0,
 \   'table_mappings': 0,
 \ }
 let g:vimwiki_folding = 'custom'
 let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_table_auto_fmt = 0
+
+" Suda.vim
+let g:suda_smart_edit = 1

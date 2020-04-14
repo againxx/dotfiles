@@ -121,21 +121,21 @@ endif
 
 function! LightlineFileTypeWithSymbol()
     let l:ftWithSymbol = &ft!=#""?&ft:"unknown"
-    if &filetype == 'vim'
+    if &filetype ==# 'vim'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'python'
+    elseif &filetype ==# 'python'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'cpp'
+    elseif &filetype ==# 'cpp'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'markdown'
+    elseif &filetype ==# 'markdown'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'cmake'
+    elseif &filetype ==# 'cmake'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'help'
+    elseif &filetype ==# 'help'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'list'
+    elseif &filetype ==# 'list'
         let l:ftWithSymbol .= ' '
-    elseif &filetype == 'vimwiki' || &filetype == 'vimwiki.markdown'
+    elseif &filetype ==# 'vimwiki' || &filetype ==# 'vimwiki.markdown'
         let l:ftWithSymbol .= ' 龎'
     endif
     return l:ftWithSymbol

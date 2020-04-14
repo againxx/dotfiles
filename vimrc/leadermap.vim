@@ -8,7 +8,7 @@ let g:which_leader_map.e = {
 \   'name': '+edit',
 \   'v':    'edit-vimrc',
 \   'l':    'edit-leadermap',
-\   'm':    'edit-keymap',
+\   'k':    'edit-keymap',
 \   'p':    'edit-plugin-setting',
 \   'a':    'edit-autocmd',
 \   'g':    'edit-general-setting',
@@ -46,6 +46,7 @@ let g:which_leader_map.v = {
 \   'p':    'fzf-preview',
 \   'i':    'indent-guides',
 \   'a':    'ascii-value',
+\   'g':    'git-chunkinfo',
 \ }
 
 let g:which_leader_map['\'] = {
@@ -76,11 +77,6 @@ let g:which_leader_map.t = {
 \   'r':    'table-realign',
 \ }
 
-let g:which_leader_map.s = {
-\   'name': '+save',
-\   's':    'sudo save',
-\ }
-
 let g:which_leader_map.w = {
 \   'name': '+wiki',
 \   'w':    'default wiki index',
@@ -92,9 +88,6 @@ let g:which_leader_map.w = {
 
 let g:which_leader_map.a = 'coc-actions'
 let g:which_leader_map.f = 'coc-lists-grep'
-
-" Sudo save
-nnoremap <leader>ss :w !sudo tee %<CR>
 
 " ===
 " === Multi-visual
@@ -120,7 +113,7 @@ endfunction
 " ===
 nnoremap <leader>ev :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/.vimrc')<CR>
 nnoremap <leader>el :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/leadermap.vim')<CR>
-nnoremap <leader>em :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
+nnoremap <leader>ek :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
 nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vim')<CR>
 nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
@@ -177,6 +170,8 @@ nnoremap <leader>vh :call SyntaxAttr()<CR>
 nmap <leader>vi <Plug>IndentGuidesToggle
 nnoremap <leader>va ga
 vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
+" show chunk diff at current position
+nmap <leader>vg <Plug>(coc-git-chunkinfo)
 
 " ===
 " === New
@@ -307,3 +302,8 @@ function! s:echoFormatsAndChar(num) abort
     let @" = nr2char(l:output_num)
     echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
 endfunction
+
+" show vim highlight group under cursor
+" nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

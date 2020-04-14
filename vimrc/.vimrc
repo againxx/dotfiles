@@ -72,6 +72,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat' " repeat plugin map with '.', work with vim-surround
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
+Plug 'andymass/vim-matchup'
 
 " ===
 " === Snippets
@@ -101,7 +102,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' } " use pre build
 " This plugin is slow, loading only for markdown
 Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'dhruvasagar/vim-table-mode', { 'on': ['TableModeToggle', 'TableModeEnable'] }
 
 " ===
 " === Utility
@@ -110,10 +111,12 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-capslock'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro
-Plug 'Konfekt/FastFold'
+Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'junegunn/vim-easy-align'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'lambdalisue/suda.vim'
 
 call plug#end()
 
