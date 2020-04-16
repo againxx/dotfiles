@@ -121,6 +121,7 @@ nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vi
 nnoremap <leader>ew :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/wiki.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
+nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 
 " ===

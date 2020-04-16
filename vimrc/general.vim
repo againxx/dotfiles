@@ -35,4 +35,6 @@ set signcolumn=yes
 set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+" Different options for a particular file using modelines
 set modeline
+set autochdir

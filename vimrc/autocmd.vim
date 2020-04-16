@@ -2,6 +2,10 @@ augroup other_filetypes
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
+    autocmd FileType python nmap <buffer> [f [m
+    autocmd FileType python nmap <buffer> ]f ]m
+    autocmd FileType python nmap <buffer> [F [M
+    autocmd FileType python nmap <buffer> ]F ]M
     " autocmd FileType python let b:current_syntax = 'python'
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType fzf
@@ -17,6 +21,7 @@ augroup other_filetypes
     autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
     autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
     autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
+    autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
 augroup END
 
 augroup markdown_filetype

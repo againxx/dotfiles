@@ -117,6 +117,7 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
+Plug 'jez/vim-superman'
 
 call plug#end()
 

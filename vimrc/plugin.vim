@@ -23,6 +23,7 @@ let g:tmuxline_preset = 'nightly_fox'
 " === Undotree
 " ===
 let g:undotree_SetFocusWhenToggle = 1
+" let g:undotree_ShortIndicators = 1
 
 let g:incsearch#auto_nohlsearch = 1
 

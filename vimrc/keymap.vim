@@ -4,7 +4,7 @@
 " map Y to yank from the cursor to the end of line
 nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
-vnoremap Y "+y
+xnoremap Y "+y
 " map yp to paste from system clipboard
 nnoremap yp "+p
 nnoremap yP "+P
@@ -18,9 +18,27 @@ nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
 " Make <C-e> and <C-y> move faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+" Make <C-j> and <C-k> move faster
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
 
-vnoremap <C-j> :move '>+1<CR>gv=gv
-vnoremap <C-k> :move '<-2<CR>gv=gv
+" When close window, reset nosplitright & nosplitbelow
+nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
+
+" Use [a and ]a in visual mode to move selection up and down
+xnoremap [a :move '<-2<CR>gv=gv
+xnoremap ]a :move '>+1<CR>gv=gv
+" Move line in normal mode
+nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>
+nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>
+
+" Add empty line
+nnoremap [<space> ma:<c-u>put! =repeat(nr2char(10), v:count1)<CR>`a
+nnoremap ]<space> ma:<c-u>put =repeat(nr2char(10), v:count1)<CR>`a
+
+" Continuous indent
+xnoremap < <gv
+xnoremap > >gv
 
 " Temporary disable <Backspace> & <Up> & <Down>
 inoremap <BS> <nop>
@@ -86,10 +104,14 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " Use <Tab> to confirm completion
 if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<Tab>"
+    " Use `complete_info` if your (Neo)Vim version supports it.
+    inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" :
+    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :   
+    \   "\<C-g>u\<Tab>"
 else
-  inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<Tab>"
+    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" :
+    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :   
+    \   "\<C-g>u\<Tab>"
 endif
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
@@ -117,10 +139,6 @@ endfunction
 
 " Use <Tab> for select text for visual placeholder of snippet.
 vmap <Tab> <Plug>(coc-snippets-select)
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-let g:coc_snippet_next = '<C-j>'
-let g:coc_snippet_prev = '<C-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 

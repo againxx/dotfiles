@@ -32,6 +32,25 @@ nnoremap <M-j> <c-w>j
 nnoremap <M-k> <c-w>k
 
 " ===
+" === Window Resize
+" ===
+nnoremap <M-=> <C-w>+
+nnoremap <M--> <C-w>-
+nnoremap <M-,> <C-w><
+nnoremap <M-.> <C-w>>
+
+" ===
+" === Window Split
+" ===
+nnoremap <C-w>l :set splitright<CR>:vsplit<CR>
+nnoremap <C-w>h :set nosplitright<CR>:vsplit<CR>
+nnoremap <C-w>j :set splitbelow<CR>:split<CR>
+nnoremap <C-w>k :set nosplitbelow<CR>:split<CR>
+
+" Fast normal mode
+noremap <M-n> :normal<Space>
+
+" ===
 " === Buffer Navigation
 " ===
 nmap <M-1> <Plug>lightline#bufferline#go(1)
@@ -40,3 +59,6 @@ nmap <M-3> <Plug>lightline#bufferline#go(3)
 nmap <M-4> <Plug>lightline#bufferline#go(4)
 nmap <M-5> <Plug>lightline#bufferline#go(5)
 nmap <M-6> <Plug>lightline#bufferline#go(6)
+" Use <M-j> for jump to next placeholder and <M-k> for jump to previous placeholder
+let g:coc_snippet_next = '<M-j>'
+let g:coc_snippet_prev = '<M-k>'

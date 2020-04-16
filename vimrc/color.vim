@@ -62,6 +62,7 @@ if g:colors_name == 'ayu'
     hi! link Conceal Function
     hi! link pythonDocstring pythonComment
     hi! link ALEWarningSign CocWarningSign
+    let g:VM_Extend_hl = 'CocListBlackCyan'
     let g:VM_highlight_matches = ''
 endif
 

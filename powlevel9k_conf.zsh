@@ -157,3 +157,18 @@ POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="$(( $DEFAULT_BACKGROUND - 1 ))"
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="$(( $DEFAULT_BACKGROUND - 1 ))"
 # Extra or missing spaces in prompt compared to Powerlevel9k (used by Powerlevel10k)
 ZLE_RPROMPT_INDENT=0
+
+# Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
+# when accepting a command line. Supported values:
+#
+#   - off:      Don't change prompt when accepting a command line.
+#   - always:   Trim down prompt when accepting a command line.
+#   - same-dir: Trim down prompt when accepting a command line unless this is the first command
+#               typed after changing current working directory.
+typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+# Green prompt symbol if the last command succeeded.
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="magenta"
+# Red prompt symbol if the last command failed.
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="magenta"
+# Default prompt symbol.
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='ﰲ'
