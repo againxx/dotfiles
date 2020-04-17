@@ -6,7 +6,6 @@
 # fi
 
 # Tmux
-export WHICH_TERMINAL=`ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))"`
 export TERM=screen-256color
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOSTART_ONCE=false

@@ -1,4 +1,4 @@
-augroup other_filetypes
+augroup python_filetype
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
@@ -6,7 +6,18 @@ augroup other_filetypes
     autocmd FileType python nmap <buffer> ]f ]m
     autocmd FileType python nmap <buffer> [F [M
     autocmd FileType python nmap <buffer> ]F ]M
+    autocmd FileType python let b:switch_custom_definitions = [
+    \   {
+    \       'print\s\+\(.*\)': 'print(\1)',
+    \       'print(\([^)]*\))': 'print \1',
+    \       'is\s\(not\)\@!': 'is not ',
+    \       'is\snot': 'is',
+    \   }
+    \ ]
     " autocmd FileType python let b:current_syntax = 'python'
+augroup END
+
+augroup other_filetypes
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
@@ -48,6 +59,7 @@ augroup markdown_filetype
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
     autocmd FileType markdown inoremap <buffer> ;4 ####<Space>
+    autocmd FileType markdown nnoremap <buffer> <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd FileType markdown let b:switch_custom_definitions = [
     \   {
     \       '\(|:\=-\+\)\+|': {
@@ -61,7 +73,9 @@ augroup markdown_filetype
     \       '\(|-\+:\)\+|': {
     \           '|\@<=-': ':',
     \           ':|\@=': '-'
-    \       }
+    \       },
+    \       '^\(\%([^|]\+|\)\+[^|]\+\)': '|\1|',
+    \       '^|\s*\(\%([^|]\+|\)\+[^|]\+\)|': '\1',
     \   }
     \ ]
     autocmd FileType markdown inoreabbrev <expr> <buffer> <bar><bar>
@@ -71,6 +85,12 @@ augroup END
 
 augroup common
     autocmd!
+    autocmd BufReadPost *
+    \   if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \   |   exe "normal! g`\""
+    \   | endif
+    autocmd InsertLeave,WinEnter * set cursorline
+    autocmd InsertEnter,WinLeave * set nocursorline
     " Close the preview window when completion is done
     autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
     " Highlight the symbol and its references when holding the cursor.

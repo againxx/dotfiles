@@ -123,7 +123,6 @@ nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
-
 " ===
 " === Change directory
 " ===
@@ -179,6 +178,7 @@ nmap <leader>vg <Plug>(coc-git-chunkinfo)
 " ===
 nnoremap <leader>nt :tabnew %<CR>
 nnoremap <leader>nd :CocCommand todolist.create<CR>
+nnoremap <leader>nx :read !figlet<space>
 
 " ===
 " === Change settings

@@ -11,7 +11,7 @@ nnoremap yP "+P
 
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
-nnoremap <C-h> :nohlsearch<CR>
+nnoremap <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
 
@@ -26,8 +26,8 @@ nnoremap <C-k> 5k
 nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
 
 " Use [a and ]a in visual mode to move selection up and down
-xnoremap [a :move '<-2<CR>gv=gv
-xnoremap ]a :move '>+1<CR>gv=gv
+xnoremap [a :<c-u>execute "'<,'>move '<-1-".v:count1<CR>gv=gv
+xnoremap ]a :<c-u>execute "'<,'>move '>+".v:count1<CR>gv=gv
 " Move line in normal mode
 nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>
 nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>
@@ -48,6 +48,8 @@ nnoremap <Up> <nop>
 nnoremap <Down> <nop>
 map <F1> <nop>
 imap <F1> <nop>
+" Avoid join lines when begin visual line mode
+xnoremap <expr> J line(".") == line("'<") ? "j" : "J"
 
 " Buffer navigation
 nnoremap [b :bp<CR>
@@ -72,8 +74,6 @@ nmap ga <Plug>(EasyAlign)
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
@@ -81,6 +81,8 @@ map g# <Plug>(incsearch-nohl-g#)
 nmap y/ <Plug>(incsearch-fuzzy-/)
 nmap y? <Plug>(incsearch-fuzzy-?)
 nmap yg/ <Plug>(incsearch-fuzzy-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
 
 " ===
 " === Ale
