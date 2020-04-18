@@ -29,7 +29,7 @@
     "yank.list.maxsize": 50,
     "coc-actions.hideCursor": false,
     "explorer.icon.enableNerdfont": true,
-    "explorer.quitOnOpen": false,
+    "explorer.quitOnOpen": true,
     "explorer.file.column.git.icon.modified": "✹",
     "explorer.file.column.git.icon.added": "✚",
     "explorer.file.column.git.icon.unmerged": "═",
@@ -54,7 +54,7 @@
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls-root", "compile_commands.json"],
+            "rootPatterns": [".ccls-root", ".vim", "compile_commands.json"],
             "initializationOptions": {
                 "cache": {
                     "directory": ".ccls-cache"

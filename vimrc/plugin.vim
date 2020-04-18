@@ -204,3 +204,16 @@ let g:vimwiki_table_auto_fmt = 0
 
 " Suda.vim
 let g:suda_smart_edit = 1
+
+" Asyncrun
+" let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = [
+\   '.git',
+\   '.svn',
+\   '.root',
+\   '.project',
+\   '.hg',
+\   '.vim',
+\ ]
+let g:asynctasks_config_name = '.vim/.tasks'
+let g:asynctasks_confirm = 0

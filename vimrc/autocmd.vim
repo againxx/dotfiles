@@ -91,6 +91,8 @@ augroup common
     \   | endif
     autocmd InsertLeave,WinEnter * set cursorline
     autocmd InsertEnter,WinLeave * set nocursorline
+    autocmd CmdLineEnter : set nosmartcase
+    autocmd CmdLineLeave : set smartcase
     " Close the preview window when completion is done
     autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
     " Highlight the symbol and its references when holding the cursor.

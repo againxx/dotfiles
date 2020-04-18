@@ -105,6 +105,12 @@ Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': ['TableModeToggle', 'TableModeEnable'] }
 
 " ===
+" === Task system
+" ===
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
+
+" ===
 " === Utility
 " ===
 Plug 'mg979/vim-visual-multi' 

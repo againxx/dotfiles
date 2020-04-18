@@ -21,6 +21,11 @@ nnoremap <C-y> 3<C-y>
 " Make <C-j> and <C-k> move faster
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
+xnoremap <C-j> 5j
+xnoremap <C-k> 5k
+
+" Use <C-q> to repeat last macro
+nnoremap <C-q> @@
 
 " When close window, reset nosplitright & nosplitbelow
 nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
@@ -29,8 +34,8 @@ nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
 xnoremap [a :<c-u>execute "'<,'>move '<-1-".v:count1<CR>gv=gv
 xnoremap ]a :<c-u>execute "'<,'>move '>+".v:count1<CR>gv=gv
 " Move line in normal mode
-nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>
-nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>
+nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>==
+nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>==
 
 " Add empty line
 nnoremap [<space> ma:<c-u>put! =repeat(nr2char(10), v:count1)<CR>`a
@@ -108,11 +113,11 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 if has('patch8.1.1068')
     " Use `complete_info` if your (Neo)Vim version supports it.
     inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" :
-    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :   
+    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
     \   "\<C-g>u\<Tab>"
 else
     inoremap <expr> <Tab> pumvisible() ? "\<C-y>" :
-    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :   
+    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
     \   "\<C-g>u\<Tab>"
 endif
 " Use <c-space> to trigger completion.

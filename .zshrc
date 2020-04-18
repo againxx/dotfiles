@@ -6,10 +6,10 @@
 # fi
 
 # Tmux
-export TERM=screen-256color
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOSTART_ONCE=false
-ZSH_TMUX_AUTOCONNECT=false
+ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_FIXTERM_WITH_256COLOR=tmux-256color
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -140,6 +140,7 @@ alias pch="proxychains"
 alias zshconf="nvim ~/.zshrc"
 alias tmuxconf="nvim ~/.tmux.conf"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
+alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 
 alias -s py=nvim
 alias -s cpp=nvim
@@ -152,16 +153,20 @@ mkcd() {
 }
 
 ra() {
-  if [ "$1" != "" ]; then
-    if [ -d "$1" ]; then
-      ranger "$1"
+    if [ -z "$RANGER_LEVEL" ]; then
+        if [ "$1" != "" ]; then
+            if [ -d "$1" ]; then
+                ranger "$1"
+            else
+                ranger "$(autojump $1)"
+            fi
+        else
+            ranger
+        fi
+        return $?
     else
-      ranger "$(autojump $1)"
+        exit
     fi
-  else
-    ranger
-  fi
-	return $?
 }
 
 # Include Z

@@ -37,6 +37,6 @@ set updatetime=300
 set shortmess+=c
 " Different options for a particular file using modelines
 set modeline
-set autochdir
+" set autochdir
 set scrolloff=2
 set cursorline

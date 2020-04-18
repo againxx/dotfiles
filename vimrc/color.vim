@@ -41,9 +41,11 @@ if g:colors_name == 'ayu'
     hi Normal           ctermbg=NONE guibg=NONE
     hi SignColumn       ctermbg=NONE guibg=NONE
     hi CursorLineNr     ctermbg=NONE guibg=NONE
+    hi Comment          cterm=italic gui=italic
     hi ALEWarning       ctermbg=NONE guibg=NONE
-    hi pythonSelf       guifg=#A37ACC guibg=NONE
+    hi pythonSelf       gui=italic guifg=#A37ACC guibg=NONE
     hi pythonParam      guifg=#F07178 guibg=NONE
+    hi Statement        gui=bold,italic
     hi ALEErrorSign     cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
     hi CocHighlightText guibg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
@@ -56,6 +58,7 @@ if g:colors_name == 'ayu'
     hi htmlH5           guifg=#F07178 guibg=NONE
     hi htmlH6           guifg=#95E6CB guibg=NONE
     hi MatchParen       gui=underline guifg=#95E6CB
+    hi jsonKeyword      guifg=#FFAE57
     " hi CocHighlightText guibg=#232B32
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link Statusline airline_c

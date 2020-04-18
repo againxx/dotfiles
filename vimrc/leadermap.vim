@@ -15,6 +15,8 @@ let g:which_leader_map.e = {
 \   'b':    'edit-abbrev',
 \   'c':    'edit-coc-config',
 \   's':    'edit-snippets',
+\   'm':    'edit-macro&register',
+\   't':    'edit-task',
 \ }
 
 let g:which_leader_map.d = {
@@ -62,6 +64,7 @@ let g:which_leader_map.n = {
 \   'name': '+new',
 \   'd':    'new-todo',
 \   't':    'new-tab',
+\   'x':    'new-figlet-symbol',
 \ }
 
 let g:which_leader_map.c = {
@@ -122,6 +125,7 @@ nnoremap <leader>ew :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/wiki.vim'
 nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+nnoremap <leader>et :AsyncTaskEdit<CR>
 
 " ===
 " === Change directory
