@@ -33,10 +33,12 @@ let g:which_leader_map.q = {
 \ }
 
 let g:which_leader_map.r = {
-\   'name': '+refactor',
+\   'name': '+refactor/run',
 \   'n':    'rename',
 \   'f':    'format',
 \   'x':    'fix',
+\   's':    'run-select',
+\   'a':    'run-all',
 \ }
 
 let g:which_leader_map.v = {
@@ -99,8 +101,7 @@ let g:VM_maps = {}
 let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
 let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 
-" Source vimrc file, refresh airline to show the arrow
-" nnoremap <silent> <leader>sv :source $MYVIMRC <bar> AirlineRefresh<CR>
+" Source vimrc file
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 
 function! s:autoVerticalSplit(fname)
@@ -121,7 +122,6 @@ nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vi
 nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
 nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vim')<CR>
-nnoremap <leader>ew :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/wiki.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
@@ -139,7 +139,6 @@ nnoremap <leader>dc :cd %:p:h<CR>
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
-" nnoremap <leader>qb :MBEbd<CR>
 
 " ===
 " === Coc
@@ -147,11 +146,14 @@ nnoremap <silent> <leader>qt :tabclose<CR>
 " Formatting selected code.
 xmap <leader>rf <Plug>(coc-format-selected)
 nmap <leader>rf <Plug>(coc-format-selected)
+" nmap <leader>rf <Plug>(coc-refactor)
 " Apply AutoFix to problem on the current line.
 nmap <leader>rx <Plug>(coc-fix-current)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" nmap <leader>rf <Plug>(coc-refactor)
+" exec in termial
+noremap <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
+noremap <silent> <leader>ra :CocCommand python.execInTerminal<CR>
 
 " coc-actions
 " Remap for do codeAction of selected region

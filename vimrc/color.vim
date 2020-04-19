@@ -47,6 +47,7 @@ if g:colors_name == 'ayu'
     hi pythonParam      guifg=#F07178 guibg=NONE
     hi Statement        gui=bold,italic
     hi ALEErrorSign     cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
+    hi ALEWarningSign   guifg=#E7C547 guibg=NONE
     hi CocHighlightText guibg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
@@ -59,12 +60,10 @@ if g:colors_name == 'ayu'
     hi htmlH6           guifg=#95E6CB guibg=NONE
     hi MatchParen       gui=underline guifg=#95E6CB
     hi jsonKeyword      guifg=#FFAE57
-    " hi CocHighlightText guibg=#232B32
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link Statusline airline_c
     hi! link Conceal Function
     hi! link pythonDocstring pythonComment
-    hi! link ALEWarningSign CocWarningSign
     let g:VM_Extend_hl = 'CocListBlackCyan'
     let g:VM_highlight_matches = ''
 endif

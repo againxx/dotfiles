@@ -26,10 +26,12 @@ tnoremap <M-h> <c-\><c-n><c-w>h
 tnoremap <M-j> <c-\><c-n><c-w>j
 tnoremap <M-k> <c-\><c-n><c-w>k
 tnoremap <M-l> <c-\><c-n><c-w>l
-nnoremap <M-l> <c-w>l
-nnoremap <M-h> <c-w>h
-nnoremap <M-j> <c-w>j
-nnoremap <M-k> <c-w>k
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
 
 " ===
 " === Window Resize

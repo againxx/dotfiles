@@ -1,40 +1,14 @@
-" Vim-plug
-let g:plug_url_format = 'https://github.com/%s.git'
-
-" ===
-" === tmuxline
-" ===
-" let g:tmuxline_preset = {
-"       \'a'    : '#S',
-"       \'b'    : '#W',
-"       \'c'    : '',
-"       \'win'  : '#I #W',
-"       \'cwin' : '#I #W',
-"       \'x'    : '%a',
-"       \'y'    : '#W %R',
-"       \'z'    : '#H'}
-let g:tmuxline_preset = 'nightly_fox'
-
-" NERDTree
-" let g:NERDTreeWinPos = 'right'
-" let g:NERDTreeWinSize = 30
-
 " ===
 " === Undotree
 " ===
 let g:undotree_SetFocusWhenToggle = 1
 " let g:undotree_ShortIndicators = 1
 
-let g:incsearch#auto_nohlsearch = 1
-
 " ===
 " === Visual-multi
 " ===
 let g:VM_set_statusline = 2
 let g:VM_silent_exit = 1
-
-" Sneak
-" let g:sneak#label = 1
 
 " ===
 " === Rainbow
@@ -202,10 +176,9 @@ let g:vimwiki_folding = 'custom'
 let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_table_auto_fmt = 0
 
-" Suda.vim
-let g:suda_smart_edit = 1
-
-" Asyncrun
+" ===
+" === Asyncrun
+" ===
 " let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = [
 \   '.git',
@@ -217,3 +190,21 @@ let g:asyncrun_rootmarks = [
 \ ]
 let g:asynctasks_config_name = '.vim/.tasks'
 let g:asynctasks_confirm = 0
+
+" ===
+" === Miscellaneous
+" ===
+" Vim-plug
+let g:plug_url_format = 'https://github.com/%s.git'
+
+" Suda.vim
+let g:suda_smart_edit = 1
+
+" tmuxline
+let g:tmuxline_preset = 'nightly_fox'
+
+" incsearch
+let g:incsearch#auto_nohlsearch = 1
+
+" Sneak
+" let g:sneak#label = 1

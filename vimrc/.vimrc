@@ -25,8 +25,6 @@ Plug 'junegunn/fzf.vim'
 " ===
 " === Stausline
 " ===
-" Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -37,7 +35,6 @@ Plug 'againxx/lightline-utils'
 " === Window & Buffer & Keybindings
 " ===
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'fholgado/minibufexpl.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Delete buffers and close files in Vim without closing windows and tabs
 Plug 'moll/vim-bbye'
@@ -124,6 +121,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
 Plug 'jez/vim-superman'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 

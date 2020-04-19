@@ -14,25 +14,6 @@ augroup python_filetype
     \       'is\snot': 'is',
     \   }
     \ ]
-    " autocmd FileType python let b:current_syntax = 'python'
-augroup END
-
-augroup other_filetypes
-    autocmd FileType cpp setlocal foldmethod=syntax
-    autocmd FileType fzf
-    \   if has('nvim') && !exists('g:fzf_layout')
-    \   | set laststatus=0
-    \   | execute "autocmd BufLeave <buffer> set laststatus=2"
-    \   | endif
-    autocmd FileType vimwiki.markdown execute
-    \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
-    autocmd FileType vimwiki.markdown execute
-    \   "autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')"
-    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
-    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
-    autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
-    autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-    autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
 augroup END
 
 augroup markdown_filetype
@@ -42,15 +23,15 @@ augroup markdown_filetype
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
-    autocmd Filetype markdown inoremap <buffer> ;f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-    autocmd Filetype markdown inoremap <buffer> ;w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
+    autocmd Filetype markdown inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+    autocmd Filetype markdown inoremap <buffer> ;e <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
     autocmd Filetype markdown inoremap <buffer> ;d ~~~~ <++><Esc>F~hi
     autocmd Filetype markdown inoremap <buffer> ;i ** <++><Esc>F*i
-    autocmd Filetype markdown inoremap <buffer> ;e `` <++><Esc>F`i
+    autocmd Filetype markdown inoremap <buffer> ;c `` <++><Esc>F`i
     autocmd FileType markdown inoremap <buffer> ;m $$<++><Esc>F$i
     autocmd FileType markdown inoremap <buffer> ;M $$$$<Esc>hi
-    autocmd FileType markdown inoremap <buffer> ;c ```<CR>```<Esc>ka
+    autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
     autocmd FileType markdown inoremap <buffer> ;t -<Space>[<Space>]<Space>
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>) <++><Esc>F[a
@@ -83,6 +64,24 @@ augroup markdown_filetype
     \   '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
 augroup END
 
+augroup other_filetypes
+    autocmd FileType cpp setlocal foldmethod=syntax
+    autocmd FileType fzf
+    \   if has('nvim') && !exists('g:fzf_layout')
+    \   | set laststatus=0
+    \   | execute "autocmd BufLeave <buffer> set laststatus=2"
+    \   | endif
+    autocmd FileType vimwiki.markdown execute
+    \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
+    autocmd FileType vimwiki.markdown execute
+    \   "autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')"
+    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
+    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
+    autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
+    autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
+    autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
+augroup END
+
 augroup common
     autocmd!
     autocmd BufReadPost *
@@ -93,6 +92,7 @@ augroup common
     autocmd InsertEnter,WinLeave * set nocursorline
     autocmd CmdLineEnter : set nosmartcase
     autocmd CmdLineLeave : set smartcase
+    autocmd VimResized * :wincmd =
     " Close the preview window when completion is done
     autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
     " Highlight the symbol and its references when holding the cursor.
@@ -103,11 +103,6 @@ augroup common
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
 
-" You can add a mapping to `/` in order to open the vista finder for
-" searching by adding the following autocommand in your vimrc:
-" autocmd FileType vista,vista_kind nnoremap <buffer> <silent> \
-         " / :<C-u>call vista#finder#fzf#Run()<CR>
-         "
 function! s:isAtStartOfLine(mapping)
   let text_before_cursor = getline('.')[0 : col('.')-1]
   let mapping_pattern = '\V' . escape(a:mapping, '\')

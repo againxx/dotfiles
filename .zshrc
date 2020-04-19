@@ -117,7 +117,7 @@ KEYTIMEOUT=1
 ### bindkey alt+l for clear screen
 bindkey "^J" forward-word
 bindkey "^L" forward-char
-bindkey "^[l" clear-screen
+bindkey "^[L" clear-screen
 
 bindkey -M vicmd "_" vi-first-non-blank
 

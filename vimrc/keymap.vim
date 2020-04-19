@@ -9,6 +9,9 @@ xnoremap Y "+y
 nnoremap yp "+p
 nnoremap yP "+P
 
+" map z; to toggle fold
+nnoremap z; za
+
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 nnoremap <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
@@ -60,12 +63,8 @@ xnoremap <expr> J line(".") == line("'<") ? "j" : "J"
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
 
-" NERDTree
-" map <F2> :NERDTreeToggle<CR>
-
 " Terminal
 nnoremap <space>x :terminal<CR>
-
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -79,6 +78,8 @@ nmap ga <Plug>(EasyAlign)
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
@@ -86,26 +87,22 @@ map g# <Plug>(incsearch-nohl-g#)
 nmap y/ <Plug>(incsearch-fuzzy-/)
 nmap y? <Plug>(incsearch-fuzzy-?)
 nmap yg/ <Plug>(incsearch-fuzzy-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
 
 " ===
 " === Ale
 " ===
-" Use `[e\[w` and `]e\]w` to navigate diagnostics
+" Use [e \ [w and ]e \ ]w to navigate diagnostics
 nmap <silent> [e <Plug>(ale_previous_wrap_error)
 nmap <silent> ]e <Plug>(ale_next_wrap_error)
 nmap <silent> [w <Plug>(ale_previous_wrap_warning)
 nmap <silent> ]w <Plug>(ale_next_wrap_warning)
-" nmap <silent> [g <Plug>(ale_previous_wrap)
-" nmap <silent> ]g <Plug>(ale_next_wrap)
-" navigate chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
 
 " ===
 " === Coc
 " ===
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
 " Use <C-j> and <C-k> to navigate the completion list:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
@@ -193,18 +190,6 @@ nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
-
-function! s:toggleVista()
-    if vista#sidebar#IsOpen()
-        execute "Vista!"
-        if &showtabline != 2
-            set showtabline=2
-        endif
-        call lightline#update()
-    else
-        execute "Vista"
-    endif
-endfunction
 
 " ===
 " === Whichkey
