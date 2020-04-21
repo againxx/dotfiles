@@ -165,6 +165,12 @@ let g:vimwiki_list = [
 \       'path': '~/Documents/Notes',
 \       'syntax': 'markdown',
 \       'ext': '.md'
+\   },
+\   {
+\       'path': '~/Documents/Todos',
+\       'syntax': 'markdown',
+\       'ext': '.md',
+\       'index': 'todo'
 \   }
 \ ]
 

@@ -56,7 +56,6 @@ augroup markdown_filetype
     \           ':|\@=': '-'
     \       },
     \       '^\(\%([^|]\+|\)\+[^|]\+\)': '|\1|',
-    \       '^|\s*\(\%([^|]\+|\)\+[^|]\+\)|': '\1',
     \   }
     \ ]
     autocmd FileType markdown inoreabbrev <expr> <buffer> <bar><bar>

@@ -45,6 +45,7 @@ if g:colors_name == 'ayu'
     hi ALEWarning       ctermbg=NONE guibg=NONE
     hi pythonSelf       gui=italic guifg=#A37ACC guibg=NONE
     hi pythonParam      guifg=#F07178 guibg=NONE
+    hi pythonInclude    gui=bold,italic guifg=#FFC44C
     hi Statement        gui=bold,italic
     hi ALEErrorSign     cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
     hi ALEWarningSign   guifg=#E7C547 guibg=NONE

@@ -87,8 +87,9 @@ let g:which_leader_map.w = {
 \   'w':    'default wiki index',
 \   't':    'default wiki index in new tab',
 \   's':    'select and open wiki index',
-\   'd':    'delete wiki file',
+\   'x':    'delete wiki file',
 \   'r':    'rename wiki file',
+\   'd':    'wiki todo',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -199,6 +200,12 @@ nnoremap <silent> <leader>cs :call <SID>toggleLightlineSep()<CR>
 nnoremap <leader>tm :TableModeToggle<CR>
 let g:table_mode_realign_map = '<leader>tr'
 
+" ===
+" === Vimwiki
+" ===
+nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
+nnoremap <leader>wd :<C-u>VimwikiIndex 2<CR>
+nnoremap <leader>wx <Plug>VimwikiDeleteLink
 " ===
 " === Functions
 " ===
