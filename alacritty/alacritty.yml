@@ -100,7 +100,7 @@ font:
     family: InconsolataLGC Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    # style: Medium
 
   # Bold font face
   # bold:
@@ -114,15 +114,15 @@ font:
     #style: Bold
 
   # Italic font face
-  #italic:
+  # italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    # family: InconsolataLGC iCursive S12
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    # style: Italic
 
   # Bold italic font face
   #bold_italic:
@@ -130,10 +130,11 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    # family: InconsolataLGC iCursive S12
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
+    # style: Italic
 
   # Point size
   size: 15.0

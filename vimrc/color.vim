@@ -1,3 +1,9 @@
+" This is only necessary if you use set termguicolors.
+if !has('nvim')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+set termguicolors   " Use gui color (true color) in terminal
 " ===
 " === Space-vim-dark
 " ===
@@ -9,6 +15,7 @@
 " === Ayu & One half
 " ===
 " if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
+set background=dark
 let g:ayucolor = 'mirage'
 colorscheme ayu
 let g:airline_theme = 'ayu_mirage'
@@ -52,6 +59,8 @@ if g:colors_name == 'ayu'
     hi CocHighlightText guibg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
+    hi Cursor           guifg=bg guibg=#FFCC66
+    hi Sneak            guifg=#212733 guibg=#D4BFFF
     " vim-markdown
     hi htmlH1           gui=bold guifg=#D4BFFF guibg=NONE
     hi htmlH2           gui=bold guifg=#BBE67E guibg=NONE

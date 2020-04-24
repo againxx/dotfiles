@@ -185,7 +185,7 @@ let g:vimwiki_table_auto_fmt = 0
 " ===
 " === Asyncrun
 " ===
-" let g:asyncrun_open = 6
+let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = [
 \   '.git',
 \   '.svn',
@@ -196,6 +196,14 @@ let g:asyncrun_rootmarks = [
 \ ]
 let g:asynctasks_config_name = '.vim/.tasks'
 let g:asynctasks_confirm = 0
+
+" ===
+" === Vimspector
+" ===
+let g:vimspector_enable_mappings = 'HUMAN'
+sign define vimspectorBP text=🔴 texthl=Normal
+sign define vimspectorBPDisabled text=🔵 texthl=Normal
+sign define vimspectorPC text=🔶 texthl=SpellBad
 
 " ===
 " === Miscellaneous

@@ -14,7 +14,7 @@ nnoremap z; za
 
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
-nnoremap <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
+nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
 
@@ -181,7 +181,7 @@ nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
-nnoremap <silent> <space>t :<C-u>CocList --normal todolist<cr>
+nnoremap <silent> <space>d :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
 nnoremap <silent> <space>P :<C-u>CocList snippets<cr>

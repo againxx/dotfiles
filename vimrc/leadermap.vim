@@ -2,6 +2,7 @@
 " === WhichKey
 " ===
 nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
+vnoremap <silent> <leader> :<C-u>WhichKeyVisual '\'<CR>
 " Define prefix dictionary
 let g:which_leader_map =  {}
 let g:which_leader_map.e = {
@@ -73,13 +74,15 @@ let g:which_leader_map.c = {
 \   'name': '+change',
 \   'l':    'left-equation',
 \   'p':    'fzf-preview',
-\   's':    'statusline-sep',
+\   'S':    'statusline-sep',
+\   's':    'check-spelling',
 \ }
 
 let g:which_leader_map.t = {
-\   'name': '+table',
+\   'name': '+table/toggle',
 \   'm':    'table-toggle',
 \   'r':    'table-realign',
+\   'g':    'toggle-git-gutters',
 \ }
 
 let g:which_leader_map.w = {
@@ -152,7 +155,7 @@ nmap <leader>rf <Plug>(coc-format-selected)
 nmap <leader>rx <Plug>(coc-fix-current)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" exec in termial
+" exec in terminal
 noremap <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
 noremap <silent> <leader>ra :CocCommand python.execInTerminal<CR>
 
@@ -192,12 +195,14 @@ nnoremap <leader>nx :read !figlet<space>
 " ===
 nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <leader>cs :call <SID>toggleLightlineSep()<CR>
+nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
+nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
 
 " ===
 " === Table-mode
 " ===
 nnoremap <leader>tm :TableModeToggle<CR>
+nnoremap <leader>tg :CocCommand git.toggleGutters<CR>
 let g:table_mode_realign_map = '<leader>tr'
 
 " ===
@@ -226,7 +231,7 @@ endfunction
 
 " Ale
 " Reset b:ale_echo_msg_format to show error code
-function! s:toggleAleErrorCode()
+function! s:toggleAleErrorCode() abort
     if exists("b:ale_echo_msg_format")
         unlet b:ale_echo_msg_format
     else
@@ -234,8 +239,8 @@ function! s:toggleAleErrorCode()
     endif
 endfunction
 
-" Mardown-Preview
-function! s:toggleEquationFlushedLeft()
+" Markdown-Preview
+function! s:toggleEquationFlushedLeft() abort
     if exists("g:mkdp_preview_options['katex']['fleqn']")
         if g:mkdp_preview_options['katex']['fleqn'] == 1
             let g:mkdp_preview_options['katex']['fleqn'] = 0
@@ -248,7 +253,7 @@ function! s:toggleEquationFlushedLeft()
 endfunction
 
 " FZF-Preview
-function! s:toggleFZFPreview()
+function! s:toggleFZFPreview() abort
     if exists("g:vista_fzf_preview")
         unlet g:vista_fzf_preview
         unlet g:fzf_layout
@@ -266,7 +271,7 @@ function! s:toggleFZFPreview()
 endfunction
 
 " Lightline Separate
-function! s:toggleLightlineSep()
+function! s:toggleLightlineSep() abort
     if g:lightline.separator.left == ''
         let g:lightline.separator = {
         \   'left': '',
@@ -297,6 +302,14 @@ function! s:toggleLightlineSep()
     endif
     call lightline#toggle()
     call lightline#toggle()
+endfunction
+
+function! s:toggleSpellChecking() abort
+    if &l:spell ==# 0
+        setlocal spell spelllang=en_us
+    else
+        setlocal nospell
+    endif
 endfunction
 
 " echo different formats and the corresponding char for a given number

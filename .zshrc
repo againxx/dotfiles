@@ -142,7 +142,6 @@ alias tmuxconf="nvim ~/.tmux.conf"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 
-alias -s py=nvim
 alias -s cpp=nvim
 alias -s h=nvim
 alias -s md=nvim

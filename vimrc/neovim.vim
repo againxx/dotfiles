@@ -1,6 +1,5 @@
 if !has('nvim') | finish | endif
 
-set termguicolors   " Use gui color (true color) in terminal
 set inccommand=nosplit
 if has("persistent_undo")
     set undodir=~/.config/nvim/tmp/undo

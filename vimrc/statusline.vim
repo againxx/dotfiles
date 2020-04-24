@@ -129,7 +129,7 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'markdown'
         let l:ftWithSymbol .= ' '
-    elseif &filetype ==# 'cmake'
+    elseif &filetype ==# 'cuda'
         let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'help'
         let l:ftWithSymbol .= ' '
@@ -137,6 +137,8 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'vimwiki' || &filetype ==# 'vimwiki.markdown'
         let l:ftWithSymbol .= ' 龎'
+    elseif &filetype ==# 'cmake'
+        let l:ftWithSymbol .= ' '
     endif
     return l:ftWithSymbol
 endfunction

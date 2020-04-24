@@ -26,15 +26,16 @@ augroup markdown_filetype
     autocmd Filetype markdown inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd Filetype markdown inoremap <buffer> ;e <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
-    autocmd Filetype markdown inoremap <buffer> ;d ~~~~ <++><Esc>F~hi
+    autocmd Filetype markdown inoremap <buffer> ;s ~~~~ <++><Esc>F~hi
     autocmd Filetype markdown inoremap <buffer> ;i ** <++><Esc>F*i
     autocmd Filetype markdown inoremap <buffer> ;c `` <++><Esc>F`i
     autocmd FileType markdown inoremap <buffer> ;m $$<++><Esc>F$i
-    autocmd FileType markdown inoremap <buffer> ;M $$$$<Esc>hi
+    autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
-    autocmd FileType markdown inoremap <buffer> ;t -<Space>[<Space>]<Space>
+    autocmd FileType markdown inoremap <buffer> ;d -<Space>[<Space>]<Space>
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>) <++><Esc>F[a
+    autocmd Filetype markdown inoremap <buffer> ;n <Esc>A<Space>\\<CR>
     autocmd FileType markdown inoremap <buffer> ;; ;
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
