@@ -36,6 +36,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \ }
+let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
 
 " ===
 " === Vista
@@ -204,6 +205,14 @@ let g:vimspector_enable_mappings = 'HUMAN'
 sign define vimspectorBP text=🔴 texthl=Normal
 sign define vimspectorBPDisabled text=🔵 texthl=Normal
 sign define vimspectorPC text=🔶 texthl=SpellBad
+
+" ===
+" === Vim-slime
+" ===
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.config/nvim/tmp/.slime_paste"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+let g:slime_python_ipython = 1
 
 " ===
 " === Miscellaneous

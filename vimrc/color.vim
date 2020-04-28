@@ -59,7 +59,6 @@ if g:colors_name == 'ayu'
     hi CocHighlightText guibg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
-    hi Cursor           guifg=bg guibg=#FFCC66
     hi Sneak            guifg=#212733 guibg=#D4BFFF
     " vim-markdown
     hi htmlH1           gui=bold guifg=#D4BFFF guibg=NONE

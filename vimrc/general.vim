@@ -40,3 +40,5 @@ set modeline
 " set autochdir
 set scrolloff=2
 set cursorline
+set mouse=a
+set showtabline=2

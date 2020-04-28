@@ -8,7 +8,8 @@ let g:lightline.symbols = {
 \   'whitespace': ' ',
 \ }
 
-let g:lightline#bufferline#min_buffer_count = 1
+" Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
+" let g:lightline#bufferline#min_buffer_count = 1
 let g:lightline#bufferline#modified = ' ' " 
 let g:lightline#bufferline#read_only = ' ' " 
 let g:lightline#bufferline#unnamed = ''

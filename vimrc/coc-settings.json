@@ -11,7 +11,7 @@
     "suggest.minTriggerInputLength": 2,
     "diagnostic.displayByAle": true,
     "list.source.files.args": ["--hidden", "--files"],
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
@@ -65,5 +65,5 @@
             }
         }
     },
-    "git.enableGutters": true
+    "git.enableGutters": false
 }

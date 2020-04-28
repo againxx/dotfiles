@@ -30,7 +30,6 @@ Plug 'junegunn/fzf.vim'
 " ===
 " === Stausline
 " ===
-Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'maximbaz/lightline-ale'
@@ -113,6 +112,13 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 
 " ===
+" === Tmux Integration
+" ===
+Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'jpalardy/vim-slime'
+
+" ===
 " === Utility
 " ===
 Plug 'mg979/vim-visual-multi' 
@@ -126,7 +132,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
 Plug 'jez/vim-superman'
-Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
