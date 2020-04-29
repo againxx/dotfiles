@@ -11,7 +11,7 @@
     "suggest.minTriggerInputLength": 2,
     "diagnostic.displayByAle": true,
     "list.source.files.args": ["--hidden", "--files"],
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
@@ -57,7 +57,7 @@
             "rootPatterns": [".ccls-root", ".vim", "compile_commands.json"],
             "initializationOptions": {
                 "cache": {
-                    "directory": ".ccls-cache"
+                    "directory": ".vim/.ccls-cache"
                 },
                 "client": {
                     "snippetSupport": true

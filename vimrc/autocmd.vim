@@ -59,9 +59,11 @@ augroup markdown_filetype
     \       '^\(\%([^|]\+|\)\+[^|]\+\)': '|\1|',
     \   }
     \ ]
+    " when vim-plug first load TableMode the cursor will be put in the first line,
+    " use `. to jump to the original place
     autocmd FileType markdown inoreabbrev <expr> <buffer> <bar><bar>
     \   <SID>isAtStartOfLine('\|\|') ?
-    \   '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+    \   '<c-o>:TableModeEnable<cr><c-o>`.<bar><space><bar><left><left>' : '<bar><bar>'
 augroup END
 
 augroup other_filetypes

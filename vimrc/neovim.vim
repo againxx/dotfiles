@@ -2,8 +2,11 @@ if !has('nvim') | finish | endif
 
 set inccommand=nosplit
 if has("persistent_undo")
-    set undodir=~/.config/nvim/tmp/undo
     set undofile
+    if !isdirectory($HOME . '/.config/nvim/tmp/undo')
+        call mkdir($HOME . "/.config/nvim/tmp/undo", "p")
+    endif
+    set undodir=$HOME/.config/nvim/tmp/undo
 endif
 
 " speed up

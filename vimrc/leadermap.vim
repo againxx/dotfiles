@@ -31,6 +31,7 @@ let g:which_leader_map.q = {
 \   'q':    'quit-buffer',
 \   'w':    'quit-buffer&window',
 \   't':    'quit-tab',
+\   'd':    'quit-debugger',
 \ }
 
 let g:which_leader_map.r = {
@@ -143,6 +144,8 @@ nnoremap <leader>dc :cd %:p:h<CR>
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
+nnoremap <silent> <leader>qd :VimspectorReset<CR>
+nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>
 
 " ===
 " === Coc
@@ -328,6 +331,18 @@ function! s:echoFormatsAndChar(num) abort
     endif
     let @" = nr2char(l:output_num)
     echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
+endfunction
+
+function! s:deleteFinishedTerminalBuffers() abort
+    let l:termBuffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
+    for l:buffer in l:termBuffers
+        let l:isRunning = has('terminal') ? term_getstatus(l:buffer) =~# 'running' :
+                        \ has('nvim') ? jobwait([getbufvar(l:buffer, '&channel')], 0)[0] == -1 :
+                        \ 0
+        if !l:isRunning
+            silent execute l:buffer.'bdelete!'
+        endif
+    endfor
 endfunction
 
 " show vim highlight group under cursor

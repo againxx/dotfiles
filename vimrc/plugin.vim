@@ -37,6 +37,9 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \ }
 let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
+let g:ale_python_mypy_ignore_invalid_syntax = 1
+let g:ale_python_mypy_options = '--cache-dir=' . $HOME . '/.cache/mypy'
+let g:ale_cpp_ccls_init_options = {"cache": {"directory": ".vim/.ccls-cache"}}
 
 " ===
 " === Vista

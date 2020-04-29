@@ -48,8 +48,7 @@ nnoremap ]<space> ma:<c-u>put =repeat(nr2char(10), v:count1)<CR>`a
 xnoremap < <gv
 xnoremap > >gv
 
-" Temporary disable <Backspace> & <Up> & <Down>
-inoremap <BS> <nop>
+" Temporary disable <Up> & <Down>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 nnoremap <Up> <nop>
