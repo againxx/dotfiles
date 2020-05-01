@@ -13,7 +13,7 @@ Plug 'dense-analysis/ale'
 " ===
 " === Debugger
 " ===
-Plug 'puremourning/vimspector', { 'do': './install_gadget.py --enable-c --enable-python' }
+Plug 'puremourning/vimspector'
 
 " ===
 " === Git
@@ -38,7 +38,6 @@ Plug 'againxx/lightline-utils'
 " ===
 " === Window & Buffer & Keybindings
 " ===
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
 " Delete buffers and close files in Vim without closing windows and tabs
 Plug 'moll/vim-bbye'

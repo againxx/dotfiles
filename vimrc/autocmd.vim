@@ -6,6 +6,8 @@ augroup python_filetype
     autocmd FileType python nmap <buffer> ]f ]m
     autocmd FileType python nmap <buffer> [F [M
     autocmd FileType python nmap <buffer> ]F ]M
+    autocmd FileType python nnoremap <buffer> [h {?^\(import\<bar>from\)<CR>:nohlsearch<CR>
+    autocmd FileType python nnoremap <buffer> ]h }/^\(import\<bar>from\)<CR>:nohlsearch<CR>}k
     autocmd FileType python let b:switch_custom_definitions = [
     \   {
     \       'print\s\+\(.*\)': 'print(\1)',
@@ -23,6 +25,7 @@ augroup markdown_filetype
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
+    autocmd FileType markdown nunmap <buffer> ge
     autocmd Filetype markdown inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd Filetype markdown inoremap <buffer> ;e <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
@@ -42,6 +45,8 @@ augroup markdown_filetype
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
     autocmd FileType markdown inoremap <buffer> ;4 ####<Space>
     autocmd FileType markdown nnoremap <buffer> <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+    autocmd FileType markdown inoreabbrev <buffer> ， ,
+    autocmd FileType markdown let b:match_words.=',\\begin{\w\+}:\\end{\w\+}'
     autocmd FileType markdown let b:switch_custom_definitions = [
     \   {
     \       '\(|:\=-\+\)\+|': {

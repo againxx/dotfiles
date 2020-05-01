@@ -20,6 +20,7 @@
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
     "snippets.loadFromExtensions": true,
+    "git.enableGutters": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
@@ -64,6 +65,5 @@
                 }
             }
         }
-    },
-    "git.enableGutters": false
+    }
 }

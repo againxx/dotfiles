@@ -234,3 +234,6 @@ let g:incsearch#auto_nohlsearch = 1
 
 " Sneak
 " let g:sneak#label = 1
+
+" Matchup
+let g:matchup_matchparen_nomode = 'i'

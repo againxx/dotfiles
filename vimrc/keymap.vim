@@ -12,6 +12,9 @@ nnoremap yP "+P
 " map z; to toggle fold
 nnoremap z; za
 
+" map ZA to :qa
+nnoremap ZA :qa<CR>
+
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
