@@ -120,13 +120,13 @@ endfunction
 " ===
 " === Edit files
 " ===
-nnoremap <leader>ev :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/.vimrc')<CR>
-nnoremap <leader>el :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/leadermap.vim')<CR>
-nnoremap <leader>ek :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/keymap.vim')<CR>
-nnoremap <leader>ep :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/plugin.vim')<CR>
-nnoremap <leader>ea :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/autocmd.vim')<CR>
-nnoremap <leader>eg :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/general.vim')<CR>
-nnoremap <leader>eb :call <SID>autoVerticalSplit('~/vim_zsh_tmux/vimrc/abbrev.vim')<CR>
+nnoremap <leader>ev :call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
+nnoremap <leader>el :call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
+nnoremap <leader>ek :call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
+nnoremap <leader>ep :call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
+nnoremap <leader>ea :call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
+nnoremap <leader>eg :call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
+nnoremap <leader>eb :call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
 nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
@@ -135,7 +135,7 @@ nnoremap <leader>et :AsyncTaskEdit<CR>
 " ===
 " === Change directory
 " ===
-nnoremap <leader>dv :cd ~/vim_zsh_tmux/vimrc<CR>
+nnoremap <leader>dv :cd ~/dotfiles/vimrc<CR>
 nnoremap <leader>dc :cd %:p:h<CR>
 
 " ===
