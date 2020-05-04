@@ -136,6 +136,6 @@ Plug 'jez/vim-superman'
 call plug#end()
 
 " vimrc files
-for s:path in split(glob('~/vim_zsh_tmux/vimrc/*.vim'), "\n")
+for s:path in split(glob('~/dotfiles/vimrc/*.vim'), "\n")
     exe 'source ' . s:path
 endfor

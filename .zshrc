@@ -22,7 +22,7 @@ export ZSH=/home/ustc-1314/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-source ~/vim_zsh_tmux/powlevel9k_conf.zsh
+source ~/dotfiles/powlevel9k_conf.zsh
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
