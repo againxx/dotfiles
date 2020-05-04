@@ -64,6 +64,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'unblevable/quick-scope' " highlight for f & t
 
 " ===
 " === Comment & Surround & Parenthsis

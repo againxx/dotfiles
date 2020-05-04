@@ -19,7 +19,7 @@ nnoremap ZA :qa<CR>
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
-nnoremap <expr> gb '`['.strpart(getregtype(),0, 1).'`]'
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Make <C-e> and <C-y> move faster
 nnoremap <C-e> 3<C-e>
@@ -73,6 +73,14 @@ nnoremap <space>x :terminal<CR>
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Vim-markdown
+" disable mapping for ge
+map <Plug>Disable_Markdown_EditUrlUnderCursor <Plug>Markdown_EditUrlUnderCursor
+
+" Disable sneak ; & ,
+map <Plug>Disable_Sneak_; <Plug>Sneak_;
+map <Plug>Disable_Sneak_, <Plug>Sneak_,
 
 " ===
 " === Incsearch
@@ -164,14 +172,15 @@ nnoremap <silent> <space>m :<C-u>CocList -N mru -A<cr>
 nnoremap <silent> <space>f :<C-u>CocList files<cr>
 nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
 " Search coc commands
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+nnoremap <silent> <space>C :<C-u>CocList cmdhistory<cr>
 " Search vim commands
 nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " Search workspace symbols.
-" nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
-nnoremap <silent> <space>S :<C-u>CocList --normal sources<cr>
+nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>r :<C-u>CocListResume<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>Vista!!<cr>
@@ -191,6 +200,7 @@ nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
+nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 
 " ===

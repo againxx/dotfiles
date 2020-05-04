@@ -233,7 +233,11 @@ let g:tmuxline_preset = 'nightly_fox'
 let g:incsearch#auto_nohlsearch = 1
 
 " Sneak
-" let g:sneak#label = 1
+let g:sneak#label = 1
+
+" Quick-scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_lazy_highlight = 1
 
 " Matchup
 let g:matchup_matchparen_nomode = 'i'

@@ -60,6 +60,8 @@ if g:colors_name == 'ayu'
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
     hi Sneak            guifg=#212733 guibg=#D4BFFF
+    hi QuickScopePrimary guifg='#86B300' gui=underline,bold,italic
+    hi QuickScopeSecondary guifg='#36A3D9' gui=underline,bold,italic
     " vim-markdown
     hi htmlH1           gui=bold guifg=#D4BFFF guibg=NONE
     hi htmlH2           gui=bold guifg=#BBE67E guibg=NONE
