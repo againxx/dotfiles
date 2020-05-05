@@ -21,6 +21,11 @@ Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
 
 " ===
+" === Filesystem
+" ===
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+
+" ===
 " === Tags
 " ===
 Plug 'liuchengxu/vista.vim'
@@ -121,7 +126,7 @@ Plug 'jpalardy/vim-slime'
 " ===
 " === Utility
 " ===
-Plug 'mg979/vim-visual-multi' 
+Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-capslock'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro

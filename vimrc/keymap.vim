@@ -181,7 +181,8 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " Search workspace symbols.
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <space>r :<C-u>CocListResume<cr>
+nnoremap <silent> <space>; :<C-u>CocListResume<cr>
+nnoremap <silent> <space>r :<C-u>RnvimrToggle<CR>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.

@@ -30,5 +30,5 @@ class j(Command):
 
     def tab(self, tabnum):
         # This is a generic tab-completion function that iterates through the
-        completion_directories = subprocess.check_output(["autojump", "--complete", self.arg(1)]).split('\n')
+        completion_directories = subprocess.check_output(["autojump", "--complete", self.arg(1)]).decode().split('\n')
         return ["j " + candidate for candidate in completion_directories if candidate != '']
