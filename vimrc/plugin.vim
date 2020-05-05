@@ -247,6 +247,9 @@ let g:incsearch#auto_nohlsearch = 1
 
 " Sneak
 let g:sneak#label = 1
+let g:sneak#prompt = '省'
+" imediately move to the next instance of search, if you move the cursor sneak is back to default behavior
+let g:sneak#s_next = 1
 
 " Quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']

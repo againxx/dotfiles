@@ -110,7 +110,7 @@ augroup common
     " Update lightline before vista wipeout the sidebar buffer
     autocmd BufWipeout * call lightline#update()
     " Automatically close coc-explorer if it is the last window
-    autocmd BufEnter * if winnr('$') == 1 && bufname('%') =~# '^\[coc-explorer\]' | q | endif
+    autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
 augroup END
 
 function! s:isAtStartOfLine(mapping)

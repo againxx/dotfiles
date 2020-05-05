@@ -30,6 +30,7 @@ let g:which_leader_map.q = {
 \   'name': '+quit',
 \   'q':    'quit-buffer',
 \   'w':    'quit-buffer&window',
+\   'W':    'wipeout-buffer&window',
 \   't':    'quit-tab',
 \   'd':    'quit-debugger',
 \ }
@@ -143,6 +144,7 @@ nnoremap <leader>dc :cd %:p:h<CR>
 " ===
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
 nnoremap <silent> <leader>qw :silent! bdelete!<CR>
+nnoremap <silent> <leader>qW :silent! bwipeout!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 nnoremap <silent> <leader>qd :VimspectorReset<CR>
 nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>

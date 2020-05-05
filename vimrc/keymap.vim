@@ -136,7 +136,7 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-declration)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gL <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
