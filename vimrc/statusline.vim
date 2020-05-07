@@ -19,8 +19,8 @@ let g:lightline#ale#indicator_errors = '✖ '
 let g:lightline#whitespace#trailing_format = '%s'
 
 let g:lightline.active = {
-\   'left': [['mode', 'paste'],
-\            ['gitbranch'],
+\   'left': [['mode'],
+\            ['gitbranch', 'spell'],
 \            ['filename', 'readonly', 'cocstatus']],
 \   'right': [['linter_checking', 'linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
@@ -50,7 +50,7 @@ let g:lightline.component = {
 \   'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
 \   'fileformat': '%{&ff}',
 \   'percentwin': '%P',
-\   'spell': '%{&spell?&spelllang:""}',
+\   'spell': '%{&spell?"暈":""}',
 \   'lineinfo': '%p%% %{g:lightline.symbols.linenr} %l %{g:lightline.symbols.colomnnr} %v',
 \   'line': '%l',
 \   'column': '%c',

@@ -51,6 +51,24 @@
             "expand": true
         }
     ],
+    "zi.patterns": {
+        "javascript": [
+            "^\\s*\\/\\/",
+            "^\\s*\\/\\*",
+            "^\\s*\\*"
+        ],
+        "typescript": [
+            "^\\s*\\/\\/",
+            "^\\s*\\/\\*",
+            "^\\s*\\*"
+        ],
+        "markdown": [],
+        "vimwiki.markdown": [],
+        "vim": [
+            "^\\s*\\\""
+        ],
+        "gitcommit": []
+    },
     "languageserver": {
         "ccls": {
             "command": "ccls",

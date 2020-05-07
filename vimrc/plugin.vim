@@ -88,6 +88,7 @@ let g:coc_global_extensions = [
 \   'coc-vimlsp',
 \   'coc-snippets',
 \   'coc-todolist',
+\   'coc-zi',
 \ ]
 
 " coc-explorer
@@ -257,3 +258,7 @@ let g:qs_lazy_highlight = 1
 
 " Matchup
 let g:matchup_matchparen_nomode = 'i'
+
+" Vim-tmux-navigator
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1

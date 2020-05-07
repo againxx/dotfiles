@@ -17,6 +17,12 @@ nnoremap ZA :qa<CR>
 
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
+" alias r to ], a to >, same as surround.vim
+onoremap ir i]
+onoremap ar a]
+onoremap ia i>
+onoremap aa a>
+
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -32,6 +38,11 @@ xnoremap <C-k> 5k
 
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@
+
+" neovim native <C-c> seems to conflict with slime.vim, unbind <C-c> and move
+" it into <C-c><C-x>
+nnoremap <C-c> <nop>
+nnoremap <C-c><C-x> <C-c>
 
 " When close window, reset nosplitright & nosplitbelow
 nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
