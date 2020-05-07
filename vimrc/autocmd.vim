@@ -85,7 +85,7 @@ augroup other_filetypes
     autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
     autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
     autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-    autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
+    " autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
 augroup END
 
 augroup common
@@ -111,6 +111,7 @@ augroup common
     autocmd BufWipeout * call lightline#update()
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
+    autocmd CmdwinEnter * let b:coc_suggest_disable = 1
 augroup END
 
 function! s:isAtStartOfLine(mapping)
