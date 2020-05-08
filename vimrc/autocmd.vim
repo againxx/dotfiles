@@ -2,10 +2,10 @@ augroup python_filetype
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
-    autocmd FileType python nmap <buffer> [f [m
-    autocmd FileType python nmap <buffer> ]f ]m
-    autocmd FileType python nmap <buffer> [F [M
-    autocmd FileType python nmap <buffer> ]F ]M
+    autocmd FileType python map <buffer> [f [m
+    autocmd FileType python map <buffer> ]f ]m
+    autocmd FileType python map <buffer> [F [M
+    autocmd FileType python map <buffer> ]F ]M
     autocmd FileType python nnoremap <buffer> [h {?^\(import\<bar>from\)<CR>:nohlsearch<CR>
     autocmd FileType python nnoremap <buffer> ]h }/^\(import\<bar>from\)<CR>:nohlsearch<CR>}k
     autocmd FileType python let b:switch_custom_definitions = [
@@ -43,7 +43,6 @@ augroup markdown_filetype
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
     autocmd FileType markdown inoremap <buffer> ;4 ####<Space>
-    autocmd FileType markdown inoremap <buffer> ， ,<Space>
     autocmd FileType markdown nnoremap <buffer> <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd FileType markdown if exists("b:match_words") | let b:match_words.=',\\begin{\w\+}:\\end{\w\+}' | endif
     autocmd FileType markdown let b:switch_custom_definitions = [

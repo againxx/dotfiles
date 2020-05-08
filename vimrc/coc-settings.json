@@ -51,6 +51,11 @@
             "expand": true
         }
     ],
+    "explorer.keyMappings": {
+        "<C-h>": "toggleHidden",
+        "[g": "gitPrev",
+        "]g": "gitNext",
+    },
     "zi.patterns": {
         "javascript": [
             "^\\s*\\/\\/",
@@ -67,8 +72,15 @@
         "vim": [
             "^\\s*\\\""
         ],
-        "gitcommit": []
+        "gitcommit": [],
+        "python": [
+            "^\\s*\\\"\\\"\\\"",
+            "^\\s*#",
+        ]
     },
+    "zi.syntaxKinds.python": [
+        "StringLiteral",
+    ],
     "languageserver": {
         "ccls": {
             "command": "ccls",

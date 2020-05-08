@@ -6,6 +6,7 @@ let g:lightline.symbols = {
 \   'beforemode': ' ',
 \   'branch': '',
 \   'whitespace': ' ',
+\   'spellcheck': '暈',
 \ }
 
 " Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
@@ -50,12 +51,15 @@ let g:lightline.component = {
 \   'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
 \   'fileformat': '%{&ff}',
 \   'percentwin': '%P',
-\   'spell': '%{&spell?"暈":""}',
+\   'spell': '%{&spell?g:lightline.symbols.spellcheck:""}',
 \   'lineinfo': '%p%% %{g:lightline.symbols.linenr} %l %{g:lightline.symbols.colomnnr} %v',
 \   'line': '%l',
 \   'column': '%c',
 \   'close': '%999X X ',
 \   'winnr': '%{winnr()}'
+\ }
+let g:lightline.component_visible_condition = {
+\   'spell': '0'
 \ }
 
 let g:lightline.component_function = {
