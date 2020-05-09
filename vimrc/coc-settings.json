@@ -78,9 +78,6 @@
             "^\\s*#",
         ]
     },
-    "zi.syntaxKinds.python": [
-        "StringLiteral",
-    ],
     "languageserver": {
         "ccls": {
             "command": "ccls",

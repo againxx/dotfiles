@@ -16,6 +16,11 @@ Plug 'dense-analysis/ale'
 Plug 'puremourning/vimspector'
 
 " ===
+" === Test
+" ===
+Plug 'janko/vim-test'
+
+" ===
 " === Git
 " ===
 Plug 'tpope/vim-fugitive'

@@ -81,10 +81,15 @@ let g:which_leader_map.c = {
 \ }
 
 let g:which_leader_map.t = {
-\   'name': '+table/toggle',
+\   'name': '+table/toggle/test',
 \   'm':    'table-toggle',
 \   'r':    'table-realign',
 \   'g':    'toggle-git-gutters',
+\   'n':    'test-nearest',
+\   'f':    'test-file',
+\   's':    'test-suite',
+\   'l':    'test-last',
+\   'v':    'test-visit',
 \ }
 
 let g:which_leader_map.w = {
@@ -216,6 +221,16 @@ let g:table_mode_realign_map = '<leader>tr'
 nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
 nnoremap <leader>wd :<C-u>VimwikiIndex 2<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
+
+" ===
+" === Test
+" ===
+nnoremap <silent> <leader>tn :TestNearest<CR>
+nnoremap <silent> <leader>tf :TestFile<CR>
+nnoremap <silent> <leader>ts :TestSuite<CR>
+nnoremap <silent> <leader>tl :TestLast<CR>
+nnoremap <silent> <leader>tv :TestVisit<CR>
+
 " ===
 " === Functions
 " ===

@@ -1,7 +1,7 @@
 augroup python_filetype
     autocmd!
     autocmd FileType python setlocal foldlevel=1
-    autocmd FileType python call coc#config('snippets', {'loadFromExtensions': 0,})
+    autocmd FileType python call coc#config('snippets.loadFromExtensions', 0)
     autocmd FileType python map <buffer> [f [m
     autocmd FileType python map <buffer> ]f ]m
     autocmd FileType python map <buffer> [F [M
