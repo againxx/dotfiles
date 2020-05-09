@@ -262,3 +262,6 @@ let g:matchup_matchparen_nomode = 'i'
 " Vim-tmux-navigator
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
+
+" Vim-test
+let g:test#python#runner = 'pytest'

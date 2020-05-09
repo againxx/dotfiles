@@ -6,8 +6,10 @@ augroup python_filetype
     autocmd FileType python map <buffer> ]f ]m
     autocmd FileType python map <buffer> [F [M
     autocmd FileType python map <buffer> ]F ]M
-    autocmd FileType python nnoremap <buffer> [h {?^\(import\<bar>from\)<CR>:nohlsearch<CR>
-    autocmd FileType python nnoremap <buffer> ]h }/^\(import\<bar>from\)<CR>:nohlsearch<CR>}k
+    autocmd FileType python nnoremap <buffer> [h
+    \   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>
+    autocmd FileType python nnoremap <buffer> ]h
+    \   }:execute "keepjumps normal! /^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
     autocmd FileType python let b:switch_custom_definitions = [
     \   {
     \       'print\s\+\(.*\)': 'print(\1)',

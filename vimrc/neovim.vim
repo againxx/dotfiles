@@ -17,7 +17,8 @@ let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 
 " exit terminal
-tnoremap <M-[> <C-\><C-n>
+tnoremap <C-o> <C-\><C-n>
+" tnoremap <M-[> <C-\><C-n>
 " tnoremap <M-[> <Esc>
 " tnoremap <C-v><Esc> <Esc>
 
