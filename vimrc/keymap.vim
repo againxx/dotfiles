@@ -22,6 +22,10 @@ onoremap ir i]
 onoremap ar a]
 onoremap ia i>
 onoremap aa a>
+vnoremap ir i]
+vnoremap ar a]
+vnoremap ia i>
+vnoremap aa a>
 
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
