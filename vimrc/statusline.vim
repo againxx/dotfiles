@@ -104,25 +104,23 @@ let g:lightline.mode_map = {
 \   't': 'T',
 \ }
 
-if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
-    let g:lightline.separator = {
-    \   'left': ' ',
-    \   'right': ' '
-    \ }
-    let g:lightline.subseparator = {
-    \   'left': '¦',
-    \   'right': '¦'
-    \ }
-else
-    let g:lightline.separator = {
-    \   'left': '',
-    \   'right': ''
-    \ }
-    let g:lightline.subseparator = {
-    \   'left': '',
-    \   'right': ''
-    \ }
-endif
+let g:lightline.separator = {
+\   'left': ' ',
+\   'right': ' '
+\ }
+let g:lightline.subseparator = {
+\   'left': '¦',
+\   'right': '¦'
+\ }
+" if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
+" let g:lightline.separator = {
+" \   'left': '',
+" \   'right': ''
+" \ }
+" let g:lightline.subseparator = {
+" \   'left': '',
+" \   'right': ''
+" \ }
 
 function! LightlineFileTypeWithSymbol()
     let l:ftWithSymbol = &ft!=#""?&ft:"unknown"

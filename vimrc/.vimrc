@@ -142,6 +142,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
 Plug 'jez/vim-superman'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
 
 call plug#end()
 
