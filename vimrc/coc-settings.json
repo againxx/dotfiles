@@ -54,7 +54,7 @@
     "explorer.keyMappings": {
         "<C-h>": "toggleHidden",
         "[g": "gitPrev",
-        "]g": "gitNext",
+        "]g": "gitNext"
     },
     "zi.patterns": {
         "javascript": [
@@ -76,7 +76,7 @@
         "python": [
             "^\\s*\\\"\\\"\\\"",
             "^\\s*#",
-            "^\\s*:",
+            "^\\s*:"
         ]
     },
     "languageserver": {
