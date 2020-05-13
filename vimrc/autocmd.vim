@@ -101,7 +101,7 @@ augroup common
     autocmd CmdLineLeave : set smartcase
     autocmd VimResized * :wincmd =
     " Close the preview window when completion is done
-    autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+    autocmd CompleteDone * if pumvisible() == 0 && bufname('%') !=# '[Command Line]' | pclose | endif
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions"
     \   | call CocActionAsync('highlight') | endif

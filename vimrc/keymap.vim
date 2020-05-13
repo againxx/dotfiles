@@ -31,14 +31,15 @@ nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax 
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Make <C-e> and <C-y> move faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
 " Make <C-j> and <C-k> move faster
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 xnoremap <C-j> 5j
 xnoremap <C-k> 5k
+
+"  Make <C-e> and <C-y> move faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@
@@ -75,6 +76,10 @@ map <F1> <nop>
 imap <F1> <nop>
 " Avoid join lines when begin visual line mode
 xnoremap <expr> J line(".") == line("'<") ? "j" : "J"
+
+" Up and Down are more intelligent in command line history navigation
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
 
 " Buffer navigation
 nnoremap [b :bp<CR>
@@ -172,8 +177,8 @@ vmap <Tab> <Plug>(coc-snippets-select)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Scroll floating window up and down
-nnoremap <expr><C-n> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-n>"
-nnoremap <expr><C-p> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-p>"
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "3\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "3\<C-b>"
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
