@@ -1,0 +1,17 @@
+# python
+*.pyc
+*.pyo
+*cpython*.so
+
+# cmake
+compile_commands.json
+
+# vim
+*.swp
+*.swo
+.vim
+.vimspector.json
+
+# vscode
+.vscode/
+.env
