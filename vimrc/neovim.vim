@@ -67,3 +67,34 @@ nmap <M-6> <Plug>lightline#bufferline#go(6)
 " Use <M-j> for jump to next placeholder and <M-k> for jump to previous placeholder
 let g:coc_snippet_next = '<M-j>'
 let g:coc_snippet_prev = '<M-k>'
+
+" ===
+" === Autocmd
+" ===
+augroup neovim_speical
+    autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
+augroup END
+
+function! s:IsFirenvimActive(event) abort
+  if !exists('*nvim_get_chan_info')
+    return 0
+  endif
+  let l:ui = nvim_get_chan_info(a:event.chan)
+  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+      \ l:ui.client.name =~? 'Firenvim'
+endfunction
+
+" Used by firenvim
+function! OnUIEnter(event) abort
+  if s:IsFirenvimActive(a:event)
+    set guifont=InconsolataLGC\ Nerd\ Font:h9
+    set spell
+    set showtabline=0
+    if g:colors_name == 'ayu'
+        hi Normal     guibg=#212733
+    endif
+    hi Pmenu      guibg=NONE
+    hi PmenuSbar  guibg=NONE
+    hi PmenuThumb guibg=NONE
+  endif
+endfunction

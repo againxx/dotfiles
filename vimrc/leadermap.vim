@@ -26,6 +26,13 @@ let g:which_leader_map.d = {
 \   'c':    'current-dir',
 \ }
 
+let g:which_leader_map.s = {
+\   'name': '+session/source',
+\   's':    'session-save',
+\   'l':    'session-load',
+\   'v':    'source-vimrc',
+\ }
+
 let g:which_leader_map.q = {
 \   'name': '+quit',
 \   'q':    'quit-buffer',
@@ -112,17 +119,6 @@ let g:VM_maps = {}
 let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
 let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 
-" Source vimrc file
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
-
-function! s:autoVerticalSplit(fname)
-    if winlayout()[0] == 'leaf'
-        exec 'vsplit '.a:fname
-    else
-        exec 'edit '.a:fname
-    endif
-endfunction
-
 " ===
 " === Edit files
 " ===
@@ -143,6 +139,14 @@ nnoremap <leader>et :AsyncTaskEdit<CR>
 " ===
 nnoremap <leader>dv :cd ~/dotfiles/vimrc<CR>
 nnoremap <leader>dc :cd %:p:h<CR>
+
+" ===
+" === Session & Source
+" ===
+nnoremap <leader>ss :CocCommand session.save<CR>
+nnoremap <leader>sl :CocCommand session.load<CR>
+" Source vimrc file
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " ===
 " === Quit
@@ -234,6 +238,15 @@ nnoremap <silent> <leader>tv :TestVisit<CR>
 " ===
 " === Functions
 " ===
+
+function! s:autoVerticalSplit(fname)
+    if winlayout()[0] == 'leaf'
+        exec 'vsplit '.a:fname
+    else
+        exec 'edit '.a:fname
+    endif
+endfunction
+
 function! s:grepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'

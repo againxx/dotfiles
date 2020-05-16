@@ -6,3 +6,14 @@
     excludesfile = ~/.gitignore_global
 [http]
 	proxy = http://127.0.0.1:8123
+
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvimdiff"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
+[merge]
+  tool = nvimdiff
+  conflictstyle = diff3
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+  prompt = false

@@ -86,7 +86,7 @@ augroup other_filetypes
     autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
     autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
     autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-    " autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
+    autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
 augroup END
 
 augroup common
@@ -112,8 +112,7 @@ augroup common
     autocmd BufWipeout * call lightline#update()
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
-    autocmd CmdwinEnter * let b:coc_suggest_disable = 1
-    autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
+    " autocmd CmdwinEnter * let b:coc_suggest_disable = 1
 augroup END
 
 function! s:isAtStartOfLine(mapping)
@@ -121,28 +120,4 @@ function! s:isAtStartOfLine(mapping)
   let mapping_pattern = '\V' . escape(a:mapping, '\')
   let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
   return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
-
-function! s:IsFirenvimActive(event) abort
-  if !exists('*nvim_get_chan_info')
-    return 0
-  endif
-  let l:ui = nvim_get_chan_info(a:event.chan)
-  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
-      \ l:ui.client.name =~? 'Firenvim'
-endfunction
-
-" Used by firenvim
-function! OnUIEnter(event) abort
-  if s:IsFirenvimActive(a:event)
-    set guifont=InconsolataLGC\ Nerd\ Font:h9
-    set spell
-    set showtabline=0
-    if g:colors_name == 'ayu'
-        hi Normal     guibg=#212733
-    endif
-    hi Pmenu      guibg=NONE
-    hi PmenuSbar  guibg=NONE
-    hi PmenuThumb guibg=NONE
-  endif
 endfunction
