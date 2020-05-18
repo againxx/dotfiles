@@ -80,6 +80,7 @@
             "^\\s*[A-Z]"
         ]
     },
+    "todolist.promptForReminder": false,
     "languageserver": {
         "ccls": {
             "command": "ccls",
