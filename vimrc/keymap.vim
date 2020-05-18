@@ -99,8 +99,8 @@ nmap ga <Plug>(EasyAlign)
 map <Plug>Disable_Markdown_EditUrlUnderCursor <Plug>Markdown_EditUrlUnderCursor
 
 " Disable sneak ; & ,
-map <Plug>Disable_Sneak_; <Plug>Sneak_;
-map <Plug>Disable_Sneak_, <Plug>Sneak_,
+" map <Plug>Disable_Sneak_; <Plug>Sneak_;
+" map <Plug>Disable_Sneak_, <Plug>Sneak_,
 
 " ===
 " === Incsearch
