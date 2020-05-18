@@ -2,6 +2,7 @@
 *.pyc
 *.pyo
 *cpython*.so
+.coverage
 
 # cmake
 compile_commands.json
