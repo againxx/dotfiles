@@ -40,6 +40,7 @@ let g:which_leader_map.q = {
 \   'W':    'wipeout-buffer&window',
 \   't':    'quit-tab',
 \   'd':    'quit-debugger',
+\   'c':    'quit-quickfix',
 \ }
 
 let g:which_leader_map.r = {
@@ -49,6 +50,8 @@ let g:which_leader_map.r = {
 \   'x':    'fix',
 \   's':    'run-select',
 \   'a':    'run-all',
+\   'b':    'run-build',
+\   'i':    'run-init',
 \ }
 
 let g:which_leader_map.v = {
@@ -157,6 +160,7 @@ nnoremap <silent> <leader>qW :silent! bwipeout!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 nnoremap <silent> <leader>qd :VimspectorReset<CR>
 nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>
+nnoremap <silent> <leader>qc :cclose<CR>
 
 " ===
 " === Coc
@@ -170,8 +174,13 @@ nmap <leader>rx <Plug>(coc-fix-current)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " exec in terminal
-noremap <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
-noremap <silent> <leader>ra :CocCommand python.execInTerminal<CR>
+augroup leadermap_augroup
+    autocmd FileType cpp noremap <buffer> <leader>ra :AsyncTask project-run<CR>
+    autocmd FileType cpp noremap <buffer> <leader>rb :AsyncTask project-build<CR>
+    autocmd FileType cpp noremap <buffer> <leader>ri :AsyncTask project-init<CR>
+    autocmd FileType python noremap <buffer> <silent> <leader>ra :CocCommand python.execInTerminal<CR>
+    autocmd FileType python noremap <buffer> <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
+augroup END
 
 " coc-actions
 " Remap for do codeAction of selected region

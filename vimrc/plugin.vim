@@ -89,6 +89,7 @@ let g:coc_global_extensions = [
 \   'coc-snippets',
 \   'coc-todolist',
 \   'coc-zi',
+\   'coc-tasks',
 \ ]
 
 " coc-explorer
@@ -201,6 +202,7 @@ let g:asyncrun_rootmarks = [
 \ ]
 let g:asynctasks_config_name = '.vim/.tasks'
 let g:asynctasks_confirm = 0
+let g:asynctasks_term_pos = 'tab'
 
 " ===
 " === Vimspector

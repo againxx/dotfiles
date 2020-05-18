@@ -222,6 +222,7 @@ nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
+nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 
 " ===
