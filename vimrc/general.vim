@@ -42,3 +42,4 @@ set scrolloff=2
 set cursorline
 set mouse=a
 set showtabline=2
+set showbreak=╰─▸\ 
