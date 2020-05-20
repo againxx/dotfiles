@@ -73,6 +73,10 @@ augroup END
 
 augroup other_filetypes
     autocmd FileType cpp setlocal foldmethod=syntax
+    autocmd FileType cpp nnoremap <buffer> [h
+    \   {:execute "keepjumps normal! ?^#include\r"<CR>:nohlsearch<CR>
+    autocmd FileType cpp nnoremap <buffer> ]h
+    \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
     \   | set laststatus=0
