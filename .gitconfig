@@ -9,11 +9,13 @@
 
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvimdiff"]
-  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 # set "nvim" as tool for merging
 [merge]
-  tool = nvimdiff
-  conflictstyle = diff3
+    tool = nvimdiff
+    conflictstyle = diff3
 # automatically launch merge tool without displaying a prompt
 [mergetool]
-  prompt = false
+    prompt = false
+[diff]
+    tool = nvimdiff
