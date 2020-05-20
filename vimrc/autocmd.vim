@@ -62,6 +62,8 @@ augroup markdown_filetype
     \           ':|\@=': '-'
     \       },
     \       '^\(\%([^|]\+|\)\+[^|]\+\)': '|\1|',
+    \       '- \[ \]': '- \[X\]',
+    \       '- \[X\]': '- \[ \]',
     \   }
     \ ]
     " when vim-plug first load TableMode the cursor will be put in the first line,
