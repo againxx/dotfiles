@@ -82,8 +82,10 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
 " Buffer navigation
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
 
 " Terminal
 nnoremap <space>x :terminal<CR>
