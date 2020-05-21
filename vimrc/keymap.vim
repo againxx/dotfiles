@@ -13,7 +13,7 @@ nnoremap yP "+P
 nnoremap z; za
 
 " map ZA to :qa
-nnoremap ZA :qa<CR>
+nnoremap ZA :qa!<CR>
 
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
