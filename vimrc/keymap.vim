@@ -87,6 +87,12 @@ nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
 
+" Quickfix navigation
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+
 " Terminal
 nnoremap <space>x :terminal<CR>
 
