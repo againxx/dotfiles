@@ -26,7 +26,7 @@ augroup markdown_filetype
     autocmd FileType markdown let b:coc_additional_keywords = ['\']
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
-    autocmd FileType markdown nmap <buffer> [c <Plug>Markdown_MoveToCurHeader
+    autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
     autocmd Filetype markdown inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd Filetype markdown inoremap <buffer> ;e <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi

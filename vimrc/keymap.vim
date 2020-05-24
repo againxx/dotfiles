@@ -105,6 +105,7 @@ nmap ga <Plug>(EasyAlign)
 " Vim-markdown
 " disable mapping for ge
 map <Plug>Disable_Markdown_EditUrlUnderCursor <Plug>Markdown_EditUrlUnderCursor
+map <Plug>Disable_Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
 
 " Disable sneak ; & ,
 " map <Plug>Disable_Sneak_; <Plug>Sneak_;
