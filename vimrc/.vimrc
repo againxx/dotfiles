@@ -144,6 +144,11 @@ Plug 'lambdalisue/suda.vim'
 Plug 'jez/vim-superman'
 
 " ===
+" === Training Vim
+" ===
+Plug 'ThePrimeagen/vim-be-good'
+
+" ===
 " === Neovim Special
 " ===
 if has('nvim')
