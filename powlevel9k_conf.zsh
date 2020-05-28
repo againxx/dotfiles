@@ -166,9 +166,5 @@ ZLE_RPROMPT_INDENT=0
 #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
 #               typed after changing current working directory.
 typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
-# Green prompt symbol if the last command succeeded.
-typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="magenta"
-# Red prompt symbol if the last command failed.
-typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="magenta"
 # Default prompt symbol.
-typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='ﰲ'
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='%F{magenta}%F{098}%F{091}'
