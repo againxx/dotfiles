@@ -96,5 +96,10 @@ function! OnUIEnter(event) abort
     hi Pmenu      guibg=NONE
     hi PmenuSbar  guibg=NONE
     hi PmenuThumb guibg=NONE
+    " Use Alt_=-,. to resize firenvim window
+    nnoremap <M-=> :<C-u>silent! set lines+=5<CR>
+    nnoremap <M--> :<C-u>silent! set lines-=5<CR>
+    nnoremap <M-,> :<C-u>silent! set columns-=5<CR>
+    nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
   endif
 endfunction
