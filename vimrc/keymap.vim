@@ -179,7 +179,7 @@ endfunction
 " Use <Tab> for select text for visual placeholder of snippet.
 vmap <Tab> <Plug>(coc-snippets-select)
 " Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-l> <Plug>(coc-snippets-expand)
 
 " Scroll floating window up and down
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "3\<C-f>"
