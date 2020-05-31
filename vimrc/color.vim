@@ -72,7 +72,6 @@ if g:colors_name == 'ayu'
     hi MatchParen       gui=underline guifg=#95E6CB
     hi jsonKeyword      guifg=#FFAE57
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
-    hi! link Statusline airline_c
     hi! link Conceal Function
     hi! link pythonDocstring pythonComment
     let g:VM_Extend_hl = 'CocListBlackCyan'
