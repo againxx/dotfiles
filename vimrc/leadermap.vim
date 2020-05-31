@@ -133,7 +133,8 @@ nnoremap <leader>ea :call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')
 nnoremap <leader>eg :call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
 nnoremap <leader>eb :call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
 nnoremap <leader>ec :CocConfig<CR>
-nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
+" nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
+nnoremap <leader>es :UltiSnipsEdit!<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 nnoremap <leader>et :AsyncTaskEdit<CR>
 

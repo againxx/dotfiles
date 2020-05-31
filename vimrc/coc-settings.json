@@ -19,6 +19,7 @@
     "highlight.document.enable": true,
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
+    "snippets.ultisnips.enable": false,
     "snippets.loadFromExtensions": true,
     "git.enableGutters": true,
     "git.addedSign.hlGroup": "GitGutterAdd",

@@ -26,6 +26,9 @@ xnoremap <C-k> 5k
 " Enhanced <C-l>, in vim this key is used for window navigation
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 
+" Fast normal mode
+noremap <M-n> :normal<Space>
+
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
 " tnoremap <M-[> <C-\><C-n>
@@ -62,9 +65,6 @@ nnoremap <C-w>h :set nosplitright<CR>:vsplit<CR>
 nnoremap <C-w>j :set splitbelow<CR>:split<CR>
 nnoremap <C-w>k :set nosplitbelow<CR>:split<CR>
 
-" Fast normal mode
-noremap <M-n> :normal<Space>
-
 " ===
 " === Buffer Navigation
 " ===
@@ -74,9 +74,16 @@ nmap <M-3> <Plug>lightline#bufferline#go(3)
 nmap <M-4> <Plug>lightline#bufferline#go(4)
 nmap <M-5> <Plug>lightline#bufferline#go(5)
 nmap <M-6> <Plug>lightline#bufferline#go(6)
+
+" ===
+" === Snippet
+" ===
 " Use <M-j> for jump to next placeholder and <M-k> for jump to previous placeholder
 let g:coc_snippet_next = '<M-j>'
 let g:coc_snippet_prev = '<M-k>'
+let g:UltiSnipsJumpForwardTrigger = '<M-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<M-k>'
+let g:UltiSnipsListSnippets = '<M-l>'
 
 " ===
 " === Autocmd

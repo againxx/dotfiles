@@ -88,7 +88,7 @@ Plug 'andymass/vim-matchup'
 " ===
 " === Snippets
 " ===
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'againxx/vim-snippets'
 
 " ===

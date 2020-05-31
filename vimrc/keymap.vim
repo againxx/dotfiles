@@ -144,12 +144,11 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " Use <Tab> to confirm completion
 if has('patch8.1.1068')
     " Use `complete_info` if your (Neo)Vim version supports it.
+    "\   coc#expandable() ? \"\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>\" : don't forget to remove \ before
     inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" :
-    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
     \   "\<C-g>u\<Tab>"
 else
     inoremap <expr> <Tab> pumvisible() ? "\<C-y>" :
-    \   coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
     \   "\<C-g>u\<Tab>"
 endif
 " Use <c-space> to trigger completion.
@@ -177,9 +176,9 @@ function! s:show_documentation()
 endfunction
 
 " Use <Tab> for select text for visual placeholder of snippet.
-vmap <Tab> <Plug>(coc-snippets-select)
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-l> <Plug>(coc-snippets-expand)
+" vmap <Tab> <Plug>(coc-snippets-select)
+" imap <C-l> <Plug>(coc-snippets-expand)
+let g:UltiSnipsExpandTrigger = "<C-l>"
 
 " Scroll floating window up and down
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "3\<C-f>"
