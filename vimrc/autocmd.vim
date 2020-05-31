@@ -24,6 +24,7 @@ augroup markdown_filetype
     autocmd!
     autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
     autocmd FileType markdown let b:coc_additional_keywords = ['\']
+    autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
@@ -40,6 +41,7 @@ augroup markdown_filetype
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>) <++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;n <Esc>A<Space>\\<CR>
+    autocmd Filetype markdown inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
     autocmd FileType markdown inoremap <buffer> ;; ;
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
@@ -62,9 +64,12 @@ augroup markdown_filetype
     \           ':|\@=': '-'
     \       },
     \       '^\(\%([^|]\+|\)\+[^|]\+\)': '|\1|',
-    \       '- \[ \]': '- \[X\]',
-    \       '- \[X\]': '- \[ \]',
-    \   }
+    \   },
+    \   ['\\rightarrow', '\\longrightarrow', '\\Rightarrow', '\\Longrightarrow'],
+    \   ['\\leftarrow', '\\longleftarrow', '\\Leftarrow', '\\Longleftarrow'],
+    \   ['\\leftrightarrow', '\\longleftrightarrow', '\\Leftrightarrow', '\\Longleftrightarrow', '\\iff'],
+    \   ['\\hat', '\\tilde', '\\widehat', '\\widetilde', '\\overline', '\\bar'],
+    \   ['- [ ]', '- [X]']
     \ ]
     " when vim-plug first load TableMode the cursor will be put in the first line,
     " use `. to jump to the original place
