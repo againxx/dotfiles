@@ -15,6 +15,9 @@ nnoremap z; za
 " map ZA to :qa
 nnoremap ZA :qa!<CR>
 
+" map gus to ~
+nnoremap gus ~
+
 " text object for parameter
 onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 " alias r to ], a to >, same as surround.vim
