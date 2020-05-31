@@ -30,15 +30,8 @@ vnoremap ar a]
 vnoremap ia i>
 vnoremap aa a>
 
-nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Make <C-j> and <C-k> move faster
-nnoremap <C-j> 5j
-nnoremap <C-k> 5k
-xnoremap <C-j> 5j
-xnoremap <C-k> 5k
 
 "  Make <C-e> and <C-y> move faster
 nnoremap <C-e> 3<C-e>

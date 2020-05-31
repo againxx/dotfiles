@@ -16,6 +16,16 @@ let g:node_host_prog = '~/.config/yarn/global/node_modules/neovim/bin/cli.js'
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 
+" Make <C-j> and <C-k> move faster, in vim these two keys are used for window
+" navigation
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+xnoremap <C-j> 5j
+xnoremap <C-k> 5k
+
+" Enhanced <C-l>, in vim this key is used for window navigation
+nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
+
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
 " tnoremap <M-[> <C-\><C-n>
