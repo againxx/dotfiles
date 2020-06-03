@@ -70,6 +70,7 @@ augroup markdown_filetype
     \   ['\\leftarrow', '\\longleftarrow', '\\Leftarrow', '\\Longleftarrow'],
     \   ['\\leftrightarrow', '\\longleftrightarrow', '\\Leftrightarrow', '\\Longleftrightarrow', '\\iff'],
     \   ['\\hat', '\\tilde', '\\widehat', '\\widetilde', '\\overline', '\\bar'],
+    \   ['\\ldots', '\\cdots'],
     \   ['- [ ]', '- [X]']
     \ ]
     " when vim-plug first load TableMode the cursor will be put in the first line,
