@@ -22,7 +22,7 @@ let g:which_leader_map.e = {
 
 let g:which_leader_map.d = {
 \   'name': '+directory',
-\   'v':    'virmc-dir',
+\   'v':    'vimrc-dir',
 \   'c':    'current-dir',
 \ }
 
@@ -221,7 +221,8 @@ nnoremap <leader>nx :read !figlet<space>
 nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
 nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
-nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
+" nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
+nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
 
 " ===
 " === Table-mode

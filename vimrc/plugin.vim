@@ -26,8 +26,10 @@ let g:rainbow_conf = {
 " ===
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '--'
+let g:ale_sign_info = '--'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_info_str = 'I'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'python': ['pylint', 'mypy'],
@@ -65,7 +67,7 @@ let g:fzf_layout = {
 \   }
 \ }
 
-" To enable fzf's preview window set g:vista_fzf_preview.
+" To enable fzf preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
 let g:vista_fzf_preview = ['up:60%']
@@ -90,6 +92,7 @@ let g:coc_global_extensions = [
 \   'coc-todolist',
 \   'coc-zi',
 \   'coc-tasks',
+\   'coc-spell-checker'
 \ ]
 
 " coc-explorer
@@ -251,7 +254,7 @@ let g:incsearch#auto_nohlsearch = 1
 " Sneak
 let g:sneak#label = 1
 let g:sneak#prompt = '省'
-" imediately move to the next instance of search, if you move the cursor sneak is back to default behavior
+" immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
 let g:sneak#s_next = 1
 
 " Quick-scope

@@ -129,8 +129,8 @@ nmap yg/ <Plug>(incsearch-fuzzy-stay)
 " Use [e \ [w and ]e \ ]w to navigate diagnostics
 nmap <silent> [e <Plug>(ale_previous_wrap_error)
 nmap <silent> ]e <Plug>(ale_next_wrap_error)
-nmap <silent> [w <Plug>(ale_previous_wrap_warning)
-nmap <silent> ]w <Plug>(ale_next_wrap_warning)
+nmap <silent> [w <Plug>(ale_previous_wrap)
+nmap <silent> ]w <Plug>(ale_next_wrap)
 
 " ===
 " === Coc
@@ -243,7 +243,7 @@ let g:which_wikilist_lower_map.x = 'toggle-checkbox-disabled'
 let g:which_wikilist_lower_map['*'] = 'make_*_list/change_item_*'
 let g:which_wikilist_lower_map['-'] = 'make_-_list/change_item_-'
 let g:which_wikilist_lower_map['+'] = 'make_+_list/change_item_+'
-let g:which_wikilist_lower_map['1'] = 'make_1_lsit/change_item_num'
+let g:which_wikilist_lower_map['1'] = 'make_1_list/change_item_num'
 let g:which_wikilist_upper_map =  {}
 let g:which_wikilist_upper_map.r = 'renumber-all'
 let g:which_wikilist_upper_map.R = 'renumber-all'

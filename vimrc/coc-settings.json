@@ -30,6 +30,7 @@
     "git.signOffset": 1,
     "yank.list.maxsize": 50,
     "coc-actions.hideCursor": false,
+    "http.proxy": "http://127.0.0.1:8123",
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": true,
     "explorer.file.column.git.icon.modified": "✹",
@@ -82,10 +83,58 @@
         ]
     },
     "todolist.promptForReminder": false,
+    "cSpell.enabledLanguageIds": [
+        "vim",
+        "asciidoc",
+        "c",
+        "cpp",
+        "csharp",
+        "css",
+        "git-commit",
+        "go",
+        "handlebars",
+        "haskell",
+        "html",
+        "jade",
+        "java",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "latex",
+        "less",
+        "markdown",
+        "vimwiki.markdown",
+        "php",
+        "plaintext",
+        "python",
+        "pug",
+        "restructuredtext",
+        "rust",
+        "scala",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+        "yml"
+    ],
+    "cSpell.dictionaryDefinitions": [
+        {"name": "pythonTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/python_terms.txt"},
+        {"name": "commonTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/common_terms.txt"},
+        {"name": "texTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/tex_terms.txt"},
+        {"name": "deepLearningTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/deep_learning_terms.txt"}
+    ],
+    "cSpell.dictionaries": [
+        "pythonTerms",
+        "commonTerms"
+    ],
+    "cSpell.allowCompoundWords": true,
+    "cSpell.showStatus": false,
     "languageserver": {
         "ccls": {
             "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "filetypes": ["c", "cpp", "cuda"],
             "rootPatterns": [".ccls-root", ".vim", "compile_commands.json"],
             "initializationOptions": {
                 "cache": {

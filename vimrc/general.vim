@@ -23,7 +23,7 @@ set expandtab
 set autoindent
 " set cindent
 " set laststatus=2 	" this value is now default 2, used by airline
-set ttimeoutlen=100     " fcitx.im
+set ttimeoutlen=100     " fcitx.vim
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
