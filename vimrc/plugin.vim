@@ -122,7 +122,7 @@ let g:coc_explorer_global_presets = {
 " ===
 let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_triple_quoting_style = 'double'
-let g:ultisnips_python_style = 'normal'
+let g:ultisnips_python_style = 'stable-baselines'
 " Python-syntax
 let g:python_syntax_space_errors = 0
 
