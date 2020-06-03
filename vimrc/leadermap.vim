@@ -176,6 +176,7 @@ nmap <leader>rx <Plug>(coc-fix-current)
 nmap <leader>rn <Plug>(coc-rename)
 " exec in terminal
 augroup leadermap_augroup
+    autocmd!
     autocmd FileType cpp noremap <buffer> <leader>ra :AsyncTask project-run<CR>
     autocmd FileType cpp noremap <buffer> <leader>rb :AsyncTask project-build<CR>
     autocmd FileType cpp noremap <buffer> <leader>ri :AsyncTask project-init<CR>

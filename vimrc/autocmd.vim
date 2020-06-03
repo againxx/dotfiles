@@ -79,6 +79,7 @@ augroup markdown_filetype
 augroup END
 
 augroup other_filetypes
+    autocmd!
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType cpp nnoremap <buffer> [h
     \   {:execute "keepjumps normal! ?^#include\r"<CR>:nohlsearch<CR>

@@ -92,7 +92,8 @@ let g:UltiSnipsListSnippets = '<M-l>'
 " ===
 " === Autocmd
 " ===
-augroup neovim_speical
+augroup neovim_special
+    autocmd!
     autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
 augroup END
 
