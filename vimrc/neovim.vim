@@ -29,6 +29,10 @@ nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax 
 " Fast normal mode
 noremap <M-n> :normal<Space>
 
+" Fast substitute
+nnoremap <M-s> :%s//g<Left><Left>
+xnoremap <M-s> :s//g<Left><Left>
+
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
 " tnoremap <M-[> <C-\><C-n>
