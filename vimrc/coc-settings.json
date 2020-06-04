@@ -123,7 +123,8 @@
         {"name": "pythonTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/python_terms.txt"},
         {"name": "commonTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/common_terms.txt"},
         {"name": "texTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/tex_terms.txt"},
-        {"name": "deepLearningTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/deep_learning_terms.txt"}
+        {"name": "deepLearningTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/deep_learning_terms.txt"},
+        {"name": "cFamilyTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/c_family_terms.txt"}
     ],
     "cSpell.dictionaries": [
         "pythonTerms",
