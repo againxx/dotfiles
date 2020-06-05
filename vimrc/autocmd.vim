@@ -6,7 +6,7 @@ augroup python_filetype
     autocmd FileType python map <buffer> ]f ]m
     autocmd FileType python map <buffer> [F [M
     autocmd FileType python map <buffer> ]F ]M
-    autocmd FileType python nnoremap <buffer> <Space><Space> /TODO<CR>:nohlsearch<CR>"_c4l
+    autocmd FileType python nnoremap <buffer> <Space><Space> 0/TODO<CR>:nohlsearch<CR>"_c4l
     autocmd FileType python nnoremap <buffer> [h
     \   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>
     autocmd FileType python nnoremap <buffer> ]h
