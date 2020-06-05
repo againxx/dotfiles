@@ -11,7 +11,7 @@
     "suggest.minTriggerInputLength": 2,
     "diagnostic.displayByAle": true,
     "list.source.files.args": ["--hidden", "--files"],
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
@@ -124,7 +124,8 @@
         {"name": "commonTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/common_terms.txt"},
         {"name": "texTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/tex_terms.txt"},
         {"name": "deepLearningTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/deep_learning_terms.txt"},
-        {"name": "cFamilyTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/c_family_terms.txt"}
+        {"name": "cFamilyTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/c_family_terms.txt"},
+        {"name": "linuxShellTerms", "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/linux_shell_terms.txt"}
     ],
     "cSpell.dictionaries": [
         "pythonTerms",
