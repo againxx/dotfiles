@@ -34,9 +34,10 @@ augroup markdown_filetype
     autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
     autocmd Filetype markdown inoremap <buffer> ;s ~~~~ <++><Esc>F~hi
     autocmd Filetype markdown inoremap <buffer> ;i ** <++><Esc>F*i
-    autocmd Filetype markdown inoremap <buffer> ;c `` <++><Esc>F`i
     autocmd FileType markdown inoremap <buffer> ;m $$<++><Esc>F$i
+    autocmd FileType markdown inoremap <buffer> ;h $$  $$<Esc>2hi
     autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
+    autocmd Filetype markdown inoremap <buffer> ;c `` <++><Esc>F`i
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
     autocmd FileType markdown inoremap <buffer> ;d -<Space>[<Space>]<Space>
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a

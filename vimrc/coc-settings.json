@@ -143,7 +143,10 @@
                     "directory": ".vim/.ccls-cache"
                 },
                 "client": {
-                    "snippetSupport": true
+                    "snippetSupport": false
+                },
+                "highlight": {
+                    "lsRanges" : true
                 }
             }
         }

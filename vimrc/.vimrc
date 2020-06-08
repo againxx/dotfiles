@@ -66,7 +66,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'againxx/python-syntax', { 'for': 'python' }
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 
 " ===
 " === Search & Move
@@ -105,7 +105,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
 
 " ===
-" === Markdwon
+" === Markdown
 " ===
 " this plugin is needed by vim-markdown and can be used to align text
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
