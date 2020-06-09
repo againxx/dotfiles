@@ -146,7 +146,7 @@ Plug 'jez/vim-superman'
 " ===
 " === Training Vim
 " ===
-Plug 'ThePrimeagen/vim-be-good'
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 " ===
 " === Neovim Special

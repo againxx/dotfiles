@@ -270,3 +270,6 @@ let g:tmux_navigator_disable_when_zoomed = 1
 
 " Vim-test
 let g:test#python#runner = 'pytest'
+
+" Vim-be-good
+let g:vim_be_good_floating = 0
