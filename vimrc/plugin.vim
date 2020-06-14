@@ -194,7 +194,7 @@ let g:vimwiki_table_auto_fmt = 0
 " ===
 " === Asyncrun
 " ===
-let g:asyncrun_open = 6
+let g:asyncrun_open = 8
 let g:asyncrun_rootmarks = [
 \   '.git',
 \   '.svn',
