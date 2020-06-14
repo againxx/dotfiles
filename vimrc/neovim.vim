@@ -64,10 +64,10 @@ nnoremap <M-.> <C-w>>
 " ===
 " === Window Split
 " ===
-nnoremap <C-w>l :set splitright<CR>:vsplit<CR>
-nnoremap <C-w>h :set nosplitright<CR>:vsplit<CR>
-nnoremap <C-w>j :set splitbelow<CR>:split<CR>
-nnoremap <C-w>k :set nosplitbelow<CR>:split<CR>
+nnoremap <C-w>l :rightbelow vsplit<CR>
+nnoremap <C-w>h :leftabove vsplit<CR>
+nnoremap <C-w>j :rightbelow split<CR>
+nnoremap <C-w>k :leftabove split<CR>
 
 " ===
 " === Buffer Navigation
