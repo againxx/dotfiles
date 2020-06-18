@@ -62,7 +62,7 @@ let g:which_leader_map.v = {
 \   'h':    'highlight-group',
 \   'l':    'katex-equation-left',
 \   'p':    'fzf-preview',
-\   'i':    'indent-guides',
+\   'i':    'indent',
 \   'a':    'ascii-value',
 \   'g':    'git-chunkinfo',
 \ }
@@ -204,7 +204,8 @@ nnoremap <leader>f :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
 nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
 nnoremap <leader>vm :MarkdownPreview<CR>
 nnoremap <leader>vh :call SyntaxAttr()<CR>
-nmap <leader>vi <Plug>IndentGuidesToggle
+" nmap <leader>vi <Plug>IndentGuidesToggle
+nmap <leader>vi :IndentLinesToggle<CR>
 nnoremap <leader>va ga
 vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
 " show chunk diff at current position

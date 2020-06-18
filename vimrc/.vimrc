@@ -96,6 +96,7 @@ Plug 'againxx/vim-snippets'
 " ===
 Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'Vimjas/vim-python-pep8-indent'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " ===
@@ -133,7 +134,8 @@ Plug 'jpalardy/vim-slime'
 " ===
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-capslock'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
@@ -153,6 +155,7 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 " ===
 if has('nvim')
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
+    Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 
 call plug#end()

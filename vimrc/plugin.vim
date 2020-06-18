@@ -153,17 +153,25 @@ let g:mkdp_highlight_css = $HOME.'/Git_Repo/markdown-tex/custom_css/highlight/so
 " ===
 " === vim-indent-guides
 " ===
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_default_mapping = 0
-let g:indent_guides_exclude_filetypes = [
-\   'help',
-\   'coc-explorer',
-\   'vista',
-\   'fzf'
-\ ]
+" let g:indent_guides_auto_colors = 0
+" let g:indent_guides_guide_size = 1
+" let g:indent_guides_start_level = 2
+" let g:indent_guides_enable_on_vim_startup = 0
+" let g:indent_guides_default_mapping = 0
+" let g:indent_guides_exclude_filetypes = [
+" \   'help',
+" \   'coc-explorer',
+" \   'vista',
+" \   'fzf'
+" \ ]
+
+" ===
+" === indentLine
+" ===
+let g:indentLine_setColors = 0
+let g:indentLine_char = '│'
+let g:indentLine_fileType = ['c', 'cpp', 'python', 'cmake']
+let g:indent_blankline_extra_indent_level = -1
 
 " ===
 " === vimwiki
