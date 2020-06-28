@@ -113,7 +113,7 @@ Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " use pre build
 " This plugin is slow, loading only for markdown
-Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
+" Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': ['TableModeToggle', 'TableModeEnable'] }
 
 " ===
@@ -143,7 +143,9 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
-Plug 'jez/vim-superman'
+Plug 'jez/vim-superman' 
+" Plug 'kevinhwang91/vim-ibus-sw'
+Plug 'rlue/vim-barbaric', { 'for': 'markdown' }
 
 " ===
 " === Training Vim

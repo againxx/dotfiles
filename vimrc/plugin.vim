@@ -281,3 +281,10 @@ let g:test#python#runner = 'pytest'
 
 " Vim-be-good
 let g:vim_be_good_floating = 0
+
+" Barbaric
+" The IME to invoke for managing input languages (macos, fcitx, ibus, xkb-switch)
+let g:barbaric_ime = 'ibus'
+
+" The input method for Normal mode (as defined by `xkbswitch -g`, `ibus engine`, or `xkb-switch -p`)
+let g:barbaric_default = 'xkb:us::eng'
