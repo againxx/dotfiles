@@ -42,6 +42,7 @@ let g:which_leader_map.q = {
 \   't':    'quit-tab',
 \   'd':    'quit-debugger',
 \   'c':    'quit-quickfix',
+\   'l':    'quit-location-list',
 \ }
 
 let g:which_leader_map.r = {
@@ -106,11 +107,20 @@ let g:which_leader_map.t = {
 let g:which_leader_map.w = {
 \   'name': '+wiki',
 \   'w':    'default wiki index',
-\   't':    'default wiki index in new tab',
+\   'T':    'default wiki index in new tab',
 \   's':    'select and open wiki index',
 \   'x':    'delete wiki file',
 \   'r':    'rename wiki file',
-\   'd':    'wiki todo',
+\   'n':    'notes wiki index',
+\   'd':    'todo wiki index',
+\   'g':    'generate tag links',
+\   'tt':    'search tag under current cursor',
+\   'ts':    'search tags',
+\   'b':    'search back links',
+\   'B':    'generate back links',
+\   'f':    'open wiki file',
+\   'a':    'new wiki file',
+\   'i':    'insert notes',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -164,6 +174,7 @@ nnoremap <silent> <leader>qt :tabclose<CR>
 nnoremap <silent> <leader>qd :VimspectorReset<CR>
 nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>
 nnoremap <silent> <leader>qc :cclose<CR>
+nnoremap <silent> <leader>ql :lclose<CR>
 
 " ===
 " === Coc
@@ -238,8 +249,18 @@ let g:table_mode_realign_map = '<leader>tr'
 " === Vimwiki
 " ===
 nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
-nnoremap <leader>wd :<C-u>VimwikiIndex 2<CR>
+nmap <leader>wT <Plug>VimwikiTabIndex
+nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
+nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
+nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
+nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<CR>:CocList -A --normal locationlist<cr>
+nnoremap <leader>wts :<C-u>VimwikiSearchTags<Space>
+nnoremap <leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<cr>
+nnoremap <leader>wB :<C-u>ZettelBackLinks<CR>
+nnoremap <leader>wf :<C-u>ZettelOpen<CR>
+nnoremap <leader>wa :<C-u>ZettelNew<Space>
+nnoremap <leader>wi :<C-u>ZettelInsertNote<CR>
 
 " ===
 " === Test

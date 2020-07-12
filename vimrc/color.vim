@@ -70,8 +70,15 @@ if g:colors_name == 'ayu'
     hi htmlH4           gui=bold guifg=#FFAE57 guibg=NONE
     hi htmlH5           guifg=#F07178 guibg=NONE
     hi htmlH6           guifg=#95E6CB guibg=NONE
+    hi VimwikiHeader1   gui=bold guifg=#D4BFFF guibg=NONE
+    hi VimwikiHeader2   gui=bold guifg=#BBE67E guibg=NONE
+    hi VimwikiHeader3   gui=bold guifg=#5CCFE6 guibg=NONE
+    hi VimwikiHeader4   gui=bold guifg=#FFAE57 guibg=NONE
+    hi VimwikiHeader5   guifg=#F07178 guibg=NONE
+    hi VimwikiHeader6   guifg=#95E6CB guibg=NONE
     hi MatchParen       gui=underline guifg=#95E6CB
     hi jsonKeyword      guifg=#FFAE57
+    " hi textSnipTEX      guifg=#FFAE57
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link pythonDocstring pythonComment
     let g:VM_Extend_hl = 'CocListBlackCyan'
@@ -82,7 +89,7 @@ if g:colors_name == 'ayu'
         autocmd FileType cpp hi Conceal guifg=#0F1419
         autocmd FileType cmake hi Conceal guifg=#0F1419
         autocmd FileType python hi Conceal guifg=#0F1419
-        autocmd FileType markdown hi! link Conceal Function
+        autocmd FileType markdown,vimwiki hi! link Conceal Function
     augroup END
 endif
 

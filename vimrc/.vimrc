@@ -115,6 +115,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " use 
 " This plugin is slow, loading only for markdown
 " Plug 'vim-scripts/fcitx.vim', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': ['TableModeToggle', 'TableModeEnable'] }
+" Plug 'jalvesaq/zotcite'
 
 " ===
 " === Task system
@@ -130,6 +131,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'jpalardy/vim-slime'
 
 " ===
+" === Wiki
+" ===
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'michal-h21/vim-zettel'
+
+" ===
 " === Utility
 " ===
 Plug 'mg979/vim-visual-multi'
@@ -139,13 +146,12 @@ Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-peekaboo' " Extand register and macro
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
-Plug 'jez/vim-superman' 
+Plug 'jez/vim-superman'
 " Plug 'kevinhwang91/vim-ibus-sw'
-Plug 'rlue/vim-barbaric', { 'for': 'markdown' }
+Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 
 " ===
 " === Training Vim

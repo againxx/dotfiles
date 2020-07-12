@@ -21,37 +21,38 @@ augroup python_filetype
     \ ]
 augroup END
 
-augroup markdown_filetype
+augroup markdown_vimwiki_common
     autocmd!
-    autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
     autocmd FileType markdown let b:coc_additional_keywords = ['\']
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
+    autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
-    autocmd Filetype markdown inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-    autocmd Filetype markdown inoremap <buffer> ;e <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
-    autocmd Filetype markdown inoremap <buffer> ;b **** <++><Esc>F*hi
-    autocmd Filetype markdown inoremap <buffer> ;s ~~~~ <++><Esc>F~hi
-    autocmd Filetype markdown inoremap <buffer> ;i ** <++><Esc>F*i
-    autocmd FileType markdown inoremap <buffer> ;m $$<++><Esc>F$i
-    autocmd FileType markdown inoremap <buffer> ;h $$  $$<Esc>2hi
-    autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
-    autocmd Filetype markdown inoremap <buffer> ;c `` <++><Esc>F`i
+    autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;m $$<++><Esc>F$i
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;h $$<Space><Space>$$<Esc>2hi
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;M $$<CR>$$<Esc>O
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;c ``<Space><++><Esc>F`i
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;d -<Space>[<Space>]<Space>
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;n <Esc>A<Space>\\<CR>
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;; ;
+    autocmd FileType markdown,vimwiki nnoremap <buffer> <Space><Space> /<++><CR>:nohlsearch<CR>"_c4l
+    autocmd Filetype markdown inoremap <buffer> ;b ****<Space><++><Esc>F*hi
+    autocmd Filetype markdown inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
+    autocmd Filetype markdown inoremap <buffer> ;i **<Space><++><Esc>F*i
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
-    autocmd FileType markdown inoremap <buffer> ;d -<Space>[<Space>]<Space>
-    autocmd Filetype markdown inoremap <buffer> ;p ![](<++>) <++><Esc>F[a
-    autocmd Filetype markdown inoremap <buffer> ;a [](<++>) <++><Esc>F[a
-    autocmd Filetype markdown inoremap <buffer> ;n <Esc>A<Space>\\<CR>
+    autocmd Filetype markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
+    autocmd Filetype markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
-    autocmd FileType markdown inoremap <buffer> ;; ;
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
     autocmd FileType markdown inoremap <buffer> ;4 ####<Space>
-    autocmd FileType markdown nnoremap <buffer> <Space><Space> /<++><CR>:nohlsearch<CR>"_c4l
     autocmd FileType markdown if exists("b:match_words") | let b:match_words.=',\\begin{\w\+}:\\end{\w\+}' | endif
-    autocmd FileType markdown let b:switch_custom_definitions = [
+    autocmd FileType markdown,vimwiki let b:switch_custom_definitions = [
     \   {
     \       '\(|:\=-\+\)\+|': {
     \           '|\@<=-\(-\=|\)\@!': ':',
@@ -76,9 +77,35 @@ augroup markdown_filetype
     \ ]
     " when vim-plug first load TableMode the cursor will be put in the first line,
     " use `. to jump to the original place
-    autocmd FileType markdown inoreabbrev <expr> <buffer> <bar><bar>
+    autocmd FileType markdown,vimwiki inoreabbrev <expr> <buffer> <bar><bar>
     \   <SID>isAtStartOfLine('\|\|') ?
     \   '<c-o>:TableModeEnable<cr><c-o>`.<bar><space><bar><left><left>' : '<bar><bar>'
+augroup END
+
+augroup vimwiki_special
+    autocmd!
+    autocmd FileType vimwiki setlocal foldlevel=1 nowrap
+    autocmd FileType vimwiki let b:coc_pairs_disabled = ['[']
+    autocmd FileType vimwiki execute
+    \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
+    autocmd FileType vimwiki execute
+    \   "autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')"
+    autocmd FileType vimwiki nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
+    autocmd FileType vimwiki nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
+    autocmd FileType vimwiki nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
+    autocmd FileType vimwiki nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
+    " VimwikiSearchTags will use locallist, disable ale to avoid conflict
+    autocmd FileType vimwiki let b:ale_enabled = 0
+    " Use vimwiki's folding method instead vim-markdown's
+    autocmd FileType vimwiki let g:vim_markdown_folding_disabled = 1
+    autocmd FileType vimwiki inoremap <buffer> ;t ::<Space><++><Esc>F:i
+    autocmd FileType vimwiki if expand('%:e') == 'wiki' | call <SID>mapWikiSpecialMappings() | endif
+    " vim-zettel key mappings"
+    autocmd FileType vimwiki imap <buffer> <silent> [[ [[<esc><Plug>ZettelSearchMap
+    autocmd FileType vimwiki nmap <buffer> gy <Plug>ZettelYankNameMap
+    autocmd FileType vimwiki xmap <buffer> gz <Plug>ZettelNewSelectedMap
+    autocmd FileType vimwiki nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
+    autocmd FileType vimwiki nnoremap <buffer> <silent> <space>t :<C-u>Tags<cr>
 augroup END
 
 augroup other_filetypes
@@ -90,18 +117,9 @@ augroup other_filetypes
     \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
-    \   | set laststatus=0
-    \   | execute "autocmd BufLeave <buffer> set laststatus=2"
+    \   |   set laststatus=0
+    \   |   execute "autocmd BufLeave <buffer> set laststatus=2"
     \   | endif
-    autocmd FileType vimwiki.markdown execute
-    \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
-    autocmd FileType vimwiki.markdown execute
-    \   "autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')"
-    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
-    autocmd FileType vimwiki.markdown nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
-    autocmd FIleType vimwiki.markdown nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
-    autocmd FIleType vimwiki.markdown nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-    " autocmd FileType vim if bufname('%') == '[Command Line]' | let b:coc_suggest_disable = 1 | endif
 augroup END
 
 augroup common
@@ -135,4 +153,18 @@ function! s:isAtStartOfLine(mapping)
   let mapping_pattern = '\V' . escape(a:mapping, '\')
   let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
   return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+function! s:mapWikiSpecialMappings() abort
+    inoremap <buffer> ;b **<Space><++><Esc>F*i
+    inoremap <buffer> ;B *__*<Space><++><Esc>F_i
+    inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
+    inoremap <buffer> ;i __<Space><++><Esc>F_i
+    inoremap <buffer> ;C {{{<CR>}}}<Esc>ka
+    inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
+    inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
+    inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
+    inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
+    inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
+    inoremap <buffer> ;4 ====<Space><Space>====<Space><++><Esc>F=4hi
 endfunction

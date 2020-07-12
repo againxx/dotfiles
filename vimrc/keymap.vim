@@ -206,7 +206,7 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>. :<C-u>CocListResume<cr>
-nnoremap <silent> <space>r :<C-u>RnvimrToggle<CR>
+nnoremap <silent> <space>r :<C-u>RnvimrToggle<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.
@@ -215,19 +215,26 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<cr>
+nnoremap <silent> <space><C-g> :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>d :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
-nnoremap <silent> <space>P :<C-u>CocList snippets<cr>
+nnoremap <silent> <space>P :<C-u>Snippets<cr>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
+nnoremap <silent> <space>F :<C-u>Files<cr>
+nnoremap <silent> <space>g :<C-u>Lines<cr>
+nnoremap <silent> <space>G :<C-u>BLines<cr>
+nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
+
+" vimwiki
+map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 
 " ===
 " === Whichkey

@@ -18,6 +18,7 @@ let g:rainbow_active = 1 " set to 0 if you want to enable it later via :RainbowT
 let g:rainbow_conf = {
 \   'separately': {
 \       'cmake': 0,
+\       'vimwiki': 0,
 \   }
 \ }
 
@@ -179,9 +180,23 @@ let g:indent_blankline_extra_indent_level = -1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
 \   {
+\       'path': '~/Documents/Vimwiki',
+\       'css_name': 'css/style.css',
+\       'path_html': '~/Documents/Vimwiki_HTML',
+\       'template_path': '~/Documents/Vimwiki_Template',
+\       'syntax': 'default',
+\       'ext': '.wiki',
+\       'links_space_char': '_',
+\       'auto_tags': 1,
+\       'auto_export': 1,
+\       'nested_syntaxes': {'python': 'python', 'cpp': 'cpp'}
+\   },
+\   {
 \       'path': '~/Documents/Notes',
 \       'syntax': 'markdown',
-\       'ext': '.md'
+\       'ext': '.md',
+\       'links_space_char': '_',
+\       'auto_tags': 1
 \   },
 \   {
 \       'path': '~/Documents/Todos',
@@ -195,9 +210,14 @@ let g:vimwiki_key_mappings = {
 \   'table_format': 0,
 \   'table_mappings': 0,
 \ }
-let g:vimwiki_folding = 'custom'
-let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_folding = 'expr'
+" let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_table_auto_fmt = 0
+let g:vimwiki_hl_headers = 1
+
+" vim-zettel
+let g:zettel_format = "%title-%y%m%d"
+let g:zettel_default_mappings = 0
 
 " ===
 " === Asyncrun
