@@ -180,10 +180,10 @@ let g:indent_blankline_extra_indent_level = -1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
 \   {
-\       'path': '~/Documents/Vimwiki',
+\       'path': '~/Documents/Vimwiki/wiki',
 \       'css_name': 'css/style.css',
-\       'path_html': '~/Documents/Vimwiki_HTML',
-\       'template_path': '~/Documents/Vimwiki_Template',
+\       'path_html': '~/Documents/Vimwiki/html',
+\       'template_path': '~/Documents/Vimwiki/template',
 \       'syntax': 'default',
 \       'ext': '.wiki',
 \       'links_space_char': '_',
