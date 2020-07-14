@@ -36,9 +36,9 @@ let g:which_leader_map.s = {
 
 let g:which_leader_map.q = {
 \   'name': '+quit',
-\   'q':    'quit-buffer',
-\   'w':    'quit-buffer&window',
-\   'W':    'wipeout-buffer&window',
+\   'q':    'only-quit-buffer',
+\   'b':    'quit-buffer',
+\   'w':    'wipeout-buffer',
 \   't':    'quit-tab',
 \   'd':    'quit-debugger',
 \   'c':    'quit-quickfix',
@@ -168,8 +168,8 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 " === Quit
 " ===
 nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
-nnoremap <silent> <leader>qw :silent! bdelete!<CR>
-nnoremap <silent> <leader>qW :silent! bwipeout!<CR>
+nnoremap <silent> <leader>qb :silent! bdelete!<CR>
+nnoremap <silent> <leader>qw :silent! bwipeout!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 nnoremap <silent> <leader>qd :VimspectorReset<CR>
 nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>
