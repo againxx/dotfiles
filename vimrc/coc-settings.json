@@ -106,6 +106,7 @@
         "less",
         "markdown",
         "vimwiki.markdown",
+        "vimwiki",
         "php",
         "plaintext",
         "python",
