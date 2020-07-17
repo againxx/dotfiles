@@ -23,13 +23,13 @@ augroup END
 
 augroup markdown_vimwiki_common
     autocmd!
-    autocmd FileType markdown let b:coc_additional_keywords = ['\']
+    autocmd FileType markdown,vimwiki let b:coc_additional_keywords = ['\']
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
-    autocmd FileType markdown setlocal iskeyword+=92 conceallevel=2
+    autocmd FileType markdown,vimwiki setlocal iskeyword+=92 conceallevel=2
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;m $$<++><Esc>F$i
