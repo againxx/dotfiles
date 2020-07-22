@@ -21,3 +21,5 @@
     tool = nvimdiff
 [difftool "nvimdiff"]
     cmd = nvim -d \"$REMOTE\" \"$LOCAL\"
+[pull]
+	rebase = true
