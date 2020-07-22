@@ -31,7 +31,8 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
     autocmd FileType markdown,vimwiki setlocal iskeyword+=92 conceallevel=2
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;o <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;m $$<++><Esc>F$i
     autocmd FileType markdown,vimwiki inoremap <buffer> ;h $$<Space><Space>$$<Esc>2hi
     autocmd FileType markdown,vimwiki inoremap <buffer> ;M $$<CR>$$<Esc>O
@@ -99,7 +100,7 @@ augroup END
 
 augroup vimwiki_special
     autocmd!
-    autocmd FileType vimwiki setlocal foldlevel=1 nowrap
+    autocmd FileType vimwiki setlocal foldlevel=1
     autocmd FileType vimwiki let b:coc_pairs_disabled = ['[']
     autocmd FileType vimwiki execute
     \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
@@ -115,11 +116,6 @@ augroup vimwiki_special
     autocmd FileType vimwiki let g:vim_markdown_folding_disabled = 1
     autocmd FileType vimwiki inoremap <buffer> ;t ::<Space><++><Esc>F:i
     autocmd FileType vimwiki if expand('%:e') == 'wiki' | call <SID>mapWikiSpecialMappings() | endif
-    " vim-zettel key mappings"
-    autocmd FileType vimwiki imap <buffer> <silent> [[ [[<esc><Plug>ZettelSearchMap
-    autocmd FileType vimwiki nmap <buffer> gy <Plug>ZettelYankNameMap
-    autocmd FileType vimwiki xmap <buffer> gz <Plug>ZettelNewSelectedMap
-    autocmd FileType vimwiki nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
     autocmd FileType vimwiki nnoremap <buffer> <silent> <space>t :<C-u>Tags<cr>
 augroup END
 
@@ -182,4 +178,9 @@ function! s:mapWikiSpecialMappings() abort
     inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
     inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
     inoremap <buffer> ;4 ====<Space><Space>====<Space><++><Esc>F=4hi
+    " vim-zettel key mappings"
+    imap <buffer> <silent> [[ [[<esc><Plug>ZettelSearchMap
+    nmap <buffer> gy <Plug>ZettelYankNameMap
+    xmap <buffer> gz <Plug>ZettelNewSelectedMap
+    nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
 endfunction
