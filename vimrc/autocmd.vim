@@ -101,7 +101,6 @@ augroup END
 augroup vimwiki_special
     autocmd!
     autocmd FileType vimwiki setlocal foldlevel=1
-    autocmd FileType vimwiki let b:coc_pairs_disabled = ['[']
     autocmd FileType vimwiki execute
     \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
     autocmd FileType vimwiki execute
@@ -179,7 +178,7 @@ function! s:mapWikiSpecialMappings() abort
     inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
     inoremap <buffer> ;4 ====<Space><Space>====<Space><++><Esc>F=4hi
     " vim-zettel key mappings"
-    imap <buffer> <silent> [[ [[<esc><Plug>ZettelSearchMap
+    imap <buffer> <silent> ;z [[<esc><Plug>ZettelSearchMap
     nmap <buffer> gy <Plug>ZettelYankNameMap
     xmap <buffer> gz <Plug>ZettelNewSelectedMap
     nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
