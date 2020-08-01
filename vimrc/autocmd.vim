@@ -40,6 +40,7 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown,vimwiki inoremap <buffer> ;d -<Space>[<Space>]<Space>
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;n <Esc>A<Space>\\<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;; ;
+    autocmd Filetype markdown,vimwiki inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
     autocmd FileType markdown,vimwiki nnoremap <buffer> <Space><Space> /<++><CR>:nohlsearch<CR>"_c4l
     autocmd Filetype markdown inoremap <buffer> ;b ****<Space><++><Esc>F*hi
     autocmd Filetype markdown inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
@@ -47,7 +48,6 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
-    autocmd Filetype markdown inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
