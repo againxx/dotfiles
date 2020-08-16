@@ -35,7 +35,6 @@ augroup markdown_vimwiki_common
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;o <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;m $$<++><Esc>F$i
     autocmd FileType markdown,vimwiki inoremap <buffer> ;h $$<Space><Space>$$<Esc>2hi
-    autocmd FileType markdown,vimwiki inoremap <buffer> ;M $$<CR>$$<Esc>O
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;c ``<Space><++><Esc>F`i
     autocmd FileType markdown,vimwiki inoremap <buffer> ;d -<Space>[<Space>]<Space>
     autocmd Filetype markdown,vimwiki inoremap <buffer> ;n <Esc>A<Space>\\<CR>
@@ -48,6 +47,7 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
+    autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
     autocmd FileType markdown inoremap <buffer> ;3 ###<Space>
@@ -174,6 +174,7 @@ function! s:mapWikiSpecialMappings() abort
     inoremap <buffer> ;C {{{<CR>}}}<Esc>ka
     inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
     inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
+    inoremap <buffer> ;M {{$<CR>}}$<Esc>kA
     inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
     inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
     inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
