@@ -2,6 +2,7 @@ augroup python_filetype
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets.loadFromExtensions', 0)
+    autocmd FileType python call CocAction('deactivateExtension', 'coc-zi')
     autocmd FileType python map <buffer> [f [m
     autocmd FileType python map <buffer> ]f ]m
     autocmd FileType python map <buffer> [F [M
@@ -24,6 +25,7 @@ augroup END
 augroup markdown_vimwiki_common
     autocmd!
     autocmd FileType markdown,vimwiki let b:coc_additional_keywords = ['\']
+    autocmd FileType markdown,vimwiki call CocAction('activateExtension', 'coc-zi')
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
     " one or two spaces aren't considered as trailing
@@ -175,6 +177,7 @@ function! s:mapWikiSpecialMappings() abort
     inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
     inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
     inoremap <buffer> ;M {{$<CR>}}$<Esc>kA
+    inoremap <buffer> ;r ==<Space>Reference<Space>==<Esc>
     inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
     inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
     inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
