@@ -49,6 +49,7 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
     autocmd Filetype markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
     autocmd Filetype markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
+    autocmd Filetype markdown inoremap <buffer> ;r ##<Space>Reference<Esc>
     autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
