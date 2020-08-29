@@ -25,7 +25,7 @@ augroup END
 augroup markdown_vimwiki_common
     autocmd!
     autocmd FileType markdown,vimwiki let b:coc_additional_keywords = ['\']
-    autocmd FileType markdown,vimwiki call CocAction('activateExtension', 'coc-zi')
+    autocmd FileType markdown,vimwiki call CocAction('reloadExtension', 'coc-zi')
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
     " one or two spaces aren't considered as trailing
