@@ -124,3 +124,13 @@ function! OnUIEnter(event) abort
     nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
   endif
 endfunction
+
+" Firenvim settings
+let g:firenvim_config = {
+\   'localSettings': {
+\       'https?://[^/]+\.notion\.so/': {
+\           'takeover': 'never',
+\           'priority': 1
+\       },
+\   }
+\ }
