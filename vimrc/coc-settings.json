@@ -155,6 +155,7 @@
     ],
     "cSpell.allowCompoundWords": true,
     "cSpell.showStatus": false,
+    "leetcode.language": "cpp",
     "languageserver": {
         "ccls": {
             "command": "ccls",
