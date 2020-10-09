@@ -218,6 +218,7 @@ let g:vimwiki_hl_headers = 1
 " vim-zettel
 let g:zettel_format = "%title-%y%m%d"
 let g:zettel_default_mappings = 0
+let g:zettel_fzf_options = ['--exact', '--tiebreak=end', '--preview-window=up:50%']
 
 " ===
 " === Asyncrun
