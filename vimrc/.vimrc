@@ -28,7 +28,7 @@ Plug 'tpope/vim-fugitive'
 " ===
 " === Filesystem
 " ===
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'kevinhwang91/rnvimr'
 
 " ===
 " === Tags
@@ -148,6 +148,7 @@ Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+" Read Unix man pages in vim
 Plug 'lambdalisue/suda.vim'
 Plug 'jez/vim-superman'
 " Plug 'kevinhwang91/vim-ibus-sw'
