@@ -61,8 +61,6 @@ let g:which_leader_map.v = {
 \   'm':    'markdown-preview',
 \   'c':    'error-code',
 \   'h':    'highlight-group',
-\   'l':    'katex-equation-left',
-\   'p':    'fzf-preview',
 \   'i':    'indent',
 \   'a':    'ascii-value',
 \   'g':    'git-chunkinfo',
@@ -86,7 +84,7 @@ let g:which_leader_map.n = {
 
 let g:which_leader_map.c = {
 \   'name': '+change',
-\   'l':    'left-equation',
+\   'l':    'katex-left-equation',
 \   'p':    'fzf-preview',
 \   'S':    'statusline-sep',
 \   's':    'check-spelling',
