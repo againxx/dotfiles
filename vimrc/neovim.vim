@@ -47,11 +47,11 @@ tnoremap <M-j> <c-\><c-n><c-w>j
 tnoremap <M-k> <c-\><c-n><c-w>k
 tnoremap <M-l> <c-\><c-n><c-w>l
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
+nnoremap <silent> <M-p> :TmuxNavigatePrevious<CR>
 
 " ===
 " === Window Resize
@@ -60,6 +60,9 @@ nnoremap <M-=> <C-w>+
 nnoremap <M--> <C-w>-
 nnoremap <M-,> <C-w><
 nnoremap <M-.> <C-w>>
+nnoremap <silent><M-z> :MaximizerToggle!<CR>
+vnoremap <silent><M-z> :MaximizerToggle!<CR>gv
+inoremap <silent><M-z> <C-o>:MaximizerToggle!<CR>
 
 " ===
 " === Window Split

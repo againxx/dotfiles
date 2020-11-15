@@ -311,3 +311,6 @@ let g:barbaric_default = 'xkb:us::eng'
 
 " Vim-table-mode
 let g:table_mode_corner = '|'
+
+" vim-maximizer
+let g:maximizer_set_default_mapping = 0

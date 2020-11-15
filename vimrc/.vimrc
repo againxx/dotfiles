@@ -143,16 +143,20 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-capslock'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
-Plug 'junegunn/vim-peekaboo' " Extand register and macro
+" Extand register and macro
+Plug 'junegunn/vim-peekaboo'
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" Read Unix man pages in vim
+" Automatically add sudo
 Plug 'lambdalisue/suda.vim'
+" Read Unix man pages in vim
 Plug 'jez/vim-superman'
 " Plug 'kevinhwang91/vim-ibus-sw'
 Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
+" Maximize and restore current window
+Plug 'szw/vim-maximizer'
 
 " ===
 " === Training Vim
