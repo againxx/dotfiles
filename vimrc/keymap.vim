@@ -165,9 +165,9 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
-function! s:show_documentation()
+function! s:showDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -181,8 +181,8 @@ endfunction
 let g:UltiSnipsExpandTrigger = "<C-l>"
 
 " Scroll floating window up and down
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "3\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "3\<C-b>"
+nnoremap <expr><C-f> coc#float#has_float() ? coc#float#scroll(1) : "3\<C-f>"
+nnoremap <expr><C-b> coc#float#has_float() ? coc#float#scroll(0) : "3\<C-b>"
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -217,7 +217,7 @@ nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space><C-g> :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
-nnoremap <silent> <space>d :<C-u>CocList --normal todolist<cr>
+nnoremap <silent> <space>T :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
 nnoremap <silent> <space>P :<C-u>Snippets<cr>
@@ -235,6 +235,33 @@ nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
 
 " vimwiki
 map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
+
+" ===
+" === Vimspector
+" ===
+nnoremap <space>dd :call vimspector#Launch()<cr>
+nnoremap <space>d$ :call vimspector#Reset()<cr>
+nnoremap <space>dc :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
+nnoremap <space>dv :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
+nnoremap <space>dw :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
+nnoremap <space>ds :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
+nnoremap <space>do :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
+
+nmap <space>dl <Plug>VimspectorStepInto
+nmap <space>dj <Plug>VimspectorStepOver
+nmap <space>dk <Plug>VimspectorStepOut
+nmap <space>dh <Plug>VimspectorRunToCursor
+nmap <space>d_ <Plug>VimspectorRestart
+nmap <space>de <Plug>VimspectorContinue
+nmap <space>d; <Plug>VimspectorToggleBreakpoint
+nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
+
+nnoremap <space>dx :call vimspector#ClearBreakpoints()<cr>
+
+function! s:gotoWindowAndMaximize(win_id) abort
+    call win_gotoid(a:win_id)
+    execute 'MaximizerToggle'
+endfunction
 
 " ===
 " === Whichkey
