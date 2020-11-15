@@ -6,6 +6,7 @@
         ".hg",
         ".projections.json"
     ],
+    "coc.source.omni.filetypes": ["VimspectorPrompt"],
     "suggest.noselect": false,
     "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
@@ -53,16 +54,16 @@
         "dirPatternMatches": {}
     },
     "explorer.quitOnOpen": true,
-    "explorer.file.column.git.icon.modified": "✹",
-    "explorer.file.column.git.icon.added": "✚",
-    "explorer.file.column.git.icon.unmerged": "═",
-    "explorer.file.column.git.icon.renamed": "➜",
-    "explorer.file.column.git.icon.deleted": "✖",
-    "explorer.file.column.git.icon.untracked": "",
-    "explorer.file.column.git.icon.copied": "",
-    "explorer.file.column.git.icon.mixed": "✭",
-    "explorer.file.column.git.icon.unmodified": " ",
-    "explorer.file.column.git.icon.ignored": "﯏",
+    "explorer.git.icon.status.modified": "✹",
+    "explorer.git.icon.status.added": "✚",
+    "explorer.git.icon.status.unmerged": "═",
+    "explorer.git.icon.status.renamed": "➜",
+    "explorer.git.icon.status.deleted": "✖",
+    "explorer.git.icon.status.untracked": "",
+    "explorer.git.icon.status.copied": "",
+    "explorer.git.icon.status.mixed": "✭",
+    "explorer.git.icon.status.unmodified": " ",
+    "explorer.git.icon.status.ignored": "﯏",
     "explorer.sources": [
         {
             "name": "buffer",
@@ -73,7 +74,7 @@
             "expand": true
         }
     ],
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "<C-h>": "toggleHidden",
         "[g": "gitPrev",
         "]g": "gitNext"
