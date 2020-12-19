@@ -28,6 +28,7 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown,vimwiki call CocAction('reloadExtension', 'coc-zi')
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
+    autocmd FileType markdown let g:sneak#label = 0 | call sneak#init()
     " one or two spaces aren't considered as trailing
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
