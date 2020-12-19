@@ -156,6 +156,7 @@ augroup common
     autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
+    autocmd User vim-which-key call which_key#register('<space>', 'g:which_space_map')
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
     " Update lightline before vista wipeout the sidebar buffer
     autocmd BufWipeout * call lightline#update()

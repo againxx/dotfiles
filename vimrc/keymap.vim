@@ -228,8 +228,8 @@ nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 nnoremap <silent> <space>F :<C-u>Files<cr>
-nnoremap <silent> <space>g :<C-u>Lines<cr>
-nnoremap <silent> <space>G :<C-u>BLines<cr>
+nnoremap <silent> <space>g :<C-u>BLines<cr>
+nnoremap <silent> <space>G :<C-u>Lines<cr>
 nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 
@@ -266,6 +266,10 @@ endfunction
 " ===
 " === Whichkey
 " ===
+nnoremap <silent> <space> :<C-u>WhichKey '<space>'<CR>
+vnoremap <silent> <space> :<C-u>WhichKeyVisual '<space>'<CR>
+
+" For vimwiki
 let g:which_wikilist_lower_map =  {}
 let g:which_wikilist_lower_map.r = 'renumber-current'
 let g:which_wikilist_lower_map.l = 'increase-item-level'
@@ -288,3 +292,60 @@ let g:which_wikilist_upper_map.t = 'remove-list-checkbox'
 let g:which_wikilist_upper_map['*'] = 'change_list_*'
 let g:which_wikilist_upper_map['-'] = 'change_list_-'
 let g:which_wikilist_upper_map['1'] = 'change_list_num'
+
+" For coc-lists
+let g:which_space_map = {}
+let g:which_space_map.m = 'most-recent-used'
+let g:which_space_map.f = 'file'
+let g:which_space_map.b = 'buffer'
+let g:which_space_map.y = 'yank'
+let g:which_space_map.Y = 'source'
+let g:which_space_map.c = 'coc-command'
+let g:which_space_map.C = 'command-history'
+let g:which_space_map.v = 'vim-command'
+let g:which_space_map.s = 'vista'
+let g:which_space_map.S = 'coc-symbol'
+let g:which_space_map.r = 'ranger'
+let g:which_space_map.o = 'outline'
+let g:which_space_map.a = 'diagnostic'
+let g:which_space_map.l = 'location-list'
+let g:which_space_map.q = 'quickfix'
+let g:which_space_map.h = 'help'
+let g:which_space_map.u = 'undo-tree'
+let g:which_space_map.D = 'todo-list'
+let g:which_space_map.K = 'key-map'
+let g:which_space_map.p = 'grep'
+let g:which_space_map.P = 'snippet'
+let g:which_space_map.j = 'next-item'
+let g:which_space_map.k = 'previous-item'
+let g:which_space_map.e = 'explorer'
+let g:which_space_map.t = 'task'
+let g:which_space_map.F = 'fzf-file'
+let g:which_space_map.g = 'line-in-current-buffer'
+let g:which_space_map.G = 'line-in-all-files'
+let g:which_space_map['<C-P>'] = 'rip-grep'
+let g:which_space_map['<C-G>'] = 'git-status'
+let g:which_space_map['.'] = 'last-list'
+let g:which_space_map['/'] = 'search-history'
+let g:which_space_map["'"] = 'mark'
+
+" For vimspector
+let g:which_space_map.d = {
+\   'name': '+debug',
+\   'd':    'start',
+\   '$':    'stop',
+\   'c':    'browse-code',
+\   'v':    'browse-variables',
+\   'w':    'browse-watches',
+\   's':    'browse-stack-trace',
+\   'o':    'browse-output',
+\   'l':    'step-into',
+\   'j':    'step-over',
+\   'k':    'step-out',
+\   'h':    'run-to-cursor',
+\   '_':    'restart',
+\   'e':    'continue',
+\   ';':    'toggle-breakpoint',
+\   'i':    'toggle-conditional-breakpoint',
+\   'x':    'clear-all-breakpoints',
+\ }
