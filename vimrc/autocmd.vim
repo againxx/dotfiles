@@ -105,7 +105,7 @@ augroup END
 augroup vimwiki_special
     autocmd!
     autocmd FileType vimwiki setlocal foldlevel=1
-    autocmd FileType vimwiki let b:coc_pairs_disabled = ['[']
+    autocmd FileType vimwiki let b:coc_pairs_disabled = ['[', '<']
     autocmd FileType vimwiki execute
     \   "autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')"
     autocmd FileType vimwiki execute
