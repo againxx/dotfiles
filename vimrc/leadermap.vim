@@ -4,7 +4,7 @@
 nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '\'<CR>
 " Define prefix dictionary
-let g:which_leader_map =  {}
+let g:which_leader_map = {}
 let g:which_leader_map.e = {
 \   'name': '+edit',
 \   'v':    'edit-vimrc',
@@ -77,8 +77,8 @@ let g:which_leader_map['\'] = {
 
 let g:which_leader_map.n = {
 \   'name': '+new',
-\   'd':    'new-todo',
 \   't':    'new-tab',
+\   'd':    'new-todo',
 \   'x':    'new-figlet-symbol',
 \ }
 
@@ -249,7 +249,7 @@ let g:table_mode_realign_map = '<leader>tr'
 nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
 nmap <leader>wT <Plug>VimwikiTabIndex
 nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
-nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
+nnoremap <leader>wtd :<C-u>VimwikiIndex 3<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
 nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
 nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<CR>:CocList -A --normal locationlist<cr>

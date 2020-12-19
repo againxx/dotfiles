@@ -217,7 +217,7 @@ nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space><C-g> :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
-nnoremap <silent> <space>T :<C-u>CocList --normal todolist<cr>
+nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
 nnoremap <silent> <space>P :<C-u>Snippets<cr>
