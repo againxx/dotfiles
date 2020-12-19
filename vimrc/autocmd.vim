@@ -153,6 +153,7 @@ augroup common
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions"
     \   | call CocActionAsync('highlight') | endif
+    autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
