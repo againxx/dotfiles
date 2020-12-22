@@ -249,7 +249,7 @@ let g:table_mode_realign_map = '<leader>tr'
 nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
 nmap <leader>wT <Plug>VimwikiTabIndex
 nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
-nnoremap <leader>wtd :<C-u>VimwikiIndex 3<CR>
+nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
 nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
 nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<CR>:CocList -A --normal locationlist<cr>
