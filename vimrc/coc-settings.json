@@ -16,7 +16,6 @@
     "python.linting.enabled": false,
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
-    "python.condaPath": "/home/ustc-1314/anaconda3/envs/rl_scanning/bin/python",
     "highlight.document.enable": true,
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,

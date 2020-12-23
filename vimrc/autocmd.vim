@@ -2,6 +2,8 @@ augroup python_filetype
     autocmd!
     autocmd FileType python setlocal foldlevel=1
     autocmd FileType python call coc#config('snippets.loadFromExtensions', 0)
+    " dynamically set python.condaPath
+    autocmd FileType python if !empty($CONDA_PREFIX) | call coc#config('python.condaPath', $CONDA_PREFIX.'/bin/python') | endif
     autocmd FileType python call CocAction('deactivateExtension', 'coc-zi')
     autocmd FileType python map <buffer> [f [m
     autocmd FileType python map <buffer> ]f ]m
