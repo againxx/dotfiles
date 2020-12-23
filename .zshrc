@@ -205,6 +205,7 @@ if [ -z "$ROS_ROOT" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 kitty + complete setup zsh | source /dev/stdin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
