@@ -173,8 +173,16 @@ ra() {
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # ROS working space related
-# source /opt/ros/indigo/setup.zsh
-# source /home/ustc-1314/catkin_ws/devel/setup.zsh
+if [ -f "/opt/ros/melodic/setup.zsh" ]; then
+    source /opt/ros/melodic/setup.zsh
+fi
+
+if [ -f "$HOME/catkin_ws/devel/setup.zsh" ]; then
+    source $HOME/catkin_ws/devel/setup.zsh
+elif [ -f "$HOME/catkin_ws/devel-isolated/setup.zsh" ]; then
+    source $HOME/catkin_ws/devel-isolated/setup.zsh
+fi
+
 # source /home/ustc-1314/iroboscan/CatkinWorkSpace/devel/setup.zsh
 # source /home/ustc-1314/rl_scanning/EnvironmentWorkSpace/devel/setup.zsh
 
@@ -188,20 +196,13 @@ ra() {
 # For colourize ls dir
 # eval `dircolors /home/ustc-1314/.dir_colors/dircolors`
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ustc-1314/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ustc-1314/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ustc-1314/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ustc-1314/anaconda3/bin:$PATH"
-    fi
+if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
+
+if [ -z "$ROS_ROOT" ]; then
+    conda activate base
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 kitty + complete setup zsh | source /dev/stdin
