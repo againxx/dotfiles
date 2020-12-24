@@ -145,11 +145,12 @@ bindkey -M vicmd "_" vi-first-non-blank
 # alias ra="ranger" # use ra() function instead
 
 # simple aliases
-alias pch="proxychains4 -q"
 alias zshconf="nvim ~/.zshrc"
 alias tmuxconf="nvim ~/.tmux.conf"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
+alias pch="proxychains4 -q"
+alias lg="lazygit"
 
 # suffix aliases
 alias -s {cpp,h,md,txt}=nvim
