@@ -133,5 +133,5 @@ fi
 
 if [ -f ~/.fzf.bash ]; then
     source ~/.fzf.bash
-    source ~/.fzf_functions.bash
+    source ~/dotfiles/fzf_functions.bash
 fi

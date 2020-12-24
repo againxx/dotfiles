@@ -6,7 +6,6 @@ ln -sf $DOTFILES_DIR/.bashrc ~/
 ln -sf $DOTFILES_DIR/.tmux.conf ~/
 ln -sf $DOTFILES_DIR/.gitconfig ~/
 ln -sf $DOTFILES_DIR/.gitignore_global ~/
-ln -sf $DOTFILES_DIR/.fzf_functions.bash ~/
 
 mkdir -p ~/.config/gtk-3.0
 ln -sf $DOTFILES_DIR/gtk.css ~/.config/gtk-3.0/
