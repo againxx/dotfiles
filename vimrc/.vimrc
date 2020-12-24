@@ -159,6 +159,13 @@ Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 Plug 'szw/vim-maximizer'
 
 " ===
+" === ROS
+" ===
+if !empty($ROS_ROOT)
+    Plug 'taketwo/vim-ros'
+endif
+
+" ===
 " === Training Vim
 " ===
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
