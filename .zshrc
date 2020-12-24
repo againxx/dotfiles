@@ -179,8 +179,8 @@ fi
 
 if [ -f "$HOME/catkin_ws/devel/setup.zsh" ]; then
     source $HOME/catkin_ws/devel/setup.zsh
-elif [ -f "$HOME/catkin_ws/devel-isolated/setup.zsh" ]; then
-    source $HOME/catkin_ws/devel-isolated/setup.zsh
+elif [ -f "$HOME/catkin_ws/devel_isolated/setup.zsh" ]; then
+    source $HOME/catkin_ws/devel_isolated/setup.zsh
 fi
 
 # source /home/ustc-1314/iroboscan/CatkinWorkSpace/devel/setup.zsh
