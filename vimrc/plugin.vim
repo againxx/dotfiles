@@ -231,8 +231,7 @@ let g:asyncrun_rootmarks = [
 \   '.svn',
 \   '.root',
 \   '.project',
-\   '.hg',
-\   '.vim',
+\   '.hg'
 \ ]
 let g:asynctasks_config_name = '.vim/.tasks'
 let g:asynctasks_confirm = 0
