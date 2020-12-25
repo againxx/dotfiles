@@ -151,6 +151,7 @@ alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 alias pch="proxychains4 -q"
 alias lg="lazygit"
+alias appt='apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
 
 # suffix aliases
 alias -s {cpp,h,md,txt}=nvim
