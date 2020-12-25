@@ -205,6 +205,11 @@ fi
 # For colourize ls dir
 # eval `dircolors /home/ustc-1314/.dir_colors/dircolors`
 
+if command -v brew &> /dev/null; then
+    # Use USTC homebrew bottle source
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles
+fi
+
 if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     . "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
