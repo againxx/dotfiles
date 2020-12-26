@@ -1,11 +1,12 @@
 [user]
-	name = Xi Xia
-	email = againxx@mail.ustc.edu.cn
+    name = Xi Xia
+    email = againxx@mail.ustc.edu.cn
 [core]
     editor = nvim
+    pager = delta
     excludesfile = ~/.gitignore_global
 [http]
-	proxy = http://127.0.0.1:8123
+    proxy = http://127.0.0.1:8123
 
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvimdiff"]
@@ -22,4 +23,20 @@
 [difftool "nvimdiff"]
     cmd = nvim -d \"$REMOTE\" \"$LOCAL\"
 [pull]
-	rebase = true
+    rebase = true
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    line-numbers = true
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+    line-numbers-left-style = yellow
+    line-numbers-right-style = yellow
+    line-numbers-left-format = "│{nm} "
+    line-numbers-right-format = "{np}│ "
+    plus-style = syntax bold green
+    minus-style = syntax bold red
+    plus-emph-style = syntax bold "#86B300"
+    minus-emph-style = syntax bold "#F29718"
+    file-style = magenta
+    file-decoration-style = magenta ul ol
