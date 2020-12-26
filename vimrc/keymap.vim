@@ -215,7 +215,7 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space><C-g> :<C-u>tabe<CR>:term lazygit<CR>
+nnoremap <silent> <space><C-g> :<C-u>tabe<CR>:term lazygit<CR>a
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
