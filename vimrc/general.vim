@@ -24,8 +24,10 @@ set autoindent
 " set cindent
 " set laststatus=2 	" this value is now default 2, used by airline
 " set ttimeoutlen=100     " fcitx.vim / ibus
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+
+" Use the symbols for tab and trailing spaces
+set list
+set listchars=tab:▸\ ,trail:▫
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
