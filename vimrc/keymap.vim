@@ -215,7 +215,7 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space><C-g> :<C-u>CocList --normal gstatus<cr>
+nnoremap <silent> <space><C-g> :<C-u>tabe<CR>:term lazygit<CR>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
@@ -324,7 +324,7 @@ let g:which_space_map.F = 'fzf-file'
 let g:which_space_map.g = 'line-in-current-buffer'
 let g:which_space_map.G = 'line-in-all-files'
 let g:which_space_map['<C-P>'] = 'rip-grep'
-let g:which_space_map['<C-G>'] = 'git-status'
+let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['.'] = 'last-list'
 let g:which_space_map['/'] = 'search-history'
 let g:which_space_map["'"] = 'mark'

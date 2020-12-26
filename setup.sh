@@ -12,6 +12,7 @@ ln -sf $DOTFILES_DIR/gtk.css ~/.config/gtk-3.0/
 ln -sf $DOTFILES_DIR/alacritty ~/.config/
 ln -sf $DOTFILES_DIR/kitty ~/.config/
 ln -sf $DOTFILES_DIR/ranger ~/.config/
+ln -sf $DOTFILES_DIR/jesseduffield ~/.config/
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
