@@ -18,3 +18,26 @@ ln -sf $DOTFILES_DIR/lazygit/config.yml ~/.config/jesseduffield/lazygit/
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+if command -v brew &> /dev/null; then
+    # Use USTC homebrew source
+    cd "$(brew --repo)"
+    if [ $(git remote get-url origin) != "https://mirrors.ustc.edu.cn/brew.git" ]; then
+        git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+    fi
+    cd "$(brew --repo homebrew/core)"
+    if [ $(git remote get-url origin) != "https://mirrors.ustc.edu.cn/linuxbrew-core.git" ]; then
+        git remote set-url origin https://mirrors.ustc.edu.cn/linuxbrew-core.git
+    fi
+    cd $DOTFILES_DIR
+
+    if ! command -v lazygit &> /dev/null; then
+        brew install jesseduffield/lazygit/lazygit
+    fi
+
+    if ! command -v delta &> /dev/null; then
+        brew install git-delta
+    fi
+else
+    echo "Please first install homebrew manually!"
+fi
