@@ -78,6 +78,7 @@ if g:colors_name == 'ayu'
     hi VimwikiHeader6   guifg=#95E6CB guibg=NONE
     hi MatchParen       gui=underline guifg=#95E6CB
     hi jsonKeyword      guifg=#FFAE57
+    hi ColorColumn      guibg=#242F3C
     " hi textSnipTEX      guifg=#FFAE57
     " hi pythonMethod     guifg=#ffaf87 guibg=NONE
     hi! link pythonDocstring pythonComment
