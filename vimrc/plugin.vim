@@ -95,7 +95,8 @@ let g:coc_global_extensions = [
 \   'coc-tasks',
 \   'coc-spell-checker',
 \   'coc-ultisnips',
-\   'coc-omni'
+\   'coc-omni',
+\   'coc-sh'
 \ ]
 
 " coc-explorer
