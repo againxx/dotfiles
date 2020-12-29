@@ -5,12 +5,6 @@
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-# Tmux
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOSTART_ONCE=true
-ZSH_TMUX_AUTOCONNECT=true
-ZSH_TMUX_FIXTERM_WITH_256COLOR=tmux-256color
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -30,6 +24,12 @@ source $HOME/dotfiles/powlevel9k_conf.zsh
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Tmux
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_FIXTERM_WITH_256COLOR=tmux-256color
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -114,7 +114,7 @@ else
 fi
 
 # Use vim to view man page
-export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
 compdef vman="man"
 
 bindkey -v
