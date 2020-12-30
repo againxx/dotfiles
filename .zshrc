@@ -156,6 +156,7 @@ alias appt='apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
 # suffix aliases
 alias -s {cpp,h,md,txt}=nvim
 
+# function aliases
 mkcd() {
     mkdir -p $1; cd $1
 }
@@ -192,10 +193,7 @@ elif [ -f "$HOME/catkin_ws/devel_isolated/setup.zsh" ]; then
     source $HOME/catkin_ws/devel_isolated/setup.zsh
 fi
 
-# source /home/ustc-1314/iroboscan/CatkinWorkSpace/devel/setup.zsh
-# source /home/ustc-1314/rl_scanning/EnvironmentWorkSpace/devel/setup.zsh
-
-# ROS related
+# ROS environment variables
 # export TURTLEBOT_3D_SENSOR=kinect
 # export TURTLEBOT_BATTERY=/sys/class/power_supply/BAT1
 # export ROS_MASTER_URI=http://192.168.0.100:11311
