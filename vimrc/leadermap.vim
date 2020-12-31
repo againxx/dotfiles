@@ -196,13 +196,8 @@ augroup leadermap_augroup
     autocmd FileType python noremap <buffer> <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
 augroup END
 
-" coc-actions
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open '.a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open '.visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 " coc-lists grep
 vnoremap <leader>f :<C-u>call <SID>grepFromSelected(visualmode())<CR>
