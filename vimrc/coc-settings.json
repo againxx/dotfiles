@@ -160,6 +160,11 @@
     ],
     "cSpell.allowCompoundWords": true,
     "cSpell.showStatus": false,
+    "translator.engines": [
+        "bing",
+        "youdao",
+        "haici"
+    ],
     "leetcode.language": "cpp",
     "languageserver": {
         "ccls": {

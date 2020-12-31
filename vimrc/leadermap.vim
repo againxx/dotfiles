@@ -91,7 +91,7 @@ let g:which_leader_map.c = {
 \ }
 
 let g:which_leader_map.t = {
-\   'name': '+table/toggle/test',
+\   'name': '+table/toggle/test/translate',
 \   'm':    'table-toggle',
 \   'r':    'table-realign',
 \   'g':    'toggle-git-gutters',
@@ -100,6 +100,7 @@ let g:which_leader_map.t = {
 \   's':    'test-suite',
 \   'l':    'test-last',
 \   'v':    'test-visit',
+\   't':    'translate'
 \ }
 
 let g:which_leader_map.w = {
@@ -268,6 +269,13 @@ nnoremap <silent> <leader>tf :TestFile<CR>
 nnoremap <silent> <leader>ts :TestSuite<CR>
 nnoremap <silent> <leader>tl :TestLast<CR>
 nnoremap <silent> <leader>tv :TestVisit<CR>
+
+" ===
+" ===  coc-translator
+" ===
+" popup
+nmap <leader>tt <Plug>(coc-translator-p)
+vmap <leader>tt <Plug>(coc-translator-pv)
 
 " ===
 " === Functions
