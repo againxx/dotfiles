@@ -58,6 +58,7 @@ if g:colors_name == 'ayu'
     hi ALEWarningSign   guifg=#E7C547 guibg=NONE
     hi ALEInfoSign      guifg=#95E6CB guibg=NONE
     hi CocHighlightText guibg=#151A1E
+    hi WhiteSpace       guifg=#151A1E
     hi IndentGuidesOdd  ctermbg=NONE guibg=#242F3C
     hi IndentGuidesEven ctermbg=NONE guibg=#293137
     hi Sneak            guifg=#212733 guibg=#D4BFFF
