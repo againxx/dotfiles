@@ -157,7 +157,8 @@ Plug 'jez/vim-superman'
 Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 " Maximize and restore current window
 Plug 'szw/vim-maximizer'
-
+" Automatically switch to absolute numbers when relative numbers don't make sense
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " ===
 " === ROS
 " ===
