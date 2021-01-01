@@ -45,9 +45,6 @@ nnoremap <C-q> @@
 nnoremap <C-c> <nop>
 nnoremap <C-c><C-x> <C-c>
 
-" When close window, reset nosplitright & nosplitbelow
-nnoremap <silent> <C-w>c :set nosplitright<CR>:set nosplitbelow<CR><C-w>c
-
 " Use [a and ]a in visual mode to move selection up and down
 xnoremap [a :<c-u>execute "'<,'>move '<-1-".v:count1<CR>gv=gv
 xnoremap ]a :<c-u>execute "'<,'>move '>+".v:count1<CR>gv=gv
@@ -228,7 +225,7 @@ nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 nnoremap <silent> <space>F :<C-u>Files<cr>
 nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
-nnoremap <silent> <space><C-g> :<C-u>tabe<cr>:term lazygit<cr>a
+nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
 nnoremap <silent> <space>gl :<C-u>BLines<cr>
 nnoremap <silent> <space>gL :<C-u>Lines<cr>
 nnoremap <silent> <space>gg :<C-u>Gstatus<cr>
