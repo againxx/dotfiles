@@ -84,7 +84,8 @@ let g:which_leader_map.n = {
 
 let g:which_leader_map.c = {
 \   'name': '+change',
-\   'l':    'katex-left-equation',
+\   'l':    'code-lens',
+\   'L':    'katex-left-equation',
 \   'p':    'fzf-preview',
 \   'S':    'statusline-sep',
 \   's':    'check-spelling',
@@ -226,11 +227,12 @@ nnoremap <leader>nx :read !figlet<space>
 " ===
 " === Change settings
 " ===
-nnoremap <leader>cl :call <SID>toggleEquationFlushedLeft()<CR>
+nnoremap <leader>cL :call <SID>toggleEquationFlushedLeft()<CR>
 nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
 nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
 " nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
 nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
+nnoremap <leader>cl :call <SID>toggleCodeLens()<CR>
 
 " ===
 " === Table-mode
@@ -379,6 +381,14 @@ function! s:toggleSpellChecking() abort
         setlocal spell spelllang=en_us
     else
         setlocal nospell
+    endif
+endfunction
+
+function! s:toggleCodeLens() abort
+    if coc#util#get_config('codeLens')['enable']
+        call coc#config('codeLens.enable', 0)
+    else
+        call coc#config('codeLens.enable', 1)
     endif
 endfunction
 
