@@ -63,7 +63,6 @@ let g:which_leader_map.v = {
 \   'h':    'highlight-group',
 \   'i':    'indent',
 \   'a':    'ascii-value',
-\   'g':    'git-chunkinfo',
 \ }
 
 let g:which_leader_map['\'] = {
@@ -85,6 +84,7 @@ let g:which_leader_map.n = {
 let g:which_leader_map.c = {
 \   'name': '+change',
 \   'l':    'code-lens',
+\   'b':    'git-blame',
 \   'L':    'katex-left-equation',
 \   'p':    'fzf-preview',
 \   'S':    'statusline-sep',
@@ -214,8 +214,6 @@ nnoremap <leader>vh :call SyntaxAttr()<CR>
 nmap <leader>vi :IndentLinesToggle<CR>
 nnoremap <leader>va ga
 vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
-" show chunk diff at current position
-nmap <leader>vg <Plug>(coc-git-chunkinfo)
 
 " ===
 " === New
@@ -233,6 +231,7 @@ nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
 " nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
 nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
 nnoremap <leader>cl :call <SID>toggleCodeLens()<CR>
+nnoremap <leader>cb :call <SID>toggleGitBlame()<CR>
 
 " ===
 " === Table-mode
@@ -389,6 +388,14 @@ function! s:toggleCodeLens() abort
         call coc#config('codeLens.enable', 0)
     else
         call coc#config('codeLens.enable', 1)
+    endif
+endfunction
+
+function! s:toggleGitBlame() abort
+    if coc#util#get_config('git')['addGBlameToVirtualText']
+        call coc#config('git.addGBlameToVirtualText', 0)
+    else
+        call coc#config('git.addGBlameToVirtualText', 1)
     endif
 endfunction
 

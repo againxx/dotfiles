@@ -215,7 +215,6 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space><C-g> :<C-u>tabe<CR>:term lazygit<CR>a
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
@@ -228,9 +227,19 @@ nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 nnoremap <silent> <space>F :<C-u>Files<cr>
-nnoremap <silent> <space>g :<C-u>BLines<cr>
-nnoremap <silent> <space>G :<C-u>Lines<cr>
 nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
+nnoremap <silent> <space><C-g> :<C-u>tabe<cr>:term lazygit<cr>a
+nnoremap <silent> <space>gl :<C-u>BLines<cr>
+nnoremap <silent> <space>gL :<C-u>Lines<cr>
+nnoremap <silent> <space>gg :<C-u>Gstatus<cr>
+" show chunk diff at current position
+nmap <silent> <space>gd <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap <silent> <space>gc <Plug>(coc-git-commit)
+nnoremap <silent> <space>gs :<C-u>CocCommand git.chunkStage<cr>
+nnoremap <silent> <space>gu :<C-u>CocCommand git.chunkUndo<cr>
+nnoremap <silent> <space>gz :<C-u>CocCommand git.foldUnchanged<cr>
+nnoremap <silent> <space>gr :<C-u>Git restore --staged %<bar>CocCommand git.refresh<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 
 " vimwiki
@@ -321,13 +330,24 @@ let g:which_space_map.k = 'previous-item'
 let g:which_space_map.e = 'explorer'
 let g:which_space_map.t = 'task'
 let g:which_space_map.F = 'fzf-file'
-let g:which_space_map.g = 'line-in-current-buffer'
-let g:which_space_map.G = 'line-in-all-files'
 let g:which_space_map['<C-P>'] = 'rip-grep'
 let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['.'] = 'last-list'
 let g:which_space_map['/'] = 'search-history'
 let g:which_space_map["'"] = 'mark'
+
+" For git/go-to-line
+let g:which_space_map.g = {
+\   'name': '+git/goto',
+\   'l':    'line-in-current-buffer',
+\   'L':    'line-in-all-files',
+\   'g':    'show-git-status',
+\   'd':    'show-chunk-diff',
+\   'c':    'show-commit-contains-current-line',
+\   's':    'stage-chunk',
+\   'u':    'undo-chunk',
+\   'z':    'fold-unchanged',
+\ }
 
 " For vimspector
 let g:which_space_map.d = {
