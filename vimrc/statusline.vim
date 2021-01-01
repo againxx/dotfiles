@@ -4,7 +4,6 @@ let g:lightline.symbols = {
 \   'linenr': ' ',
 \   'colomnnr': '',
 \   'beforemode': ' ',
-\   'branch': '',
 \   'whitespace': ' ',
 \   'spellcheck': '暈',
 \ }
@@ -21,7 +20,7 @@ let g:lightline#whitespace#trailing_format = '%s'
 
 let g:lightline.active = {
 \   'left': [['mode'],
-\            ['gitbranch', 'spell'],
+\            ['git', 'spell'],
 \            ['filename', 'readonly', 'cocstatus']],
 \   'right': [['linter_checking', 'linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
@@ -64,7 +63,7 @@ let g:lightline.component_visible_condition = {
 
 let g:lightline.component_function = {
 \   'filetype': 'LightlineFileTypeWithSymbol',
-\   'gitbranch': 'LightlineCocGitBranch',
+\   'git': 'LightlineCocGit',
 \   'cocstatus': 'coc#status',
 \ }
 
@@ -146,14 +145,9 @@ function! LightlineFileTypeWithSymbol()
     return l:ftWithSymbol
 endfunction
 
-function! LightlineCocGitBranch()
-    let l:git_status = get(g:,'coc_git_status','')
-    if strlen(l:git_status) > 0
-        return g:lightline.symbols.branch . strcharpart(l:git_status, 1) .
-        \   get(b:,'coc_git_status','') . get(b:,'coc_git_blame','')
-    else
-        return ''
-    endif
+function! LightlineCocGit()
+    let l:git_blame = winwidth(0) > 120 ? get(b:, 'coc_git_blame', '') : ''
+    return trim(get(g:, 'coc_git_status', '')) . get(b:,'coc_git_status','') . l:git_blame
 endfunction
 
 function! LightlineTabInfo()
