@@ -1,3 +1,5 @@
+#!/bin/bash
+
 DOTFILES_DIR=$(dirname $(realpath $0))
 
 ln -sf $DOTFILES_DIR/vimrc/.vimrc ~/
@@ -37,6 +39,14 @@ if command -v brew &> /dev/null; then
 
     if ! command -v delta &> /dev/null; then
         brew install git-delta
+    fi
+
+    if ! command -v clang-format &> /dev/null; then
+        brew install clang-format
+    fi
+
+    if ! command -v cppcheck &> /dev/null; then
+        brew install cppcheck
     fi
 else
     echo "Please first install homebrew manually!"
