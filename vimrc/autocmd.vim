@@ -36,24 +36,24 @@ augroup markdown_vimwiki_common
     autocmd FileType markdown let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
     autocmd FileType markdown nmap <buffer> [h <Plug>Markdown_MoveToCurHeader
     autocmd FileType markdown,vimwiki setlocal iskeyword+=92 conceallevel=2
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;o <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;o <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;m $$<++><Esc>F$i
     autocmd FileType markdown,vimwiki inoremap <buffer> ;h $$<Space><Space>$$<Esc>2hi
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;c ``<Space><++><Esc>F`i
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;c ``<Space><++><Esc>F`i
     autocmd FileType markdown,vimwiki inoremap <buffer> ;d -<Space>[<Space>]<Space>
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;n <Esc>A<Space>\\<CR>
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;n <Esc>A<Space>\\<CR>
     autocmd FileType markdown,vimwiki inoremap <buffer> ;; ;
-    autocmd Filetype markdown,vimwiki inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
+    autocmd FileType markdown,vimwiki inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
     autocmd FileType markdown,vimwiki nnoremap <buffer> <Space><Space> /<++><CR>:nohlsearch<CR>"_c4l
-    autocmd Filetype markdown inoremap <buffer> ;b ****<Space><++><Esc>F*hi
-    autocmd Filetype markdown inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
-    autocmd Filetype markdown inoremap <buffer> ;i **<Space><++><Esc>F*i
+    autocmd FileType markdown inoremap <buffer> ;b ****<Space><++><Esc>F*hi
+    autocmd FileType markdown inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
+    autocmd FileType markdown inoremap <buffer> ;i **<Space><++><Esc>F*i
     autocmd FileType markdown inoremap <buffer> ;C ```<CR>```<Esc>ka
-    autocmd Filetype markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
-    autocmd Filetype markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
-    autocmd Filetype markdown inoremap <buffer> ;r ##<Space>Reference<Esc>
+    autocmd FileType markdown inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
+    autocmd FileType markdown inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
+    autocmd FileType markdown inoremap <buffer> ;r ##<Space>Reference<Esc>
     autocmd FileType markdown inoremap <buffer> ;M $$<CR>$$<Esc>O
     autocmd FileType markdown inoremap <buffer> ;1 #<Space>
     autocmd FileType markdown inoremap <buffer> ;2 ##<Space>
