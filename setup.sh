@@ -1,21 +1,21 @@
 #!/bin/bash
 
-DOTFILES_DIR=$(dirname $(realpath $0))
+dotfiles_dir=$(dirname "$(realpath "$0")")
 
-ln -sf $DOTFILES_DIR/vimrc/.vimrc ~/
-ln -sf $DOTFILES_DIR/.zshrc ~/
-ln -sf $DOTFILES_DIR/.bashrc ~/
-ln -sf $DOTFILES_DIR/.tmux.conf ~/
-ln -sf $DOTFILES_DIR/.gitconfig ~/
-ln -sf $DOTFILES_DIR/.gitignore_global ~/
+ln -sf "$dotfiles_dir/vimrc/.vimrc" ~/
+ln -sf "$dotfiles_dir/.zshrc" ~/
+ln -sf "$dotfiles_dir/.bashrc" ~/
+ln -sf "$dotfiles_dir/.tmux.conf" ~/
+ln -sf "$dotfiles_dir/.gitconfig" ~/
+ln -sf "$dotfiles_dir/.gitignore_global" ~/
 
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/jesseduffield/lazygit
-ln -sf $DOTFILES_DIR/gtk.css ~/.config/gtk-3.0/
-ln -sf $DOTFILES_DIR/alacritty ~/.config/
-ln -sf $DOTFILES_DIR/kitty ~/.config/
-ln -sf $DOTFILES_DIR/ranger ~/.config/
-ln -sf $DOTFILES_DIR/lazygit/config.yml ~/.config/jesseduffield/lazygit/
+ln -sf "$dotfiles_dir/gtk.css" ~/.config/gtk-3.0/
+ln -sf "$dotfiles_dir/alacritty" ~/.config/
+ln -sf "$dotfiles_dir/kitty" ~/.config/
+ln -sf "$dotfiles_dir/ranger" ~/.config/
+ln -sf "$dotfiles_dir/lazygit/config.yml" ~/.config/jesseduffield/lazygit/
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -23,31 +23,31 @@ fi
 
 if command -v brew &> /dev/null; then
     # Use USTC homebrew source
+    # shellcheck disable=SC2164
     cd "$(brew --repo)"
-    if [ $(git remote get-url origin) != "https://mirrors.ustc.edu.cn/brew.git" ]; then
+    if [ "$(git remote get-url origin)" != "https://mirrors.ustc.edu.cn/brew.git" ]; then
         git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
     fi
+    # shellcheck disable=SC2164
     cd "$(brew --repo homebrew/core)"
-    if [ $(git remote get-url origin) != "https://mirrors.ustc.edu.cn/linuxbrew-core.git" ]; then
+    if [ "$(git remote get-url origin)" != "https://mirrors.ustc.edu.cn/linuxbrew-core.git" ]; then
         git remote set-url origin https://mirrors.ustc.edu.cn/linuxbrew-core.git
     fi
-    cd $DOTFILES_DIR
+    # shellcheck disable=SC2164
+    cd "$dotfiles_dir"
 
-    if ! command -v lazygit &> /dev/null; then
-        brew install jesseduffield/lazygit/lazygit
-    fi
+    declare -A brew_pack
+    brew_pack[lazygit]=jesseduffield/lazygit/lazygit
+    brew_pack[delta]=git-delta
+    brew_pack[clang-format]=clang-format
+    brew_pack[cppcheck]=cppcheck
+    brew_pack[shellcheck]=shellcheck
 
-    if ! command -v delta &> /dev/null; then
-        brew install git-delta
-    fi
-
-    if ! command -v clang-format &> /dev/null; then
-        brew install clang-format
-    fi
-
-    if ! command -v cppcheck &> /dev/null; then
-        brew install cppcheck
-    fi
+    for exec_name in "${!brew_pack[@]}"; do
+        if ! command -v $exec_name &> /dev/null; then
+            brew install ${brew_pack[$exec_name]}
+        fi
+    done
 else
     echo "Please first install homebrew manually!"
 fi
