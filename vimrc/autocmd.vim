@@ -166,6 +166,7 @@ augroup common
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
     autocmd CmdwinEnter * let b:coc_suggest_disable = 1
+    autocmd BufEnter * if exists("b:ros_package_path") && &filetype ==# 'cpp' | call <SID>catkinInit() | endif
 augroup END
 
 function! s:isAtStartOfLine(mapping)
@@ -194,4 +195,11 @@ function! s:mapWikiSpecialMappings() abort
     nmap <buffer> gy <Plug>ZettelYankNameMap
     xmap <buffer> gz <Plug>ZettelNewSelectedMap
     nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
+endfunction
+
+function! s:catkinInit() abort
+    setlocal colorcolumn=121
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal softtabstop=2
 endfunction
