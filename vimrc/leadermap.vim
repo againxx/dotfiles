@@ -48,8 +48,10 @@ let g:which_leader_map.q = {
 let g:which_leader_map.r = {
 \   'name': '+refactor/run',
 \   'n':    'rename',
-\   'f':    'format',
-\   'x':    'fix',
+\   'f':    'format-selected',
+\   'F':    'format-buffer',
+\   'x':    'fix-line',
+\   'X':    'fix-buffer',
 \   's':    'run-select',
 \   'a':    'run-all',
 \   'b':    'run-build',
@@ -185,16 +187,20 @@ nmap <leader>rf <Plug>(coc-format-selected)
 " nmap <leader>rf <Plug>(coc-refactor)
 " Apply AutoFix to problem on the current line.
 nmap <leader>rx <Plug>(coc-fix-current)
+" Apply ALEFix for the whole buffer
+nmap <leader>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " exec in terminal
 augroup leadermap_augroup
     autocmd!
-    autocmd FileType cpp noremap <buffer> <leader>ra :AsyncTask project-run<CR>
-    autocmd FileType cpp noremap <buffer> <leader>rb :AsyncTask project-build<CR>
-    autocmd FileType cpp noremap <buffer> <leader>ri :AsyncTask project-init<CR>
-    autocmd FileType python noremap <buffer> <silent> <leader>ra :CocCommand python.execInTerminal<CR>
-    autocmd FileType python noremap <buffer> <silent> <leader>rs :CocCommand python.execSelectionInTerminal<CR>
+    autocmd FileType cpp noremap <buffer> <localleader>ra :AsyncTask project-run<CR>
+    autocmd FileType cpp noremap <buffer> <localleader>rb :AsyncTask project-build<CR>
+    autocmd FileType cpp noremap <buffer> <localleader>ri :AsyncTask project-init<CR>
+    autocmd FileType cpp noremap <buffer> <localleader>rF :ALEFix clang-format<CR>
+    autocmd FileType cpp noremap <buffer> <localleader>rX :ALEFix clangtidy<CR>
+    autocmd FileType python noremap <buffer> <silent> <localleader>ra :CocCommand python.execInTerminal<CR>
+    autocmd FileType python noremap <buffer> <silent> <localleader>rs :CocCommand python.execSelectionInTerminal<CR>
 augroup END
 
 xmap <leader>a <Plug>(coc-codeaction-selected)
@@ -249,7 +255,7 @@ nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
 nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
 nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
-nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<CR>:CocList -A --normal locationlist<cr>
+nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<bar>CocList -A --normal locationlist<cr>
 nnoremap <leader>wts :<C-u>VimwikiSearchTags<Space>
 nnoremap <leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<cr>
 nnoremap <leader>wB :<C-u>ZettelBackLinks<CR>

@@ -34,15 +34,18 @@ let g:ale_echo_msg_info_str = 'I'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'python': ['pylint', 'mypy'],
-\   'cpp': ['ccls']
+\   'cpp': ['ccls', 'cppcheck', 'clangtidy'],
+\   'sh': ['shellcheck']
 \ }
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace']
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'cpp': ['clang-format']
 \ }
 let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
 let g:ale_python_mypy_ignore_invalid_syntax = 1
 let g:ale_python_mypy_options = '--cache-dir=' . $HOME . '/.cache/mypy'
 let g:ale_cpp_ccls_init_options = {"cache": {"directory": ".vim/.ccls-cache"}}
+let g:ale_c_clangformat_options = '--style=file'
 
 " ===
 " === Vista
