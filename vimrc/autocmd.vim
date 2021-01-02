@@ -126,13 +126,25 @@ augroup vimwiki_special
     autocmd FileType vimwiki nnoremap <buffer> <silent> <space>t :<C-u>Tags<cr>
 augroup END
 
-augroup other_filetypes
+augroup cpp_filetype
     autocmd!
     autocmd FileType cpp setlocal foldmethod=syntax
     autocmd FileType cpp nnoremap <buffer> [h
     \   {:execute "keepjumps normal! ?^#include\r"<CR>:nohlsearch<CR>
     autocmd FileType cpp nnoremap <buffer> ]h
     \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
+    autocmd BufEnter * if exists("b:ros_package_path") && &filetype ==# 'cpp' | call <SID>catkinInit() | endif
+    autocmd FileType cpp let b:switch_custom_definitions = [
+    \   {
+    \       '\(std::cout.*\)"\s*<<\s*''\\n'';': '\1\\n";',
+    \       '\(std::cout.*\)\\n";': '\1" << std::endl;',
+    \       '\(std::cout.*\)std::endl;': '\1''\\n'';',
+    \   }
+    \ ]
+augroup END
+
+augroup other_filetypes
+    autocmd!
     autocmd FileType fzf
     \   if has('nvim') && !exists('g:fzf_layout')
     \   |   set laststatus=0
@@ -166,7 +178,6 @@ augroup common
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
     autocmd CmdwinEnter * let b:coc_suggest_disable = 1
-    autocmd BufEnter * if exists("b:ros_package_path") && &filetype ==# 'cpp' | call <SID>catkinInit() | endif
 augroup END
 
 function! s:isAtStartOfLine(mapping)
