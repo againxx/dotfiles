@@ -138,16 +138,24 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " Use <C-j> and <C-k> to navigate the completion list:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-" Use <Tab> to confirm completion
-if has('patch8.1.1068')
+
+" Use <Tab> to expand snippet or confirm completion
+inoremap <silent> <Tab> <C-r>=<SID>expandUltisnipsOrUseCocCompletion()<CR>
+
+function! s:expandUltisnipsOrUseCocCompletion() abort
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res > 0
+        pclose
+        return ""
     " Use `complete_info` if your (Neo)Vim version supports it.
-    "\   coc#expandable() ? \"\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>\" : don't forget to remove \ before
-    inoremap <expr> <Tab> complete_info()["selected"] != "-1" ? "\<C-y>" :
-    \   "\<C-g>u\<Tab>"
-else
-    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" :
-    \   "\<C-g>u\<Tab>"
-endif
+    elseif (has('patch8.1.1068') && complete_info()["selected"] != "-1") ||
+        \   pumvisible()
+        return "\<C-y>"
+    else
+        return "\<C-g>u\<Tab>"
+    endif
+endfunction
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
@@ -175,7 +183,6 @@ endfunction
 " Use <Tab> for select text for visual placeholder of snippet.
 " vmap <Tab> <Plug>(coc-snippets-select)
 " imap <C-l> <Plug>(coc-snippets-expand)
-let g:UltiSnipsExpandTrigger = "<C-l>"
 
 " Scroll floating window up and down
 nnoremap <expr><C-f> coc#float#has_float() ? coc#float#scroll(1) : "3\<C-f>"

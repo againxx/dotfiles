@@ -77,6 +77,13 @@ let g:fzf_layout = {
 let g:vista_fzf_preview = ['up:60%']
 
 " ===
+" === Ultisnips
+" ===
+let g:ulti_expand_res = 0
+" Disable default snippet expanding keymapping
+let g:UltiSnipsExpandTrigger = "<nop>"
+
+" ===
 " === Coc
 " ===
 " Extensions
