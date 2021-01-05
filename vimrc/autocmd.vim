@@ -5,7 +5,6 @@ augroup python_filetype
     autocmd FileType python call coc#config('snippets.loadFromExtensions', 0)
     " dynamically set python.condaPath
     autocmd FileType python if !empty($CONDA_PREFIX) | call coc#config('python.condaPath', $CONDA_PREFIX.'/bin/python') | endif
-    autocmd FileType python call CocAction('deactivateExtension', 'coc-zi')
     autocmd FileType python map <buffer> [f [m
     autocmd FileType python map <buffer> ]f ]m
     autocmd FileType python map <buffer> [F [M
@@ -28,7 +27,6 @@ augroup END
 augroup markdown_vimwiki_common
     autocmd!
     autocmd FileType markdown,vimwiki let b:coc_additional_keywords = ['\']
-    autocmd FileType markdown,vimwiki call CocAction('reloadExtension', 'coc-zi')
     autocmd FileType markdown let b:coc_pairs_disabled = ['<']
     autocmd FileType markdown let g:vim_markdown_folding_disabled = 0
     autocmd FileType markdown let g:sneak#label = 0 | call sneak#init()
