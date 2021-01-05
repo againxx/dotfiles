@@ -102,6 +102,7 @@ let g:coc_global_extensions = [
 \   'coc-snippets',
 \   'coc-todolist',
 \   'coc-zi',
+\   'coc-ci',
 \   'coc-tasks',
 \   'coc-spell-checker',
 \   'coc-ultisnips',

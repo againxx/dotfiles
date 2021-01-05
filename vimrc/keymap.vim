@@ -33,9 +33,13 @@ vnoremap aa a>
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-"  Make <C-e> and <C-y> move faster
+" Make <C-e> and <C-y> move faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" Use w/b to move over chinese ci
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
 
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@
