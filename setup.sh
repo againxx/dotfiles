@@ -42,6 +42,7 @@ if command -v brew &> /dev/null; then
     brew_pack[clang-format]=clang-format
     brew_pack[cppcheck]=cppcheck
     brew_pack[shellcheck]=shellcheck
+    brew_pack[rg]=ripgrep
 
     for exec_name in "${!brew_pack[@]}"; do
         if ! command -v $exec_name &> /dev/null; then
