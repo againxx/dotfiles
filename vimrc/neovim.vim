@@ -135,5 +135,9 @@ let g:firenvim_config = {
 \           'takeover': 'never',
 \           'priority': 1
 \       },
+\       'https?://tam.cmet.ustc.edu.cn/': {
+\           'takeover': 'never',
+\           'priority': 1
+\       },
 \   }
 \ }
