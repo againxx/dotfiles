@@ -12,7 +12,11 @@ compile_commands.json
 *.swo
 .vim
 .vimspector.json
+.tasks
 
 # vscode
 .vscode/
 .env
+
+# clang-format
+.clang-format
