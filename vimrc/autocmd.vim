@@ -211,4 +211,5 @@ function! s:catkinInit() abort
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal softtabstop=2
+    let g:asynctasks_environ = {'package_name': string(b:ros_package_name)[1:-2]}
 endfunction

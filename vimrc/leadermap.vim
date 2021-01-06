@@ -18,7 +18,8 @@ let g:which_leader_map.e = {
 \   'C':    'edit-coc-local-config',
 \   's':    'edit-snippets',
 \   'm':    'edit-macro&register',
-\   't':    'edit-task',
+\   't':    'edit-local-task',
+\   'T':    'edit-global-task',
 \ }
 
 let g:which_leader_map.d = {
@@ -151,6 +152,7 @@ nnoremap <leader>eC :CocLocalConfig<CR>
 nnoremap <leader>es :UltiSnipsEdit!<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 nnoremap <leader>et :AsyncTaskEdit<CR>
+nnoremap <leader>eT :AsyncTaskEdit!<CR>
 
 " ===
 " === Change directory

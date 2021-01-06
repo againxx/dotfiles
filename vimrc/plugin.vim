@@ -246,9 +246,10 @@ let g:asyncrun_rootmarks = [
 \   '.project',
 \   '.hg'
 \ ]
-let g:asynctasks_config_name = '.vim/.tasks'
+let g:asynctasks_config_name = ['.tasks', '.vim/.tasks']
 let g:asynctasks_confirm = 0
 let g:asynctasks_term_pos = 'tab'
+let g:asynctasks_term_reuse = 1
 
 " ===
 " === Vimspector
