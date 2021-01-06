@@ -85,12 +85,15 @@ if g:colors_name == 'ayu'
     hi! link pythonDocstring pythonComment
     let g:VM_Extend_hl = 'CocListBlackCyan'
     let g:VM_highlight_matches = ''
+    " use by indentLine
     augroup conceal_color
         autocmd!
         autocmd FileType c hi Conceal guifg=#0F1419
         autocmd FileType cpp hi Conceal guifg=#0F1419
         autocmd FileType cmake hi Conceal guifg=#0F1419
         autocmd FileType python hi Conceal guifg=#0F1419
+        autocmd FileType sh hi Conceal guifg=#0F1419
+        autocmd FileType zsh hi Conceal guifg=#0F1419
         autocmd FileType markdown,vimwiki hi! link Conceal Function
     augroup END
 endif

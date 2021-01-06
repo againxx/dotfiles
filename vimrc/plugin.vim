@@ -186,7 +186,7 @@ let g:mkdp_highlight_css = $HOME.'/Git_Repo/markdown-tex/custom_css/highlight/so
 " ===
 let g:indentLine_setColors = 0
 let g:indentLine_char = '│'
-let g:indentLine_fileType = ['c', 'cpp', 'python', 'cmake']
+let g:indentLine_fileType = ['c', 'cpp', 'python', 'cmake', 'sh', 'zsh']
 let g:indent_blankline_extra_indent_level = -1
 
 " ===
