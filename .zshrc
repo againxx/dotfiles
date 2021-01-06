@@ -117,17 +117,6 @@ fi
 export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
 compdef vman="man"
 
-bindkey -v
-KEYTIMEOUT=1
-### bindkey ctrl+j for partial accept zsh-autosuggestions
-### bindkey ctrl+l for complete accept zsh-autosuggestions
-### bindkey alt+l for clear screen
-bindkey "^J" forward-word
-bindkey "^L" forward-char
-bindkey "^[l" clear-screen
-
-bindkey -M vicmd "_" vi-first-non-blank
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -177,6 +166,28 @@ ra() {
         exit
     fi
 }
+
+fzf-choose-dirs-widget() {
+    local selected_dir
+    selected_dir="$(dirs -lv | fzf --height 40% --select-1 | cut -f 2)"
+    cd "$selected_dir"
+    zle fzf-redraw-prompt
+    return $?
+}
+
+bindkey -v
+KEYTIMEOUT=1
+### bindkey ctrl+j for partial accept zsh-autosuggestions
+### bindkey ctrl+l for complete accept zsh-autosuggestions
+### bindkey alt+l for clear screen
+bindkey "^J" forward-word
+bindkey "^L" forward-char
+bindkey "^[l" clear-screen
+
+bindkey -M vicmd "_" vi-first-non-blank
+
+zle -N fzf-choose-dirs-widget
+bindkey "^[m" fzf-choose-dirs-widget
 
 # User configuration
 
