@@ -198,11 +198,10 @@ if [ -f "/opt/ros/melodic/setup.zsh" ]; then
     source /opt/ros/melodic/setup.zsh
 fi
 
-if [ -f "$HOME/catkin_ws/devel/setup.zsh" ]; then
-    source $HOME/catkin_ws/devel/setup.zsh
-elif [ -f "$HOME/catkin_ws/devel_isolated/setup.zsh" ]; then
-    source $HOME/catkin_ws/devel_isolated/setup.zsh
-fi
+for ws_setup_file in $(find ~/Projects -regex ".*\(WorkSpace\|workspace\|ws\)/devel\(_isolated\)?/setup\.zsh"); do
+    source $ws_setup_file
+done
+unset ws_setup_file
 
 # ROS environment variables
 # export TURTLEBOT_3D_SENSOR=kinect
