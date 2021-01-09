@@ -146,20 +146,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " Use <Tab> to expand snippet or confirm completion
 inoremap <silent> <Tab> <C-r>=<SID>expandUltisnipsOrUseCocCompletion()<CR>
 
-function! s:expandUltisnipsOrUseCocCompletion() abort
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res > 0
-        pclose
-        return ""
-    " Use `complete_info` if your (Neo)Vim version supports it.
-    elseif (has('patch8.1.1068') && complete_info()["selected"] != "-1") ||
-        \   pumvisible()
-        return "\<C-y>"
-    else
-        return "\<C-g>u\<Tab>"
-    endif
-endfunction
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
@@ -176,17 +162,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
-function! s:showDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " Use <Tab> for select text for visual placeholder of snippet.
 " vmap <Tab> <Plug>(coc-snippets-select)
 " imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-l> to expand ultisnips or save visual selected content
+let g:UltiSnipsExpandTrigger = "<C-l>"
 
 " Scroll floating window up and down
 nnoremap <expr><C-f> coc#float#has_float() ? coc#float#scroll(1) : "3\<C-f>"
@@ -214,7 +194,6 @@ nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>. :<C-u>CocListResume<cr>
-nnoremap <silent> <space>r :<C-u>RnvimrToggle<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.
@@ -227,9 +206,13 @@ nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
-nnoremap <silent> <space>P :<C-u>Snippets<cr>
+nnoremap <silent> <space>P :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
+vnoremap <silent> <space>P :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+nnoremap <silent> <space><C-l> :<C-u>Snippets<cr>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
+nnoremap <silent> <space>H :<C-u>CocFirst<cr>
+nnoremap <silent> <space>L :<C-u>CocLast<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
 nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
@@ -275,10 +258,34 @@ nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
 
 nnoremap <space>dx :call vimspector#ClearBreakpoints()<cr>
 
-function! s:gotoWindowAndMaximize(win_id) abort
-    call win_gotoid(a:win_id)
-    execute 'MaximizerToggle'
-endfunction
+" ===
+" === refactor/run tasks
+" ===
+nnoremap <silent> <space>ra :<C-u>RnvimrToggle<cr>
+" Formatting selected code.
+xmap <space>rf <Plug>(coc-format-selected)
+nmap <space>rf <Plug>(coc-format-selected)
+" nmap <space>rf <Plug>(coc-refactor)
+" Apply AutoFix to problem on the current line.
+nmap <space>rx <Plug>(coc-fix-current)
+" Apply ALEFix for the whole buffer
+nmap <space>rX <Plug>(ale_fix)
+" Symbol renaming.
+nmap <space>rn <Plug>(coc-rename)
+nnoremap <silent> <space>rr :AsyncTask file-run<CR>
+" exec in terminal
+augroup spacemap_augroup
+    autocmd!
+    autocmd FileType cpp nnoremap <buffer> <space>rp :AsyncTask project-run<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>rb :AsyncTask project-build<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>rB :AsyncTask file-build<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>ri :AsyncTask project-init<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>rc :AsyncTask project-clean<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
+    autocmd FileType cpp nnoremap <buffer> <space>rX :ALEFix clangtidy<CR>
+    autocmd FileType python nnoremap <buffer> <silent> <space>rr :CocCommand python.execInTerminal<CR>
+    autocmd FileType python xnoremap <buffer> <silent> <space>rs :CocCommand python.execSelectionInTerminal<CR>
+augroup END
 
 " ===
 " === Whichkey
@@ -322,7 +329,6 @@ let g:which_space_map.C = 'command-history'
 let g:which_space_map.v = 'vim-command'
 let g:which_space_map.s = 'vista'
 let g:which_space_map.S = 'coc-symbol'
-let g:which_space_map.r = 'ranger'
 let g:which_space_map.o = 'outline'
 let g:which_space_map.a = 'diagnostic'
 let g:which_space_map.l = 'location-list'
@@ -332,14 +338,17 @@ let g:which_space_map.u = 'undo-tree'
 let g:which_space_map.D = 'todo-list'
 let g:which_space_map.K = 'key-map'
 let g:which_space_map.p = 'grep'
-let g:which_space_map.P = 'snippet'
+let g:which_space_map.P = 'grep-by-motion'
 let g:which_space_map.j = 'next-item'
 let g:which_space_map.k = 'previous-item'
+let g:which_space_map.H = 'first-item'
+let g:which_space_map.L = 'last-item'
 let g:which_space_map.e = 'explorer'
 let g:which_space_map.t = 'task'
 let g:which_space_map.F = 'fzf-file'
 let g:which_space_map.x = 'open-terminal'
 let g:which_space_map['<C-P>'] = 'rip-grep'
+let g:which_space_map['<C-L>'] = 'snippets'
 let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['.'] = 'last-list'
 let g:which_space_map['/'] = 'search-history'
@@ -356,6 +365,24 @@ let g:which_space_map.g = {
 \   's':    'stage-chunk',
 \   'u':    'undo-chunk',
 \   'z':    'fold-unchanged',
+\ }
+
+" For refactor/run
+let g:which_space_map.r = {
+\   'name': '+refactor/run',
+\   'a':    'ranger',
+\   'n':    'rename',
+\   'f':    'format-selected',
+\   'F':    'format-buffer',
+\   'x':    'fix-line',
+\   'X':    'fix-buffer',
+\   's':    'run-selected',
+\   'p':    'run-project',
+\   'r':    'run-current-file',
+\   'b':    'build-project',
+\   'B':    'build-file',
+\   'i':    'init-project',
+\   'c':    'clean',
 \ }
 
 " For vimspector
@@ -378,3 +405,45 @@ let g:which_space_map.d = {
 \   'i':    'toggle-conditional-breakpoint',
 \   'x':    'clear-all-breakpoints',
 \ }
+
+function! s:gotoWindowAndMaximize(win_id) abort
+    call win_gotoid(a:win_id)
+    execute 'MaximizerToggle'
+endfunction
+
+function! s:showDocumentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+function! s:expandUltisnipsOrUseCocCompletion() abort
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res > 0
+        pclose
+        return ""
+    " Use `complete_info` if your (Neo)Vim version supports it.
+    elseif (has('patch8.1.1068') && complete_info()["selected"] != "-1") ||
+        \   pumvisible()
+        return "\<C-y>"
+    else
+        return "\<C-g>u\<Tab>"
+    endif
+endfunction
+
+function! s:grepFromSelected(type)
+    let saved_unnamed_register = @@
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+    let word = substitute(@@, '\n$', '', 'g')
+    let word = escape(word, '| ')
+    let @@ = saved_unnamed_register
+    execute 'CocList grep '.word
+endfunction

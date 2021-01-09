@@ -46,19 +46,6 @@ let g:which_leader_map.q = {
 \   'l':    'quit-location-list',
 \ }
 
-let g:which_leader_map.r = {
-\   'name': '+refactor/run',
-\   'n':    'rename',
-\   'f':    'format-selected',
-\   'F':    'format-buffer',
-\   'x':    'fix-line',
-\   'X':    'fix-buffer',
-\   's':    'run-select',
-\   'a':    'run-all',
-\   'b':    'run-build',
-\   'i':    'run-init',
-\ }
-
 let g:which_leader_map.v = {
 \   'name': '+view',
 \   'm':    'markdown-preview',
@@ -89,9 +76,10 @@ let g:which_leader_map.c = {
 \   'l':    'code-lens',
 \   'b':    'git-blame',
 \   'L':    'katex-left-equation',
-\   'p':    'fzf-preview',
+\   'P':    'fzf-preview',
 \   'S':    'statusline-sep',
 \   's':    'check-spelling',
+\   'p':    'build-profile',
 \ }
 
 let g:which_leader_map.t = {
@@ -183,34 +171,8 @@ nnoremap <silent> <leader>ql :lclose<CR>
 " ===
 " === Coc
 " ===
-" Formatting selected code.
-xmap <leader>rf <Plug>(coc-format-selected)
-nmap <leader>rf <Plug>(coc-format-selected)
-" nmap <leader>rf <Plug>(coc-refactor)
-" Apply AutoFix to problem on the current line.
-nmap <leader>rx <Plug>(coc-fix-current)
-" Apply ALEFix for the whole buffer
-nmap <leader>rX <Plug>(ale_fix)
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-" exec in terminal
-augroup leadermap_augroup
-    autocmd!
-    autocmd FileType cpp noremap <buffer> <localleader>ra :AsyncTask project-run<CR>
-    autocmd FileType cpp noremap <buffer> <localleader>rb :AsyncTask project-build<CR>
-    autocmd FileType cpp noremap <buffer> <localleader>ri :AsyncTask project-init<CR>
-    autocmd FileType cpp noremap <buffer> <localleader>rF :ALEFix clang-format<CR>
-    autocmd FileType cpp noremap <buffer> <localleader>rX :ALEFix clangtidy<CR>
-    autocmd FileType python noremap <buffer> <silent> <localleader>ra :CocCommand python.execInTerminal<CR>
-    autocmd FileType python noremap <buffer> <silent> <localleader>rs :CocCommand python.execSelectionInTerminal<CR>
-augroup END
-
 xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
-
-" coc-lists grep
-vnoremap <leader>f :<C-u>call <SID>grepFromSelected(visualmode())<CR>
-nnoremap <leader>f :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
 
 " ===
 " === View
@@ -234,12 +196,13 @@ nnoremap <leader>nx :read !figlet<space>
 " === Change settings
 " ===
 nnoremap <leader>cL :call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <leader>cp :call <SID>toggleFZFPreview()<CR>
+nnoremap <leader>cP :call <SID>toggleFZFPreview()<CR>
 nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
 " nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
 nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
 nnoremap <leader>cl :call <SID>toggleCodeLens()<CR>
 nnoremap <leader>cb :call <SID>toggleGitBlame()<CR>
+nnoremap <leader>cp :call <SID>changeBuildProfile()<CR>
 
 " ===
 " === Table-mode
@@ -291,21 +254,6 @@ function! s:autoVerticalSplit(fname)
     else
         exec 'edit '.a:fname
     endif
-endfunction
-
-function! s:grepFromSelected(type)
-  let saved_unnamed_register = @@
-  if a:type ==# 'v'
-    normal! `<v`>y
-  elseif a:type ==# 'char'
-    normal! `[v`]y
-  else
-    return
-  endif
-  let word = substitute(@@, '\n$', '', 'g')
-  let word = escape(word, '| ')
-  let @@ = saved_unnamed_register
-  execute 'CocList grep '.word
 endfunction
 
 " Ale
@@ -404,6 +352,18 @@ function! s:toggleGitBlame() abort
         call coc#config('git.addGBlameToVirtualText', 0)
     else
         call coc#config('git.addGBlameToVirtualText', 1)
+    endif
+endfunction
+
+function s:changeBuildProfile() abort
+    if g:asynctasks_profile == 'debug'
+        execute 'AsyncTaskProfile release'
+    elseif g:asynctasks_profile == 'release'
+        execute 'AsyncTaskProfile release-debug'
+    elseif g:asynctasks_profile == 'release-debug'
+        execute 'AsyncTaskProfile debug'
+    else
+        echo 'Unknown current profile!'
     endif
 endfunction
 
