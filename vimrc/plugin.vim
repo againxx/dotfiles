@@ -46,6 +46,7 @@ let g:ale_python_mypy_ignore_invalid_syntax = 1
 let g:ale_python_mypy_options = '--cache-dir=' . $HOME . '/.cache/mypy'
 let g:ale_cpp_ccls_init_options = {"cache": {"directory": ".vim/.ccls-cache"}}
 let g:ale_c_clangformat_options = '--style=file'
+let g:ale_cpp_clangtidy_checks = ['*']
 
 " ===
 " === Vista
