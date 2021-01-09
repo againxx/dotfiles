@@ -2,12 +2,15 @@
 
 declare -a package_names
 build_type=debug
+all_packages=0
 while [ -n "$1" ]; do
     case "$1" in
         --debug )
             build_type=debug;;
         --release )
             build_type=release;;
+        --all )
+            all_packages=1;;
         [!-][!-]* )
             package_names+=("$1");;
             * )
@@ -39,11 +42,18 @@ if [[ ! -d ".catkin_tools" ]]; then
     catkin init
     catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
     catkin profile set $build_type
+else
+    catkin clean
+    mapfile -t available_build_type < <(catkin profile list --unformatted)
+    if [[ "${available_build_type[*]}" != *"$build_type"* ]]; then
+        catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    fi
+    catkin profile set $build_type
 fi
 
 catkin build "${package_names[@]}"
 
-if (( ${#package_names[@]} == 0 )); then
+if (( ${#package_names[@]} == 0 || all_packages == 1)); then
     mapfile -t package_names < <(catkin list --unformatted)
 fi
 
