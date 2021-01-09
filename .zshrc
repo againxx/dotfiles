@@ -75,18 +75,19 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    python
-    pip
-    vi-mode
-    tmux
-    zsh-syntax-highlighting
-    extract
-    zsh-autosuggestions
-    zsh-completions
     autojump
     colored-man-pages
     conda-zsh-completion
+    extract
+    git
+    git-open
+    pip
+    python
+    tmux
+    vi-mode
+    zsh-autosuggestions
+    zsh-completions
+    zsh-syntax-highlighting
 )
 
 if type brew &>/dev/null; then
