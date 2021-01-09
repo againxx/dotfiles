@@ -16,9 +16,10 @@
     "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
     "suggest.completionItemKindLabels": {
-        "class": "",
+        "class": "囹",
         "color": "",
         "constant": "",
+        "constructor": "",
         "default": "",
         "enum": "",
         "enumMember": "",
@@ -37,7 +38,7 @@
         "snippet": "",
         "struct": "פּ",
         "text": "",
-        "typeParameter": "",
+        "typeParameter": "璉",
         "unit": "",
         "value": "",
         "variable": ""
