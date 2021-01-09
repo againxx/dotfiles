@@ -71,6 +71,33 @@ let g:fzf_layout = {
 \       'border': 'sharp'
 \   }
 \ }
+let g:vista#renderer#icons = {
+\   'func': 'ﳣ ',
+\   'function': 'ﳣ ',
+\   'functions': 'ﳣ ',
+\   'var': ' ',
+\   'variable': ' ',
+\   'variables': ' ',
+\   'const': ' ',
+\   'constant': ' ',
+\   'constructor': ' ',
+\   'package': ' ',
+\   'packages': ' ',
+\   'enum': ' ',
+\   'enummember': ' ',
+\   'enumerator': ' ',
+\   'module': ' ',
+\   'modules': ' ',
+\   'type': '璉',
+\   'typedef': '璉',
+\   'types': '璉',
+\   'field': '綠',
+\   'fields': '綠',
+\   'map': '壟',
+\   'augroup': ' ',
+\   'struct': 'פּ ',
+\   'union': '謹',
+\ }
 
 " To enable fzf preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
@@ -81,8 +108,6 @@ let g:vista_fzf_preview = ['up:60%']
 " === Ultisnips
 " ===
 let g:ulti_expand_res = 0
-" Disable default snippet expanding keymapping
-let g:UltiSnipsExpandTrigger = "<nop>"
 
 " ===
 " === Coc
@@ -288,7 +313,8 @@ let g:rnvimr_layout = { 'relative': 'editor',
 let g:plug_url_format = 'https://github.com/%s.git'
 
 " Suda.vim
-let g:suda_smart_edit = 1
+" ccls will generate cache directory due to this setting
+let g:suda_smart_edit = 0
 
 " tmuxline
 let g:tmuxline_preset = 'nightly_fox'
