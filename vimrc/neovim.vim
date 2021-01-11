@@ -114,7 +114,7 @@ endfunction
 " Used by firenvim
 function! OnUIEnter(event) abort
   if s:IsFirenvimActive(a:event)
-    set guifont=InconsolataLGC\ Nerd\ Font:h9
+    set guifont=InconsolataLGC\ Nerd\ Font:h20
     set showtabline=0
     if g:colors_name == 'ayu'
         hi Normal     guibg=#212733
