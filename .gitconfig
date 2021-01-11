@@ -27,16 +27,18 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
+    syntax-theme = Dracula
     line-numbers = true
     line-numbers-minus-style = red
     line-numbers-plus-style = green
     line-numbers-left-style = yellow
     line-numbers-right-style = yellow
-    line-numbers-left-format = "│{nm} "
-    line-numbers-right-format = "{np}│ "
-    plus-style = syntax bold green
-    minus-style = syntax bold red
-    plus-emph-style = syntax bold "#86B300"
-    minus-emph-style = syntax bold "#F29718"
+    line-numbers-left-format = "│{nm:^4} "
+    line-numbers-right-format = "{np:^4}│ "
+    plus-style = syntax bold 66
+    minus-style = syntax bold 174
+    plus-emph-style = syntax bold 58
+    minus-emph-style = syntax bold 125
     file-style = magenta
     file-decoration-style = magenta ul ol
+    hunk-header-decoration-style = ul

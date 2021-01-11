@@ -27,20 +27,15 @@ git:
   paging:
     colorArg: always
     pager: >
-        delta --dark --paging=never --24-bit-color=never --no-gitconfig
+        delta --paging=never --24-bit-color=never
         --width=variable --hunk-header-decoration-style="omit"
-        --file-style="magenta" --file-decoration-style="omit"
-        --line-numbers
-        --line-numbers-minus-style=red
-        --line-numbers-plus-style=green
-        --line-numbers-left-style=yellow
-        --line-numbers-right-style=yellow
+        --file-decoration-style="omit"
         --line-numbers-left-format="{nm} "
         --line-numbers-right-format="{np}│ "
         --plus-style="syntax 66"
         --minus-style="syntax 174"
         --plus-emph-style="syntax 58"
-        --minus-emph-style="syntax 196"
+        --minus-emph-style="syntax 125"
   merging:
     # only applicable to unix users
     manualCommit: false
