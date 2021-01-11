@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# -e: exit immediately if a pipeline/a list/a compound command, exits with a non- zero status
+# -u: fail on error and undefined variables
+set -eu
+
+# fail on a single failed command in a pipeline
+set -o pipefail
+
 declare -a package_names
 build_type=debug
 all_packages=0
@@ -66,5 +73,8 @@ done
 cp ~/dotfiles/asynctasks/catkin_tasks.ini src/.tasks
 cp ~/dotfiles/clang_formats/ros-clang-format src/.clang-format
 
-echo "catkin workspace has been initialized"
+echo -e "\n"
+echo "======================================"
+echo "catkin workspace has been initialized!"
+echo "======================================"
 exit 0
