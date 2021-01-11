@@ -135,6 +135,7 @@ compdef vman="man"
 # alias ra="ranger" # use ra() function instead
 
 # simple aliases
+alias nv="nvim"
 alias zshconf="nvim ~/.zshrc"
 alias tmuxconf="nvim ~/.tmux.conf"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
@@ -145,6 +146,7 @@ alias appt='sudo apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
 
 # suffix aliases
 alias -s {cpp,h,md,txt}=nvim
+alias -s py=python3
 
 # function aliases
 mkcd() {
