@@ -41,7 +41,8 @@ if command -v brew &> /dev/null; then
     declare -A brew_pack
     brew_pack[lazygit]=jesseduffield/lazygit/lazygit
     brew_pack[delta]=git-delta
-    brew_pack[clang-format]=clang-format
+    brew_pack[clang-format]=llvm
+    brew_pack[clangd]=llvm
     brew_pack[cppcheck]=cppcheck
     brew_pack[shellcheck]=shellcheck
     brew_pack[rg]=ripgrep
