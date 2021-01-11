@@ -225,7 +225,7 @@ nnoremap <silent> <space>' :<C-u>CocCommand fzf-preview.Marks<cr>
 nnoremap <silent> <space>" :<C-u>CocList marks<cr>
 nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
-nnoremap <silent> <space><C-f> :<C-u>CocCommand fzf-preview.GitFiles<cr>
+nnoremap <silent> <space><C-f> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.GitFiles<cr>
 nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
 nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
 nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
