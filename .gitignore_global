@@ -10,7 +10,7 @@ compile_commands.json
 # vim
 *.swp
 *.swo
-.vim
+.vim/
 .vimspector.json
 .tasks
 
@@ -20,3 +20,6 @@ compile_commands.json
 
 # clang-format
 .clang-format
+
+# clangd
+.cache/
