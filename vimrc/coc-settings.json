@@ -69,7 +69,7 @@
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    "git.signOffset": 1,
+    "git.signPriority": 1,
     "git.branchCharacter": "",
     "git.changedDecorator": "✹ ",
     "git.stagedDecorator": "● ",
@@ -150,7 +150,6 @@
             "^\\s*[A-Z]"
         ]
     },
-    "todolist.promptForReminder": false,
     "cSpell.enabledLanguageIds": [
         "vim",
         "asciidoc",
@@ -215,8 +214,9 @@
         }
     ],
     "cSpell.dictionaries": [
+        "commonTerms",
         "pythonTerms",
-        "commonTerms"
+        "cFamilyTerms"
     ],
     "cSpell.allowCompoundWords": true,
     "cSpell.showStatus": false,
