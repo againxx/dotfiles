@@ -44,6 +44,7 @@
         "variable": ""
     },
     "diagnostic.displayByAle": true,
+    "signature.maxWindowHeight": 10,
     "list.source.files.args": [
         "--hidden",
         "--files"
@@ -225,30 +226,9 @@
         "haici"
     ],
     "leetcode.language": "cpp",
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "cuda"
-            ],
-            "rootPatterns": [
-                ".ccls-root",
-                ".vim",
-                "compile_commands.json"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": ".vim/.ccls-cache"
-                },
-                "client": {
-                    "snippetSupport": false
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
-        }
-    }
+    "clangd.semanticHighlighting": true,
+    "clangd.arguments": [
+        "--completion-style=detailed",
+        "--suggest-missing-includes"
+    ]
 }

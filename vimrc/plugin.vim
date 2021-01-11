@@ -135,6 +135,8 @@ let g:coc_global_extensions = [
 \   'coc-omni',
 \   'coc-sh',
 \   'coc-translator'
+\   'coc-translator',
+\   'coc-clangd',
 \ ]
 
 " coc-explorer
