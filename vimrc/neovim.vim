@@ -91,6 +91,8 @@ let g:coc_snippet_prev = '<M-k>'
 let g:UltiSnipsJumpForwardTrigger = '<M-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<M-k>'
 let g:UltiSnipsListSnippets = '<M-l>'
+nnoremap <silent> <space><M-l> :<C-u>Snippets<cr>
+let g:which_space_map['<M-l>'] = 'snippets'
 
 " ===
 " === Autocmd

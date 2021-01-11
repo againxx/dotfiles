@@ -19,6 +19,7 @@ let g:rainbow_conf = {
 \   'separately': {
 \       'cmake': 0,
 \       'vimwiki': 0,
+\       'fzf': 0,
 \   }
 \ }
 
@@ -44,9 +45,22 @@ let g:ale_fixers = {
 let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
 let g:ale_python_mypy_ignore_invalid_syntax = 1
 let g:ale_python_mypy_options = '--cache-dir=' . $HOME . '/.cache/mypy'
-let g:ale_cpp_ccls_init_options = {"cache": {"directory": ".vim/.ccls-cache"}}
+let g:ale_cpp_ccls_init_options = {"cache": {"directory": ".cache/ccls"}}
 let g:ale_c_clangformat_options = '--style=file'
 let g:ale_cpp_clangtidy_checks = ['*']
+
+" ===
+" === fzf
+" ===
+let g:fzf_layout = {
+\   'window': {
+\       'width': 0.9,
+\       'height': 0.9,
+\       'xoffset': 0.5,
+\       'border': 'sharp'
+\   }
+\ }
+let g:fzf_preview_window = ['up:60%', '?']
 
 " ===
 " === Vista
@@ -63,14 +77,6 @@ let g:vista_executive_for = {
 \ }
 let g:vista_close_on_jump = 1
 let g:vista_sidebar_width = 40
-let g:fzf_layout = {
-\   'window': {
-\       'width': 0.9,
-\       'height': 0.9,
-\       'xoffset': 0.5,
-\       'border': 'sharp'
-\   }
-\ }
 let g:vista#renderer#icons = {
 \   'func': 'ﳣ ',
 \   'function': 'ﳣ ',
@@ -81,6 +87,7 @@ let g:vista#renderer#icons = {
 \   'const': ' ',
 \   'constant': ' ',
 \   'constructor': ' ',
+\   'method': ' ',
 \   'package': ' ',
 \   'packages': ' ',
 \   'enum': ' ',
@@ -94,6 +101,7 @@ let g:vista#renderer#icons = {
 \   'field': '綠',
 \   'fields': '綠',
 \   'map': '壟',
+\   'class': '囹',
 \   'augroup': ' ',
 \   'struct': 'פּ ',
 \   'union': '謹',
@@ -103,6 +111,11 @@ let g:vista#renderer#icons = {
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
 let g:vista_fzf_preview = ['up:60%']
+
+" ===
+" === vim-clap
+" ===
+" let g:clap_theme = 'material_design_dark'
 
 " ===
 " === Ultisnips
@@ -134,9 +147,9 @@ let g:coc_global_extensions = [
 \   'coc-ultisnips',
 \   'coc-omni',
 \   'coc-sh',
-\   'coc-translator'
 \   'coc-translator',
 \   'coc-clangd',
+\   'coc-fzf-preview'
 \ ]
 
 " coc-explorer
@@ -160,6 +173,18 @@ let g:coc_explorer_global_presets = {
 \     'file.child.template': '[selection | clip | 1] [indent][icon] [filename omitCenter 1]',
 \   }
 \ }
+
+" coc-fzf-preview
+let g:fzf_preview_fzf_preview_window_option = 'up:60%'
+let $FZF_PREVIEW_PREVIEW_BAT_THEME='Dracula'
+let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard $(git rev-parse --show-toplevel)'
+let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,?:toggle-preview'
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_git_status_preview_command =
+\   "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached -- {-1} | delta --hunk-header-style=\"omit\" || " .
+\   "[[ $(git diff -- {-1}) != \"\" ]] && git diff -- {-1} | delta --hunk-header-style=\"omit\" || " .
+\   g:fzf_preview_command
 
 " ===
 " === Python-special

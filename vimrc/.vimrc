@@ -36,6 +36,10 @@ Plug 'kevinhwang91/rnvimr'
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
+" Build the extra binary if cargo exists on your system.
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+" Plug 'vn-ki/coc-clap'
+" Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " ===
 " === Stausline
@@ -59,6 +63,7 @@ Plug 'moll/vim-bbye'
 " Plug 'liuchengxu/space-vim-dark'
 Plug 'ayu-theme/ayu-vim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'ryanoasis/vim-devicons'
 
 " ===
 " === Highlighting
@@ -159,6 +164,7 @@ Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 Plug 'szw/vim-maximizer'
 " Automatically switch to absolute numbers when relative numbers don't make sense
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 " ===
 " === ROS
 " ===

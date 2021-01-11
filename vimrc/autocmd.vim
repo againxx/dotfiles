@@ -148,6 +148,7 @@ augroup other_filetypes
     \   |   set laststatus=0
     \   |   execute "autocmd BufLeave <buffer> set laststatus=2"
     \   | endif
+    autocmd TermClose * if &filetype ==# 'fzf' | let g:fzf_preview_fzf_preview_window_option='up:60%' | endif
 augroup END
 
 augroup common
@@ -166,7 +167,7 @@ augroup common
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions"
     \   | call CocActionAsync('highlight') | endif
-    autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
+    autocmd CursorHoldI * silent if coc#float#has_float() == 0 | call CocActionAsync('showSignatureHelp') | endif
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
     autocmd User vim-which-key call which_key#register('<space>', 'g:which_space_map')

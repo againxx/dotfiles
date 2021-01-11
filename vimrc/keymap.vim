@@ -156,7 +156,8 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-declration)
 nmap <silent> gL <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr :CocCommand fzf-preview.CocReferences<cr>
+nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use K to show documentation in preview window.
@@ -169,8 +170,12 @@ nnoremap <silent> K :call <SID>showDocumentation()<CR>
 let g:UltiSnipsExpandTrigger = "<C-l>"
 
 " Scroll floating window up and down
-nnoremap <expr><C-f> coc#float#has_float() ? coc#float#scroll(1) : "3\<C-f>"
-nnoremap <expr><C-b> coc#float#has_float() ? coc#float#scroll(0) : "3\<C-b>"
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -180,14 +185,15 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " coc-lists
-nnoremap <silent> <space>m :<C-u>CocList -N mru -A<cr>
+nnoremap <silent> <space>m :<C-u>CocCommand fzf-preview.MruFiles<cr>
 nnoremap <silent> <space>f :<C-u>CocList files<cr>
 nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
+nnoremap <silent> <space><C-b> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.FromResources buffer project_mru<CR>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
 " Search coc commands
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
-nnoremap <silent> <space>C :<C-u>CocList cmdhistory<cr>
+nnoremap <silent> <space>C :<C-u>CocCommand fzf-preview.CommandPalette<cr>
 " Search vim commands
 nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
 " Search workspace symbols.
@@ -200,7 +206,9 @@ nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 " Show locationlist
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
+nnoremap <silent> <space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
 nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
+nnoremap <silent> <space><C-q> :<C-u>CocCommand fzf-preview.QuickFix<CR>
 nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
@@ -208,26 +216,29 @@ nnoremap <silent> <space>K :<C-u>CocList maps<cr>
 nnoremap <silent> <space>p :<C-u>CocList grep<cr>
 nnoremap <silent> <space>P :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
 vnoremap <silent> <space>P :<C-u>call <SID>grepFromSelected(visualmode())<CR>
-nnoremap <silent> <space><C-l> :<C-u>Snippets<cr>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>H :<C-u>CocFirst<cr>
 nnoremap <silent> <space>L :<C-u>CocLast<cr>
 nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
-nnoremap <silent> <space>' :<C-u>CocList --normal marks<cr>
-nnoremap <silent> <space>/ :<C-u>CocList searchhistory<cr>
+nnoremap <silent> <space>' :<C-u>CocCommand fzf-preview.Marks<cr>
+nnoremap <silent> <space>" :<C-u>CocList marks<cr>
+nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
-nnoremap <silent> <space>F :<C-u>Files<cr>
+nnoremap <silent> <space><C-f> :<C-u>CocCommand fzf-preview.GitFiles<cr>
 nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
 nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
-nnoremap <silent> <space>gl :<C-u>BLines<cr>
-nnoremap <silent> <space>gL :<C-u>Lines<cr>
-nnoremap <silent> <space>gg :<C-u>Gstatus<cr>
+nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
+nnoremap <silent> <space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> <space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<cr>
+nnoremap <silent> <space>? :<C-u>CocCommand fzf-preview.BufferLines<cr>
+nnoremap <silent> <space>* :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<cr>"<cr>
+nnoremap <silent> <space>gs :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.GitStatus<cr>
 " show chunk diff at current position
 nmap <silent> <space>gd <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap <silent> <space>gc <Plug>(coc-git-commit)
-nnoremap <silent> <space>gs :<C-u>CocCommand git.chunkStage<cr>
+nnoremap <silent> <space>ga :<C-u>CocCommand git.chunkStage<cr>
 nnoremap <silent> <space>gu :<C-u>CocCommand git.chunkUndo<cr>
 nnoremap <silent> <space>gz :<C-u>CocCommand git.foldUnchanged<cr>
 nnoremap <silent> <space>gr :<C-u>Git restore --staged %<bar>CocCommand git.refresh<cr>
@@ -345,26 +356,33 @@ let g:which_space_map.H = 'first-item'
 let g:which_space_map.L = 'last-item'
 let g:which_space_map.e = 'explorer'
 let g:which_space_map.t = 'task'
-let g:which_space_map.F = 'fzf-file'
 let g:which_space_map.x = 'open-terminal'
-let g:which_space_map['<C-P>'] = 'rip-grep'
-let g:which_space_map['<C-L>'] = 'snippets'
+let g:which_space_map['<C-F>'] = 'git-file'
+let g:which_space_map['<C-P>'] = 'fzf-grep'
+let g:which_space_map['<C-B>'] = 'buffer-project-mru'
+let g:which_space_map['<C-L>'] = 'location-list-preview'
+let g:which_space_map['<C-Q>'] = 'quickfix-preview'
 let g:which_space_map['<C-G>'] = 'lazygit'
+let g:which_space_map['<C-O>'] = 'jump-location'
 let g:which_space_map['.'] = 'last-list'
-let g:which_space_map['/'] = 'search-history'
-let g:which_space_map["'"] = 'mark'
+let g:which_space_map['/'] = 'line-in-current-buffer'
+let g:which_space_map['?'] = 'line-in-all-buffer'
+let g:which_space_map["'"] = 'mark-preview'
+let g:which_space_map['"'] = 'mark'
+let g:which_space_map['*'] = 'grep-current-word'
 
 " For git/go-to-line
 let g:which_space_map.g = {
-\   'name': '+git/goto',
-\   'l':    'line-in-current-buffer',
-\   'L':    'line-in-all-files',
-\   'g':    'show-git-status',
+\   'name': '+git/history',
+\   '/':    'search-history',
+\   ';':    'change-history',
+\   's':    'show-git-status',
 \   'd':    'show-chunk-diff',
 \   'c':    'show-commit-contains-current-line',
-\   's':    'stage-chunk',
+\   'a':    'stage-chunk',
 \   'u':    'undo-chunk',
 \   'z':    'fold-unchanged',
+\   'r':    'restore-current-file',
 \ }
 
 " For refactor/run
@@ -445,5 +463,5 @@ function! s:grepFromSelected(type)
     let word = substitute(@@, '\n$', '', 'g')
     let word = escape(word, '| ')
     let @@ = saved_unnamed_register
-    execute 'CocList grep '.word
+    execute 'CocCommand fzf-preview.ProjectGrep '.word
 endfunction
