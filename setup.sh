@@ -3,6 +3,7 @@
 dotfiles_dir=$(dirname "$(realpath "$0")")
 
 ln -sf "$dotfiles_dir/vimrc/.vimrc" ~/
+ln -sf "$dotfiles_dir/ftplugin" ~/.vim/after/
 ln -sf "$dotfiles_dir/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
 ln -sf "$dotfiles_dir/asynctasks/global_tasks.ini" ~/.config/nvim/tasks.ini
 ln -sf "$dotfiles_dir/.zshrc" ~/

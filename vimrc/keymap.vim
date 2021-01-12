@@ -284,19 +284,6 @@ nmap <space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <space>rn <Plug>(coc-rename)
 nnoremap <silent> <space>rr :AsyncTask file-run<CR>
-" exec in terminal
-augroup spacemap_augroup
-    autocmd!
-    autocmd FileType cpp nnoremap <buffer> <space>rp :AsyncTask project-run<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>rb :AsyncTask project-build<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>rB :AsyncTask file-build<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>ri :AsyncTask project-init<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>rc :AsyncTask project-clean<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
-    autocmd FileType cpp nnoremap <buffer> <space>rX :ALEFix clangtidy<CR>
-    autocmd FileType python nnoremap <buffer> <silent> <space>rr :CocCommand python.execInTerminal<CR>
-    autocmd FileType python xnoremap <buffer> <silent> <space>rs :CocCommand python.execSelectionInTerminal<CR>
-augroup END
 
 " ===
 " === Whichkey
