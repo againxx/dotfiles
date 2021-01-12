@@ -213,9 +213,10 @@ nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
 nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
 nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
 nnoremap <silent> <space>K :<C-u>CocList maps<cr>
-nnoremap <silent> <space>p :<C-u>CocList grep<cr>
-nnoremap <silent> <space>P :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
-vnoremap <silent> <space>P :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+nnoremap <silent> <space>P :<C-u>CocList grep<cr>
+vnoremap <silent> <space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
+nnoremap <silent> <space><C-p> :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
+vnoremap <silent> <space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
 nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>H :<C-u>CocFirst<cr>
@@ -226,7 +227,7 @@ nnoremap <silent> <space>" :<C-u>CocList marks<cr>
 nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 nnoremap <silent> <space><C-f> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.GitFiles<cr>
-nnoremap <silent> <space><C-p> :<C-u>Rg<cr>
+nnoremap <silent> <space>p :<C-u>Rg<cr>
 nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
 nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
 nnoremap <silent> <space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
@@ -335,8 +336,8 @@ let g:which_space_map.h = 'help'
 let g:which_space_map.u = 'undo-tree'
 let g:which_space_map.D = 'todo-list'
 let g:which_space_map.K = 'key-map'
-let g:which_space_map.p = 'grep'
-let g:which_space_map.P = 'grep-by-motion'
+let g:which_space_map.p = 'grep-preview'
+let g:which_space_map.P = 'grep'
 let g:which_space_map.j = 'next-item'
 let g:which_space_map.k = 'previous-item'
 let g:which_space_map.H = 'first-item'
@@ -345,7 +346,7 @@ let g:which_space_map.e = 'explorer'
 let g:which_space_map.t = 'task'
 let g:which_space_map.x = 'open-terminal'
 let g:which_space_map['<C-F>'] = 'git-file'
-let g:which_space_map['<C-P>'] = 'fzf-grep'
+let g:which_space_map['<C-P>'] = 'grep-by-motion'
 let g:which_space_map['<C-B>'] = 'buffer-project-mru'
 let g:which_space_map['<C-L>'] = 'location-list-preview'
 let g:which_space_map['<C-Q>'] = 'quickfix-preview'
@@ -438,7 +439,7 @@ function! s:expandUltisnipsOrUseCocCompletion() abort
     endif
 endfunction
 
-function! s:grepFromSelected(type)
+function! s:grepFromSelected(type, ...)
     let saved_unnamed_register = @@
     if a:type ==# 'v'
         normal! `<v`>y
@@ -450,5 +451,9 @@ function! s:grepFromSelected(type)
     let word = substitute(@@, '\n$', '', 'g')
     let word = escape(word, '| ')
     let @@ = saved_unnamed_register
-    execute 'CocCommand fzf-preview.ProjectGrep '.word
+    if a:0 > 0
+        execute 'CocList grep '.word
+    else
+        execute 'CocCommand fzf-preview.ProjectGrep '.word
+    endif
 endfunction
