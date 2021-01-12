@@ -60,7 +60,7 @@ let g:fzf_layout = {
 \       'border': 'sharp'
 \   }
 \ }
-let g:fzf_preview_window = ['up:60%', '?']
+let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 
 " ===
 " === Vista
@@ -178,9 +178,10 @@ let g:coc_explorer_global_presets = {
 " coc-fzf-preview
 let g:fzf_preview_fzf_preview_window_option = 'up:60%'
 let $FZF_PREVIEW_PREVIEW_BAT_THEME='Dracula'
+let $FZF_DEFAULT_OPTS = '--reverse'
 let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard $(git rev-parse --show-toplevel)'
-let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,?:toggle-preview'
+let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-/:toggle-preview'
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 let g:fzf_preview_git_status_preview_command =
 \   "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached -- {-1} | delta --hunk-header-style=\"omit\" || " .
