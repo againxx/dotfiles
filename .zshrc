@@ -118,6 +118,9 @@ fi
 export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
 compdef vman="man"
 
+# Won't have effect in .profle, strange!
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
