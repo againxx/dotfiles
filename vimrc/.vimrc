@@ -37,9 +37,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 " Build the extra binary if cargo exists on your system.
-" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 " Plug 'vn-ki/coc-clap'
-" Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " ===
 " === Stausline

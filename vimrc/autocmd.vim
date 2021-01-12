@@ -38,3 +38,9 @@ augroup vim_which_key_speical
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
     autocmd User vim-which-key call which_key#register('<space>', 'g:which_space_map')
 augroup END
+
+augroup clap_speical
+    autocmd!
+    autocmd FileType clap_input inoremap <silent> <buffer> <C-o> <Esc>
+    autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
+augroup END

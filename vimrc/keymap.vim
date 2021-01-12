@@ -186,8 +186,9 @@ omap af <Plug>(coc-funcobj-a)
 
 " coc-lists
 nnoremap <silent> <space>m :<C-u>CocCommand fzf-preview.MruFiles<cr>
-nnoremap <silent> <space>f :<C-u>CocList files<cr>
-nnoremap <silent> <space>b :<C-u>CocList buffers<cr>
+nnoremap <silent> <space>f :<C-u>Clap filer<cr>
+nnoremap <silent> <space>F :<C-u>Clap files --hidden<cr>
+nnoremap <silent> <space>b :<C-u>Clap buffers<cr>
 nnoremap <silent> <space><C-b> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.FromResources buffer project_mru<CR>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
@@ -195,7 +196,7 @@ nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 nnoremap <silent> <space>C :<C-u>CocCommand fzf-preview.CommandPalette<cr>
 " Search vim commands
-nnoremap <silent> <space>v :<C-u>CocList vimcommands<cr>
+nnoremap <silent> <space>v :<C-u>Clap command<cr>
 " Search workspace symbols.
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
@@ -239,6 +240,7 @@ nnoremap <silent> <space>gs :<C-u>let g:fzf_preview_fzf_preview_window_option='r
 nmap <silent> <space>gd <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap <silent> <space>gc <Plug>(coc-git-commit)
+nnoremap <silent> <space>gC :<C-u>Clap bcommits<cr>
 nnoremap <silent> <space>ga :<C-u>CocCommand git.chunkStage<cr>
 nnoremap <silent> <space>gu :<C-u>CocCommand git.chunkUndo<cr>
 nnoremap <silent> <space>gz :<C-u>CocCommand git.foldUnchanged<cr>
@@ -319,8 +321,9 @@ let g:which_wikilist_upper_map['1'] = 'change_list_num'
 " For coc-lists
 let g:which_space_map = {}
 let g:which_space_map.m = 'most-recent-used'
-let g:which_space_map.f = 'file'
-let g:which_space_map.b = 'buffer'
+let g:which_space_map.f = 'filer'
+let g:which_space_map.F = 'files'
+let g:which_space_map.b = 'buffers'
 let g:which_space_map.y = 'yank'
 let g:which_space_map.Y = 'source'
 let g:which_space_map.c = 'coc-command'
@@ -367,6 +370,7 @@ let g:which_space_map.g = {
 \   's':    'show-git-status',
 \   'd':    'show-chunk-diff',
 \   'c':    'show-commit-contains-current-line',
+\   'C':    'show-commits-for-current-buffer',
 \   'a':    'stage-chunk',
 \   'u':    'undo-chunk',
 \   'z':    'fold-unchanged',

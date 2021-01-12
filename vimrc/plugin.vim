@@ -115,8 +115,8 @@ let g:vista_fzf_preview = ['up:60%']
 " ===
 " === vim-clap
 " ===
-" let g:clap_theme = 'material_design_dark'
-" let g:clap_enable_background_shadow = v:false
+let g:clap_theme = 'material_design_dark'
+let g:clap_enable_background_shadow = v:false
 
 " ===
 " === Ultisnips
