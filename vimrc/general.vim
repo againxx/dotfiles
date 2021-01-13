@@ -1,10 +1,16 @@
+" Allow buffer switch without saving
+set hidden
 set lazyredraw
-set hidden 		    " Allow buffer switch without saving
-set showcmd		    " Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
-set hlsearch		" highlight all search matches
+" Show (partial) command in status line.
+set showcmd
+" Show matching brackets.
+set showmatch
+" Do case insensitive matching
+set ignorecase
+" Do smart case matching
+set smartcase
+" highlight all search matches
+set hlsearch
 set wildmenu
 set wildmode=list:longest,full
 set autoread
@@ -13,16 +19,12 @@ set noruler
 set number
 set relativenumber
 set backspace=indent,eol,start
-" set foldmethod=indent
-" set foldlevel=99      " unfold at begin
 set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-" set cindent
-" set laststatus=2 	" this value is now default 2, used by airline
 " set ttimeoutlen=100     " fcitx.vim / ibus
 
 " Use the symbols for tab and trailing spaces
