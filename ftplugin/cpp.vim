@@ -23,6 +23,9 @@ nnoremap <buffer> <space>ri :AsyncTask project-init<CR>
 nnoremap <buffer> <space>rc :AsyncTask project-clean<CR>
 nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
 nnoremap <buffer> <space>rX :ALEFix clangtidy<CR>
+nmap <buffer> gq <Plug>(coc-format-selected)
+nmap <buffer> gqq gqj
+xmap <buffer> gq <Plug>(coc-format-selected)
 
 function! s:catkinInit() abort
     setlocal colorcolumn=121
