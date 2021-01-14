@@ -96,6 +96,18 @@ if g:colors_name == 'ayu'
         autocmd FileType zsh hi Conceal guifg=#0F1419
         autocmd FileType markdown,vimwiki hi! link Conceal Function
     augroup END
+    hi ClapFuzzyMatches1  gui=bold guifg=#D4BFFF
+    hi ClapFuzzyMatches2  gui=bold guifg=#C0C2FB
+    hi ClapFuzzyMatches3  gui=bold guifg=#ACC4F7
+    hi ClapFuzzyMatches4  gui=bold guifg=#98C7F2
+    hi ClapFuzzyMatches5  gui=bold guifg=#84CAEE
+    hi ClapFuzzyMatches6  gui=bold guifg=#70CCEA
+    hi ClapFuzzyMatches7  gui=bold guifg=#5CCFE6
+    hi ClapFuzzyMatches8  gui=bold guifg=#59CCD7
+    hi ClapFuzzyMatches9  gui=bold guifg=#56C9C7
+    hi ClapFuzzyMatches10 gui=bold guifg=#52C5B8
+    hi ClapFuzzyMatches11 gui=bold guifg=#4FC2A8
+    hi ClapFuzzyMatches12 gui=bold guifg=#4CBF99
 endif
 
 if g:colors_name == 'onehalfdark'
