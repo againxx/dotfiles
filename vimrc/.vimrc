@@ -34,10 +34,15 @@ Plug 'kevinhwang91/rnvimr'
 " === Tags
 " ===
 Plug 'liuchengxu/vista.vim'
+
+" ===
+" === Fuzzy Finder
+" ===
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 " Build the extra binary if cargo exists on your system.
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+" Plug 'zhyu/clap-tasks'
 " Plug 'vn-ki/coc-clap'
 
 " ===
@@ -56,7 +61,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisu
 Plug 'moll/vim-bbye'
 
 " ===
-" === Colorscheme
+" === Colorscheme & Icon
 " ===
 " Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 " Plug 'liuchengxu/space-vim-dark'
@@ -163,6 +168,8 @@ Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 Plug 'szw/vim-maximizer'
 " Automatically switch to absolute numbers when relative numbers don't make sense
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" Changes the working directory to the project root when you open a file or directory
+" Plug 'airblade/vim-rooter'
 
 " ===
 " === ROS
