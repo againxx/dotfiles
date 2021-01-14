@@ -148,7 +148,7 @@ alias lg="lazygit"
 alias appt='sudo apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
 
 # suffix aliases
-alias -s {cpp,h,md,txt}=nvim
+alias -s {cpp,h,md,wiki,txt,json,yaml,yml,vim}=nvim
 alias -s py=python3
 
 # function aliases
