@@ -183,9 +183,12 @@ let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard $(git rev-parse --show-toplevel)'
 let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-/:toggle-preview'
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_delta_command = "delta --paging=never --hunk-header-style=omit --line-numbers-left-format=\"{nm} \" --line-numbers-right-format=\"{np} \""
 let g:fzf_preview_git_status_preview_command =
-\   "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached -- {-1} | delta --hunk-header-style=\"omit\" || " .
-\   "[[ $(git diff -- {-1}) != \"\" ]] && git diff -- {-1} | delta --hunk-header-style=\"omit\" || " .
+\   "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached -- {-1} | " .
+\   g:fzf_preview_delta_command . " || " .
+\   "[[ $(git diff -- {-1}) != \"\" ]] && git diff -- {-1} | " .
+\   g:fzf_preview_delta_command . " || " .
 \   g:fzf_preview_command
 
 " ===

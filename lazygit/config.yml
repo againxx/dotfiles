@@ -28,8 +28,8 @@ git:
     colorArg: always
     pager: >
         delta --paging=never --24-bit-color=never
-        --width=variable --hunk-header-decoration-style="omit"
-        --file-decoration-style="omit"
+        --width=variable --hunk-header-decoration-style=omit
+        --file-decoration-style=omit
         --line-numbers-left-format="{nm} "
         --line-numbers-right-format="{np}│ "
         --plus-style="syntax 66"
