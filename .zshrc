@@ -146,6 +146,7 @@ alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 alias pch="proxychains4 -q"
 alias lg="lazygit"
 alias appt='sudo apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
+alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed "{s/\/.*//;N;N;s/\n/^/}" | column -t -s^ | fzf --multi'
 
 # suffix aliases
 alias -s {cpp,h,md,wiki,txt,json,yaml,yml,vim}=nvim
