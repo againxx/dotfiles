@@ -310,9 +310,13 @@ let g:asynctasks_term_reuse = 1
 " === Vimspector
 " ===
 let g:vimspector_enable_mappings = 'HUMAN'
-sign define vimspectorBP text=🔴 texthl=Normal
-sign define vimspectorBPDisabled text=🔵 texthl=Normal
-sign define vimspectorPC text=🔶 texthl=SpellBad
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         40,
+  \    'vimspectorBPCond':     40,
+  \    'vimspectorBPDisabled': 40,
+  \    'vimspectorPC':         999,
+  \    'vimspectorPCBP':       999,
+  \ }
 
 " ===
 " === Vim-slime
