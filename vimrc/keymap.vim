@@ -156,7 +156,7 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-declration)
 nmap <silent> gL <Plug>(coc-implementation)
-nmap <silent> gr :CocCommand fzf-preview.CocReferences<cr>
+nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<cr>
 nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
@@ -183,13 +183,16 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-
+xmap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ic <Plug>(coc-classobj-i)
+omap ac <Plug>(coc-classobj-a)
 " coc-lists
 nnoremap <silent> <space>m :<C-u>CocCommand fzf-preview.MruFiles<cr>
 nnoremap <silent> <space>f :<C-u>Clap filer<cr>
 nnoremap <silent> <space>F :<C-u>Clap files --hidden<cr>
 nnoremap <silent> <space>b :<C-u>Clap buffers<cr>
-nnoremap <silent> <space><C-b> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+nnoremap <silent> <space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
 " Search coc commands
@@ -227,7 +230,7 @@ nnoremap <silent> <space>' :<C-u>CocCommand fzf-preview.Marks<cr>
 nnoremap <silent> <space>" :<C-u>CocList marks<cr>
 nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
-nnoremap <silent> <space><C-f> :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.GitFiles<cr>
+nnoremap <silent> <space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<cr>
 nnoremap <silent> <space>p :<C-u>Rg<cr>
 nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
 nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
