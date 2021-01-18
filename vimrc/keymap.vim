@@ -189,8 +189,8 @@ omap ic <Plug>(coc-classobj-i)
 omap ac <Plug>(coc-classobj-a)
 " coc-lists
 nnoremap <silent> <space>m :<C-u>CocCommand fzf-preview.MruFiles<cr>
-nnoremap <silent> <space>f :<C-u>Clap filer<cr>
-nnoremap <silent> <space>F :<C-u>Clap files --hidden<cr>
+nnoremap <silent> <space>F :<C-u>Clap filer<cr>
+nnoremap <silent> <space>f :<C-u>Clap files --hidden<cr>
 nnoremap <silent> <space>b :<C-u>Clap buffers<cr>
 nnoremap <silent> <space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
@@ -290,6 +290,7 @@ nmap <space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <space>rn <Plug>(coc-rename)
 nnoremap <silent> <space>rr :AsyncTask file-run<CR>
+nnoremap <silent> <space>rB :AsyncTask file-build<CR>
 
 " ===
 " === Whichkey
@@ -324,8 +325,8 @@ let g:which_wikilist_upper_map['1'] = 'change_list_num'
 " For coc-lists
 let g:which_space_map = {}
 let g:which_space_map.m = 'most-recent-used'
-let g:which_space_map.f = 'filer'
-let g:which_space_map.F = 'files'
+let g:which_space_map.F = 'filer'
+let g:which_space_map.f = 'files'
 let g:which_space_map.b = 'buffers'
 let g:which_space_map.y = 'yank'
 let g:which_space_map.Y = 'source'
