@@ -125,12 +125,6 @@ function! LightlineFileTypeWithSymbol()
     let l:ftWithSymbol = &ft!=#""?&ft:"unknown"
     if &filetype ==# 'vim'
         let l:ftWithSymbol .= ' '
-    elseif &filetype ==# 'python'
-        let l:ftWithSymbol .= ' '
-    elseif &filetype ==# 'cpp'
-        let l:ftWithSymbol .= ' '
-    elseif &filetype ==# 'markdown'
-        let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'cuda'
         let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'help'
@@ -141,6 +135,10 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' ﴬ' " 龎
     elseif &filetype ==# 'cmake'
         let l:ftWithSymbol .= ' '
+    elseif &filetype ==# 'unknown'
+        let l:ftWithSymbol .= ' '
+    else
+        let l:ftWithSymbol .= ' ' . WebDevIconsGetFileTypeSymbol()
     endif
     return l:ftWithSymbol
 endfunction
