@@ -229,6 +229,7 @@
     "clangd.semanticHighlighting": true,
     "clangd.arguments": [
         "--completion-style=detailed",
-        "--suggest-missing-includes"
+        "--suggest-missing-includes",
+        "--clang-tidy"
     ]
 }
