@@ -26,7 +26,7 @@ augroup coc_special
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# "cocactions"
     \   | call CocActionAsync('highlight') | endif
-    autocmd CursorHoldI * silent if coc#float#has_float() == 0 | call CocActionAsync('showSignatureHelp') | endif
+    autocmd CursorHoldI * silent if coc#float#has_float() == 0 && &filetype !=# 'clap_input' | call CocActionAsync('showSignatureHelp') | endif
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
