@@ -157,23 +157,28 @@ let g:coc_global_extensions = [
 
 " coc-explorer
 let g:coc_explorer_global_presets = {
-\   '.vim': {
-\      'root-uri': '~/.vim',
+\   'vimrc': {
+\       'root-uri': '~/dotfiles/vimrc',
+\       'sources': [{'name': 'file', 'expand': v:true}]
 \   },
-\   'floating': {
-\      'position': 'floating',
+\   'dotfiles': {
+\       'root-uri': '~/dotfiles',
+\       'sources': [
+\           {'name': 'buffer', 'expand': v:false},
+\           {'name': 'file', 'expand': v:true}
+\       ]
 \   },
 \   'floatingLeftside': {
-\      'position': 'floating',
-\      'floating-position': 'left-center',
-\      'floating-width': 50,
+\       'position': 'floating',
+\       'floating-position': 'left-center',
+\       'floating-width': 50,
 \   },
 \   'rightside': {
-\      'position': 'right',
+\       'position': 'right',
 \   },
 \   'simplify': {
-\     'file.root.template': '[icon] [title] [root] [fullpath]',
-\     'file.child.template': '[selection | clip | 1] [indent][icon] [filename omitCenter 1]',
+\       'file.root.template': '[icon] [title] [root] [fullpath]',
+\       'file.child.template': '[selection | clip | 1] [indent][icon] [filename omitCenter 1]',
 \   }
 \ }
 

@@ -230,7 +230,6 @@ nnoremap <silent> <space>j :<C-u>CocNext<cr>
 nnoremap <silent> <space>k :<C-u>CocPrev<cr>
 nnoremap <silent> <space>H :<C-u>CocFirst<cr>
 nnoremap <silent> <space>L :<C-u>CocLast<cr>
-nnoremap <silent> <space>e :<C-u>CocCommand explorer<cr>
 nnoremap <silent> <space>' :<C-u>CocCommand fzf-preview.Marks<cr>
 nnoremap <silent> <space>" :<C-u>CocList marks<cr>
 nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
@@ -254,6 +253,10 @@ nnoremap <silent> <space>gu :<C-u>CocCommand git.chunkUndo<cr>
 nnoremap <silent> <space>gz :<C-u>CocCommand git.foldUnchanged<cr>
 nnoremap <silent> <space>gr :<C-u>Git restore --staged %<bar>CocCommand git.refresh<cr>
 " nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
+nnoremap <silent> <space>ee :<C-u>CocCommand explorer<cr>
+nnoremap <silent> <space>ev :<C-u>CocCommand explorer --preset vimrc<cr>
+nnoremap <silent> <space>ed :<C-u>CocCommand explorer --preset dotfiles<cr>
+nnoremap <silent> <space>ec :<C-u>execute 'CocCommand explorer' expand('%:p:h')<cr>
 
 " vimwiki
 map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
@@ -355,9 +358,14 @@ let g:which_space_map.j = 'next-item'
 let g:which_space_map.k = 'previous-item'
 let g:which_space_map.H = 'first-item'
 let g:which_space_map.L = 'last-item'
-let g:which_space_map.e = 'explorer'
 let g:which_space_map.t = 'task'
 let g:which_space_map.x = 'open-terminal'
+let g:which_space_map['.'] = 'last-list'
+let g:which_space_map['/'] = 'line-in-current-buffer'
+let g:which_space_map['?'] = 'line-in-all-buffer'
+let g:which_space_map["'"] = 'mark-preview'
+let g:which_space_map['"'] = 'mark'
+let g:which_space_map['*'] = 'grep-current-word'
 let g:which_space_map['<C-F>'] = 'git-file'
 let g:which_space_map['<C-P>'] = 'grep-by-motion'
 let g:which_space_map['<C-B>'] = 'buffer-project-mru'
@@ -365,12 +373,14 @@ let g:which_space_map['<C-L>'] = 'location-list-preview'
 let g:which_space_map['<C-Q>'] = 'quickfix-preview'
 let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['<C-O>'] = 'jump-location'
-let g:which_space_map['.'] = 'last-list'
-let g:which_space_map['/'] = 'line-in-current-buffer'
-let g:which_space_map['?'] = 'line-in-all-buffer'
-let g:which_space_map["'"] = 'mark-preview'
-let g:which_space_map['"'] = 'mark'
-let g:which_space_map['*'] = 'grep-current-word'
+
+" For explorer
+let g:which_space_map.e = {
+\   'name': '+explorer',
+\   'e':    'current-folder',
+\   'v':    'vimrc',
+\   'd':    'dotfiles'
+\ }
 
 " For git/go-to-line
 let g:which_space_map.g = {
