@@ -128,7 +128,8 @@
     "explorer.keyMappings.global": {
         "<C-h>": "toggleHidden",
         "[g": "gitPrev",
-        "]g": "gitNext"
+        "]g": "gitNext",
+        "cw": "rename"
     },
     "zi.patterns": {
         "javascript": [
