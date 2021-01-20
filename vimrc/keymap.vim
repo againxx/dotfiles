@@ -128,14 +128,19 @@ nmap yg/ <Plug>(incsearch-fuzzy-stay)
 " === Ale
 " ===
 " Use [e \ [w and ]e \ ]w to navigate diagnostics
-nmap <silent> [e <Plug>(ale_previous_wrap_error)
-nmap <silent> ]e <Plug>(ale_next_wrap_error)
-nmap <silent> [w <Plug>(ale_previous_wrap)
-nmap <silent> ]w <Plug>(ale_next_wrap)
+" nmap <silent> [e <Plug>(ale_previous_wrap_error)
+" nmap <silent> ]e <Plug>(ale_next_wrap_error)
+" nmap <silent> [w <Plug>(ale_previous_wrap)
+" nmap <silent> ]w <Plug>(ale_next_wrap)
 
 " ===
 " === Coc
 " ===
+" navigate diagnostics
+nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
+nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
+nmap <silent> [w <Plug>(coc-diagnostic-prev)
+nmap <silent> ]w <Plug>(coc-diagnostic-next)
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
@@ -282,11 +287,12 @@ nnoremap <silent> <space>ra :<C-u>RnvimrToggle<cr>
 " Formatting selected code.
 xmap <space>rf <Plug>(coc-format-selected)
 nmap <space>rf <Plug>(coc-format-selected)
+nmap <space>rF <Plug>(coc-format)
 " nmap <space>rf <Plug>(coc-refactor)
 " Apply AutoFix to problem on the current line.
 nmap <space>rx <Plug>(coc-fix-current)
 " Apply ALEFix for the whole buffer
-nmap <space>rX <Plug>(ale_fix)
+" nmap <space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <space>rn <Plug>(coc-rename)
 nnoremap <silent> <space>rr :AsyncTask file-run<CR>
@@ -389,7 +395,6 @@ let g:which_space_map.r = {
 \   'f':    'format-selected',
 \   'F':    'format-buffer',
 \   'x':    'fix-line',
-\   'X':    'fix-buffer',
 \   's':    'run-selected',
 \   'p':    'run-project',
 \   'r':    'run-current-file',

@@ -177,7 +177,7 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 " ===
 " === View
 " ===
-nnoremap <silent> <leader>vc :call <SID>toggleAleErrorCode()<CR>
+nnoremap <silent> <leader>vc :call <SID>toggleCocErrorCode()<CR>
 nnoremap <leader>vm :MarkdownPreview<CR>
 nnoremap <leader>vh :call SyntaxAttr()<CR>
 " nmap <leader>vi <Plug>IndentGuidesToggle
@@ -203,6 +203,8 @@ nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
 nnoremap <leader>cl :call <SID>toggleCodeLens()<CR>
 nnoremap <leader>cb :call <SID>toggleGitBlame()<CR>
 nnoremap <leader>cp :call <SID>changeBuildProfile()<CR>
+" enter and exit insert mode to update diagnostics
+nnoremap <leader>ca :call <SID>changeDiagnosticLevel()<CR>i<Esc>
 
 " ===
 " === Table-mode
@@ -263,6 +265,23 @@ function! s:toggleAleErrorCode() abort
         unlet b:ale_echo_msg_format
     else
         let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
+    endif
+endfunction
+
+" Coc
+function! s:toggleCocErrorCode() abort
+    if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"
+        call coc#config('diagnostic.format', "%message\n[%source:%code]")
+    else
+        call coc#config('diagnostic.format', "%message\n[%source]")
+    endif
+endfunction
+
+function! s:changeDiagnosticLevel() abort
+    if coc#util#get_config('diagnostic')['level'] ==# "warning"
+        call coc#config('diagnostic.level', "hint")
+    else
+        call coc#config('diagnostic.level', "warning")
     endif
 endfunction
 
@@ -396,8 +415,3 @@ function! s:deleteFinishedTerminalBuffers() abort
         endif
     endfor
 endfunction
-
-" show vim highlight group under cursor
-" nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

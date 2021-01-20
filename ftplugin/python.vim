@@ -1,6 +1,18 @@
 setlocal foldlevel=1
 setlocal colorcolumn=101
 call coc#config('snippets.loadFromExtensions', 0)
+call coc#config('diagnostic-languageserver.linters', {
+\   'mypy': {
+\       'args': [
+\           "--no-color-output",
+\           "--no-error-summary",
+\           "--show-column-numbers",
+\           "--follow-imports=silent",
+\           "--cache-dir=".$HOME."/.cache/mypy",
+\           "%file"
+\       ]
+\   }
+\ })
 " dynamically set python.condaPath
 if !empty($CONDA_PREFIX)
     call coc#config('python.condaPath', $CONDA_PREFIX.'/bin/python')

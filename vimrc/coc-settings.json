@@ -43,7 +43,12 @@
         "value": "",
         "variable": ""
     },
-    "diagnostic.displayByAle": true,
+    "diagnostic.displayByAle": false,
+    "diagnostic.errorSign": "->",
+    "diagnostic.warningSign": "--",
+    "diagnostic.infoSign": "--",
+    "diagnostic.enableHighlightLineNumber": false,
+    "diagnostic.format": "%message\n[%source]",
     "signature.maxWindowHeight": 10,
     "list.source.files.args": [
         "--hidden",
@@ -231,5 +236,60 @@
         "--completion-style=detailed",
         "--suggest-missing-includes",
         "--clang-tidy"
-    ]
+    ],
+    "diagnostic-languageserver.mergeConfig": true,
+    "diagnostic-languageserver.linters": {
+        "cppcheck": {
+            "command": "cppcheck --force",
+            "args": [
+                "--template={line}:{column} {message} [{severity}]",
+                "--enable=style",
+                "--inconclusive",
+                "--quiet",
+                "%file"
+            ],
+            "debounce": 100,
+            "sourceName": "cppcheck",
+            "isStderr": true,
+            "isStdout": false,
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "formatPattern": [
+                "^(\\d+):(\\d+)\\s([^\\[]+)\\s\\[(.*)\\]$",
+                {
+                    "line": 1,
+                    "endLine": 1,
+                    "column": 2,
+                    "message": 3,
+                    "security": 4
+                }
+            ],
+            "securities": {
+                "style": "info",
+                "portability": "warning",
+                "warning": "warning",
+                "performance": "warning"
+            }
+        },
+        "pylint": {
+            "args": [
+                "--output-format",
+                "text",
+                "--score",
+                "no",
+                "--msg-template",
+                "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
+                "--rcfile=~/.pylintrc",
+                "%file"
+            ]
+        }
+    },
+    "diagnostic-languageserver.filetypes": {
+        "sh": "shellcheck",
+        "cpp": "cppcheck",
+        "python": [
+            "pylint",
+            "mypy"
+        ]
+    }
 }

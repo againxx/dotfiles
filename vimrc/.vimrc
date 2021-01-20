@@ -8,7 +8,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " ===
 " === Linting & Fixing
 " ===
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " ===
 " === Debugger
@@ -50,7 +50,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 " ===
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'maximbaz/lightline-ale'
+" Plug 'maximbaz/lightline-ale'
 Plug 'againxx/lightline-utils'
 
 " ===

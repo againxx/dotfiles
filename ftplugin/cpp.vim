@@ -6,6 +6,7 @@ let b:switch_custom_definitions = [
 \       '\(std::cout.*\)std::endl;': '\1''\\n'';',
 \   }
 \ ]
+call coc#config('diagnostic.format', "%message\n[%source:%code]")
 
 augroup cpp_special
     autocmd!
@@ -20,8 +21,8 @@ nnoremap <buffer> <space>rp :AsyncTask project-run<CR>
 nnoremap <buffer> <space>rb :AsyncTask project-build<CR>
 nnoremap <buffer> <space>ri :AsyncTask project-init<CR>
 nnoremap <buffer> <space>rc :AsyncTask project-clean<CR>
-nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
-nnoremap <buffer> <space>rX :ALEFix clangtidy<CR>
+" nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
+" nnoremap <buffer> <space>rX :ALEFix clangtidy<CR>
 nmap <buffer> gq <Plug>(coc-format-selected)
 nmap <buffer> gqq gqj
 xmap <buffer> gq <Plug>(coc-format-selected)

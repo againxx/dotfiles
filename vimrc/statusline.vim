@@ -6,6 +6,9 @@ let g:lightline.symbols = {
 \   'beforemode': ' ',
 \   'whitespace': ' ',
 \   'spellcheck': '暈',
+\   'error': 'ﲅ ',
+\   'warning': 'ﲍ ',
+\   'information': 'ﳃ '
 \ }
 
 " Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
@@ -13,16 +16,16 @@ let g:lightline.symbols = {
 let g:lightline#bufferline#modified = ' ' " 
 let g:lightline#bufferline#read_only = ' ' " 
 let g:lightline#bufferline#unnamed = ''
-let g:lightline#ale#indicator_checking = '...'
-let g:lightline#ale#indicator_warnings = '● '
-let g:lightline#ale#indicator_errors = '✖ '
+" let g:lightline#ale#indicator_checking = '...'
+" let g:lightline#ale#indicator_warnings = '● '
+" let g:lightline#ale#indicator_errors = '✖ '
 let g:lightline#whitespace#trailing_format = '%s'
 
 let g:lightline.active = {
 \   'left': [['mode'],
 \            ['git', 'spell'],
 \            ['filename', 'readonly', 'cocstatus']],
-\   'right': [['linter_checking', 'linter_errors', 'linter_warnings_with_whitespace_check'],
+\   'right': [['linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
 \             ['filetype']],
 \ }
@@ -55,7 +58,8 @@ let g:lightline.component = {
 \   'line': '%l',
 \   'column': '%c',
 \   'close': '%999X X ',
-\   'winnr': '%{winnr()}'
+\   'winnr': '%{winnr()}',
+\   'cocstatus': '%{get(g:, "coc_status", "")}'
 \ }
 let g:lightline.component_visible_condition = {
 \   'spell': '0'
@@ -64,7 +68,6 @@ let g:lightline.component_visible_condition = {
 let g:lightline.component_function = {
 \   'filetype': 'LightlineFileTypeWithSymbol',
 \   'git': 'LightlineCocGit',
-\   'cocstatus': 'coc#status',
 \ }
 
 let g:lightline.component_function_visible_condition = {
@@ -73,11 +76,10 @@ let g:lightline.component_function_visible_condition = {
 
 let g:lightline.component_expand = {
 \   'buffers': 'lightline#bufferline#buffers',
-\   'linter_checking': 'lightline#ale#checking',
-\   'linter_errors': 'lightline#ale#errors',
 \   'readonly': 'LightlineReadonly',
 \   'tabs': 'LightlineTabInfo',
-\   'linter_warnings_with_whitespace_check': 'LightlineLinterWarningsWithWhitespaceCheck',
+\   'linter_errors': 'LightlineCocLinterErrors',
+\   'linter_warnings_with_whitespace_check': 'LightlineCocLinterWarningsWithWhitespaceCheck',
 \ }
 
 let g:lightline.component_type = {
@@ -160,7 +162,7 @@ function! LightlineReadonly()
     return &readonly && &filetype !~# '\v(help|vista|coc-explorer)' ? '' : ''
 endfunction
 
-function! LightlineLinterWarningsWithWhitespaceCheck()
+function! LightlineAleLinterWarningsWithWhitespaceCheck()
     if strlen(lightline#ale#checking()) > 0
         return ''
     else
@@ -174,4 +176,26 @@ function! LightlineLinterWarningsWithWhitespaceCheck()
             return l:whitespace.' '.l:warnings
         endif
     endif
+endfunction
+
+function! LightlineCocLinterWarningsWithWhitespaceCheck()
+    let l:info = get(b:, 'coc_diagnostic_info', {})
+    let l:whitespace = lightline#whitespace#check()
+    if empty(l:info) | return l:whitespace | endif
+    let l:msgs = [l:whitespace]
+    if get(info, 'warning', 0)
+        call add(msgs, g:lightline.symbols.warning . info['warning'])
+    endif
+    if get(info, 'information', 0)
+        call add(msgs, g:lightline.symbols.information . info['information'])
+    endif
+    return trim(join(msgs, ' '))
+endfunction
+
+function! LightlineCocLinterErrors()
+    let l:info = get(b:, 'coc_diagnostic_info', {})
+    if get(info, 'error', 0)
+        return g:lightline.symbols.error . info['error']
+    endif
+    return ''
 endfunction
