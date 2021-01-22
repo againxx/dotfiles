@@ -16,6 +16,11 @@ let g:node_host_prog = '~/.config/yarn/global/node_modules/neovim/bin/cli.js'
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 
+" use nvr as primary editor for lazygit
+if executable('nvr')
+    let $VISUAL = "nvr -cc tabprevious"
+endif
+
 " Make <C-j> and <C-k> move faster, in vim these two keys are used for window
 " navigation
 nnoremap <C-j> 5j
