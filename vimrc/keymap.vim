@@ -213,6 +213,7 @@ nnoremap <silent> <space>. :<C-u>CocListResume<cr>
 nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space><C-a> :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<cr>
 " Show locationlist
 nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
 nnoremap <silent> <space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
@@ -264,13 +265,13 @@ map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 " ===
 " === Vimspector
 " ===
-nnoremap <space>dd :call vimspector#Launch()<cr>
-nnoremap <space>d$ :call vimspector#Reset()<cr>
-nnoremap <space>dc :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
-nnoremap <space>dv :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
-nnoremap <space>dw :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
-nnoremap <space>ds :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
-nnoremap <space>do :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
+nnoremap <silent> <space>dd :call vimspector#Launch()<cr>
+nnoremap <silent> <space>d$ :call vimspector#Reset()<cr>
+nnoremap <silent> <space>dc :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
+nnoremap <silent> <space>dv :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
+nnoremap <silent> <space>dw :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
+nnoremap <silent> <space>ds :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
+nnoremap <silent> <space>do :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
 
 nmap <space>dl <Plug>VimspectorStepInto
 nmap <space>dj <Plug>VimspectorStepOver
@@ -281,7 +282,7 @@ nmap <space>de <Plug>VimspectorContinue
 nmap <space>d; <Plug>VimspectorToggleBreakpoint
 nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
 
-nnoremap <space>dx :call vimspector#ClearBreakpoints()<cr>
+nnoremap <silent> <space>dx :call vimspector#ClearBreakpoints()<cr>
 
 " ===
 " === refactor/run tasks
@@ -366,6 +367,7 @@ let g:which_space_map['?'] = 'line-in-all-buffer'
 let g:which_space_map["'"] = 'mark-preview'
 let g:which_space_map['"'] = 'mark'
 let g:which_space_map['*'] = 'grep-current-word'
+let g:which_space_map['<C-A>'] = 'diagnostic-preview'
 let g:which_space_map['<C-F>'] = 'git-file'
 let g:which_space_map['<C-P>'] = 'grep-by-motion'
 let g:which_space_map['<C-B>'] = 'buffer-project-mru'

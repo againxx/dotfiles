@@ -80,6 +80,7 @@ let g:which_leader_map.c = {
 \   'S':    'statusline-sep',
 \   's':    'check-spelling',
 \   'p':    'build-profile',
+\   'a':    'diagnostic-level',
 \ }
 
 let g:which_leader_map.t = {
