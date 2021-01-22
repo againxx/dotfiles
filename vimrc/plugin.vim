@@ -59,7 +59,7 @@ let g:fzf_layout = {
 \       'width': 0.9,
 \       'height': 0.9,
 \       'xoffset': 0.5,
-\       'border': 'sharp'
+\       'border': 'rounded'
 \   }
 \ }
 let g:fzf_preview_window = ['up:60%', 'ctrl-/']
