@@ -8,7 +8,8 @@ let g:lightline.symbols = {
 \   'spellcheck': '暈',
 \   'error': 'ﲅ ',
 \   'warning': 'ﲍ ',
-\   'information': 'ﳃ '
+\   'information': 'ﳃ ',
+\   'function': 'ﳣ ',
 \ }
 
 " Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
@@ -24,7 +25,7 @@ let g:lightline#whitespace#trailing_format = '%s'
 let g:lightline.active = {
 \   'left': [['mode'],
 \            ['git', 'spell'],
-\            ['filename', 'readonly', 'cocstatus']],
+\            ['filename', 'readonly', 'coc_status_with_nearest_function']],
 \   'right': [['linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
 \             ['filetype']],
@@ -59,7 +60,6 @@ let g:lightline.component = {
 \   'column': '%c',
 \   'close': '%999X X ',
 \   'winnr': '%{winnr()}',
-\   'cocstatus': '%{get(g:, "coc_status", "")}'
 \ }
 let g:lightline.component_visible_condition = {
 \   'spell': '0'
@@ -68,6 +68,7 @@ let g:lightline.component_visible_condition = {
 let g:lightline.component_function = {
 \   'filetype': 'LightlineFileTypeWithSymbol',
 \   'git': 'LightlineCocGit',
+\   'coc_status_with_nearest_function': 'CocStatusWithNearestMethodOrFunction',
 \ }
 
 let g:lightline.component_function_visible_condition = {
@@ -198,4 +199,12 @@ function! LightlineCocLinterErrors()
         return g:lightline.symbols.error . info['error']
     endif
     return ''
+endfunction
+
+function! CocStatusWithNearestMethodOrFunction() abort
+    let l:status = get(g:, 'coc_status', '')
+    if exists('b:vista_nearest_method_or_function')
+        let l:status .= ' ' . g:lightline.symbols["function"] . b:vista_nearest_method_or_function
+    endif
+    return trim(l:status)
 endfunction

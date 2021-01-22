@@ -33,6 +33,8 @@ augroup coc_special
     " Automatically close coc-explorer if it is the last window
     autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
     autocmd CmdwinEnter * let b:coc_suggest_disable = 1
+    " Show the nearest function in statusline automatically by vista
+    autocmd User CocNvimInit call vista#RunForNearestMethodOrFunction()
 augroup END
 
 augroup vim_which_key_special
