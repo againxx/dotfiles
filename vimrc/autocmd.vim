@@ -10,6 +10,8 @@ augroup common
     autocmd CmdLineEnter : set nosmartcase
     autocmd CmdLineLeave : set smartcase
     autocmd VimResized * :wincmd =
+    autocmd FileType help nnoremap [t ?<bar>.\{-}<bar><cr>:nohlsearch<cr>
+    autocmd FileType help nnoremap ]t /<bar>.\{-}<bar><cr>:nohlsearch<cr>
 augroup END
 
 augroup lightline_special
@@ -33,13 +35,13 @@ augroup coc_special
     autocmd CmdwinEnter * let b:coc_suggest_disable = 1
 augroup END
 
-augroup vim_which_key_speical
+augroup vim_which_key_special
     autocmd!
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
     autocmd User vim-which-key call which_key#register('<space>', 'g:which_space_map')
 augroup END
 
-augroup clap_speical
+augroup clap_special
     autocmd!
     autocmd FileType clap_input inoremap <silent> <buffer> <C-o> <Esc>
     autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
