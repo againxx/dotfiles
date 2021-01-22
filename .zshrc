@@ -186,14 +186,16 @@ fzf-choose-dirs-widget() {
 
 bindkey -v
 KEYTIMEOUT=1
-### bindkey ctrl+j for partial accept zsh-autosuggestions
-### bindkey ctrl+l for complete accept zsh-autosuggestions
-### bindkey alt+l for clear screen
+# bindkey ctrl+j for partial accept zsh-autosuggestions
+# bindkey ctrl+l for complete accept zsh-autosuggestions
+# bindkey alt+l for clear screen
 bindkey "^J" forward-word
 bindkey "^L" forward-char
 bindkey "^[l" clear-screen
 
 bindkey -M vicmd "_" vi-first-non-blank
+bindkey -M vicmd -r "vv"
+bindkey -M vicmd "^V" edit-command-line
 
 zle -N fzf-choose-dirs-widget
 bindkey "^[m" fzf-choose-dirs-widget
