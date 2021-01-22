@@ -33,7 +33,8 @@ Plug 'kevinhwang91/rnvimr'
 " ===
 " === Tags
 " ===
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
+Plug 'againxx/vista.vim'
 
 " ===
 " === Fuzzy Finder
