@@ -2,7 +2,6 @@
     name = Xi Xia
     email = againxx@mail.ustc.edu.cn
 [core]
-    editor = nvim
     pager = delta
     excludesfile = ~/.gitignore_global
 [http]
