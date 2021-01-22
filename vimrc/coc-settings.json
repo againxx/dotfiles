@@ -241,9 +241,9 @@
     "diagnostic-languageserver.mergeConfig": true,
     "diagnostic-languageserver.linters": {
         "cppcheck": {
-            "command": "cppcheck --force",
+            "command": "cppcheck",
             "args": [
-                "--template={line}:{column} {message} [{severity}]",
+                "--template={line}:{column} {severity}: {message}",
                 "--enable=style",
                 "--inconclusive",
                 "--quiet",
@@ -256,20 +256,20 @@
             "offsetLine": 0,
             "offsetColumn": 0,
             "formatPattern": [
-                "^(\\d+):(\\d+)\\s([^\\[]+)\\s\\[(.*)\\]$",
+                "^(\\d+):(\\d+) ([a-z]+): (.*)$",
                 {
                     "line": 1,
-                    "endLine": 1,
                     "column": 2,
-                    "message": 3,
-                    "security": 4
+                    "security": 3,
+                    "message": 4
                 }
             ],
             "securities": {
                 "style": "info",
                 "portability": "warning",
                 "warning": "warning",
-                "performance": "warning"
+                "performance": "warning",
+                "error": "error"
             }
         },
         "pylint": {
