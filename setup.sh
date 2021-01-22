@@ -24,7 +24,7 @@ if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-if command -v brew &> /dev/null; then
+if [[ -x "$(command -v brew)" ]]; then
     # Use USTC homebrew source
     # shellcheck disable=SC2164
     cd "$(brew --repo)"
