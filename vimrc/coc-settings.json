@@ -243,6 +243,7 @@
         "cppcheck": {
             "command": "cppcheck",
             "args": [
+                "--language=c++",
                 "--template={line}:{column} {severity}: {message}",
                 "--enable=style",
                 "--inconclusive",
