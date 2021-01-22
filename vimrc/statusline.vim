@@ -203,8 +203,7 @@ endfunction
 
 function! CocStatusWithNearestMethodOrFunction() abort
     let l:status = get(g:, 'coc_status', '')
-    if exists('b:vista_nearest_method_or_function')
-        let l:status .= ' ' . g:lightline.symbols["function"] . b:vista_nearest_method_or_function
-    endif
+    let l:nearest_function = get(b:, 'vista_nearest_method_or_function', '')
+    let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols["function"] . l:nearest_function : ''
     return trim(l:status)
 endfunction
