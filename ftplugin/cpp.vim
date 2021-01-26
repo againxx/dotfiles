@@ -1,9 +1,15 @@
 setlocal foldmethod=syntax
+set commentstring=//\ %s
 let b:switch_custom_definitions = [
 \   {
 \       '\(std::cout.*\)"\s*<<\s*''\\n'';': '\1\\n";',
 \       '\(std::cout.*\)\\n";': '\1" << std::endl;',
 \       '\(std::cout.*\)std::endl;': '\1''\\n'';',
+\       '\<\(double\|int\|float\)\((.\+)\)': 'static_cast<\1>\2',
+\       '^\(.\{-}\)/\*\(.\{-}\)\s*\*/': '\1//\2',
+\       '^\(.\{-}\)//\(.\{-}\)\s*$': '\1/*\2 */',
+\       '^#include\s*"\([^"]*\)"\s*': '#include <\1>',
+\       '^#include\s*<\(.*\)>\s*': '#include "\1"'
 \   }
 \ ]
 call coc#config('diagnostic.format', "%message\n[%source:%code]")
