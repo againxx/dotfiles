@@ -50,10 +50,9 @@ let g:which_leader_map.q = {
 let g:which_leader_map.v = {
 \   'name': '+view',
 \   'm':    'markdown-preview',
-\   'c':    'error-code',
-\   'h':    'highlight-group',
-\   'i':    'indent',
-\   'a':    'ascii-value',
+\   'c':    'view-error-code',
+\   'h':    'view-highlight-group',
+\   'a':    'view-ascii-value',
 \ }
 
 let g:which_leader_map['\'] = {
@@ -74,21 +73,22 @@ let g:which_leader_map.n = {
 
 let g:which_leader_map.c = {
 \   'name': '+change',
-\   'l':    'code-lens',
-\   'b':    'git-blame',
+\   'l':    'toggle-code-lens',
+\   'b':    'toggle-git-blame',
 \   'L':    'katex-left-equation',
-\   'P':    'fzf-preview',
-\   'S':    'statusline-sep',
-\   's':    'check-spelling',
-\   'p':    'build-profile',
-\   'a':    'diagnostic-level',
+\   'P':    'toggle-fzf-preview',
+\   'S':    'change-statusline-sep',
+\   's':    'toggle-check-spelling',
+\   'p':    'change-build-profile',
+\   'a':    'change-diagnostic-level',
+\   'g':    'toggle-git-gutters',
+\   'i':    'toggle-indent-line',
 \ }
 
 let g:which_leader_map.t = {
 \   'name': '+table/toggle/test/translate',
 \   'm':    'table-toggle',
 \   'r':    'table-realign',
-\   'g':    'toggle-git-gutters',
 \   'n':    'test-nearest',
 \   'f':    'test-file',
 \   's':    'test-suite',
@@ -114,6 +114,11 @@ let g:which_leader_map.w = {
 \   'f':    'open-wiki-file',
 \   'a':    'new-wiki-file',
 \   'i':    'insert-note',
+\ }
+
+let g:which_leader_map.y = {
+\   'name': '+yank',
+\   'c': 'yank-diagnostic-code',
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -247,6 +252,11 @@ nnoremap <silent> <leader>tv :<C-u>TestVisit<CR>
 " popup
 nmap <leader>tt <Plug>(coc-translator-p)
 vmap <leader>tt <Plug>(coc-translator-pv)
+
+" ===
+" === Yank
+" ===
+nnoremap <silent> <leader>yc :<C-u>call <SID>yankDiagnosticCodes()<CR>
 
 " ===
 " === Functions
@@ -416,4 +426,25 @@ function! s:deleteFinishedTerminalBuffers() abort
             silent execute l:buffer.'bdelete!'
         endif
     endfor
+endfunction
+
+function s:yankDiagnosticCodes() abort
+    let codes = join(<SID>getDiagnosticCodes())
+    let @@ = codes
+    let @+ = codes
+endfunction
+
+function! s:getDiagnosticCodes() abort
+    let coc_diagnostics = CocAction('diagnosticList')
+    let current_line = line('.')
+    let current_file_path = expand('%:p')
+    let codes = []
+    for diagnostic in coc_diagnostics
+        if diagnostic.file ==# current_file_path && current_line == diagnostic.lnum
+        \   && diagnostic.location.range.start.character < col('.')
+        \   && col('.') <= diagnostic.location.range.end.character
+            call add(codes, diagnostic.code)
+        endif
+    endfor
+    return codes
 endfunction
