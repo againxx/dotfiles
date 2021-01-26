@@ -196,6 +196,7 @@ bindkey "^[l" clear-screen
 bindkey -M vicmd "_" vi-first-non-blank
 bindkey -M vicmd -r "vv"
 bindkey -M vicmd "^V" edit-command-line
+bindkey -M viins "^B" beginning-of-line
 
 zle -N fzf-choose-dirs-widget
 bindkey "^[m" fzf-choose-dirs-widget
