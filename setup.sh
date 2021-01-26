@@ -48,6 +48,7 @@ if [[ -x "$(command -v brew)" ]]; then
     brew_pack[shellcheck]=shellcheck
     brew_pack[rg]=ripgrep
     brew_pack[fd]=fd
+    brew_pack[xdotool]=xdotool
 
     for exec_name in "${!brew_pack[@]}"; do
         if ! command -v $exec_name &> /dev/null; then
