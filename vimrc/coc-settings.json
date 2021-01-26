@@ -47,9 +47,11 @@
     "diagnostic.errorSign": "->",
     "diagnostic.warningSign": "--",
     "diagnostic.infoSign": "--",
+    "diagnostic.hintSign": "··",
     "diagnostic.enableHighlightLineNumber": false,
     "diagnostic.format": "%message\n[%source]",
     "signature.maxWindowHeight": 10,
+    "signature.preferShownAbove": false,
     "list.source.files.args": [
         "--hidden",
         "--files"
@@ -82,7 +84,6 @@
     "git.showCommitInFloating": true,
     "yank.list.maxsize": 50,
     "coc-actions.hideCursor": false,
-    "http.proxy": "http://127.0.0.1:8123",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.customIcons": {
         "icons": {
@@ -217,6 +218,10 @@
         {
             "name": "linuxShellTerms",
             "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/linux_shell_terms.txt"
+        },
+        {
+            "name": "vimTerms",
+            "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/vim_terms.txt"
         }
     ],
     "cSpell.dictionaries": [
@@ -246,6 +251,7 @@
                 "--language=c++",
                 "--template={line}:{column} {severity}: {message}",
                 "--enable=style",
+                "--force",
                 "--inconclusive",
                 "--quiet",
                 "%file"
@@ -266,11 +272,12 @@
                 }
             ],
             "securities": {
-                "style": "info",
-                "portability": "warning",
+                "error": "error",
                 "warning": "warning",
+                "style": "info",
                 "performance": "warning",
-                "error": "error"
+                "portability": "warning",
+                "information": "hint"
             }
         },
         "pylint": {
@@ -284,14 +291,42 @@
                 "--rcfile=~/.pylintrc",
                 "%file"
             ]
+        },
+        "vint": {
+            "args": [
+                "--format",
+                "{severity}:{line_number}:{column_number}: {description} (see {reference})",
+                "--enable-neovim",
+                "--style-problem",
+                "--no-color",
+                "-"
+            ],
+            "formatPattern": [
+                "(\\w+):(\\d+):(\\d+):\\s*(.*)$",
+                {
+                    "security": 1,
+                    "line": 2,
+                    "column": 3,
+                    "message": 4
+                }
+            ],
+            "securities": {
+                "style_problem": "info",
+                "warning": "warning",
+                "error": "error"
+            }
         }
     },
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
-        "cpp": "cppcheck",
+        "cpp": [
+            "cpplint",
+            "cppcheck"
+        ],
         "python": [
             "pylint",
             "mypy"
-        ]
+        ],
+        "vim": "vint"
     }
 }

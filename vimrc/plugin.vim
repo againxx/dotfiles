@@ -108,6 +108,7 @@ let g:vista#renderer#icons = {
 \   'augroup': ' ',
 \   'struct': 'פּ ',
 \   'union': '謹',
+\   'namespace': 'ﱾ ',
 \ }
 
 " To enable fzf preview window set g:vista_fzf_preview.
@@ -125,6 +126,10 @@ let g:clap_enable_background_shadow = v:false
 " === Ultisnips
 " ===
 let g:ulti_expand_res = 0
+let g:ultisnips_python_quoting_style = 'double'
+let g:ultisnips_python_triple_quoting_style = 'double'
+let g:ultisnips_python_style = 'stable-baselines'
+let g:ultisnips_cpp_style = 'google'
 
 " ===
 " === Coc
@@ -201,15 +206,6 @@ let g:fzf_preview_git_status_preview_command =
 \   '[[ $(git diff -- {-1}) != "" ]] && git diff -- {-1} | ' .
 \   g:fzf_preview_delta_command . ' || ' .
 \   g:fzf_preview_command
-
-" ===
-" === Python-special
-" ===
-let g:ultisnips_python_quoting_style = 'double'
-let g:ultisnips_python_triple_quoting_style = 'double'
-let g:ultisnips_python_style = 'stable-baselines'
-" Python-syntax
-let g:python_syntax_space_errors = 0
 
 " ===
 " === Markdown
@@ -302,7 +298,7 @@ let g:vimwiki_hl_headers = 1
 " vim-zettel
 let g:zettel_format = '%title-%y%m%d'
 let g:zettel_default_mappings = 0
-let g:zettel_fzf_options = ['--exact', '--tiebreak=end', '--preview-window=up:50%']
+let g:zettel_fzf_options = ['--exact', '--tiebreak=end', '--preview-window=up:60%']
 
 " ===
 " === Asyncrun
@@ -369,7 +365,10 @@ let g:tmuxline_preset = 'nightly_fox'
 " incsearch
 let g:incsearch#auto_nohlsearch = 1
 " use very magic mode as default
-let g:incsearch#magic = '\v'
+" let g:incsearch#magic = '\v'
+
+" Python-syntax
+let g:python_syntax_space_errors = 0
 
 " Sneak
 let g:sneak#label = 1

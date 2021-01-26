@@ -33,4 +33,14 @@ function! s:catkinInit() abort
     setlocal shiftwidth=2
     setlocal softtabstop=2
     let g:asynctasks_environ = {'package_name': string(b:ros_package_name)[1:-2]}
+    let b:ultisnips_cpp_style = 'ros'
+    call coc#config('diagnostic-languageserver.linters', {
+    \   'cpplint': {
+    \       'args': [
+    \           '--linelength=120',
+    \           '--filter=-whitespace/braces,-build/include_subdir,-whitespace/newline',
+    \           '%file'
+    \       ]
+    \   }
+    \ })
 endfunction
