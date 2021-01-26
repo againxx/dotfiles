@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " ===
 " === WhichKey
 " ===
@@ -128,34 +129,34 @@ let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
 " ===
 " === Edit files
 " ===
-nnoremap <leader>ev :call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
-nnoremap <leader>el :call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
-nnoremap <leader>ek :call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
-nnoremap <leader>ep :call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
-nnoremap <leader>ea :call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
-nnoremap <leader>eg :call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
-nnoremap <leader>eb :call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
-nnoremap <leader>ec :CocConfig<CR>
-nnoremap <leader>eC :CocLocalConfig<CR>
+nnoremap <leader>ev :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
+nnoremap <leader>el :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
+nnoremap <leader>ek :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
+nnoremap <leader>ep :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
+nnoremap <leader>ea :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
+nnoremap <leader>eg :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
+nnoremap <leader>eb :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
+nnoremap <leader>ec :<C-u>CocConfig<CR>
+nnoremap <leader>eC :<C-u>CocLocalConfig<CR>
 " nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
-nnoremap <leader>es :UltiSnipsEdit!<CR>
+nnoremap <leader>es :<C-u>UltiSnipsEdit!<CR>
 nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-nnoremap <leader>et :AsyncTaskEdit<CR>
-nnoremap <leader>eT :AsyncTaskEdit!<CR>
+nnoremap <leader>et :<C-u>AsyncTaskEdit<CR>
+nnoremap <leader>eT :<C-u>AsyncTaskEdit!<CR>
 
 " ===
 " === Change directory
 " ===
-nnoremap <leader>dv :cd ~/dotfiles/vimrc<CR>
-nnoremap <leader>dc :cd %:p:h<CR>
+nnoremap <leader>dv :<C-u>cd ~/dotfiles/vimrc<CR>
+nnoremap <leader>dc :<C-u>cd %:p:h<CR>
 
 " ===
 " === Session & Source
 " ===
-nnoremap <leader>ss :CocCommand session.save<CR>
-nnoremap <leader>sl :CocCommand session.load<CR>
+nnoremap <leader>ss :<C-u>CocCommand session.save<CR>
+nnoremap <leader>sl :<C-u>CocCommand session.load<CR>
 " Source vimrc file
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :<C-u>source $MYVIMRC<CR>:nohlsearch<CR>
 
 " ===
 " === Quit
@@ -178,11 +179,9 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 " ===
 " === View
 " ===
-nnoremap <silent> <leader>vc :call <SID>toggleCocErrorCode()<CR>
-nnoremap <leader>vm :MarkdownPreview<CR>
-nnoremap <leader>vh :call SyntaxAttr()<CR>
-" nmap <leader>vi <Plug>IndentGuidesToggle
-nmap <leader>vi :IndentLinesToggle<CR>
+nnoremap <silent> <leader>vc :<C-u>call <SID>toggleCocErrorCode()<CR>
+nnoremap <leader>vm :<C-u>MarkdownPreview<CR>
+nnoremap <leader>vh :<C-u>call SyntaxAttr()<CR>
 nnoremap <leader>va ga
 vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
 
@@ -190,28 +189,30 @@ vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
 " === New
 " ===
 nnoremap <leader>nt :tabnew %<CR>
-nnoremap <leader>nd :CocCommand todolist.create<CR>
+nnoremap <leader>nd :<C-u>CocCommand todolist.create<CR>
 nnoremap <leader>nx :read !figlet<space>
 
 " ===
 " === Change settings
 " ===
-nnoremap <leader>cL :call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <leader>cP :call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <leader>cS :call <SID>toggleLightlineSep()<CR>
+nnoremap <leader>cL :<C-u>call <SID>toggleEquationFlushedLeft()<CR>
+nnoremap <leader>cP :<C-u>call <SID>toggleFZFPreview()<CR>
+nnoremap <silent> <leader>cS :<C-u>call <SID>toggleLightlineSep()<CR>
 " nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
-nnoremap <silent> <leader>cs :CocCommand cSpell.toggleEnableSpellChecker<CR>
-nnoremap <leader>cl :call <SID>toggleCodeLens()<CR>
-nnoremap <leader>cb :call <SID>toggleGitBlame()<CR>
-nnoremap <leader>cp :call <SID>changeBuildProfile()<CR>
+nnoremap <silent> <leader>cs :<C-u>CocCommand cSpell.toggleEnableSpellChecker<CR>
+nnoremap <leader>cl :<C-u>call <SID>toggleCodeLens()<CR>
+nnoremap <leader>cb :<C-u>call <SID>toggleGitBlame()<CR>
+nnoremap <leader>cp :<C-u>call <SID>changeBuildProfile()<CR>
 " enter and exit insert mode to update diagnostics
-nnoremap <leader>ca :call <SID>changeDiagnosticLevel()<CR>i<Esc>
+nnoremap <leader>ca :<C-u>call <SID>changeDiagnosticLevel()<CR>i<Esc>
+nnoremap <leader>cg :<C-u>CocCommand git.toggleGutters<CR>
+" nmap <leader>ci <Plug>IndentGuidesToggle
+nnoremap <leader>ci :<C-u>IndentLinesToggle<CR>
 
 " ===
 " === Table-mode
 " ===
-nnoremap <leader>tm :TableModeToggle<CR>
-nnoremap <leader>tg :CocCommand git.toggleGutters<CR>
+nnoremap <leader>tm :<C-u>TableModeToggle<CR>
 let g:table_mode_realign_map = '<leader>tr'
 
 " ===
@@ -223,7 +224,7 @@ nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
 nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
 nnoremap <leader>wx <Plug>VimwikiDeleteLink
 nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
-nnoremap <leader>wtt :execute 'VimwikiSearchTags '.expand('<cword>')<bar>CocList -A --normal locationlist<cr>
+nnoremap <leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<bar>CocList -A --normal locationlist<cr>
 nnoremap <leader>wts :<C-u>VimwikiSearchTags<Space>
 nnoremap <leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<cr>
 nnoremap <leader>wB :<C-u>ZettelBackLinks<CR>
@@ -234,11 +235,11 @@ nnoremap <leader>wi :<C-u>ZettelInsertNote<CR>
 " ===
 " === Test
 " ===
-nnoremap <silent> <leader>tn :TestNearest<CR>
-nnoremap <silent> <leader>tf :TestFile<CR>
-nnoremap <silent> <leader>ts :TestSuite<CR>
-nnoremap <silent> <leader>tl :TestLast<CR>
-nnoremap <silent> <leader>tv :TestVisit<CR>
+nnoremap <silent> <leader>tn :<C-u>TestNearest<CR>
+nnoremap <silent> <leader>tf :<C-u>TestFile<CR>
+nnoremap <silent> <leader>ts :<C-u>TestSuite<CR>
+nnoremap <silent> <leader>tl :<C-u>TestLast<CR>
+nnoremap <silent> <leader>tv :<C-u>TestVisit<CR>
 
 " ===
 " ===  coc-translator
@@ -252,7 +253,7 @@ vmap <leader>tt <Plug>(coc-translator-pv)
 " ===
 
 function! s:autoVerticalSplit(fname)
-    if winlayout()[0] == 'leaf'
+    if winlayout()[0] ==# 'leaf'
         exec 'vsplit '.a:fname
     else
         exec 'edit '.a:fname
@@ -262,7 +263,7 @@ endfunction
 " Ale
 " Reset b:ale_echo_msg_format to show error code
 function! s:toggleAleErrorCode() abort
-    if exists("b:ale_echo_msg_format")
+    if exists('b:ale_echo_msg_format')
         unlet b:ale_echo_msg_format
     else
         let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
@@ -279,10 +280,10 @@ function! s:toggleCocErrorCode() abort
 endfunction
 
 function! s:changeDiagnosticLevel() abort
-    if coc#util#get_config('diagnostic')['level'] ==# "warning"
-        call coc#config('diagnostic.level', "hint")
+    if coc#util#get_config('diagnostic')['level'] ==# 'warning'
+        call coc#config('diagnostic.level', 'hint')
     else
-        call coc#config('diagnostic.level', "warning")
+        call coc#config('diagnostic.level', 'warning')
     endif
 endfunction
 
@@ -301,7 +302,7 @@ endfunction
 
 " FZF-Preview
 function! s:toggleFZFPreview() abort
-    if exists("g:vista_fzf_preview")
+    if exists('g:vista_fzf_preview')
         unlet g:vista_fzf_preview
         unlet g:fzf_layout
     else
@@ -376,11 +377,11 @@ function! s:toggleGitBlame() abort
 endfunction
 
 function s:changeBuildProfile() abort
-    if g:asynctasks_profile == 'debug'
+    if g:asynctasks_profile ==# 'debug'
         execute 'AsyncTaskProfile release'
-    elseif g:asynctasks_profile == 'release'
+    elseif g:asynctasks_profile ==# 'release'
         execute 'AsyncTaskProfile release-debug'
-    elseif g:asynctasks_profile == 'release-debug'
+    elseif g:asynctasks_profile ==# 'release-debug'
         execute 'AsyncTaskProfile debug'
     else
         echo 'Unknown current profile!'
@@ -406,12 +407,12 @@ function! s:echoFormatsAndChar(num) abort
 endfunction
 
 function! s:deleteFinishedTerminalBuffers() abort
-    let l:termBuffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
-    for l:buffer in l:termBuffers
-        let l:isRunning = has('terminal') ? term_getstatus(l:buffer) =~# 'running' :
+    let l:term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
+    for l:buffer in l:term_buffers
+        let l:is_running = has('terminal') ? term_getstatus(l:buffer) =~# 'running' :
                         \ has('nvim') ? jobwait([getbufvar(l:buffer, '&channel')], 0)[0] == -1 :
                         \ 0
-        if !l:isRunning
+        if !l:is_running
             silent execute l:buffer.'bdelete!'
         endif
     endfor

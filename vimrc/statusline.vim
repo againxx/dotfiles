@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let g:lightline = {}
 let g:lightline.colorscheme = 'my_ayu_mirage'
 let g:lightline.symbols = {
@@ -125,7 +126,7 @@ let g:lightline.subseparator = {
 " \ }
 
 function! LightlineFileTypeWithSymbol()
-    let l:ftWithSymbol = &ft!=#""?&ft:"unknown"
+    let l:ftWithSymbol = &filetype !=# '' ? &filetype : 'unknown'
     if &filetype ==# 'vim'
         let l:ftWithSymbol .= ' '
     elseif &filetype ==# 'cuda'
@@ -190,7 +191,7 @@ function! LightlineCocLinterWarningsWithWhitespaceCheck()
     if get(info, 'information', 0)
         call add(msgs, g:lightline.symbols.information . info['information'])
     endif
-    return trim(join(msgs, ' '))
+    return trim(join(msgs))
 endfunction
 
 function! LightlineCocLinterErrors()
@@ -204,6 +205,6 @@ endfunction
 function! CocStatusWithNearestMethodOrFunction() abort
     let l:status = get(g:, 'coc_status', '')
     let l:nearest_function = get(b:, 'vista_nearest_method_or_function', '')
-    let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols["function"] . l:nearest_function : ''
+    let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols['function'] . l:nearest_function : ''
     return trim(l:status)
 endfunction

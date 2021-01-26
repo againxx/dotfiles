@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Allow buffer switch without saving
 set hidden
 set lazyredraw

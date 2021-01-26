@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " ===
 " === Undotree
 " ===
@@ -68,8 +69,8 @@ let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 " === Vista
 " ===
 " Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-" let g:vista_icon_indent = ["▸ ", ""]
+let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
+" let g:vista_icon_indent = ['▸ ', '']
 " See all the avaliable executives via `:echo g:vista#executives`.
 let g:vista_default_executive = 'coc'
 let g:vista_executive_for = {
@@ -193,12 +194,12 @@ let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard $(git rev-parse --show-toplevel)'
 let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-/:toggle-preview'
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
-let g:fzf_preview_delta_command = "delta --paging=never --hunk-header-style=omit --line-numbers-left-format=\"{nm} \" --line-numbers-right-format=\"{np} \""
+let g:fzf_preview_delta_command = 'delta --paging=never --hunk-header-style=omit --line-numbers-left-format="{nm} " --line-numbers-right-format="{np} "'
 let g:fzf_preview_git_status_preview_command =
-\   "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached -- {-1} | " .
-\   g:fzf_preview_delta_command . " || " .
-\   "[[ $(git diff -- {-1}) != \"\" ]] && git diff -- {-1} | " .
-\   g:fzf_preview_delta_command . " || " .
+\   '[[ $(git diff --cached -- {-1}) != "" ]] && git diff --cached -- {-1} | ' .
+\   g:fzf_preview_delta_command . ' || ' .
+\   '[[ $(git diff -- {-1}) != "" ]] && git diff -- {-1} | ' .
+\   g:fzf_preview_delta_command . ' || ' .
 \   g:fzf_preview_command
 
 " ===
@@ -299,7 +300,7 @@ let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_hl_headers = 1
 
 " vim-zettel
-let g:zettel_format = "%title-%y%m%d"
+let g:zettel_format = '%title-%y%m%d'
 let g:zettel_default_mappings = 0
 let g:zettel_fzf_options = ['--exact', '--tiebreak=end', '--preview-window=up:50%']
 
@@ -334,9 +335,9 @@ let g:vimspector_sign_priority = {
 " ===
 " === Vim-slime
 " ===
-let g:slime_target = "tmux"
-let g:slime_paste_file = "$HOME/.config/nvim/tmp/.slime_paste"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+let g:slime_target = 'tmux'
+let g:slime_paste_file = '$HOME/.config/nvim/tmp/.slime_paste'
+let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{last}'}
 let g:slime_python_ipython = 1
 
 " ===

@@ -172,7 +172,7 @@ nnoremap <silent> K :call <SID>showDocumentation()<CR>
 " vmap <Tab> <Plug>(coc-snippets-select)
 " imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-l> to expand ultisnips or save visual selected content
-let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsExpandTrigger = '<C-l>'
 
 " Scroll floating window up and down
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -265,13 +265,13 @@ map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 " ===
 " === Vimspector
 " ===
-nnoremap <silent> <space>dd :call vimspector#Launch()<cr>
-nnoremap <silent> <space>d$ :call vimspector#Reset()<cr>
-nnoremap <silent> <space>dc :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
-nnoremap <silent> <space>dv :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
-nnoremap <silent> <space>dw :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
-nnoremap <silent> <space>ds :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
-nnoremap <silent> <space>do :call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
+nnoremap <silent> <space>dd :<C-u>call vimspector#Launch()<cr>
+nnoremap <silent> <space>d$ :<C-u>call vimspector#Reset()<cr>
+nnoremap <silent> <space>dc :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
+nnoremap <silent> <space>dv :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
+nnoremap <silent> <space>dw :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
+nnoremap <silent> <space>ds :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
+nnoremap <silent> <space>do :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
 
 nmap <space>dl <Plug>VimspectorStepInto
 nmap <space>dj <Plug>VimspectorStepOver
@@ -282,7 +282,7 @@ nmap <space>de <Plug>VimspectorContinue
 nmap <space>d; <Plug>VimspectorToggleBreakpoint
 nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
 
-nnoremap <silent> <space>dx :call vimspector#ClearBreakpoints()<cr>
+nnoremap <silent> <space>dx :<C-u>call vimspector#ClearBreakpoints()<cr>
 
 " ===
 " === refactor/run tasks
@@ -299,8 +299,8 @@ nmap <space>rx <Plug>(coc-fix-current)
 " nmap <space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <space>rn <Plug>(coc-rename)
-nnoremap <silent> <space>rr :AsyncTask file-run<CR>
-nnoremap <silent> <space>rB :AsyncTask file-build<CR>
+nnoremap <silent> <space>rr :<C-u>AsyncTask file-run<CR>
+nnoremap <silent> <space>rB :<C-u>AsyncTask file-build<CR>
 
 " ===
 " === Whichkey
@@ -454,9 +454,9 @@ function! s:expandUltisnipsOrUseCocCompletion() abort
     call UltiSnips#ExpandSnippet()
     if g:ulti_expand_res > 0
         pclose
-        return ""
+        return ''
     " Use `complete_info` if your (Neo)Vim version supports it.
-    elseif (has('patch8.1.1068') && complete_info()["selected"] != "-1") ||
+    elseif (has('patch8.1.1068') && complete_info()['selected'] != '-1') ||
         \   pumvisible()
         return "\<C-y>"
     else

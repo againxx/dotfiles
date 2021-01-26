@@ -1,10 +1,10 @@
 if !has('nvim') | finish | endif
 
 set inccommand=nosplit
-if has("persistent_undo")
+if has('persistent_undo')
     set undofile
     if !isdirectory($HOME . '/.config/nvim/tmp/undo')
-        call mkdir($HOME . "/.config/nvim/tmp/undo", "p")
+        call mkdir($HOME . '/.config/nvim/tmp/undo', 'p')
     endif
     set undodir=$HOME/.config/nvim/tmp/undo
 endif
@@ -18,7 +18,7 @@ let g:loaded_ruby_provider = 0
 
 " use nvr as primary editor for lazygit
 if executable('nvr')
-    let $VISUAL = "nvr -cc tabprevious"
+    let $VISUAL = 'nvr -cc tabprevious'
 endif
 
 " Make <C-j> and <C-k> move faster, in vim these two keys are used for window
