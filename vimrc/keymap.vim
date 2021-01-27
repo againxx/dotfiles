@@ -237,7 +237,7 @@ nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
 nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
 nnoremap <silent> <space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<cr>
 nnoremap <silent> <space>p :<C-u>Rg<cr>
-nnoremap <silent> <space><C-g> :<C-u>tabe<bar>term lazygit<cr>a
+nnoremap <silent> <space><C-g> :<C-u>call <SID>openLazyGit()<cr>
 nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
 nnoremap <silent> <space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
 nnoremap <silent> <space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<cr>
@@ -480,5 +480,20 @@ function! s:grepFromSelected(type, ...)
         execute 'CocList grep '.word
     else
         execute 'CocCommand fzf-preview.ProjectGrep '.word
+    endif
+endfunction
+
+function! s:openLazyGit() abort
+    let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
+    if empty(lazygit_buffer)
+        tabnew
+        let g:lazy_git_tab_num = tabpagenr()
+        terminal lazygit
+        let g:lazy_git_channel = &channel
+        normal! a
+    else
+        execute g:lazy_git_tab_num . 'tabnext'
+        normal! a
+        call chansend(g:lazy_git_channel, "\<cr>")
     endif
 endfunction
