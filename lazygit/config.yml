@@ -17,7 +17,7 @@ gui:
     selectedLineBgColor:
       - default
     selectedRangeBgColor:
-      - blue
+      - black
   commitLength:
     show: true
   mouseEvents: true
