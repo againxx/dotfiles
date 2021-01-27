@@ -266,7 +266,7 @@ map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 " === Vimspector
 " ===
 nnoremap <silent> <space>dd :<C-u>call vimspector#Launch()<cr>
-nnoremap <silent> <space>d$ :<C-u>call vimspector#Reset()<cr>
+nnoremap <silent> <space>dq :<C-u>call vimspector#Reset()<cr>
 nnoremap <silent> <space>dc :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
 nnoremap <silent> <space>dv :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
 nnoremap <silent> <space>dw :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
@@ -277,7 +277,7 @@ nmap <space>dl <Plug>VimspectorStepInto
 nmap <space>dj <Plug>VimspectorStepOver
 nmap <space>dk <Plug>VimspectorStepOut
 nmap <space>dh <Plug>VimspectorRunToCursor
-nmap <space>d_ <Plug>VimspectorRestart
+nmap <space>dr <Plug>VimspectorRestart
 nmap <space>de <Plug>VimspectorContinue
 nmap <space>d; <Plug>VimspectorToggleBreakpoint
 nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
@@ -420,7 +420,7 @@ let g:which_space_map.r = {
 let g:which_space_map.d = {
 \   'name': '+debug',
 \   'd':    'start',
-\   '$':    'stop',
+\   'q':    'stop',
 \   'c':    'browse-code',
 \   'v':    'browse-variables',
 \   'w':    'browse-watches',
@@ -430,7 +430,7 @@ let g:which_space_map.d = {
 \   'j':    'step-over',
 \   'k':    'step-out',
 \   'h':    'run-to-cursor',
-\   '_':    'restart',
+\   'r':    'restart',
 \   'e':    'continue',
 \   ';':    'toggle-breakpoint',
 \   'i':    'toggle-conditional-breakpoint',
