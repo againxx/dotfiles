@@ -171,7 +171,6 @@ nnoremap <silent> <leader>qb :silent! bdelete!<CR>
 nnoremap <silent> <leader>qw :silent! bwipeout!<CR>
 nnoremap <silent> <leader>qt :tabclose<CR>
 nnoremap <silent> <leader>qd :VimspectorReset<CR>
-nnoremap <silent> <leader>qx :call <SID>deleteFinishedTerminalBuffers()<CR>
 nnoremap <silent> <leader>qc :cclose<CR>
 nnoremap <silent> <leader>ql :lclose<CR>
 
@@ -414,18 +413,6 @@ function! s:echoFormatsAndChar(num) abort
     endif
     let @" = nr2char(l:output_num)
     echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
-endfunction
-
-function! s:deleteFinishedTerminalBuffers() abort
-    let l:term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
-    for l:buffer in l:term_buffers
-        let l:is_running = has('terminal') ? term_getstatus(l:buffer) =~# 'running' :
-                        \ has('nvim') ? jobwait([getbufvar(l:buffer, '&channel')], 0)[0] == -1 :
-                        \ 0
-        if !l:is_running
-            silent execute l:buffer.'bdelete!'
-        endif
-    endfor
 endfunction
 
 function s:yankDiagnosticCodes() abort

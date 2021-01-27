@@ -12,6 +12,7 @@ augroup common
     autocmd VimResized * :wincmd =
     autocmd FileType help nnoremap [t ?<bar>.\{-}<bar><cr>:nohlsearch<cr>
     autocmd FileType help nnoremap ]t /<bar>.\{-}<bar><cr>:nohlsearch<cr>
+    autocmd TabClosed * call <SID>deleteFinishedTerminalBuffers()
 augroup END
 
 augroup lightline_special
@@ -48,3 +49,15 @@ augroup clap_special
     autocmd FileType clap_input inoremap <silent> <buffer> <C-o> <Esc>
     autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
 augroup END
+
+function! s:deleteFinishedTerminalBuffers() abort
+    let term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
+    for term_buffer in term_buffers
+        let is_running = has('terminal') ? term_getstatus(term_buffer) =~# 'running' :
+                        \ has('nvim') ? jobwait([getbufvar(term_buffer, '&channel')], 0)[0] == -1 :
+                        \ 0
+        if !is_running
+            silent execute term_buffer.'bdelete!'
+        endif
+    endfor
+endfunction
