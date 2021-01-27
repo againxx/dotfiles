@@ -40,6 +40,8 @@
 
     bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
     bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) };
+    bind "<ctrl>b" { "move-cursor" (paragraph-ends, -1, 0) };
+    bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) };
 }
 
 @binding-set gtk-my-text-view
