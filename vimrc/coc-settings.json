@@ -328,5 +328,20 @@
             "mypy"
         ],
         "vim": "vint"
-    }
+    },
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "*.vimspector.json"
+            ],
+            "url": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json"
+        },
+        {
+            "fileMatch": [
+                ".gadgets.json",
+                ".gadgets.d/*.json"
+            ],
+            "url": "https://puremourning.github.io/vimspector/schema/gadgets.schema.json"
+        }
+    ]
 }
