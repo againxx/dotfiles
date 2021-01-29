@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# -e: exit immediately if a pipeline/a list/a compound command, exits with a non- zero status
+# -e: exit immediately if a pipeline/a list/a compound command, exits with a non-zero status
 # -u: fail on error and undefined variables
 set -eu
 
