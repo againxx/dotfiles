@@ -99,6 +99,10 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Vista
+" Find symbol of current document.
+nnoremap <silent> gO :<C-u>Vista!!<cr>
+
 " Vim-markdown
 " disable mapping for ge
 map <Plug>Disable_Markdown_EditUrlUnderCursor <Plug>Markdown_EditUrlUnderCursor
@@ -209,8 +213,6 @@ nnoremap <silent> <space>v :<C-u>Clap command<cr>
 nnoremap <silent> <space>s :<C-u>Vista finder<cr>
 nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>. :<C-u>CocListResume<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o :<C-u>Vista!!<cr>
 " Show all diagnostics.
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space><C-a> :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<cr>
@@ -345,7 +347,6 @@ let g:which_space_map.C = 'command-history'
 let g:which_space_map.v = 'vim-command'
 let g:which_space_map.s = 'vista'
 let g:which_space_map.S = 'coc-symbol'
-let g:which_space_map.o = 'outline'
 let g:which_space_map.a = 'diagnostic'
 let g:which_space_map.l = 'location-list'
 let g:which_space_map.q = 'quickfix'
