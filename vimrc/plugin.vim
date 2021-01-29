@@ -328,6 +328,11 @@ let g:vimspector_sign_priority = {
   \    'vimspectorPCBP':       999,
   \ }
 
+sign define vimspectorBP         text=\ ● texthl=VimspectorBP
+sign define vimspectorBPCond     text=\ ◐ texthl=VimspectorBPCond
+sign define vimspectorPC         text=\    texthl=VimspectorPC linehl=CursorLine
+sign define vimspectorPCBP       text=●▶  texthl=VimspectorPCBP linehl=CursorLine
+
 " ===
 " === Vim-slime
 " ===

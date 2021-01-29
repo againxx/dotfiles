@@ -111,6 +111,11 @@ if g:colors_name == 'ayu'
     hi ClapFuzzyMatches10 gui=bold guifg=#52C5B8
     hi ClapFuzzyMatches11 gui=bold guifg=#4FC2A8
     hi ClapFuzzyMatches12 gui=bold guifg=#4CBF99
+    hi VimspectorBP guifg=#F07178
+    hi VimspectorBPCond guifg=#FFAE57
+    hi VimspectorPC guifg=#D4BFFF
+    hi VimspectorPCBP guifg=#D4BFFF
+
 endif
 
 if g:colors_name == 'onehalfdark'
