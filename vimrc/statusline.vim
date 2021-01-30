@@ -139,6 +139,8 @@ function! LightlineFileTypeWithSymbol()
         let l:ftWithSymbol .= ' ﴬ' " 龎
     elseif &filetype ==# 'cmake'
         let l:ftWithSymbol .= ' '
+    elseif &filetype ==# 'qf'
+        let l:ftWithSymbol .= ' ' " 
     elseif &filetype ==# 'unknown'
         let l:ftWithSymbol .= ' '
     else
