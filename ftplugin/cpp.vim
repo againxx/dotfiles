@@ -16,7 +16,10 @@ call coc#config('diagnostic.format', "%message\n[%source:%code]")
 
 augroup cpp_special
     autocmd!
-    autocmd BufEnter * if exists("b:ros_package_path") && &filetype ==# 'cpp' | call <SID>catkinInit() | endif
+    autocmd BufEnter *
+    \   if exists("b:ros_package_path") || !empty(system('catkin list -u --this')) && &filetype ==# 'cpp' |
+    \       call <SID>catkinInit() |
+    \   endif
 augroup END
 
 nnoremap <buffer> [h
@@ -38,7 +41,6 @@ function! s:catkinInit() abort
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal softtabstop=2
-    let g:asynctasks_environ = {'package_name': string(b:ros_package_name)[1:-2]}
     let b:ultisnips_cpp_style = 'ros'
     call coc#config('diagnostic-languageserver.linters', {
     \   'cpplint': {
