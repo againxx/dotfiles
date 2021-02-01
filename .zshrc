@@ -147,7 +147,8 @@ alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 alias pch="proxychains4 -q"
 alias lg="lazygit"
-alias appt='sudo apt -o Acquire::socks::proxy="socks5://127.0.0.1:1080/"'
+alias setp='export http_proxy="http://127.0.0.1:8123"; export https_proxy="http://127.0.0.1:8123"'
+alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed "{s/\/.*//;N;N;s/\n/^/}" | column -t -s^ | fzf --multi'
 
 # suffix aliases
