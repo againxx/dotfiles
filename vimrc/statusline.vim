@@ -11,6 +11,7 @@ let g:lightline.symbols = {
 \   'warning': 'ﲍ ',
 \   'information': 'ﳃ ',
 \   'function': 'ﳣ ',
+\   'ros': ' ﮧ',
 \ }
 
 " Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
@@ -29,7 +30,8 @@ let g:lightline.active = {
 \            ['filename', 'readonly', 'coc_status_with_nearest_function']],
 \   'right': [['linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
-\             ['filetype']],
+\             ['filetype'],
+\             ['ros_package_name']],
 \ }
 
 let g:lightline.inactive = {
@@ -68,6 +70,7 @@ let g:lightline.component_visible_condition = {
 
 let g:lightline.component_function = {
 \   'filetype': 'LightlineFileTypeWithSymbol',
+\   'ros_package_name': 'LightlineRosPackageName',
 \   'git': 'LightlineCocGit',
 \   'coc_status_with_nearest_function': 'CocStatusWithNearestMethodOrFunction',
 \ }
@@ -126,27 +129,37 @@ let g:lightline.subseparator = {
 " \ }
 
 function! LightlineFileTypeWithSymbol()
-    let l:ftWithSymbol = &filetype !=# '' ? &filetype : 'unknown'
+    let ft_with_symbol = &filetype !=# '' ? &filetype : 'unknown'
     if &filetype ==# 'vim'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     elseif &filetype ==# 'cuda'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     elseif &filetype ==# 'help'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     elseif &filetype ==# 'list'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     elseif &filetype ==# 'vimwiki' || &filetype ==# 'vimwiki.markdown'
-        let l:ftWithSymbol .= ' ﴬ' " 龎
+        let ft_with_symbol .= ' ﴬ' " 龎
     elseif &filetype ==# 'cmake'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     elseif &filetype ==# 'qf'
-        let l:ftWithSymbol .= ' ' " 
+        let ft_with_symbol .= ' ' " 
     elseif &filetype ==# 'unknown'
-        let l:ftWithSymbol .= ' '
+        let ft_with_symbol .= ' '
     else
-        let l:ftWithSymbol .= ' ' . WebDevIconsGetFileTypeSymbol()
+        let ft_with_symbol .= ' ' . WebDevIconsGetFileTypeSymbol()
     endif
-    return l:ftWithSymbol
+    return ft_with_symbol
+endfunction
+
+function! LightlineRosPackageName()
+    if exists('b:ros_package_name')
+        let package_name_with_symbol = b:ros_package_name
+    else
+        let package_name_with_symbol = get(b:, 'catkin_package_name', '')
+    endif
+    let package_name_with_symbol .= !empty(package_name_with_symbol) ? g:lightline.symbols.ros  : ''
+    return package_name_with_symbol
 endfunction
 
 function! LightlineCocGit()
@@ -208,5 +221,5 @@ function! CocStatusWithNearestMethodOrFunction() abort
     let l:status = get(g:, 'coc_status', '')
     let l:nearest_function = get(b:, 'vista_nearest_method_or_function', '')
     let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols['function'] . l:nearest_function : ''
-    return trim(l:status)
+    return l:status
 endfunction
