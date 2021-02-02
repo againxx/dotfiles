@@ -12,6 +12,7 @@ let g:lightline.symbols = {
 \   'information': 'ﳃ ',
 \   'function': 'ﳣ ',
 \   'ros': ' ﮧ',
+\   'catkin': ' ﲎ'
 \ }
 
 " Auto tabline has issue when using together with vista, you should explicitly set showtabline=2
@@ -154,11 +155,11 @@ endfunction
 
 function! LightlineRosPackageName()
     if exists('b:ros_package_name')
-        let package_name_with_symbol = b:ros_package_name
+        let package_name_with_symbol = b:ros_package_name . g:lightline.symbols.ros
     else
         let package_name_with_symbol = get(b:, 'catkin_package_name', '')
+        let package_name_with_symbol .= !empty(package_name_with_symbol) ? g:lightline.symbols.catkin  : ''
     endif
-    let package_name_with_symbol .= !empty(package_name_with_symbol) ? g:lightline.symbols.ros  : ''
     return package_name_with_symbol
 endfunction
 
