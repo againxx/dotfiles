@@ -222,6 +222,10 @@
         {
             "name": "vimTerms",
             "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/vim_terms.txt"
+        },
+        {
+            "name": "rosTerms",
+            "path": "/home/ustc-1314/Programming_Tools/cSpell_dictionaries/ros_terms.txt"
         }
     ],
     "cSpell.dictionaries": [
