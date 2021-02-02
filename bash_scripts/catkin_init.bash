@@ -2,15 +2,15 @@
 
 # -e: exit immediately if a pipeline/a list/a compound command, exits with a non-zero status
 # -u: fail on error and undefined variables
-set -eu
+set -u
 
 # fail on a single failed command in a pipeline
 set -o pipefail
 
-declare -a package_names
+package_names=()
 build_type=debug
 all_packages=0
-while [ -n "$1" ]; do
+while [ $# -ge 1 ]; do
     case "$1" in
         --debug )
             build_type=debug;;
@@ -18,6 +18,8 @@ while [ -n "$1" ]; do
             build_type=release;;
         --all )
             all_packages=1;;
+        --none )
+            all_packages=-1;;
         [!-][!-]* )
             package_names+=("$1");;
             * )
@@ -50,28 +52,38 @@ if [[ ! -d ".catkin_tools" ]]; then
     catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
     catkin profile set $build_type
 else
-    catkin clean
     mapfile -t available_build_type < <(catkin profile list --unformatted)
     if [[ "${available_build_type[*]}" != *"$build_type"* ]]; then
         catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+        catkin clean
+    else
+        if (( ${#package_names[@]} != 0 || all_packages == 1 )); then
+            catkin clean
+        fi
     fi
     catkin profile set $build_type
 fi
 
-catkin build "${package_names[@]}"
+if (( all_packages == 1 )); then
+    catkin build
+elif (( all_packages != -1 && ${#package_names[@]} > 0 )); then
+    catkin build "${package_names[@]}"
+fi
 
-if (( ${#package_names[@]} == 0 || all_packages == 1)); then
+if (( ${#package_names[@]} == 0 || all_packages == 1 )); then
     mapfile -t package_names < <(catkin list --unformatted)
 fi
 
 for package_name in "${package_names[@]}"; do
     if [[ -f "$catkin_ws_dir/build/$package_name/compile_commands.json" ]]; then
-        ln -sf "$catkin_ws_dir/build/$package_name/compile_commands.json" "src/$package_name/"
+        ln -sf "$catkin_ws_dir/build/$package_name/compile_commands.json" "$(catkin locate "$package_name")/"
     fi
 done
 
+mkdir -p src/.vim
 cp ~/dotfiles/asynctasks/catkin_tasks.ini src/.tasks
 cp ~/dotfiles/clang_formats/ros-clang-format src/.clang-format
+cp ~/dotfiles/vimrc/catkin-coc-settings.json src/.vim/coc-settings.json
 
 echo -e "\n"
 echo "======================================"
