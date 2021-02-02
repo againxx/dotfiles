@@ -77,6 +77,7 @@ Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'againxx/python-syntax', { 'for': 'python' }
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
+Plug 'PeterRincker/vim-searchlight' " highlight current search match
 
 " ===
 " === Search & Move

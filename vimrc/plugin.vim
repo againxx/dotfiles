@@ -72,12 +72,11 @@ let g:fzf_preview_window = ['up:60%', 'ctrl-/']
 let g:vista_icon_indent = ['╰─▸ ', '├─▸ ']
 " let g:vista_icon_indent = ['▸ ', '']
 " See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'coc'
 let g:vista_executive_for = {
 \   'cpp': 'coc',
 \   'python': 'coc',
-\   'vim': 'ctags'
 \ }
+
 let g:vista_close_on_jump = 1
 let g:vista_sidebar_width = 40
 let g:vista#renderer#icons = {
@@ -369,8 +368,12 @@ let g:tmuxline_preset = 'nightly_fox'
 
 " incsearch
 let g:incsearch#auto_nohlsearch = 1
+" let g:incsearch#separate_highlight = 1
 " use very magic mode as default
 " let g:incsearch#magic = '\v'
+
+" vim-searchlight
+highlight link Searchlight Incsearch
 
 " Python-syntax
 let g:python_syntax_space_errors = 0

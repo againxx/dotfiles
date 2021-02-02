@@ -115,6 +115,7 @@ if g:colors_name == 'ayu'
     hi VimspectorBPCond guifg=#FFAE57
     hi VimspectorPC guifg=#D4BFFF
     hi VimspectorPCBP guifg=#D4BFFF
+    hi! link IncSearchCursor IncSearch
 
 endif
 
