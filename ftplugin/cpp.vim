@@ -14,14 +14,6 @@ let b:switch_custom_definitions = [
 \ ]
 call coc#config('diagnostic.format', "%message\n[%source:%code]")
 
-augroup cpp_special
-    autocmd!
-    autocmd BufEnter *
-    \   if exists("b:ros_package_path") || !empty(system('catkin list -u --this')) && &filetype ==# 'cpp' |
-    \       call <SID>catkinInit() |
-    \   endif
-augroup END
-
 nnoremap <buffer> [h
 \   {:execute "keepjumps normal! ?^#include\r"<CR>:nohlsearch<CR>
 nnoremap <buffer> ]h
@@ -42,13 +34,6 @@ function! s:catkinInit() abort
     setlocal shiftwidth=2
     setlocal softtabstop=2
     let b:ultisnips_cpp_style = 'ros'
-    call coc#config('diagnostic-languageserver.linters', {
-    \   'cpplint': {
-    \       'args': [
-    \           '--linelength=120',
-    \           '--filter=-whitespace/braces,-build/include_subdir,-whitespace/newline',
-    \           '%file'
-    \       ]
-    \   }
-    \ })
 endfunction
+
+call catkin#DetectPackage(function('s:catkinInit'))
