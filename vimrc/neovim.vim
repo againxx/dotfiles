@@ -96,7 +96,7 @@ let g:coc_snippet_prev = '<M-k>'
 let g:UltiSnipsJumpForwardTrigger = '<M-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<M-k>'
 let g:UltiSnipsListSnippets = '<M-l>'
-nnoremap <silent> <space><M-l> :<C-u>Snippets<cr>
+nnoremap <silent> <Space><M-l> :<C-u>Snippets<CR>
 let g:which_space_map['<M-l>'] = 'snippets'
 
 " ===

@@ -2,8 +2,8 @@ scriptencoding utf-8
 " ===
 " === WhichKey
 " ===
-nnoremap <silent> <leader> :<C-u>WhichKey '\'<CR>
-vnoremap <silent> <leader> :<C-u>WhichKeyVisual '\'<CR>
+nnoremap <silent> <Leader> :<C-u>WhichKey '\'<CR>
+vnoremap <silent> <Leader> :<C-u>WhichKeyVisual '\'<CR>
 " Define prefix dictionary
 let g:which_leader_map = {}
 let g:which_leader_map.e = {
@@ -128,134 +128,134 @@ let g:which_leader_map.f = 'coc-lists-grep'
 " === Multi-visual
 " ===
 let g:VM_maps = {}
-let g:VM_maps['Select Cursor Down'] = '<leader><leader>j'
-let g:VM_maps['Select Cursor Up']   = '<leader><leader>k'
+let g:VM_maps['Select Cursor Down'] = '<Leader><Leader>j'
+let g:VM_maps['Select Cursor Up']   = '<Leader><Leader>k'
 
 " ===
 " === Edit files
 " ===
-nnoremap <leader>ev :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
-nnoremap <leader>el :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
-nnoremap <leader>ek :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
-nnoremap <leader>ep :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
-nnoremap <leader>ea :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
-nnoremap <leader>eg :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
-nnoremap <leader>eb :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
-nnoremap <leader>ec :<C-u>CocConfig<CR>
-nnoremap <leader>eC :<C-u>CocLocalConfig<CR>
-" nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
-nnoremap <leader>es :<C-u>UltiSnipsEdit!<CR>
-nnoremap <leader>em :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-nnoremap <leader>et :<C-u>AsyncTaskEdit<CR>
-nnoremap <leader>eT :<C-u>AsyncTaskEdit!<CR>
+nnoremap <Leader>ev :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
+nnoremap <Leader>el :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
+nnoremap <Leader>ek :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
+nnoremap <Leader>ep :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
+nnoremap <Leader>ea :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
+nnoremap <Leader>eg :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
+nnoremap <Leader>eb :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
+nnoremap <Leader>ec :<C-u>CocConfig<CR>
+nnoremap <Leader>eC :<C-u>CocLocalConfig<CR>
+" nnoremap <Leader>es :CocCommand snippets.editSnippets<CR>
+nnoremap <Leader>es :<C-u>UltiSnipsEdit!<CR>
+nnoremap <Leader>em :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-f><left>
+nnoremap <Leader>et :<C-u>AsyncTaskEdit<CR>
+nnoremap <Leader>eT :<C-u>AsyncTaskEdit!<CR>
 
 " ===
 " === Change directory
 " ===
-nnoremap <leader>dv :<C-u>cd ~/dotfiles/vimrc<CR>
-nnoremap <leader>dc :<C-u>cd %:p:h<CR>
+nnoremap <Leader>dv :<C-u>cd ~/dotfiles/vimrc<CR>
+nnoremap <Leader>dc :<C-u>cd %:p:h<CR>
 
 " ===
 " === Session & Source
 " ===
-nnoremap <leader>ss :<C-u>CocCommand session.save<CR>
-nnoremap <leader>sl :<C-u>CocCommand session.load<CR>
+nnoremap <Leader>ss :<C-u>CocCommand session.save<CR>
+nnoremap <Leader>sl :<C-u>CocCommand session.load<CR>
 " Source vimrc file
-nnoremap <silent> <leader>sv :<C-u>source $MYVIMRC<CR>:nohlsearch<CR>
+nnoremap <silent> <Leader>sv :<C-u>source $MYVIMRC<CR>:nohlsearch<CR>
 
 " ===
 " === Quit
 " ===
-nnoremap <silent> <leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
-nnoremap <silent> <leader>qb :silent! bdelete!<CR>
-nnoremap <silent> <leader>qw :silent! bwipeout!<CR>
-nnoremap <silent> <leader>qt :tabclose<CR>
-nnoremap <silent> <leader>qd :VimspectorReset<CR>
-nnoremap <silent> <leader>qc :cclose<CR>
-nnoremap <silent> <leader>ql :lclose<CR>
+nnoremap <silent> <Leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
+nnoremap <silent> <Leader>qb :silent! bdelete!<CR>
+nnoremap <silent> <Leader>qw :silent! bwipeout!<CR>
+nnoremap <silent> <Leader>qt :tabclose<CR>
+nnoremap <silent> <Leader>qd :VimspectorReset<CR>
+nnoremap <silent> <Leader>qc :cclose<CR>
+nnoremap <silent> <Leader>ql :lclose<CR>
 
 " ===
 " === Coc
 " ===
-xmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
+xmap <Leader>a <Plug>(coc-codeaction-selected)
+nmap <Leader>a <Plug>(coc-codeaction-selected)
 
 " ===
 " === View
 " ===
-nnoremap <silent> <leader>vc :<C-u>call <SID>toggleCocErrorCode()<CR>
-nnoremap <leader>vm :<C-u>MarkdownPreview<CR>
-nnoremap <leader>vh :<C-u>call SyntaxAttr()<CR>
-nnoremap <leader>va ga
-vnoremap <leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
+nnoremap <silent> <Leader>vc :<C-u>call <SID>toggleCocErrorCode()<CR>
+nnoremap <Leader>vm :<C-u>MarkdownPreview<CR>
+nnoremap <Leader>vh :<C-u>call SyntaxAttr()<CR>
+nnoremap <Leader>va ga
+vnoremap <Leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
 
 " ===
 " === New
 " ===
-nnoremap <leader>nt :tabnew %<CR>
-nnoremap <leader>nd :<C-u>CocCommand todolist.create<CR>
-nnoremap <leader>nx :read !figlet<space>
+nnoremap <Leader>nt :tabnew %<CR>
+nnoremap <Leader>nd :<C-u>CocCommand todolist.create<CR>
+nnoremap <Leader>nx :read !figlet<Space>
 
 " ===
 " === Change settings
 " ===
-nnoremap <leader>cL :<C-u>call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <leader>cP :<C-u>call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <leader>cS :<C-u>call <SID>toggleLightlineSep()<CR>
-" nnoremap <silent> <leader>cs :call <SID>toggleSpellChecking()<CR>
-nnoremap <silent> <leader>cs :<C-u>CocCommand cSpell.toggleEnableSpellChecker<CR>
-nnoremap <leader>cl :<C-u>call <SID>toggleCodeLens()<CR>
-nnoremap <leader>cb :<C-u>call <SID>toggleGitBlame()<CR>
-nnoremap <leader>cp :<C-u>call <SID>changeBuildProfile()<CR>
+nnoremap <Leader>cL :<C-u>call <SID>toggleEquationFlushedLeft()<CR>
+nnoremap <Leader>cP :<C-u>call <SID>toggleFZFPreview()<CR>
+nnoremap <silent> <Leader>cS :<C-u>call <SID>toggleLightlineSep()<CR>
+" nnoremap <silent> <Leader>cs :call <SID>toggleSpellChecking()<CR>
+nnoremap <silent> <Leader>cs :<C-u>CocCommand cSpell.toggleEnableSpellChecker<CR>
+nnoremap <Leader>cl :<C-u>call <SID>toggleCodeLens()<CR>
+nnoremap <Leader>cb :<C-u>call <SID>toggleGitBlame()<CR>
+nnoremap <Leader>cp :<C-u>call <SID>changeBuildProfile()<CR>
 " enter and exit insert mode to update diagnostics
-nnoremap <leader>ca :<C-u>call <SID>changeDiagnosticLevel()<CR>i<Esc>
-nnoremap <leader>cg :<C-u>CocCommand git.toggleGutters<CR>
-" nmap <leader>ci <Plug>IndentGuidesToggle
-nnoremap <leader>ci :<C-u>IndentLinesToggle<CR>
+nnoremap <Leader>ca :<C-u>call <SID>changeDiagnosticLevel()<CR>i<Esc>
+nnoremap <Leader>cg :<C-u>CocCommand git.toggleGutters<CR>
+" nmap <Leader>ci <Plug>IndentGuidesToggle
+nnoremap <Leader>ci :<C-u>IndentLinesToggle<CR>
 
 " ===
 " === Table-mode
 " ===
-nnoremap <leader>tm :<C-u>TableModeToggle<CR>
-let g:table_mode_realign_map = '<leader>tr'
+nnoremap <Leader>tm :<C-u>TableModeToggle<CR>
+let g:table_mode_realign_map = '<Leader>tr'
 
 " ===
 " === Vimwiki
 " ===
-nnoremap <leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
-nmap <leader>wT <Plug>VimwikiTabIndex
-nnoremap <leader>wn :<C-u>VimwikiIndex 2<CR>
-nnoremap <leader>wd :<C-u>VimwikiIndex 3<CR>
-nnoremap <leader>wx <Plug>VimwikiDeleteLink
-nnoremap <leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
-nnoremap <leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<bar>CocList -A --normal locationlist<cr>
-nnoremap <leader>wts :<C-u>VimwikiSearchTags<Space>
-nnoremap <leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<cr>
-nnoremap <leader>wB :<C-u>ZettelBackLinks<CR>
-nnoremap <leader>wf :<C-u>ZettelOpen<CR>
-nnoremap <leader>wa :<C-u>ZettelNew<Space>
-nnoremap <leader>wi :<C-u>ZettelInsertNote<CR>
+nnoremap <Leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
+nmap <Leader>wT <Plug>VimwikiTabIndex
+nnoremap <Leader>wn :<C-u>VimwikiIndex 2<CR>
+nnoremap <Leader>wd :<C-u>VimwikiIndex 3<CR>
+nnoremap <Leader>wx <Plug>VimwikiDeleteLink
+nnoremap <Leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
+nnoremap <Leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<Bar>CocList -A --normal locationlist<CR>
+nnoremap <Leader>wts :<C-u>VimwikiSearchTags<Space>
+nnoremap <Leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<CR>
+nnoremap <Leader>wB :<C-u>ZettelBackLinks<CR>
+nnoremap <Leader>wf :<C-u>ZettelOpen<CR>
+nnoremap <Leader>wa :<C-u>ZettelNew<Space>
+nnoremap <Leader>wi :<C-u>ZettelInsertNote<CR>
 
 " ===
 " === Test
 " ===
-nnoremap <silent> <leader>tn :<C-u>TestNearest<CR>
-nnoremap <silent> <leader>tf :<C-u>TestFile<CR>
-nnoremap <silent> <leader>ts :<C-u>TestSuite<CR>
-nnoremap <silent> <leader>tl :<C-u>TestLast<CR>
-nnoremap <silent> <leader>tv :<C-u>TestVisit<CR>
+nnoremap <silent> <Leader>tn :<C-u>TestNearest<CR>
+nnoremap <silent> <Leader>tf :<C-u>TestFile<CR>
+nnoremap <silent> <Leader>ts :<C-u>TestSuite<CR>
+nnoremap <silent> <Leader>tl :<C-u>TestLast<CR>
+nnoremap <silent> <Leader>tv :<C-u>TestVisit<CR>
 
 " ===
 " ===  coc-translator
 " ===
 " popup
-nmap <leader>tt <Plug>(coc-translator-p)
-vmap <leader>tt <Plug>(coc-translator-pv)
+nmap <Leader>tt <Plug>(coc-translator-p)
+vmap <Leader>tt <Plug>(coc-translator-pv)
 
 " ===
 " === Yank
 " ===
-nnoremap <silent> <leader>yc :<C-u>call <SID>yankDiagnosticCodes()<CR>
+nnoremap <silent> <Leader>yc :<C-u>call <SID>yankDiagnosticCodes()<CR>
 
 " ===
 " === Functions

@@ -57,8 +57,8 @@ nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>==
 nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>==
 
 " Add empty line
-nnoremap [<space> ma:<c-u>put! =repeat(nr2char(10), v:count1)<CR>`a
-nnoremap ]<space> ma:<c-u>put =repeat(nr2char(10), v:count1)<CR>`a
+nnoremap [<Space> ma:<c-u>put! =repeat(nr2char(10), v:count1)<CR>`a
+nnoremap ]<Space> ma:<c-u>put =repeat(nr2char(10), v:count1)<CR>`a
 
 " Continuous indent
 xnoremap < <gv
@@ -91,7 +91,7 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 " Terminal
-nnoremap <space>x :terminal<CR>
+nnoremap <Space>x :terminal<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -101,7 +101,7 @@ nmap ga <Plug>(EasyAlign)
 
 " Vista
 " Find symbol of current document.
-nnoremap <silent> gO :<C-u>Vista!!<cr>
+nnoremap <silent> gO :<C-u>Vista!!<CR>
 
 " Vim-markdown
 " disable mapping for ge
@@ -165,7 +165,7 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-declration)
 nmap <silent> gL <Plug>(coc-implementation)
-nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<cr>
+nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
@@ -181,8 +181,8 @@ let g:UltiSnipsExpandTrigger = '<C-l>'
 " Scroll floating window up and down
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
@@ -197,69 +197,69 @@ xmap ac <Plug>(coc-classobj-a)
 omap ic <Plug>(coc-classobj-i)
 omap ac <Plug>(coc-classobj-a)
 " coc-lists
-nnoremap <silent> <space>m :<C-u>CocCommand fzf-preview.MruFiles<cr>
-nnoremap <silent> <space>F :<C-u>Clap filer<cr>
-nnoremap <silent> <space>f :<C-u>Clap files --hidden<cr>
-nnoremap <silent> <space>b :<C-u>Clap buffers<cr>
-nnoremap <silent> <space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nnoremap <silent> <space>Y :<C-u>CocList --normal sources<cr>
+nnoremap <silent> <Space>m :<C-u>CocCommand fzf-preview.MruFiles<CR>
+nnoremap <silent> <Space>F :<C-u>Clap filer<CR>
+nnoremap <silent> <Space>f :<C-u>Clap files --hidden<CR>
+nnoremap <silent> <Space>b :<C-u>Clap buffers<CR>
+nnoremap <silent> <Space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
+nnoremap <silent> <Space>y :<C-u>CocList -A --normal yank<CR>
+nnoremap <silent> <Space>Y :<C-u>CocList --normal sources<CR>
 " Search coc commands
-nnoremap <silent> <space>c :<C-u>CocList commands<cr>
-nnoremap <silent> <space>C :<C-u>CocCommand fzf-preview.CommandPalette<cr>
+nnoremap <silent> <Space>c :<C-u>CocList commands<CR>
+nnoremap <silent> <Space>C :<C-u>CocCommand fzf-preview.CommandPalette<CR>
 " Search vim commands
-nnoremap <silent> <space>v :<C-u>Clap command<cr>
+nnoremap <silent> <Space>v :<C-u>Clap command<CR>
 " Search workspace symbols.
-nnoremap <silent> <space>s :<C-u>Vista finder<cr>
-nnoremap <silent> <space>S :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <space>. :<C-u>CocListResume<cr>
+nnoremap <silent> <Space>s :<C-u>Vista finder<CR>
+nnoremap <silent> <Space>S :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <Space>. :<C-u>CocListResume<CR>
 " Show all diagnostics.
-nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <space><C-a> :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<cr>
+nnoremap <silent> <Space>a :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <Space><C-a> :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
 " Show locationlist
-nnoremap <silent> <space>l :<C-u>CocList --normal locationlist<cr>
-nnoremap <silent> <space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
-nnoremap <silent> <space>q :<C-u>CocList --normal quickfix<cr>
-nnoremap <silent> <space><C-q> :<C-u>CocCommand fzf-preview.QuickFix<CR>
-nnoremap <silent> <space>h :<C-u>CocList helptags<cr>
-nnoremap <silent> <space>u :<C-u>UndotreeToggle<cr>
-nnoremap <silent> <space>D :<C-u>CocList --normal todolist<cr>
-nnoremap <silent> <space>K :<C-u>CocList maps<cr>
-nnoremap <silent> <space>P :<C-u>CocList grep<cr>
-vnoremap <silent> <space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
-nnoremap <silent> <space><C-p> :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
-vnoremap <silent> <space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
-nnoremap <silent> <space>j :<C-u>CocNext<cr>
-nnoremap <silent> <space>k :<C-u>CocPrev<cr>
-nnoremap <silent> <space>H :<C-u>CocFirst<cr>
-nnoremap <silent> <space>L :<C-u>CocLast<cr>
-nnoremap <silent> <space>' :<C-u>CocCommand fzf-preview.Marks<cr>
-nnoremap <silent> <space>" :<C-u>CocList marks<cr>
-nnoremap <silent> <space>g/ :<C-u>CocList searchhistory<cr>
-nnoremap <silent> <space>t :<C-u>CocList tasks<cr>
-nnoremap <silent> <space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<cr>
-nnoremap <silent> <space>p :<C-u>Rg<cr>
-nnoremap <silent> <space><C-g> :<C-u>call <SID>openLazyGit()<cr>
-nnoremap <silent> <space><C-o> :<C-u>CocCommand fzf-preview.Jumps<cr>
-nnoremap <silent> <space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
-nnoremap <silent> <space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<cr>
-nnoremap <silent> <space>? :<C-u>CocCommand fzf-preview.BufferLines<cr>
-nnoremap <silent> <space>* :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<cr>"<cr>
-nnoremap <silent> <space>gs :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<bar>CocCommand fzf-preview.GitStatus<cr>
+nnoremap <silent> <Space>l :<C-u>CocList --normal locationlist<CR>
+nnoremap <silent> <Space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
+nnoremap <silent> <Space>q :<C-u>CocList --normal quickfix<CR>
+nnoremap <silent> <Space><C-q> :<C-u>CocCommand fzf-preview.QuickFix<CR>
+nnoremap <silent> <Space>h :<C-u>CocList helptags<CR>
+nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
+nnoremap <silent> <Space>D :<C-u>CocList --normal todolist<CR>
+nnoremap <silent> <Space>K :<C-u>CocList maps<CR>
+nnoremap <silent> <Space>P :<C-u>CocList grep<CR>
+vnoremap <silent> <Space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
+nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
+vnoremap <silent> <Space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+nnoremap <silent> <Space>j :<C-u>CocNext<CR>
+nnoremap <silent> <Space>k :<C-u>CocPrev<CR>
+nnoremap <silent> <Space>H :<C-u>CocFirst<CR>
+nnoremap <silent> <Space>L :<C-u>CocLast<CR>
+nnoremap <silent> <Space>' :<C-u>CocCommand fzf-preview.Marks<CR>
+nnoremap <silent> <Space>" :<C-u>CocList marks<CR>
+nnoremap <silent> <Space>g/ :<C-u>CocList searchhistory<CR>
+nnoremap <silent> <Space>t :<C-u>CocList tasks<CR>
+nnoremap <silent> <Space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<CR>
+nnoremap <silent> <Space>p :<C-u>Rg<CR>
+nnoremap <silent> <Space><C-g> :<C-u>call <SID>openLazyGit()<CR>
+nnoremap <silent> <Space><C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+nnoremap <silent> <Space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> <Space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> <Space>? :<C-u>CocCommand fzf-preview.BufferLines<CR>
+nnoremap <silent> <Space>* :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap <silent> <Space>gs :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<Bar>CocCommand fzf-preview.GitStatus<CR>
 " show chunk diff at current position
-nmap <silent> <space>gd <Plug>(coc-git-chunkinfo)
+nmap <silent> <Space>gd <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap <silent> <space>gc <Plug>(coc-git-commit)
-nnoremap <silent> <space>gC :<C-u>Clap bcommits<cr>
-nnoremap <silent> <space>ga :<C-u>CocCommand git.chunkStage<cr>
-nnoremap <silent> <space>gu :<C-u>CocCommand git.chunkUndo<cr>
-nnoremap <silent> <space>gz :<C-u>CocCommand git.foldUnchanged<cr>
-nnoremap <silent> <space>gr :<C-u>Git restore --staged %<bar>CocCommand git.refresh<cr>
-" nnoremap <silent> <space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
-nnoremap <silent> <space>ee :<C-u>CocCommand explorer<cr>
-nnoremap <silent> <space>ev :<C-u>CocCommand explorer --preset vimrc<cr>
-nnoremap <silent> <space>ed :<C-u>CocCommand explorer --preset dotfiles<cr>
-nnoremap <silent> <space>ec :<C-u>execute 'CocCommand explorer' expand('%:p:h')<cr>
+nmap <silent> <Space>gc <Plug>(coc-git-commit)
+nnoremap <silent> <Space>gC :<C-u>Clap bcommits<CR>
+nnoremap <silent> <Space>ga :<C-u>CocCommand git.chunkStage<CR>
+nnoremap <silent> <Space>gu :<C-u>CocCommand git.chunkUndo<CR>
+nnoremap <silent> <Space>gz :<C-u>CocCommand git.foldUnchanged<CR>
+nnoremap <silent> <Space>gr :<C-u>Git restore --staged %<Bar>CocCommand git.refresh<CR>
+" nnoremap <silent> <Space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
+nnoremap <silent> <Space>ee :<C-u>CocCommand explorer<CR>
+nnoremap <silent> <Space>ev :<C-u>CocCommand explorer --preset vimrc<CR>
+nnoremap <silent> <Space>ed :<C-u>CocCommand explorer --preset dotfiles<CR>
+nnoremap <silent> <Space>ec :<C-u>execute 'CocCommand explorer' expand('%:p:h')<CR>
 
 " vimwiki
 map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
@@ -267,48 +267,48 @@ map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 " ===
 " === Vimspector
 " ===
-nnoremap <silent> <space>dd :<C-u>call vimspector#Launch()<cr>
-nnoremap <silent> <space>dq :<C-u>call vimspector#Reset()<cr>
-nnoremap <silent> <space>dc :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<cr>
-nnoremap <silent> <space>dv :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<cr>
-nnoremap <silent> <space>dw :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<cr>
-nnoremap <silent> <space>ds :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<cr>
-nnoremap <silent> <space>do :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<cr>
+nnoremap <silent> <Space>dd :<C-u>call vimspector#Launch()<CR>
+nnoremap <silent> <Space>dq :<C-u>call vimspector#Reset()<CR>
+nnoremap <silent> <Space>dc :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<CR>
+nnoremap <silent> <Space>dv :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<CR>
+nnoremap <silent> <Space>dw :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<CR>
+nnoremap <silent> <Space>ds :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <silent> <Space>do :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<CR>
 
-nmap <space>dl <Plug>VimspectorStepInto
-nmap <space>dj <Plug>VimspectorStepOver
-nmap <space>dk <Plug>VimspectorStepOut
-nmap <space>dh <Plug>VimspectorRunToCursor
-nmap <space>dr <Plug>VimspectorRestart
-nmap <space>de <Plug>VimspectorContinue
-nmap <space>d; <Plug>VimspectorToggleBreakpoint
-nmap <space>di <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Space>dl <Plug>VimspectorStepInto
+nmap <Space>dj <Plug>VimspectorStepOver
+nmap <Space>dk <Plug>VimspectorStepOut
+nmap <Space>dh <Plug>VimspectorRunToCursor
+nmap <Space>dr <Plug>VimspectorRestart
+nmap <Space>de <Plug>VimspectorContinue
+nmap <Space>d; <Plug>VimspectorToggleBreakpoint
+nmap <Space>di <Plug>VimspectorToggleConditionalBreakpoint
 
-nnoremap <silent> <space>dx :<C-u>call vimspector#ClearBreakpoints()<cr>
+nnoremap <silent> <Space>dx :<C-u>call vimspector#ClearBreakpoints()<CR>
 
 " ===
 " === refactor/run tasks
 " ===
-nnoremap <silent> <space>ra :<C-u>RnvimrToggle<cr>
+nnoremap <silent> <Space>ra :<C-u>RnvimrToggle<CR>
 " Formatting selected code.
-xmap <space>rf <Plug>(coc-format-selected)
-nmap <space>rf <Plug>(coc-format-selected)
-nmap <space>rF <Plug>(coc-format)
-" nmap <space>rf <Plug>(coc-refactor)
+xmap <Space>rf <Plug>(coc-format-selected)
+nmap <Space>rf <Plug>(coc-format-selected)
+nmap <Space>rF <Plug>(coc-format)
+" nmap <Space>rf <Plug>(coc-refactor)
 " Apply AutoFix to problem on the current line.
-nmap <space>rx <Plug>(coc-fix-current)
+nmap <Space>rx <Plug>(coc-fix-current)
 " Apply ALEFix for the whole buffer
-" nmap <space>rX <Plug>(ale_fix)
+" nmap <Space>rX <Plug>(ale_fix)
 " Symbol renaming.
-nmap <space>rn <Plug>(coc-rename)
-nnoremap <silent> <space>rr :<C-u>AsyncTask file-run<CR>
-nnoremap <silent> <space>rB :<C-u>AsyncTask file-build<CR>
+nmap <Space>rn <Plug>(coc-rename)
+nnoremap <silent> <Space>rr :<C-u>AsyncTask file-run<CR>
+nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
 
 " ===
 " === Whichkey
 " ===
-nnoremap <silent> <space> :<C-u>WhichKey '<space>'<CR>
-vnoremap <silent> <space> :<C-u>WhichKeyVisual '<space>'<CR>
+nnoremap <silent> <Space> :<C-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <Space> :<C-u>WhichKeyVisual '<Space>'<CR>
 
 " For vimwiki
 let g:which_wikilist_lower_map =  {}
@@ -495,6 +495,6 @@ function! s:openLazyGit() abort
     else
         execute g:lazy_git_tab_num . 'tabnext'
         normal! a
-        call chansend(g:lazy_git_channel, "\<cr>")
+        call chansend(g:lazy_git_channel, "\<CR>")
     endif
 endfunction

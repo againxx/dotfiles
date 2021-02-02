@@ -10,9 +10,9 @@ augroup common
     autocmd CmdLineEnter : set nosmartcase
     autocmd CmdLineLeave : set smartcase
     autocmd VimResized * :wincmd =
-    autocmd FileType help nnoremap [t ?<bar>.\{-}<bar><cr>:nohlsearch<cr>
-    autocmd FileType help nnoremap ]t /<bar>.\{-}<bar><cr>:nohlsearch<cr>
-    autocmd TabClosed * call <SID>deleteFinishedTerminalBuffers()
+    autocmd FileType help nnoremap [t ?<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
+    autocmd FileType help nnoremap ]t /<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
+    autocmd TabClosed * call s:deleteFinishedTerminalBuffers()
 augroup END
 
 augroup lightline_special
@@ -41,7 +41,7 @@ augroup END
 augroup vim_which_key_special
     autocmd!
     autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
-    autocmd User vim-which-key call which_key#register('<space>', 'g:which_space_map')
+    autocmd User vim-which-key call which_key#register('<Space>', 'g:which_space_map')
 augroup END
 
 augroup clap_special
