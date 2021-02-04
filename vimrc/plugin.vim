@@ -10,6 +10,7 @@ let g:undotree_SetFocusWhenToggle = 1
 " ===
 let g:VM_set_statusline = 2
 let g:VM_silent_exit = 1
+let g:VM_quit_after_leaving_insert_mode = 1
 
 " ===
 " === Rainbow
