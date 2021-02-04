@@ -245,7 +245,8 @@
     "clangd.arguments": [
         "--completion-style=detailed",
         "--suggest-missing-includes",
-        "--clang-tidy"
+        "--clang-tidy",
+        "--header-insertion=never"
     ],
     "diagnostic-languageserver.mergeConfig": true,
     "diagnostic-languageserver.linters": {
