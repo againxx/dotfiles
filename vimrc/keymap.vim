@@ -50,15 +50,15 @@ nnoremap <C-c> <nop>
 nnoremap <C-c><C-x> <C-c>
 
 " Use [a and ]a in visual mode to move selection up and down
-xnoremap [a :<c-u>execute "'<,'>move '<-1-".v:count1<CR>gv=gv
-xnoremap ]a :<c-u>execute "'<,'>move '>+".v:count1<CR>gv=gv
-" Move line in normal mode
-nnoremap [a :<c-u>execute 'move -1-'.v:count1<CR>==
-nnoremap ]a :<c-u>execute 'move +'.v:count1<CR>==
+xnoremap [a :<C-u>call <SID>moveSelectedLines(-v:count1)<CR>
+xnoremap ]a :<C-u>call <SID>moveSelectedLines(v:count1)<CR>
+" Move one line in normal mode
+nnoremap [a :<C-u>execute 'move -1-'.v:count1<CR>==
+nnoremap ]a :<C-u>execute 'move +'.v:count1<CR>==
 
 " Add empty line
-nnoremap [<Space> ma:<c-u>put! =repeat(nr2char(10), v:count1)<CR>`a
-nnoremap ]<Space> ma:<c-u>put =repeat(nr2char(10), v:count1)<CR>`a
+nnoremap [<Space> :<C-u>call <SID>addEmptyLines(-v:count1)<CR>
+nnoremap ]<Space> :<C-u>call <SID>addEmptyLines(v:count1)<CR>
 
 " Continuous indent
 xnoremap < <gv
@@ -170,7 +170,7 @@ nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>showDocumentation()<CR>
+nnoremap <silent> K :<C-u>call <SID>showDocumentation()<CR>
 
 " Use <Tab> for select text for visual placeholder of snippet.
 " vmap <Tab> <Plug>(coc-snippets-select)
@@ -497,4 +497,32 @@ function! s:openLazyGit() abort
         normal! a
         call chansend(g:lazy_git_channel, "\<CR>")
     endif
+endfunction
+
+function! s:addEmptyLines(count) abort
+    let cursor_pos = getcurpos()[1:]
+    if a:count < 0
+        put! =repeat(nr2char(10), -a:count)
+        let cursor_pos[0] -= a:count
+    else
+        put =repeat(nr2char(10), a:count)
+    endif
+    call cursor(cursor_pos)
+endfunction
+
+function! s:moveSelectedLines(count) abort
+    if a:count == -1
+        execute "'<,'>move '<-2"
+    elseif a:count == 1
+        execute "'<,'>move '>+"
+    elseif a:count < -1
+        execute "normal! gv\<Esc>"
+        let move_dist = line('.') - line("'<") + a:count
+        execute "'<,'>move '<" . move_dist
+    else
+        execute "normal! gv\<Esc>"
+        let move_dist = line("'>") - line('.') + a:count
+        execute "'<,'>move '>+" . move_dist
+    endif
+    normal! gv=gv
 endfunction
