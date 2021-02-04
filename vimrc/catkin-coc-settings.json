@@ -9,6 +9,8 @@
         }
     },
     "cSpell.dictionaries": [
-        "rosTerms"
+        "rosTerms",
+        "cFamilyTerms",
+        "pythonTerms"
     ]
 }
