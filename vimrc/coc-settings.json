@@ -320,6 +320,12 @@
                 "warning": "warning",
                 "error": "error"
             }
+        },
+        "write-good": {
+            "securities": {
+                "undefined": "hint"
+            }
+        },
         }
     },
     "diagnostic-languageserver.filetypes": {
@@ -332,7 +338,8 @@
             "pylint",
             "mypy"
         ],
-        "vim": "vint"
+        "vim": "vint",
+        "vimwiki": "write-good"
     },
     "json.schemas": [
         {
