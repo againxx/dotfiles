@@ -175,6 +175,12 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Plug 'airblade/vim-rooter'
 
 " ===
+" === Custom Text Objects
+" ===
+Plug 'kana/vim-textobj-user'
+Plug 'againxx/vim-textobj-underscore'
+
+" ===
 " === ROS
 " ===
 if !empty($ROS_ROOT)
