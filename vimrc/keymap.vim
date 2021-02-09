@@ -205,10 +205,10 @@ nnoremap <silent> <Space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer
 nnoremap <silent> <Space>y :<C-u>CocList -A --normal yank<CR>
 nnoremap <silent> <Space>Y :<C-u>CocList --normal sources<CR>
 " Search coc commands
-nnoremap <silent> <Space>c :<C-u>CocList commands<CR>
-nnoremap <silent> <Space>C :<C-u>CocCommand fzf-preview.CommandPalette<CR>
+nnoremap <silent> <Space>cc :<C-u>CocList commands<CR>
 " Search vim commands
-nnoremap <silent> <Space>v :<C-u>Clap command<CR>
+nnoremap <silent> <Space>cv :<C-u>Clap command<CR>
+nnoremap <silent> <Space>ch :<C-u>CocCommand fzf-preview.CommandPalette<CR>
 " Search workspace symbols.
 nnoremap <silent> <Space>s :<C-u>Vista finder<CR>
 nnoremap <silent> <Space>S :<C-u>CocList -I symbols<CR>
@@ -342,9 +342,6 @@ let g:which_space_map.f = 'files'
 let g:which_space_map.b = 'buffers'
 let g:which_space_map.y = 'yank'
 let g:which_space_map.Y = 'source'
-let g:which_space_map.c = 'coc-command'
-let g:which_space_map.C = 'command-history'
-let g:which_space_map.v = 'vim-command'
 let g:which_space_map.s = 'vista'
 let g:which_space_map.S = 'coc-symbol'
 let g:which_space_map.a = 'diagnostic'
@@ -376,6 +373,14 @@ let g:which_space_map['<C-L>'] = 'location-list-preview'
 let g:which_space_map['<C-Q>'] = 'quickfix-preview'
 let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['<C-O>'] = 'jump-location'
+
+" For commands
+let g:which_space_map.c = {
+\   'name': '+command',
+\   'c':    'coc-command',
+\   'v':    'vim-command',
+\   'h':    'command-history'
+\ }
 
 " For explorer
 let g:which_space_map.e = {
