@@ -107,7 +107,7 @@ augroup neovim_special
   autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
 augroup END
 
-function! s:isFirenvimActive(event) abort
+function! s:IsFirenvimActive(event) abort
  if !exists('*nvim_get_chan_info')
   return 0
  endif
@@ -118,7 +118,7 @@ endfunction
 
 " Used by firenvim
 function! OnUIEnter(event) abort
- if s:isFirenvimActive(a:event)
+ if s:IsFirenvimActive(a:event)
   set guifont=InconsolataLGC\ Nerd\ Font:h20
   set showtabline=0
   if g:colors_name ==# 'ayu'

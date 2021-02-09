@@ -135,13 +135,13 @@ let g:VM_maps['Select Cursor Up']   = '<Leader><Leader>k'
 " ===
 " === Edit files
 " ===
-nnoremap <Leader>ev :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
-nnoremap <Leader>el :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
-nnoremap <Leader>ek :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
-nnoremap <Leader>ep :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
-nnoremap <Leader>ea :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
-nnoremap <Leader>eg :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
-nnoremap <Leader>eb :<C-u>call <SID>autoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
+nnoremap <Leader>ev :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
+nnoremap <Leader>el :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
+nnoremap <Leader>ek :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
+nnoremap <Leader>ep :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
+nnoremap <Leader>ea :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
+nnoremap <Leader>eg :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
+nnoremap <Leader>eb :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
 nnoremap <Leader>ec :<C-u>CocConfig<CR>
 nnoremap <Leader>eC :<C-u>CocLocalConfig<CR>
 " nnoremap <Leader>es :CocCommand snippets.editSnippets<CR>
@@ -184,11 +184,11 @@ nmap <Leader>a <Plug>(coc-codeaction-selected)
 " ===
 " === View
 " ===
-nnoremap <silent> <Leader>vc :<C-u>call <SID>toggleCocErrorCode()<CR>
+nnoremap <silent> <Leader>vc :<C-u>call <SID>ToggleCocErrorCode()<CR>
 nnoremap <Leader>vm :<C-u>MarkdownPreview<CR>
 nnoremap <Leader>vh :<C-u>call SyntaxAttr()<CR>
 nnoremap <Leader>va ga
-vnoremap <Leader>va y:call <SID>echoFormatsAndChar(@0)<CR>
+vnoremap <Leader>va y:call <SID>EchoFormatsAndChar(@0)<CR>
 
 " ===
 " === New
@@ -200,16 +200,16 @@ nnoremap <Leader>nx :read !figlet<Space>
 " ===
 " === Change settings
 " ===
-nnoremap <Leader>cL :<C-u>call <SID>toggleEquationFlushedLeft()<CR>
-nnoremap <Leader>cP :<C-u>call <SID>toggleFZFPreview()<CR>
-nnoremap <silent> <Leader>cS :<C-u>call <SID>toggleLightlineSep()<CR>
-" nnoremap <silent> <Leader>cs :call <SID>toggleSpellChecking()<CR>
+nnoremap <Leader>cL :<C-u>call <SID>ToggleEquationFlushedLeft()<CR>
+nnoremap <Leader>cP :<C-u>call <SID>ToggleFZFPreview()<CR>
+nnoremap <silent> <Leader>cS :<C-u>call <SID>ToggleLightlineSep()<CR>
+" nnoremap <silent> <Leader>cs :call <SID>ToggleSpellChecking()<CR>
 nnoremap <silent> <Leader>cs :<C-u>CocCommand cSpell.toggleEnableSpellChecker<CR>
-nnoremap <Leader>cl :<C-u>call <SID>toggleCodeLens()<CR>
-nnoremap <Leader>cb :<C-u>call <SID>toggleGitBlame()<CR>
-nnoremap <Leader>cp :<C-u>call <SID>changeBuildProfile()<CR>
+nnoremap <Leader>cl :<C-u>call <SID>ToggleCodeLens()<CR>
+nnoremap <Leader>cb :<C-u>call <SID>ToggleGitBlame()<CR>
+nnoremap <Leader>cp :<C-u>call <SID>ChangeBuildProfile()<CR>
 " enter and exit insert mode to update diagnostics
-nnoremap <Leader>ca :<C-u>call <SID>changeDiagnosticLevel()<CR>i<Esc>
+nnoremap <Leader>ca :<C-u>call <SID>ChangeDiagnosticLevel()<CR>i<Esc>
 nnoremap <Leader>cg :<C-u>CocCommand git.toggleGutters<CR>
 " nmap <Leader>ci <Plug>IndentGuidesToggle
 nnoremap <Leader>ci :<C-u>IndentLinesToggle<CR>
@@ -256,13 +256,13 @@ vmap <Leader>tt <Plug>(coc-translator-pv)
 " ===
 " === Yank
 " ===
-nnoremap <silent> <Leader>yc :<C-u>call <SID>yankDiagnosticCodes()<CR>
+nnoremap <silent> <Leader>yc :<C-u>call <SID>YankDiagnosticCodes()<CR>
 
 " ===
 " === Functions
 " ===
 
-function! s:autoVerticalSplit(fname)
+function! s:AutoVerticalSplit(fname)
     if winlayout()[0] ==# 'leaf'
         exec 'vsplit '.a:fname
     else
@@ -272,7 +272,7 @@ endfunction
 
 " Ale
 " Reset b:ale_echo_msg_format to show error code
-function! s:toggleAleErrorCode() abort
+function! s:ToggleAleErrorCode() abort
   if exists('b:ale_echo_msg_format')
     unlet b:ale_echo_msg_format
   else
@@ -281,7 +281,7 @@ function! s:toggleAleErrorCode() abort
 endfunction
 
 " Coc
-function! s:toggleCocErrorCode() abort
+function! s:ToggleCocErrorCode() abort
   if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"
     call coc#config('diagnostic.format', "%message\n[%source:%code]")
   else
@@ -289,7 +289,7 @@ function! s:toggleCocErrorCode() abort
   endif
 endfunction
 
-function! s:changeDiagnosticLevel() abort
+function! s:ChangeDiagnosticLevel() abort
   if coc#util#get_config('diagnostic')['level'] ==# 'warning'
     call coc#config('diagnostic.level', 'hint')
   else
@@ -298,7 +298,7 @@ function! s:changeDiagnosticLevel() abort
 endfunction
 
 " Markdown-Preview
-function! s:toggleEquationFlushedLeft() abort
+function! s:ToggleEquationFlushedLeft() abort
   if exists("g:mkdp_preview_options['katex']['fleqn']")
     if g:mkdp_preview_options['katex']['fleqn'] == 1
       let g:mkdp_preview_options['katex']['fleqn'] = 0
@@ -311,7 +311,7 @@ function! s:toggleEquationFlushedLeft() abort
 endfunction
 
 " FZF-Preview
-function! s:toggleFZFPreview() abort
+function! s:ToggleFZFPreview() abort
   if exists('g:vista_fzf_preview')
     unlet g:vista_fzf_preview
     unlet g:fzf_layout
@@ -329,7 +329,7 @@ function! s:toggleFZFPreview() abort
 endfunction
 
 " Lightline Separate
-function! s:toggleLightlineSep() abort
+function! s:ToggleLightlineSep() abort
   if g:lightline.separator.left == ''
     let g:lightline.separator = {
     \   'left': '',
@@ -362,7 +362,7 @@ function! s:toggleLightlineSep() abort
   call lightline#toggle()
 endfunction
 
-function! s:toggleSpellChecking() abort
+function! s:ToggleSpellChecking() abort
   if &l:spell ==# 0
     setlocal spell spelllang=en_us
   else
@@ -370,7 +370,7 @@ function! s:toggleSpellChecking() abort
   endif
 endfunction
 
-function! s:toggleCodeLens() abort
+function! s:ToggleCodeLens() abort
   if coc#util#get_config('codeLens')['enable']
     call coc#config('codeLens.enable', 0)
   else
@@ -378,7 +378,7 @@ function! s:toggleCodeLens() abort
   endif
 endfunction
 
-function! s:toggleGitBlame() abort
+function! s:ToggleGitBlame() abort
   if coc#util#get_config('git')['addGBlameToVirtualText']
     call coc#config('git.addGBlameToVirtualText', 0)
   else
@@ -386,7 +386,7 @@ function! s:toggleGitBlame() abort
   endif
 endfunction
 
-function s:changeBuildProfile() abort
+function s:ChangeBuildProfile() abort
   if g:asynctasks_profile ==# 'debug'
     execute 'AsyncTaskProfile release'
   elseif g:asynctasks_profile ==# 'release'
@@ -399,7 +399,7 @@ function s:changeBuildProfile() abort
 endfunction
 
 " echo different formats and the corresponding char for a given number
-function! s:echoFormatsAndChar(num) abort
+function! s:EchoFormatsAndChar(num) abort
   let l:input_num = a:num
   let l:hex_reg = '\v^(\\x|0x|\\u|u\+)'
   if l:input_num =~? '\v^\d+$' " decimal
@@ -416,13 +416,13 @@ function! s:echoFormatsAndChar(num) abort
   echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
 endfunction
 
-function s:yankDiagnosticCodes() abort
-  let codes = join(<SID>getDiagnosticCodes())
+function s:YankDiagnosticCodes() abort
+  let codes = join(s:GetDiagnosticCodes())
   let @@ = codes
   let @+ = codes
 endfunction
 
-function! s:getDiagnosticCodes() abort
+function! s:GetDiagnosticCodes() abort
   let coc_diagnostics = CocAction('diagnosticList')
   let current_line = line('.')
   let current_file_path = expand('%:p')

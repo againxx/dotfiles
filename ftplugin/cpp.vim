@@ -32,7 +32,7 @@ map <buffer> ][ /}<CR>b99]}
 map <buffer> ]] j0[[%/{<CR>
 map <buffer> [] k$][%?}<CR>
 
-function! s:catkinInit() abort
+function! s:CatkinInit() abort
   setlocal colorcolumn=121
   setlocal tabstop=2
   setlocal shiftwidth=2
@@ -40,4 +40,4 @@ function! s:catkinInit() abort
   let b:ultisnips_cpp_style = 'ros'
 endfunction
 
-call catkin#DetectPackage(function('s:catkinInit'))
+call catkin#DetectPackage(function('s:CatkinInit'))

@@ -12,7 +12,7 @@ augroup common
   autocmd VimResized * :wincmd =
   autocmd FileType help nnoremap [t ?<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
   autocmd FileType help nnoremap ]t /<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
-  autocmd TabClosed * call s:deleteFinishedTerminalBuffers()
+  autocmd TabClosed * call s:DeleteFinishedTerminalBuffers()
 augroup END
 
 augroup lightline_special
@@ -50,7 +50,7 @@ augroup clap_special
   autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
 augroup END
 
-function! s:deleteFinishedTerminalBuffers() abort
+function! s:DeleteFinishedTerminalBuffers() abort
   let term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
   for term_buffer in term_buffers
     let is_running = has('terminal') ? term_getstatus(term_buffer) =~# 'running' :

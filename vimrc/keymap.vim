@@ -50,15 +50,15 @@ nnoremap <C-c> <nop>
 nnoremap <C-c><C-x> <C-c>
 
 " Use [a and ]a in visual mode to move selection up and down
-xnoremap [a :<C-u>call <SID>moveSelectedLines(-v:count1)<CR>
-xnoremap ]a :<C-u>call <SID>moveSelectedLines(v:count1)<CR>
+xnoremap [a :<C-u>call <SID>MoveSelectedLines(-v:count1)<CR>
+xnoremap ]a :<C-u>call <SID>MoveSelectedLines(v:count1)<CR>
 " Move one line in normal mode
 nnoremap [a :<C-u>execute 'move -1-'.v:count1<CR>==
 nnoremap ]a :<C-u>execute 'move +'.v:count1<CR>==
 
 " Add empty line
-nnoremap [<Space> :<C-u>call <SID>addEmptyLines(-v:count1)<CR>
-nnoremap ]<Space> :<C-u>call <SID>addEmptyLines(v:count1)<CR>
+nnoremap [<Space> :<C-u>call <SID>AddEmptyLines(-v:count1)<CR>
+nnoremap ]<Space> :<C-u>call <SID>AddEmptyLines(v:count1)<CR>
 
 " Continuous indent
 xnoremap < <gv
@@ -153,7 +153,7 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Use <Tab> to expand snippet or confirm completion
-inoremap <silent> <Tab> <C-r>=<SID>expandUltisnipsOrUseCocCompletion()<CR>
+inoremap <silent> <Tab> <C-r>=<SID>ExpandUltisnipsOrUseCocCompletion()<CR>
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
@@ -170,7 +170,7 @@ nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :<C-u>call <SID>showDocumentation()<CR>
+nnoremap <silent> K :<C-u>call <SID>ShowDocumentation()<CR>
 
 " Use <Tab> for select text for visual placeholder of snippet.
 " vmap <Tab> <Plug>(coc-snippets-select)
@@ -226,9 +226,9 @@ nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
 nnoremap <silent> <Space>D :<C-u>CocList --normal todolist<CR>
 nnoremap <silent> <Space>K :<C-u>CocList maps<CR>
 nnoremap <silent> <Space>P :<C-u>CocList grep<CR>
-xnoremap <silent> <Space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
-nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
-xnoremap <silent> <Space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+xnoremap <silent> <Space>P :<C-u>call <SID>GrepFromSelected(visualmode(), 1)<CR>
+nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+xnoremap <silent> <Space><C-p> :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap <silent> <Space>j :<C-u>CocNext<CR>
 nnoremap <silent> <Space>k :<C-u>CocPrev<CR>
 nnoremap <silent> <Space>H :<C-u>CocFirst<CR>
@@ -239,7 +239,7 @@ nnoremap <silent> <Space>g/ :<C-u>CocList searchhistory<CR>
 nnoremap <silent> <Space>t :<C-u>CocList tasks<CR>
 nnoremap <silent> <Space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <Space>p :<C-u>Rg<CR>
-nnoremap <silent> <Space><C-g> :<C-u>call <SID>openLazyGit()<CR>
+nnoremap <silent> <Space><C-g> :<C-u>call <SID>OpenLazyGit()<CR>
 nnoremap <silent> <Space><C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
 nnoremap <silent> <Space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
 nnoremap <silent> <Space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<CR>
@@ -269,11 +269,11 @@ map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
 " ===
 nnoremap <silent> <Space>dd :<C-u>call vimspector#Launch()<CR>
 nnoremap <silent> <Space>dq :<C-u>call vimspector#Reset()<CR>
-nnoremap <silent> <Space>dc :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.code)<CR>
-nnoremap <silent> <Space>dv :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.variables)<CR>
-nnoremap <silent> <Space>dw :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.watches)<CR>
-nnoremap <silent> <Space>ds :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <silent> <Space>do :<C-u>call <SID>gotoWindowAndMaximize(g:vimspector_session_windows.output)<CR>
+nnoremap <silent> <Space>dc :<C-u>call <SID>GotoWindowAndMaximize(g:vimspector_session_windows.code)<CR>
+nnoremap <silent> <Space>dv :<C-u>call <SID>GotoWindowAndMaximize(g:vimspector_session_windows.variables)<CR>
+nnoremap <silent> <Space>dw :<C-u>call <SID>GotoWindowAndMaximize(g:vimspector_session_windows.watches)<CR>
+nnoremap <silent> <Space>ds :<C-u>call <SID>GotoWindowAndMaximize(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <silent> <Space>do :<C-u>call <SID>GotoWindowAndMaximize(g:vimspector_session_windows.output)<CR>
 
 nmap <Space>dl <Plug>VimspectorStepInto
 nmap <Space>dj <Plug>VimspectorStepOver
@@ -443,12 +443,12 @@ let g:which_space_map.d = {
 \   'x':    'clear-all-breakpoints',
 \ }
 
-function! s:gotoWindowAndMaximize(win_id) abort
+function! s:GotoWindowAndMaximize(win_id) abort
   call win_gotoid(a:win_id)
   execute 'MaximizerToggle'
 endfunction
 
-function! s:showDocumentation()
+function! s:ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -456,7 +456,7 @@ function! s:showDocumentation()
   endif
 endfunction
 
-function! s:expandUltisnipsOrUseCocCompletion() abort
+function! s:ExpandUltisnipsOrUseCocCompletion() abort
   call UltiSnips#ExpandSnippet()
   if g:ulti_expand_res > 0
     pclose
@@ -470,7 +470,7 @@ function! s:expandUltisnipsOrUseCocCompletion() abort
   endif
 endfunction
 
-function! s:grepFromSelected(type, ...)
+function! s:GrepFromSelected(type, ...)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
     normal! `<v`>y
@@ -489,7 +489,7 @@ function! s:grepFromSelected(type, ...)
   endif
 endfunction
 
-function! s:openLazyGit() abort
+function! s:OpenLazyGit() abort
   let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
   if empty(lazygit_buffer)
     tabnew
@@ -504,7 +504,7 @@ function! s:openLazyGit() abort
   endif
 endfunction
 
-function! s:addEmptyLines(count) abort
+function! s:AddEmptyLines(count) abort
   let cursor_pos = getcurpos()[1:]
   if a:count < 0
     put! =repeat(nr2char(10), -a:count)
@@ -515,7 +515,7 @@ function! s:addEmptyLines(count) abort
   call cursor(cursor_pos)
 endfunction
 
-function! s:moveSelectedLines(count) abort
+function! s:MoveSelectedLines(count) abort
   if a:count == -1
     execute "'<,'>move '<-2"
   elseif a:count == 1

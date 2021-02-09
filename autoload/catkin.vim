@@ -1,4 +1,4 @@
-function! s:package_callback(job_id, data, event) abort dict
+function! s:PackageCallback(job_id, data, event) abort dict
     if a:event ==# 'stdout'
         let b:catkin_package_name = a:data[0]
     elseif a:event ==# 'exit'
@@ -12,8 +12,8 @@ function! s:package_callback(job_id, data, event) abort dict
 endfunction
 
 let s:callbacks = {
-\ 'on_stdout': function('s:package_callback'),
-\ 'on_exit': function('s:package_callback')
+\ 'on_stdout': function('s:PackageCallback'),
+\ 'on_exit': function('s:PackageCallback')
 \ }
 
 function! catkin#DetectPackage(on_exit_func) abort

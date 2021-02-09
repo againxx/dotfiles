@@ -3,10 +3,10 @@ nnoremap <buffer> <Space>rb :AsyncTask project-build<CR>
 nnoremap <buffer> <Space>ri :AsyncTask project-init<CR>
 nnoremap <buffer> <Space>rc :AsyncTask project-clean<CR>
 
-function! s:catkinInit() abort
+function! s:CatkinInit() abort
   setlocal tabstop=2
   setlocal shiftwidth=2
   setlocal softtabstop=2
 endfunction
 
-call catkin#DetectPackage(function('s:catkinInit'))
+call catkin#DetectPackage(function('s:CatkinInit'))
