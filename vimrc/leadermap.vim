@@ -273,166 +273,166 @@ endfunction
 " Ale
 " Reset b:ale_echo_msg_format to show error code
 function! s:toggleAleErrorCode() abort
-    if exists('b:ale_echo_msg_format')
-        unlet b:ale_echo_msg_format
-    else
-        let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
-    endif
+  if exists('b:ale_echo_msg_format')
+    unlet b:ale_echo_msg_format
+  else
+    let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
+  endif
 endfunction
 
 " Coc
 function! s:toggleCocErrorCode() abort
-    if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"
-        call coc#config('diagnostic.format', "%message\n[%source:%code]")
-    else
-        call coc#config('diagnostic.format', "%message\n[%source]")
-    endif
+  if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"
+    call coc#config('diagnostic.format', "%message\n[%source:%code]")
+  else
+    call coc#config('diagnostic.format', "%message\n[%source]")
+  endif
 endfunction
 
 function! s:changeDiagnosticLevel() abort
-    if coc#util#get_config('diagnostic')['level'] ==# 'warning'
-        call coc#config('diagnostic.level', 'hint')
-    else
-        call coc#config('diagnostic.level', 'warning')
-    endif
+  if coc#util#get_config('diagnostic')['level'] ==# 'warning'
+    call coc#config('diagnostic.level', 'hint')
+  else
+    call coc#config('diagnostic.level', 'warning')
+  endif
 endfunction
 
 " Markdown-Preview
 function! s:toggleEquationFlushedLeft() abort
-    if exists("g:mkdp_preview_options['katex']['fleqn']")
-        if g:mkdp_preview_options['katex']['fleqn'] == 1
-            let g:mkdp_preview_options['katex']['fleqn'] = 0
-        else
-            let g:mkdp_preview_options['katex']['fleqn'] = 1
-        endif
+  if exists("g:mkdp_preview_options['katex']['fleqn']")
+    if g:mkdp_preview_options['katex']['fleqn'] == 1
+      let g:mkdp_preview_options['katex']['fleqn'] = 0
     else
-        let g:mkdp_preview_options['katex'] = {'fleqn': 1}
+      let g:mkdp_preview_options['katex']['fleqn'] = 1
     endif
+  else
+    let g:mkdp_preview_options['katex'] = {'fleqn': 1}
+  endif
 endfunction
 
 " FZF-Preview
 function! s:toggleFZFPreview() abort
-    if exists('g:vista_fzf_preview')
-        unlet g:vista_fzf_preview
-        unlet g:fzf_layout
-    else
-        let g:vista_fzf_preview = ['up:60%']
-        let g:fzf_layout = {
-        \   'window': {
-        \       'width': 0.9,
-        \       'height': 0.9,
-        \       'xoffset': 0.5,
-        \       'border': 'sharp'
-        \   }
-        \ }
-    endif
+  if exists('g:vista_fzf_preview')
+    unlet g:vista_fzf_preview
+    unlet g:fzf_layout
+  else
+    let g:vista_fzf_preview = ['up:60%']
+    let g:fzf_layout = {
+    \   'window': {
+    \   'width': 0.9,
+    \   'height': 0.9,
+    \   'xoffset': 0.5,
+    \   'border': 'sharp'
+    \   }
+    \ }
+  endif
 endfunction
 
 " Lightline Separate
 function! s:toggleLightlineSep() abort
-    if g:lightline.separator.left == ''
-        let g:lightline.separator = {
-        \   'left': '',
-        \   'right': ''
-        \ }
-        let g:lightline.subseparator = {
-        \   'left': '',
-        \   'right': ''
-        \ }
-    elseif g:lightline.separator.left == ''
-        let g:lightline.separator = {
-        \   'left': ' ',
-        \   'right': ' '
-        \ }
-        let g:lightline.subseparator = {
-        \   'left': '¦',
-        \   'right': '¦'
-        \ }
-    else
-        let g:lightline.separator = {
-        \   'left': '',
-        \   'right': ''
-        \ }
-        let g:lightline.subseparator = {
-        \   'left': '',
-        \   'right': ''
-        \ }
-    endif
-    call lightline#toggle()
-    call lightline#toggle()
+  if g:lightline.separator.left == ''
+    let g:lightline.separator = {
+    \   'left': '',
+    \   'right': ''
+    \ }
+    let g:lightline.subseparator = {
+    \   'left': '',
+    \   'right': ''
+    \ }
+  elseif g:lightline.separator.left == ''
+    let g:lightline.separator = {
+    \   'left': ' ',
+    \   'right': ' '
+    \ }
+    let g:lightline.subseparator = {
+    \   'left': '¦',
+    \   'right': '¦'
+    \ }
+  else
+    let g:lightline.separator = {
+    \   'left': '',
+    \   'right': ''
+    \ }
+    let g:lightline.subseparator = {
+    \   'left': '',
+    \   'right': ''
+    \ }
+  endif
+  call lightline#toggle()
+  call lightline#toggle()
 endfunction
 
 function! s:toggleSpellChecking() abort
-    if &l:spell ==# 0
-        setlocal spell spelllang=en_us
-    else
-        setlocal nospell
-    endif
+  if &l:spell ==# 0
+    setlocal spell spelllang=en_us
+  else
+    setlocal nospell
+  endif
 endfunction
 
 function! s:toggleCodeLens() abort
-    if coc#util#get_config('codeLens')['enable']
-        call coc#config('codeLens.enable', 0)
-    else
-        call coc#config('codeLens.enable', 1)
-    endif
+  if coc#util#get_config('codeLens')['enable']
+    call coc#config('codeLens.enable', 0)
+  else
+    call coc#config('codeLens.enable', 1)
+  endif
 endfunction
 
 function! s:toggleGitBlame() abort
-    if coc#util#get_config('git')['addGBlameToVirtualText']
-        call coc#config('git.addGBlameToVirtualText', 0)
-    else
-        call coc#config('git.addGBlameToVirtualText', 1)
-    endif
+  if coc#util#get_config('git')['addGBlameToVirtualText']
+    call coc#config('git.addGBlameToVirtualText', 0)
+  else
+    call coc#config('git.addGBlameToVirtualText', 1)
+  endif
 endfunction
 
 function s:changeBuildProfile() abort
-    if g:asynctasks_profile ==# 'debug'
-        execute 'AsyncTaskProfile release'
-    elseif g:asynctasks_profile ==# 'release'
-        execute 'AsyncTaskProfile release-debug'
-    elseif g:asynctasks_profile ==# 'release-debug'
-        execute 'AsyncTaskProfile debug'
-    else
-        echo 'Unknown current profile!'
-    endif
+  if g:asynctasks_profile ==# 'debug'
+    execute 'AsyncTaskProfile release'
+  elseif g:asynctasks_profile ==# 'release'
+    execute 'AsyncTaskProfile release-debug'
+  elseif g:asynctasks_profile ==# 'release-debug'
+    execute 'AsyncTaskProfile debug'
+  else
+    echo 'Unknown current profile!'
+  endif
 endfunction
 
 " echo different formats and the corresponding char for a given number
 function! s:echoFormatsAndChar(num) abort
-    let l:input_num = a:num
-    let l:hex_reg = '\v^(\\x|0x|\\u|u\+)'
-    if l:input_num =~? '\v^\d+$' " decimal
-        let l:output_num = '0x' . printf('%x', l:input_num)
-    else " hexdecimal
-        if l:input_num =~? l:hex_reg
-            let l:input_num = '0x' . substitute(l:input_num, l:hex_reg, '', 'g')
-        else
-            let l:input_num = '0x' . l:input_num
-        endif
-        let l:output_num = printf('%d', l:input_num)
+  let l:input_num = a:num
+  let l:hex_reg = '\v^(\\x|0x|\\u|u\+)'
+  if l:input_num =~? '\v^\d+$' " decimal
+    let l:output_num = '0x' . printf('%x', l:input_num)
+  else " hexdecimal
+    if l:input_num =~? l:hex_reg
+      let l:input_num = '0x' . substitute(l:input_num, l:hex_reg, '', 'g')
+    else
+      let l:input_num = '0x' . l:input_num
     endif
-    let @" = nr2char(l:output_num)
-    echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
+    let l:output_num = printf('%d', l:input_num)
+  endif
+  let @" = nr2char(l:output_num)
+  echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
 endfunction
 
 function s:yankDiagnosticCodes() abort
-    let codes = join(<SID>getDiagnosticCodes())
-    let @@ = codes
-    let @+ = codes
+  let codes = join(<SID>getDiagnosticCodes())
+  let @@ = codes
+  let @+ = codes
 endfunction
 
 function! s:getDiagnosticCodes() abort
-    let coc_diagnostics = CocAction('diagnosticList')
-    let current_line = line('.')
-    let current_file_path = expand('%:p')
-    let codes = []
-    for diagnostic in coc_diagnostics
-        if diagnostic.file ==# current_file_path && current_line == diagnostic.lnum
-        \   && diagnostic.location.range.start.character < col('.')
-        \   && col('.') <= diagnostic.location.range.end.character
-            call add(codes, diagnostic.code)
-        endif
-    endfor
-    return codes
+  let coc_diagnostics = CocAction('diagnosticList')
+  let current_line = line('.')
+  let current_file_path = expand('%:p')
+  let codes = []
+  for diagnostic in coc_diagnostics
+    if diagnostic.file ==# current_file_path && current_line == diagnostic.lnum
+    \   && diagnostic.location.range.start.character < col('.')
+    \   && col('.') <= diagnostic.location.range.end.character
+      call add(codes, diagnostic.code)
+    endif
+  endfor
+  return codes
 endfunction

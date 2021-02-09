@@ -444,8 +444,8 @@ let g:which_space_map.d = {
 \ }
 
 function! s:gotoWindowAndMaximize(win_id) abort
-    call win_gotoid(a:win_id)
-    execute 'MaximizerToggle'
+  call win_gotoid(a:win_id)
+  execute 'MaximizerToggle'
 endfunction
 
 function! s:showDocumentation()
@@ -457,77 +457,77 @@ function! s:showDocumentation()
 endfunction
 
 function! s:expandUltisnipsOrUseCocCompletion() abort
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res > 0
-        pclose
-        return ''
-    " Use `complete_info` if your (Neo)Vim version supports it.
-    elseif (has('patch8.1.1068') && complete_info()['selected'] != '-1') ||
-        \   pumvisible()
-        return "\<C-y>"
-    else
-        return "\<C-g>u\<Tab>"
-    endif
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res > 0
+    pclose
+    return ''
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  elseif (has('patch8.1.1068') && complete_info()['selected'] != '-1') ||
+    \  pumvisible()
+    return "\<C-y>"
+  else
+    return "\<C-g>u\<Tab>"
+  endif
 endfunction
 
 function! s:grepFromSelected(type, ...)
-    let saved_unnamed_register = @@
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
-    let word = substitute(@@, '\n$', '', 'g')
-    let word = escape(word, '| ')
-    let @@ = saved_unnamed_register
-    if a:0 > 0
-        execute 'CocList grep '.word
-    else
-        execute 'CocCommand fzf-preview.ProjectGrep '.word
-    endif
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  if a:0 > 0
+    execute 'CocList grep '.word
+  else
+    execute 'CocCommand fzf-preview.ProjectGrep '.word
+  endif
 endfunction
 
 function! s:openLazyGit() abort
-    let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
-    if empty(lazygit_buffer)
-        tabnew
-        let g:lazy_git_tab_num = tabpagenr()
-        terminal lazygit
-        let g:lazy_git_channel = &channel
-        normal! a
-    else
-        execute g:lazy_git_tab_num . 'tabnext'
-        normal! a
-        call chansend(g:lazy_git_channel, "\<CR>")
-    endif
+  let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
+  if empty(lazygit_buffer)
+    tabnew
+    let g:lazy_git_tab_num = tabpagenr()
+    terminal lazygit
+    let g:lazy_git_channel = &channel
+    normal! a
+  else
+    execute g:lazy_git_tab_num . 'tabnext'
+    normal! a
+    call chansend(g:lazy_git_channel, "\<CR>")
+  endif
 endfunction
 
 function! s:addEmptyLines(count) abort
-    let cursor_pos = getcurpos()[1:]
-    if a:count < 0
-        put! =repeat(nr2char(10), -a:count)
-        let cursor_pos[0] -= a:count
-    else
-        put =repeat(nr2char(10), a:count)
-    endif
-    call cursor(cursor_pos)
+  let cursor_pos = getcurpos()[1:]
+  if a:count < 0
+    put! =repeat(nr2char(10), -a:count)
+    let cursor_pos[0] -= a:count
+  else
+    put =repeat(nr2char(10), a:count)
+  endif
+  call cursor(cursor_pos)
 endfunction
 
 function! s:moveSelectedLines(count) abort
-    if a:count == -1
-        execute "'<,'>move '<-2"
-    elseif a:count == 1
-        execute "'<,'>move '>+"
-    elseif a:count < -1
-        execute "normal! gv\<Esc>"
-        let move_dist = line('.') - line("'<") + a:count
-        execute "'<,'>move '<" . move_dist
-    else
-        execute "normal! gv\<Esc>"
-        let move_dist = line("'>") - line('.') + a:count
-        execute "'<,'>move '>+" . move_dist
-    endif
-    normal! gv=gv
+  if a:count == -1
+    execute "'<,'>move '<-2"
+  elseif a:count == 1
+    execute "'<,'>move '>+"
+  elseif a:count < -1
+    execute "normal! gv\<Esc>"
+    let move_dist = line('.') - line("'<") + a:count
+    execute "'<,'>move '<" . move_dist
+  else
+    execute "normal! gv\<Esc>"
+    let move_dist = line("'>") - line('.') + a:count
+    execute "'<,'>move '>+" . move_dist
+  endif
+  normal! gv=gv
 endfunction

@@ -130,97 +130,97 @@ let g:lightline.subseparator = {
 " \ }
 
 function! LightlineFileTypeWithSymbol()
-    let ft_with_symbol = &filetype !=# '' ? &filetype : 'unknown'
-    if &filetype ==# 'vim'
-        let ft_with_symbol .= ' '
-    elseif &filetype ==# 'cuda'
-        let ft_with_symbol .= ' '
-    elseif &filetype ==# 'help'
-        let ft_with_symbol .= ' '
-    elseif &filetype ==# 'list'
-        let ft_with_symbol .= ' '
-    elseif &filetype ==# 'vimwiki' || &filetype ==# 'vimwiki.markdown'
-        let ft_with_symbol .= ' ﴬ' " 龎
-    elseif &filetype ==# 'cmake'
-        let ft_with_symbol .= ' '
-    elseif &filetype ==# 'qf'
-        let ft_with_symbol .= ' ' " 
-    elseif &filetype ==# 'unknown'
-        let ft_with_symbol .= ' '
-    else
-        let ft_with_symbol .= ' ' . WebDevIconsGetFileTypeSymbol()
-    endif
-    return ft_with_symbol
+  let ft_with_symbol = &filetype !=# '' ? &filetype : 'unknown'
+  if &filetype ==# 'vim'
+    let ft_with_symbol .= ' '
+  elseif &filetype ==# 'cuda'
+    let ft_with_symbol .= ' '
+  elseif &filetype ==# 'help'
+    let ft_with_symbol .= ' '
+  elseif &filetype ==# 'list'
+    let ft_with_symbol .= ' '
+  elseif &filetype ==# 'vimwiki' || &filetype ==# 'vimwiki.markdown'
+    let ft_with_symbol .= ' ﴬ' " 龎
+  elseif &filetype ==# 'cmake'
+    let ft_with_symbol .= ' '
+  elseif &filetype ==# 'qf'
+    let ft_with_symbol .= ' ' " 
+  elseif &filetype ==# 'unknown'
+    let ft_with_symbol .= ' '
+  else
+    let ft_with_symbol .= ' ' . WebDevIconsGetFileTypeSymbol()
+  endif
+  return ft_with_symbol
 endfunction
 
 function! LightlineRosPackageName()
-    if exists('b:ros_package_name')
-        let package_name_with_symbol = b:ros_package_name . g:lightline.symbols.ros
-    else
-        let package_name_with_symbol = get(b:, 'catkin_package_name', '')
-        let package_name_with_symbol .= !empty(package_name_with_symbol) ? g:lightline.symbols.catkin  : ''
-    endif
-    return package_name_with_symbol
+  if exists('b:ros_package_name')
+    let package_name_with_symbol = b:ros_package_name . g:lightline.symbols.ros
+  else
+    let package_name_with_symbol = get(b:, 'catkin_package_name', '')
+    let package_name_with_symbol .= !empty(package_name_with_symbol) ? g:lightline.symbols.catkin : ''
+  endif
+  return package_name_with_symbol
 endfunction
 
 function! LightlineCocGit()
-    let l:git_blame = winwidth(0) > 120 ? get(b:, 'coc_git_blame', '') : ''
-    return trim(get(g:, 'coc_git_status', '')) . get(b:,'coc_git_status','') . l:git_blame
+  let l:git_blame = winwidth(0) > 120 ? get(b:, 'coc_git_blame', '') : ''
+  return trim(get(g:, 'coc_git_status', '')) . get(b:,'coc_git_status','') . l:git_blame
 endfunction
 
 function! LightlineTabInfo()
-    if tabpagenr('$') > 1
-        return 'tab ' . tabpagenr() . '/' . tabpagenr('$')
-    else
-        return ''
-    endif
+  if tabpagenr('$') > 1
+    return 'tab ' . tabpagenr() . '/' . tabpagenr('$')
+  else
+    return ''
+  endif
 endfunction
 
 function! LightlineReadonly()
-    return &readonly && &filetype !~# '\v(help|vista|coc-explorer)' ? '' : ''
+  return &readonly && &filetype !~# '\v(help|vista|coc-explorer)' ? '' : ''
 endfunction
 
 function! LightlineAleLinterWarningsWithWhitespaceCheck()
-    if strlen(lightline#ale#checking()) > 0
-        return ''
+  if strlen(lightline#ale#checking()) > 0
+    return ''
+  else
+    let l:warnings = lightline#ale#warnings()
+    let l:whitespace = lightline#whitespace#check()
+    if strlen(l:warnings) == 0
+      return l:whitespace
+    elseif strlen(l:whitespace) == 0
+      return l:warnings
     else
-        let l:warnings = lightline#ale#warnings()
-        let l:whitespace = lightline#whitespace#check()
-        if strlen(l:warnings) == 0
-            return l:whitespace
-        elseif strlen(l:whitespace) == 0
-            return l:warnings
-        else
-            return l:whitespace.' '.l:warnings
-        endif
+      return l:whitespace.' '.l:warnings
     endif
+  endif
 endfunction
 
 function! LightlineCocLinterWarningsWithWhitespaceCheck()
-    let l:info = get(b:, 'coc_diagnostic_info', {})
-    let l:whitespace = lightline#whitespace#check()
-    if empty(l:info) | return l:whitespace | endif
-    let l:msgs = [l:whitespace]
-    if get(info, 'warning', 0)
-        call add(msgs, g:lightline.symbols.warning . info['warning'])
-    endif
-    if get(info, 'information', 0)
-        call add(msgs, g:lightline.symbols.information . info['information'])
-    endif
-    return trim(join(msgs))
+  let l:info = get(b:, 'coc_diagnostic_info', {})
+  let l:whitespace = lightline#whitespace#check()
+  if empty(l:info) | return l:whitespace | endif
+  let l:msgs = [l:whitespace]
+  if get(info, 'warning', 0)
+    call add(msgs, g:lightline.symbols.warning . info['warning'])
+  endif
+  if get(info, 'information', 0)
+    call add(msgs, g:lightline.symbols.information . info['information'])
+  endif
+  return trim(join(msgs))
 endfunction
 
 function! LightlineCocLinterErrors()
-    let l:info = get(b:, 'coc_diagnostic_info', {})
-    if get(info, 'error', 0)
-        return g:lightline.symbols.error . info['error']
-    endif
-    return ''
+  let l:info = get(b:, 'coc_diagnostic_info', {})
+  if get(info, 'error', 0)
+    return g:lightline.symbols.error . info['error']
+  endif
+  return ''
 endfunction
 
 function! CocStatusWithNearestMethodOrFunction() abort
-    let l:status = get(g:, 'coc_status', '')
-    let l:nearest_function = get(b:, 'vista_nearest_method_or_function', '')
-    let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols['function'] . l:nearest_function : ''
-    return l:status
+  let l:status = get(g:, 'coc_status', '')
+  let l:nearest_function = get(b:, 'vista_nearest_method_or_function', '')
+  let l:status .= !empty(l:nearest_function) ? ' ' . g:lightline.symbols['function'] . l:nearest_function : ''
+  return l:status
 endfunction

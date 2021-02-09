@@ -2,11 +2,11 @@ if !has('nvim') | finish | endif
 
 set inccommand=nosplit
 if has('persistent_undo')
-    set undofile
-    if !isdirectory($HOME . '/.config/nvim/tmp/undo')
-        call mkdir($HOME . '/.config/nvim/tmp/undo', 'p')
-    endif
-    set undodir=$HOME/.config/nvim/tmp/undo
+  set undofile
+  if !isdirectory($HOME . '/.config/nvim/tmp/undo')
+    call mkdir($HOME . '/.config/nvim/tmp/undo', 'p')
+  endif
+  set undodir=$HOME/.config/nvim/tmp/undo
 endif
 
 " speed up
@@ -18,7 +18,7 @@ let g:loaded_ruby_provider = 0
 
 " use nvr as primary editor for lazygit
 if executable('nvr')
-    let $VISUAL = 'nvr -cc tabprevious'
+  let $VISUAL = 'nvr -cc tabprevious'
 endif
 
 " Make <C-j> and <C-k> move faster, in vim these two keys are used for window
@@ -103,36 +103,36 @@ let g:which_space_map['<M-l>'] = 'snippets'
 " === Autocmd
 " ===
 augroup neovim_special
-    autocmd!
-    autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
+  autocmd!
+  autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
 augroup END
 
-function! s:IsFirenvimActive(event) abort
-  if !exists('*nvim_get_chan_info')
-    return 0
-  endif
-  let l:ui = nvim_get_chan_info(a:event.chan)
-  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
-      \ l:ui.client.name =~? 'Firenvim'
+function! s:isFirenvimActive(event) abort
+ if !exists('*nvim_get_chan_info')
+  return 0
+ endif
+ let l:ui = nvim_get_chan_info(a:event.chan)
+ return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+ \    l:ui.client.name =~? 'Firenvim'
 endfunction
 
 " Used by firenvim
 function! OnUIEnter(event) abort
-  if s:IsFirenvimActive(a:event)
-    set guifont=InconsolataLGC\ Nerd\ Font:h20
-    set showtabline=0
-    if g:colors_name == 'ayu'
-        hi Normal     guibg=#212733
-    endif
-    hi Pmenu      guibg=NONE
-    hi PmenuSbar  guibg=NONE
-    hi PmenuThumb guibg=NONE
-    " Use Alt_=-,. to resize firenvim window
-    nnoremap <M-=> :<C-u>silent! set lines+=5<CR>
-    nnoremap <M--> :<C-u>silent! set lines-=5<CR>
-    nnoremap <M-,> :<C-u>silent! set columns-=5<CR>
-    nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
+ if s:isFirenvimActive(a:event)
+  set guifont=InconsolataLGC\ Nerd\ Font:h20
+  set showtabline=0
+  if g:colors_name ==# 'ayu'
+    hi Normal guibg=#212733
   endif
+  hi Pmenu      guibg=NONE
+  hi PmenuSbar  guibg=NONE
+  hi PmenuThumb guibg=NONE
+  " Use Alt_=-,. to resize firenvim window
+  nnoremap <M-=> :<C-u>silent! set lines+=5<CR>
+  nnoremap <M--> :<C-u>silent! set lines-=5<CR>
+  nnoremap <M-,> :<C-u>silent! set columns-=5<CR>
+  nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
+ endif
 endfunction
 
 " Firenvim settings

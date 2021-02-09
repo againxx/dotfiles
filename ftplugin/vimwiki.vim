@@ -7,7 +7,7 @@ let b:ale_enabled = 0
 let g:vim_markdown_folding_disabled = 1
 let b:coc_additional_keywords = ['\']
 if !exists('b:key_delay')
-    let b:key_delay = 20
+  let b:key_delay = 20
 endif
 
 let b:switch_custom_definitions = [
@@ -50,9 +50,9 @@ let b:switch_custom_definitions = [
 \ ]
 
 augroup vimwiki_special
-    autocmd!
-    autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')
-    autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')
+  autocmd!
+  autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')
+  autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')
 augroup END
 
 nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
@@ -73,27 +73,24 @@ inoremap <buffer> ;; ;
 inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
 nnoremap <buffer> <Space><Space> /<++><CR>:nohlsearch<CR>"_c4l
 if expand('%:e') ==# 'wiki'
-    inoremap <buffer> ;b **<Space><++><Esc>F*i
-    inoremap <buffer> ;B *__*<Space><++><Esc>F_i
-    inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
-    inoremap <buffer> ;i __<Space><++><Esc>F_i
-    inoremap <buffer> ;C {{{<CR>}}}<Esc>ka
-    inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
-    inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
-    inoremap <buffer> ;M {{$<CR>}}$<Esc>kA
-    inoremap <buffer> ;r ==<Space>Reference<Space>==<Esc>
-    inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
-    inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
-    inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
-    inoremap <buffer> ;4 ====<Space><Space>====<Space><++><Esc>F=4hi
-    " vim-zettel key mappings"
-    imap <buffer> <silent> ;z [[<esc><Plug>ZettelSearchMap
-    nmap <buffer> gy <Plug>ZettelYankNameMap
-    xmap <buffer> gz <Plug>ZettelNewSelectedMap
-    nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
-endif
-
-if executable('xdotool')
+  inoremap <buffer> ;b **<Space><++><Esc>F*i
+  inoremap <buffer> ;B *__*<Space><++><Esc>F_i
+  inoremap <buffer> ;s ~~~~<Space><++><Esc>F~hi
+  inoremap <buffer> ;i __<Space><++><Esc>F_i
+  inoremap <buffer> ;C {{{<CR>}}}<Esc>ka
+  inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
+  inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
+  inoremap <buffer> ;M {{$<CR>}}$<Esc>kA
+  inoremap <buffer> ;r ==<Space>Reference<Space>==<Esc>
+  inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
+  inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
+  inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
+  inoremap <buffer> ;4 ====<Space><Space>====<Space><++><Esc>F=4hi
+  " vim-zettel key mappings"
+  imap <buffer> <silent> ;z [[<esc><Plug>ZettelSearchMap
+  nmap <buffer> gy <Plug>ZettelYankNameMap
+  xmap <buffer> gz <Plug>ZettelNewSelectedMap
+  nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
   if executable('xdotool')
     nnoremap <silent> <buffer> <space>ww :<C-u>call <SID>controlChromiumPage('ctrl+r')<CR>
     nnoremap <silent> <buffer> <space>wj :<C-u>call <SID>controlChromiumPage('Down', v:count1)<CR>
@@ -119,24 +116,24 @@ function! s:isAtStartOfLine(mapping)
 endfunction
 
 function! s:controlChromiumPage(key, ...) abort
-    let current_window = system('xdotool getactivewindow')[:-2]
-    let file_name = expand('%')
-    let title =zettel#vimwiki#get_title(file_name)
-    if title == ''
-        " use the Zettel filename as title if it is empty
-        let title = fnamemodify(file_name, ':t:r')
+  let current_window = system('xdotool getactivewindow')[:-2]
+  let file_name = expand('%')
+  let title =zettel#vimwiki#get_title(file_name)
+  if title == ''
+    " use the Zettel filename as title if it is empty
+    let title = fnamemodify(file_name, ':t:r')
+  endif
+  let search_pattern = title . '.*Chromium'
+  let target_window = system('xdotool search --onlyvisible --name ' . shellescape(search_pattern))[:-2]
+  if target_window != ''
+    let key_sequence = [a:key]
+    if a:0 > 0
+      call extend(key_sequence, repeat([a:key], a:1 - 1))
     endif
-    let search_pattern = title . '.*Chromium'
-    let target_window = system('xdotool search --onlyvisible --name ' . shellescape(search_pattern))[:-2]
-    if target_window != ''
-        let key_sequence = [a:key]
-        if a:0 > 0
-            call extend(key_sequence, repeat([a:key], a:1 - 1))
-        endif
-        call system('xdotool windowfocus ' . target_window . ' key ' . join(key_sequence))
-        execute 'sleep ' . (len(key_sequence) * b:key_delay) . 'm'
-        call system('xdotool windowfocus ' . current_window)
-    endif
+    call system('xdotool windowfocus ' . target_window . ' key ' . join(key_sequence))
+    execute 'sleep ' . (len(key_sequence) * b:key_delay) . 'm'
+    call system('xdotool windowfocus ' . current_window)
+  endif
 endfunction
 
 function! s:toggleWikiAutoReload() abort

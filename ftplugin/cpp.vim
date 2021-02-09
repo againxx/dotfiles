@@ -29,11 +29,11 @@ nmap <buffer> gqq gqj
 xmap <buffer> gq <Plug>(coc-format-selected)
 
 function! s:catkinInit() abort
-    setlocal colorcolumn=121
-    setlocal tabstop=2
-    setlocal shiftwidth=2
-    setlocal softtabstop=2
-    let b:ultisnips_cpp_style = 'ros'
+  setlocal colorcolumn=121
+  setlocal tabstop=2
+  setlocal shiftwidth=2
+  setlocal softtabstop=2
+  let b:ultisnips_cpp_style = 'ros'
 endfunction
 
 call catkin#DetectPackage(function('s:catkinInit'))

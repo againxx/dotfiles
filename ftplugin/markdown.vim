@@ -5,8 +5,8 @@ let g:vim_markdown_folding_disabled = 0
 let g:sneak#label = 0 | call sneak#init()
 " one or two spaces aren't considered as trailing
 let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
-if exists("b:match_words")
-    let b:match_words.=',\\begin{\w\+}:\\end{\w\+}'
+if exists('b:match_words')
+  let b:match_words.=',\\begin{\w\+}:\\end{\w\+}'
 endif
 
 let b:switch_custom_definitions = [
