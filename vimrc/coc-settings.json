@@ -326,6 +326,14 @@
                 "undefined": "hint"
             }
         },
+        "cpplint": {
+            "securities": {
+                "1": "hint",
+                "2": "info",
+                "3": "info",
+                "4": "warning",
+                "5": "warning"
+            }
         }
     },
     "diagnostic-languageserver.filetypes": {
