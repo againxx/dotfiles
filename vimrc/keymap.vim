@@ -226,9 +226,9 @@ nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
 nnoremap <silent> <Space>D :<C-u>CocList --normal todolist<CR>
 nnoremap <silent> <Space>K :<C-u>CocList maps<CR>
 nnoremap <silent> <Space>P :<C-u>CocList grep<CR>
-vnoremap <silent> <Space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
+xnoremap <silent> <Space>P :<C-u>call <SID>grepFromSelected(visualmode(), 1)<CR>
 nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>grepFromSelected<CR>g@
-vnoremap <silent> <Space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
+xnoremap <silent> <Space><C-p> :<C-u>call <SID>grepFromSelected(visualmode())<CR>
 nnoremap <silent> <Space>j :<C-u>CocNext<CR>
 nnoremap <silent> <Space>k :<C-u>CocPrev<CR>
 nnoremap <silent> <Space>H :<C-u>CocFirst<CR>
@@ -308,7 +308,7 @@ nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
 " === Whichkey
 " ===
 nnoremap <silent> <Space> :<C-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <Space> :<C-u>WhichKeyVisual '<Space>'<CR>
+xnoremap <silent> <Space> :<C-u>WhichKeyVisual '<Space>'<CR>
 
 " For vimwiki
 let g:which_wikilist_lower_map =  {}
