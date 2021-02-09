@@ -94,13 +94,17 @@ if expand('%:e') ==# 'wiki'
 endif
 
 if executable('xdotool')
+  if executable('xdotool')
     nnoremap <silent> <buffer> <space>ww :<C-u>call <SID>controlChromiumPage('ctrl+r')<CR>
     nnoremap <silent> <buffer> <space>wj :<C-u>call <SID>controlChromiumPage('Down', v:count1)<CR>
     nnoremap <silent> <buffer> <space>wk :<C-u>call <SID>controlChromiumPage('Up', v:count1)<CR>
     nnoremap <silent> <buffer> <space>wd :<C-u>call <SID>controlChromiumPage('Page_Down', v:count1)<CR>
     nnoremap <silent> <buffer> <space>wu :<C-u>call <SID>controlChromiumPage('Page_Up', v:count1)<CR>
     nnoremap <silent> <buffer> <space>wgg :<C-u>call <SID>controlChromiumPage('Home')<CR>
+    nnoremap <Leader>cw :<C-u>call <SID>toggleWikiAutoReload()<CR>
+  endif
 endif
+
 " when vim-plug first load TableMode the cursor will be put in the first line,
 " use `. to jump to the original place
 inoreabbrev <expr> <buffer> <bar><bar>
@@ -133,4 +137,15 @@ function! s:controlChromiumPage(key, ...) abort
         execute 'sleep ' . (len(key_sequence) * b:key_delay) . 'm'
         call system('xdotool windowfocus ' . current_window)
     endif
+endfunction
+
+function! s:toggleWikiAutoReload() abort
+  let buffer_autocmds = split(execute('autocmd vimwiki_special BufWritePost <buffer>'), '\n')[1:]
+  if empty(buffer_autocmds)
+    autocmd vimwiki_special BufWritePost <buffer> call s:controlChromiumPage('ctrl+r')
+    echohl MoreMsg | echo 'Auto reload turned on' | echohl NONE
+  else
+    autocmd! vimwiki_special BufWritePost <buffer>
+    echohl WarningMsg | echo 'Auto reload turned off' | echohl NONE
+  endif
 endfunction

@@ -83,10 +83,11 @@ let g:which_leader_map.c = {
 \   'a':    'change-diagnostic-level',
 \   'g':    'toggle-git-gutters',
 \   'i':    'toggle-indent-line',
+\   'w':    'toggle-wiki-autoreload'
 \ }
 
 let g:which_leader_map.t = {
-\   'name': '+table/toggle/test/translate',
+\   'name': '+table/test/translate',
 \   'm':    'table-toggle',
 \   'r':    'table-realign',
 \   'n':    'test-nearest',
