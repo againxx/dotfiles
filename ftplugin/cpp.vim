@@ -15,7 +15,7 @@ let b:switch_custom_definitions = [
 call coc#config('diagnostic.format', "%message\n[%source:%code]")
 
 nnoremap <buffer> [h
-\   {:execute "keepjumps normal! ?^#include\r"<CR>:nohlsearch<CR>
+\   {:execute "keepjumps normal! ?^\\(#include\\<bar>#define\\)\r"<CR>:nohlsearch<CR>
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
 nnoremap <buffer> <Space>rp :AsyncTask project-run<CR>
@@ -27,6 +27,10 @@ nnoremap <buffer> <Space>rc :AsyncTask project-clean<CR>
 nmap <buffer> gq <Plug>(coc-format-selected)
 nmap <buffer> gqq gqj
 xmap <buffer> gq <Plug>(coc-format-selected)
+map <buffer> [[ ?{<CR>w99[{
+map <buffer> ][ /}<CR>b99]}
+map <buffer> ]] j0[[%/{<CR>
+map <buffer> [] k$][%?}<CR>
 
 function! s:catkinInit() abort
   setlocal colorcolumn=121
