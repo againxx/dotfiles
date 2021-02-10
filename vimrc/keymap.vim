@@ -91,7 +91,7 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 " Terminal
-nnoremap <Space>x :terminal<CR>
+nnoremap <Space>x :<C-u>call <SID>OpenTerminal()<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -493,14 +493,28 @@ function! s:OpenLazyGit() abort
   let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
   if empty(lazygit_buffer)
     tabnew
-    let g:lazy_git_tab_num = tabpagenr()
+    let g:lazygit_tab_num = tabpagenr()
     terminal lazygit
-    let g:lazy_git_channel = &channel
-    normal! a
+    let g:lazygit_channel = &channel
+    set nobuflisted
+    startinsert
   else
-    execute g:lazy_git_tab_num . 'tabnext'
-    normal! a
-    call chansend(g:lazy_git_channel, "\<CR>")
+    execute g:lazygit_tab_num . 'tabnext'
+    call chansend(g:lazygit_channel, "\<CR>")
+    startinsert
+  endif
+endfunction
+
+function! s:OpenTerminal() abort
+  let shell_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# $SHELL")
+  if empty(shell_buffer)
+    tabnew
+    let g:shell_tab_num = tabpagenr()
+    terminal
+    set nobuflisted
+    startinsert
+  else
+    execute g:shell_tab_num . 'tabnext'
   endif
 endfunction
 
