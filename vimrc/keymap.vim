@@ -207,7 +207,7 @@ omap ac <Plug>(coc-classobj-a)
 " coc-lists
 nnoremap <silent> <Space>m :<C-u>CocCommand fzf-preview.MruFiles<CR>
 nnoremap <silent> <Space>F :<C-u>Clap filer<CR>
-nnoremap <silent> <Space>f :<C-u>Clap files --hidden<CR>
+nnoremap <silent> <Space>f :<C-u>Clap files ++finder=rg --files --hidden --ignore-file ~/dotfiles/.rgignore<CR>
 nnoremap <silent> <Space>b :<C-u>Clap buffers<CR>
 nnoremap <silent> <Space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <Space>y :<C-u>CocList -A --normal yank<CR>
