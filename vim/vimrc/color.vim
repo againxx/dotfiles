@@ -9,7 +9,6 @@ set termguicolors   " Use gui color (true color) in terminal
 " ===
 " set background=dark
 " colorscheme space-vim-dark
-" let g:airline_theme = 'violet'
 
 " ===
 " === Ayu & One half
@@ -18,11 +17,9 @@ set termguicolors   " Use gui color (true color) in terminal
 set background=dark
 let g:ayucolor = 'mirage'
 colorscheme ayu
-let g:airline_theme = 'ayu_mirage'
 " else
     " One half
     " colorscheme onehalfdark
-    " let g:airline_theme = 'onehalfdark'
 " endif
 
 " ===
