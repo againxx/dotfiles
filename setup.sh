@@ -2,11 +2,13 @@
 
 dotfiles_dir=$(dirname "$(realpath "$0")")
 
-ln -sf "$dotfiles_dir/vimrc/.vimrc" ~/
-ln -sf "$dotfiles_dir/ftplugin" ~/.vim/after/
-ln -sf "$dotfiles_dir/autoload" ~/.vim/after/
-ln -sf "$dotfiles_dir/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
-ln -sf "$dotfiles_dir/asynctasks/global_tasks.ini" ~/.config/nvim/tasks.ini
+ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
+ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
+ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
+ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.vim/coc-settings.json
+ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.config/nvim/coc-settings.json
+ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
+ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.config/nvim/tasks.ini
 ln -sf "$dotfiles_dir/.zshrc" ~/
 ln -sf "$dotfiles_dir/.bashrc" ~/
 ln -sf "$dotfiles_dir/.tmux.conf" ~/
@@ -50,6 +52,7 @@ if [[ -x "$(command -v brew)" ]]; then
     brew_pack[rg]=ripgrep
     brew_pack[fd]=fd
     brew_pack[xdotool]=xdotool
+    brew_pack[valgrind]=valgrind
 
     for exec_name in "${!brew_pack[@]}"; do
         if ! command -v $exec_name &> /dev/null; then

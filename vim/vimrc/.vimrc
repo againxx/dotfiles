@@ -76,6 +76,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'againxx/python-syntax', { 'for': 'python' }
+Plug 'againxx/vim-valgrind'
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
 
@@ -114,7 +115,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 " === Cpp
 " ===
 " Switch between header and source file
-Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
+" Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
 
 " ===
 " === Markdown
@@ -203,6 +204,6 @@ endif
 call plug#end()
 
 " vimrc files
-for s:path in split(glob('~/dotfiles/vimrc/*.vim'), "\n")
+for s:path in split(glob('~/dotfiles/vim/vimrc/*.vim'), "\n")
     exe 'source ' . s:path
 endfor
