@@ -187,6 +187,7 @@ nmap <Leader>a <Plug>(coc-codeaction-selected)
 nnoremap <silent> <Leader>vc :<C-u>call <SID>ToggleCocErrorCode()<CR>
 nnoremap <Leader>vm :<C-u>MarkdownPreview<CR>
 nnoremap <Leader>vh :<C-u>call SyntaxAttr()<CR>
+nnoremap <Leader>vH :<C-u>call <SID>QuerySyntaxStack()<CR>
 nnoremap <Leader>va ga
 vnoremap <Leader>va y:call <SID>EchoFormatsAndChar(@0)<CR>
 
@@ -435,4 +436,10 @@ function! s:GetDiagnosticCodes() abort
     endif
   endfor
   return codes
+endfunction
+
+function! s:QuerySyntaxStack() abort
+  for id in synstack(line('.'), col('.'))
+    echo synIDattr(id, 'name')
+  endfor
 endfunction
