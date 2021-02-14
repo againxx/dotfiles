@@ -41,3 +41,7 @@ function! s:CatkinInit() abort
 endfunction
 
 call catkin#DetectPackage(function('s:CatkinInit'))
+
+if !exists('b:ros_package_path')
+  command! -nargs=0 A execute 'CocCommand clangd.switchSourceHeader'
+endif
