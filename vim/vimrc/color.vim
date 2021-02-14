@@ -86,6 +86,7 @@ if g:colors_name ==# 'ayu'
   " hi textSnipTEX      guifg=#FFAE57
   " hi pythonMethod     guifg=#ffaf87 guibg=NONE
   hi! link pythonDocstring pythonComment
+  hi! link CocHintHighlight NONE
   let g:VM_Extend_hl = 'CocListBlackCyan'
   let g:VM_highlight_matches = ''
   " use by indentLine

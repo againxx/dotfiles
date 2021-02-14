@@ -235,6 +235,7 @@
     ],
     "cSpell.allowCompoundWords": true,
     "cSpell.showStatus": false,
+    "cSpell.diagnosticLevel": "Hint",
     "translator.engines": [
         "bing",
         "youdao",
