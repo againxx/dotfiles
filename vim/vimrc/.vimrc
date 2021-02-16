@@ -73,9 +73,9 @@ Plug 'ryanoasis/vim-devicons'
 " ===
 " === Highlighting
 " ===
-Plug 'pboettch/vim-cmake-syntax', { 'for': 'cmake' }
+Plug 'pboettch/vim-cmake-syntax'
 Plug 'vim-scripts/SyntaxAttr.vim'
-Plug 'againxx/python-syntax', { 'for': 'python' }
+Plug 'againxx/python-syntax'
 Plug 'againxx/vim-valgrind'
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
@@ -174,6 +174,8 @@ Plug 'szw/vim-maximizer'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Changes the working directory to the project root when you open a file or directory
 " Plug 'airblade/vim-rooter'
+" Work with variants of a word
+Plug 'tpope/vim-abolish'
 
 " ===
 " === Custom Text Objects

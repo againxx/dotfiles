@@ -112,14 +112,6 @@ map <Plug>Disable_Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
 map <Plug>Disable_Sneak_; <Plug>Sneak_;
 map <Plug>Disable_Sneak_, <Plug>Sneak_,
 
-" vim-textobj-underscore
-call textobj#user#map('underscore', {
-\   '-': {
-\       'select-a': 'au',
-\       'select-i': 'iu',
-\   }
-\ })
-
 " ===
 " === Incsearch
 " ===
