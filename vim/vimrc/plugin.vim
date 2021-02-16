@@ -121,6 +121,8 @@ let g:vista_fzf_preview = ['up:60%']
 " ===
 let g:clap_theme = 'ayu'
 let g:clap_enable_background_shadow = v:false
+let g:clap_open_preview = 'never'
+let g:clap_preview_direction = 'UD'
 
 " ===
 " === Ultisnips
