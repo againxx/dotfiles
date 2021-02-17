@@ -126,13 +126,6 @@ let g:which_leader_map.a = 'coc-actions'
 let g:which_leader_map.f = 'coc-lists-grep'
 
 " ===
-" === Multi-visual
-" ===
-let g:VM_maps = {}
-let g:VM_maps['Select Cursor Down'] = '<Leader><Leader>j'
-let g:VM_maps['Select Cursor Up']   = '<Leader><Leader>k'
-
-" ===
 " === Edit files
 " ===
 nnoremap <Leader>ev :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>

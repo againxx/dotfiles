@@ -305,6 +305,14 @@ nnoremap <silent> <Space>rr :<C-u>AsyncTask file-run<CR>
 nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
 
 " ===
+" === Multi-visual
+" ===
+let g:VM_leader = '<Space>v'
+let g:VM_maps = {}
+let g:VM_maps['Select Cursor Down'] = '<Space>vj'
+let g:VM_maps['Select Cursor Up']   = '<Space>vk'
+
+" ===
 " === Whichkey
 " ===
 nnoremap <silent> <Space> :<C-u>WhichKey '<Space>'<CR>
