@@ -79,6 +79,7 @@ Plug 'againxx/python-syntax'
 Plug 'againxx/vim-valgrind'
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
+Plug 'chrisbra/Colorizer'
 
 " ===
 " === Search & Move
