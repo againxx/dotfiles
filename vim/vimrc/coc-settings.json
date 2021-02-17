@@ -323,6 +323,10 @@
             }
         },
         "write-good": {
+            "args": [
+                "--no-passive",
+                "--text=%text"
+            ],
             "securities": {
                 "undefined": "hint"
             }
@@ -335,8 +339,36 @@
                 "4": "warning",
                 "5": "warning"
             }
+        },
+        "languagetool": {
+            "command": "languagetool",
+            "args": [
+                "-l",
+                "en",
+                "-d",
+                "WORD_CONTAINS_UNDERSCORE,DASH_RULE,WHITESPACE_RULE,ARROWS",
+                "%file"
+            ],
+            "formatPattern": [
+                "^\\d+?\\.\\)\\s+Line\\s+(\\d+),\\s+column\\s+(\\d+),\\s+Rule\\s+ID:\\s+([^\\n]+)\nMessage:\\s+(.*)(\\r|\\n)*$",
+                {
+                    "line": 1,
+                    "column": 2,
+                    "message": [
+                        4,
+                        " [",
+                        3,
+                        "]"
+                    ]
+                }
+            ],
+            "securities": {
+                "undefined": "hint"
+            }
         }
     },
+    "diagnostic-languageserver.trace.server": "verbose",
+    "diagnostic-languageserver.debug": true,
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
         "cpp": [
@@ -348,7 +380,10 @@
             "mypy"
         ],
         "vim": "vint",
-        "vimwiki": "write-good"
+        "vimwiki": [
+            "write-good",
+            "languagetool"
+        ]
     },
     "json.schemas": [
         {
