@@ -453,7 +453,7 @@ let g:which_space_map.d = {
 
 function! s:GotoWindowAndMaximize(win_id) abort
   call win_gotoid(a:win_id)
-  execute 'MaximizerToggle'
+  execute 'MaximizerToggle!'
 endfunction
 
 function! s:ShowDocumentation()
