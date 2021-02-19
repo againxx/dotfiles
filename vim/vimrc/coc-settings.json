@@ -383,6 +383,14 @@
         "vimwiki": [
             "write-good",
             "languagetool"
+        ],
+        "markdown": [
+            "write-good",
+            "languagetool"
+        ],
+        "text": [
+            "write-good",
+            "languagetool"
         ]
     },
     "json.schemas": [
