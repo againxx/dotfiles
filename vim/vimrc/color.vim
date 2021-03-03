@@ -85,7 +85,9 @@ if g:colors_name ==# 'ayu'
   hi! link pythonDocstring pythonComment
   hi! link CocHintHighlight NONE
   let g:VM_Extend_hl = 'CocListBlackCyan'
-  let g:VM_highlight_matches = ''
+  let g:VM_Cursor_hl = 'CocListBlackGreen'
+  let g:VM_Mono_hl = 'CocListBlackRed'
+  " let g:VM_highlight_matches = ''
   " use by indentLine
   augroup conceal_color
     autocmd!

@@ -10,8 +10,9 @@ augroup common
   autocmd CmdLineEnter : set nosmartcase
   autocmd CmdLineLeave : set smartcase
   autocmd VimResized * :wincmd =
-  autocmd FileType help nnoremap [t ?<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
-  autocmd FileType help nnoremap ]t /<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
+  autocmd FileType help nnoremap <buffer> [t ?<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
+  autocmd FileType help nnoremap <buffer> ]t /<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
+  autocmd FileType taskedit setlocal nolist
   autocmd TabClosed * call s:DeleteFinishedTerminalBuffers()
 augroup END
 
@@ -34,8 +35,15 @@ augroup coc_special
   " Automatically close coc-explorer if it is the last window
   autocmd BufEnter * if winnr('$') == 1 && &filetype ==# 'coc-explorer' | q | endif
   autocmd CmdwinEnter * let b:coc_suggest_disable = 1
+  autocmd BufReadPost * if &readonly | let b:coc_diagnostic_disable = 1 | endif
   " Show the nearest function in statusline automatically by vista
   autocmd User CocNvimInit call vista#RunForNearestMethodOrFunction()
+augroup END
+
+augroup visual_multi_special
+  autocmd!
+  autocmd User visual_multi_start call s:VMStart()
+  autocmd User visual_multi_exit  call s:VMExit()
 augroup END
 
 augroup vim_which_key_special
@@ -60,4 +68,18 @@ function! s:DeleteFinishedTerminalBuffers() abort
       silent execute term_buffer.'bdelete!'
     endif
   endfor
+endfunction
+
+function! s:VMStart() abort
+  nmap <buffer> <C-j> <Plug>(VM-Add-Cursor-Down)
+  nmap <buffer> <C-k> <Plug>(VM-Add-Cursor-Up)
+  nmap <buffer> <C-l> <Plug>(VM-Single-Select-l)
+  nmap <buffer> <C-h> <Plug>(VM-Single-Select-h)
+endfunction
+
+function! s:VMExit() abort
+  nunmap <buffer> <C-j>
+  nunmap <buffer> <C-k>
+  nunmap <buffer> <C-h>
+  nunmap <buffer> <C-l>
 endfunction
