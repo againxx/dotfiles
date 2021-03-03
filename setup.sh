@@ -3,8 +3,9 @@
 dotfiles_dir=$(dirname "$(realpath "$0")")
 
 ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
-ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
+ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
+ln -sf "$dotfiles_dir/vim/syntax" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.vim/coc-settings.json
 ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.config/nvim/coc-settings.json
 ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
