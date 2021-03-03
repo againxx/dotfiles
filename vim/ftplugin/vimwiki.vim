@@ -1,4 +1,5 @@
 setlocal foldlevel=1
+setlocal nowrap
 let b:coc_pairs_disabled = ['[', '<']
 " VimwikiSearchTags will use locallist, disable ale to avoid conflict
 " let b:ale_enabled = 0
@@ -14,13 +15,65 @@ augroup vimwiki_special
   autocmd!
   autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')
   autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')
+  autocmd User visual_multi_start call s:VMStart()
+  autocmd User visual_multi_exit  call s:VMExit()
 augroup END
 
-nnoremap <buffer> <silent> gl? :<C-u>WhichKey 'gl'<CR>
-nnoremap <buffer> <silent> gL? :<C-u>WhichKey 'gL'<CR>
+if has('nvim')
+  nmap <buffer> <M-i> <Plug>VimwikiNextLink
+  nmap <buffer> <M-o> <Plug>VimwikiPrevLink
+  silent! nunmap <buffer> <Tab>
+  silent! nunmap <buffer> <S-Tab>
+endif
+
+nnoremap <silent><buffer> gl? :<C-u>WhichKey 'gl'<CR>
+nnoremap <silent><buffer> gL? :<C-u>WhichKey 'gL'<CR>
 nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
 nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-nnoremap <buffer> <silent> <space>t :<C-u>Tags<cr>
+nmap <buffer> <Leader>wD <Plug>VimwikiDeleteFile
+nmap <buffer> <Leader>w<Leader>d <Plug>VimwikiDiaryGenerateLinks
+nnoremap <silent><buffer> <Space>tg  :<C-u>Tags<cr>
+nnoremap <silent><buffer> <Space>ta  :TaskWikiAnnotate<CR>
+nnoremap <silent><buffer> <Space>tp :TaskWikiChooseProject<CR>
+nnoremap <silent><buffer> <Space>tt :TaskWikiChooseTag<CR>
+nnoremap <silent><buffer> <Space>tC  :TaskWikiCalendar<CR>
+nnoremap <silent><buffer> <Space>td  :TaskWikiDone<CR>
+nnoremap <silent><buffer> <Space>tD  :TaskWikiDelete<CR>
+nnoremap <silent><buffer> <Space>te  :TaskWikiEdit<CR>
+nnoremap <silent><buffer> <Space>thM :TaskWikiGhistoryMonthly<CR>
+nnoremap <silent><buffer> <Space>thA :TaskWikiGhistoryAnnual<CR>
+nnoremap <silent><buffer> <Space>thm :TaskWikiHistoryMonthly<CR>
+nnoremap <silent><buffer> <Space>tha :TaskWikiHistoryAnnual<CR>
+nnoremap <silent><buffer> <Space>ti  :TaskWikiInfo<CR>
+nnoremap <silent><buffer> <Space>tA  :TaskWikiLink<CR>
+nnoremap <silent><buffer> <Space>tm  :TaskWikiMod<CR>
+nnoremap <silent><buffer> <Space>tvp  :TaskWikiProjects<CR>
+nnoremap <silent><buffer> <Space>tvP  :TaskWikiProjectsSummary<CR>
+nnoremap <silent><buffer> <Space>tvd :TaskWikiBurndownDaily<CR>
+nnoremap <silent><buffer> <Space>tvw :TaskWikiBurndownWeekly<CR>
+nnoremap <silent><buffer> <Space>tvm :TaskWikiBurndownMonthly<CR>
+nnoremap <silent><buffer> <Space>tS  :TaskWikiStats<CR>
+nnoremap <silent><buffer> <Space>tG  :TaskWikiTags<CR>
+nnoremap <silent><buffer> <Space>t.  :TaskWikiRedo<CR>
+nnoremap <silent><buffer> <Space>tb  :TaskWikiStart<CR>
+nnoremap <silent><buffer> <Space>tq  :TaskWikiStop<CR>
+nnoremap <silent><buffer> <Space>t<C-g> :TaskWikiGrid<CR>
+
+" Mappings for visual mode.
+vnoremap <silent><buffer> <Space>ta  :TaskWikiAnnotate<CR>
+vnoremap <silent><buffer> <Space>tp :TaskWikiChooseProject<CR>
+vnoremap <silent><buffer> <Space>tt :TaskWikiChooseTag<CR>
+vnoremap <silent><buffer> <Space>td  :TaskWikiDone<CR>
+vnoremap <silent><buffer> <Space>tD  :TaskWikiDelete<CR>
+vnoremap <silent><buffer> <Space>te  :TaskWikiEdit<CR>
+vnoremap <silent><buffer> <Space>ti  :TaskWikiInfo<CR>
+vnoremap <silent><buffer> <Space>tA  :TaskWikiLink<CR>
+vnoremap <silent><buffer> <Space>tm  :TaskWikiMod<CR>
+vnoremap <silent><buffer> <Space>t.  :TaskWikiRedo<CR>
+vnoremap <silent><buffer> <Space>tb  :TaskWikiStart<CR>
+vnoremap <silent><buffer> <Space>tq  :TaskWikiStop<CR>
+vnoremap <silent><buffer> <Space>t<C-g> :TaskWikiGrid<CR>
+
 inoremap <buffer> ;t ::<Space><++><Esc>F:i
 if expand('%:e') ==# 'wiki'
   inoremap <buffer> ;b **<Space><++><Esc>F*i
@@ -42,12 +95,12 @@ if expand('%:e') ==# 'wiki'
   xmap <buffer> gz <Plug>ZettelNewSelectedMap
   nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
   if executable('xdotool')
-    nnoremap <silent> <buffer> <space>ww :<C-u>call <SID>ControlChromiumPage('ctrl+r')<CR>
-    nnoremap <silent> <buffer> <space>wj :<C-u>call <SID>ControlChromiumPage('Down', v:count1)<CR>
-    nnoremap <silent> <buffer> <space>wk :<C-u>call <SID>ControlChromiumPage('Up', v:count1)<CR>
-    nnoremap <silent> <buffer> <space>wd :<C-u>call <SID>ControlChromiumPage('Page_Down', v:count1)<CR>
-    nnoremap <silent> <buffer> <space>wu :<C-u>call <SID>ControlChromiumPage('Page_Up', v:count1)<CR>
-    nnoremap <silent> <buffer> <space>wgg :<C-u>call <SID>ControlChromiumPage('Home')<CR>
+    nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromiumPage('ctrl+r')<CR>
+    nnoremap <silent><buffer> <Space>wj :<C-u>call <SID>ControlChromiumPage('Down', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wk :<C-u>call <SID>ControlChromiumPage('Up', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wd :<C-u>call <SID>ControlChromiumPage('Page_Down', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wu :<C-u>call <SID>ControlChromiumPage('Page_Up', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wgg :<C-u>call <SID>ControlChromiumPage('Home')<CR>
     nnoremap <Leader>cw :<C-u>call <SID>ToggleWikiAutoReload()<CR>
   endif
 endif
@@ -82,4 +135,14 @@ function! s:ToggleWikiAutoReload() abort
     autocmd! vimwiki_special BufWritePost <buffer>
     echohl WarningMsg | echo 'Auto reload turned off' | echohl NONE
   endif
+endfunction
+
+function! s:VMStart() abort
+  nmap <buffer> o <Plug>(VM-Invert-Direction)
+endfunction
+
+function! s:VMExit() abort
+  nmap <buffer> o <Plug>VimwikiListo
+  imap <buffer> <C-d> <Plug>VimwikiDecreaseLvlSingleItem
+  inoremap <expr><silent><buffer> <CR> pumvisible() ? '<CR>' : '<C-]><Esc>:VimwikiReturn 1 5<CR>'
 endfunction

@@ -236,10 +236,10 @@ nnoremap <silent> <Space>L :<C-u>CocLast<CR>
 nnoremap <silent> <Space>' :<C-u>CocCommand fzf-preview.Marks<CR>
 nnoremap <silent> <Space>" :<C-u>CocList marks<CR>
 nnoremap <silent> <Space>g/ :<C-u>CocList searchhistory<CR>
-nnoremap <silent> <Space>t :<C-u>CocList tasks<CR>
 nnoremap <silent> <Space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <Space>p :<C-u>Rg<CR>
-nnoremap <silent> <Space><C-g> :<C-u>call <SID>OpenLazyGit()<CR>
+nnoremap <silent> <Space><C-g> :<C-u>call <SID>OpenTerminal('lazygit')<CR>
+nnoremap <silent> <Space><C-t> :<C-u>call <SID>OpenTerminal('vit')<CR>
 nnoremap <silent> <Space><C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
 nnoremap <silent> <Space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
 nnoremap <silent> <Space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<CR>
@@ -303,14 +303,46 @@ nmap <Space>rx <Plug>(coc-fix-current)
 nmap <Space>rn <Plug>(coc-rename)
 nnoremap <silent> <Space>rr :<C-u>AsyncTask file-run<CR>
 nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
+nnoremap <silent> <Space>rl :<C-u>CocList tasks<CR>
 
 " ===
-" === Multi-visual
+" === Table-mode
+" ===
+let g:table_mode_motion_left_map = '[t'
+let g:table_mode_motion_right_map = ']t'
+let g:table_mode_motion_up_map = '[T'
+let g:table_mode_motion_down_map = ']T'
+
+" ===
+" === Test
+" ===
+nnoremap <silent> <Space>tn :<C-u>TestNearest<CR>
+nnoremap <silent> <Space>tf :<C-u>TestFile<CR>
+nnoremap <silent> <Space>ts :<C-u>TestSuite<CR>
+nnoremap <silent> <Space>tl :<C-u>TestLast<CR>
+nnoremap <silent> <Space>to :<C-u>TestVisit<CR>
+
+" ===
+" ===  coc-translator
+" ===
+" popup
+nmap <Space>T <Plug>(coc-translator-p)
+vmap <Space>T <Plug>(coc-translator-pv)
+
+" ===
+" === Visual-multi
 " ===
 let g:VM_leader = '<Space>v'
 let g:VM_maps = {}
-let g:VM_maps['Select Cursor Down'] = '<Space>vj'
-let g:VM_maps['Select Cursor Up']   = '<Space>vk'
+let g:VM_maps['Add Cursor Down'] = '<Space>vj'
+let g:VM_maps['Add Cursor Up'] = '<Space>vk'
+let g:VM_maps['Select l'] = '<Space>vl'
+let g:VM_maps['Select h'] = '<Space>vh'
+let g:VM_maps['Toggle Mappings'] = '<Space>v;'
+let g:VM_maps['Run Visual'] = '<Space>v<C-v>'
+let g:VM_maps['Add Cursor At Pos'] = '<Space>vv'
+let g:VM_maps['Move Right'] = '<M-S-l>'
+let g:VM_maps['Move Left'] = '<M-S-h>'
 
 " ===
 " === Whichkey
@@ -358,6 +390,7 @@ let g:which_space_map.q = 'quickfix'
 let g:which_space_map.h = 'help'
 let g:which_space_map.u = 'undo-tree'
 let g:which_space_map.D = 'todo-list'
+let g:which_space_map.T = 'translate'
 let g:which_space_map.K = 'key-map'
 let g:which_space_map.p = 'grep-preview'
 let g:which_space_map.P = 'grep'
@@ -365,7 +398,6 @@ let g:which_space_map.j = 'next-item'
 let g:which_space_map.k = 'previous-item'
 let g:which_space_map.H = 'first-item'
 let g:which_space_map.L = 'last-item'
-let g:which_space_map.t = 'task'
 let g:which_space_map.x = 'open-terminal'
 let g:which_space_map['.'] = 'last-list'
 let g:which_space_map['/'] = 'line-in-current-buffer'
@@ -380,6 +412,7 @@ let g:which_space_map['<C-B>'] = 'buffer-project-mru'
 let g:which_space_map['<C-L>'] = 'location-list-preview'
 let g:which_space_map['<C-Q>'] = 'quickfix-preview'
 let g:which_space_map['<C-G>'] = 'lazygit'
+let g:which_space_map['<C-T>'] = 'vit'
 let g:which_space_map['<C-O>'] = 'jump-location'
 
 " For commands
@@ -428,6 +461,7 @@ let g:which_space_map.r = {
 \   'B':    'build-file',
 \   'i':    'init-project',
 \   'c':    'clean',
+\   'l':    'list-task',
 \ }
 
 " For vimspector
@@ -449,6 +483,77 @@ let g:which_space_map.d = {
 \   ';':    'toggle-breakpoint',
 \   'i':    'toggle-conditional-breakpoint',
 \   'x':    'clear-all-breakpoints',
+\ }
+
+" For visual-multi
+let g:which_space_map.v = {
+\   'name':  '+multi-cursor',
+\   'v':     'add-cursor-at-pos',
+\   'j':     'add-cursor-down',
+\   'k':     'add-cursor-up',
+\   'h':     'select-left',
+\   'l':     'select-right',
+\   ';':     'toggle-mappings',
+\   'a':     'align-cursor',
+\   '<':     'align-char',
+\   '>':     'align-regex',
+\   'A':     'select-all',
+\   's':     'split-region',
+\   'gS':    'reselect-last',
+\   'c':     'case-setting',
+\   'C':     'case-conversion-menu',
+\   '/':     'regex-search',
+\   'z':     'run-normal-command',
+\   'Z':     'run-last-normal-command',
+\   '<C-V>': 'run-visual-command',
+\   'V':     'run-last-visual-command',
+\   '@':     'run-macro',
+\   '.':     'repeat',
+\   '`':     'tools-menu',
+\   '"':     'show-registers',
+\   '<CR>':  'toggle-single-region',
+\   '<C-A>': 'increase-alphabet',
+\   '<C-X>': 'decrease-alphabet',
+\ }
+
+let g:which_space_map.t = {
+\   'name':  '+test/task',
+\   'n':     'test-nearest',
+\   'f':     'test-file',
+\   's':     'test-suite/task-start',
+\   'l':     'test-last',
+\   'o':     'test-open-last-file',
+\   't':     'task-choose-tag',
+\   'p':     'task-choose-project',
+\   'a':     'task-annotate',
+\   'C':     'task-calendar',
+\   'd':     'task-done',
+\   'D':     'task-delete',
+\   'e':     'task-edit',
+\   'i':     'task-info',
+\   'A':     'task-link',
+\   'm':     'task-modify',
+\   'S':     'task-stats',
+\   'g':     'wiki-tag',
+\   'G':     'task-tag',
+\   'b':     'task-start',
+\   'q':     'task-stop',
+\   '<C-G>': 'task-grid',
+\   'v': {
+\     'name': '+view',
+\     'd':   'task-burndown-daily',
+\     'w':   'task-burndown-weekly',
+\     'm':   'task-burndown-monthly',
+\     'p':   'task-projects',
+\     'P':   'task-projects-summary',
+\   },
+\   'h': {
+\     'name': '+history',
+\     'm':   'task-history-monthly',
+\     'a':   'task-history-annual',
+\     'M':   'task-ghistory-monthly',
+\     'A':   'task-ghistory-annual',
+\   }
 \ }
 
 function! s:GotoWindowAndMaximize(win_id) abort
@@ -497,32 +602,29 @@ function! s:GrepFromSelected(type, ...)
   endif
 endfunction
 
-function! s:OpenLazyGit() abort
-  let lazygit_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# 'lazygit'")
-  if empty(lazygit_buffer)
-    tabnew
-    let g:lazygit_tab_num = tabpagenr()
-    terminal lazygit
-    let g:lazygit_channel = &channel
-    set nobuflisted
-    startinsert
-  else
-    execute g:lazygit_tab_num . 'tabnext'
-    call chansend(g:lazygit_channel, "\<CR>")
-    startinsert
-  endif
-endfunction
-
-function! s:OpenTerminal() abort
-  let shell_buffer = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# $SHELL")
+function! s:OpenTerminal(...) abort
+  let command_name = a:0 > 0 ? a:1 : $SHELL
+  let shell_buffer = filter(range(1, bufnr('$')),
+  \   "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# '" . command_name . "'")
   if empty(shell_buffer)
     tabnew
     let g:shell_tab_num = tabpagenr()
-    terminal
+    if a:0 > 0
+      execute 'terminal' command_name
+    else
+      terminal
+    endif
+    let g:shell_channel_id = &channel
     set nobuflisted
     startinsert
   else
     execute g:shell_tab_num . 'tabnext'
+    if command_name ==# 'lazygit'
+      call chansend(g:shell_channel_id, "\<CR>")
+    endif
+    if command_name !=# $SHELL
+      startinsert
+    endif
   endif
 endfunction
 

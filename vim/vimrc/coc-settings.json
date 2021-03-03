@@ -61,6 +61,9 @@
     "python.formatting.provider": "yapf",
     "python.analysis.logLevel": "Error",
     "highlight.document.enable": true,
+    "highlight.disableLanguages": [
+        "vimwiki"
+    ],
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
     "snippets.ultisnips.enable": false,
@@ -146,6 +149,7 @@
         "markdown": [],
         "vimwiki.markdown": [],
         "vimwiki": [],
+        "text": [],
         "vim": [
             "^\\s*\\\""
         ],

@@ -148,6 +148,7 @@ Plug 'jpalardy/vim-slime'
 " ===
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'michal-h21/vim-zettel'
+Plug 'tools-life/taskwiki'
 " Plug 'lordm/vim-browser-reload-linux'
 
 " ===

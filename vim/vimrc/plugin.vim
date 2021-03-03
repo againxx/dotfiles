@@ -169,7 +169,7 @@ let g:coc_global_extensions = [
 " coc-explorer
 let g:coc_explorer_global_presets = {
 \   'vimrc': {
-\       'root-uri': '~/dotfiles/vimrc',
+\       'root-uri': '~/dotfiles/vim/vimrc',
 \       'sources': [{'name': 'file', 'expand': v:true}]
 \   },
 \   'dotfiles': {
@@ -296,11 +296,18 @@ let g:vimwiki_folding = 'expr'
 " let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_hl_headers = 1
+let g:vimwiki_markdown_link_ext = 1
 
 " vim-zettel
 let g:zettel_format = '%title-%y%m%d'
 let g:zettel_default_mappings = 0
 let g:zettel_fzf_options = ['--exact', '--tiebreak=end', '--preview-window=up:60%']
+
+" taskwiki
+let g:taskwiki_disable_concealcursor = 1
+let g:taskwiki_data_location = '~/Documents/tasks'
+let g:taskwiki_suppress_mappings = 1
+
 
 " ===
 " === Asyncrun

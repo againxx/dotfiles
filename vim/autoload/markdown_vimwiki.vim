@@ -51,6 +51,7 @@ function markdown_vimwiki#SetCommonConfigs() abort
   inoremap <buffer> ;h $$<Space><Space>$$<Esc>2hi
   inoremap <buffer> ;c ``<Space><++><Esc>F`i
   inoremap <buffer> ;d -<Space>[<Space>]<Space>
+  inoremap <buffer> ;D *<Space>[<Space>]<Space>
   inoremap <buffer> ;n <Esc>A<Space>\\<CR>
   inoremap <buffer> ;q <Esc>/[)}\]]<CR>:nohlsearch<CR>a
   inoremap <buffer> ;; ;

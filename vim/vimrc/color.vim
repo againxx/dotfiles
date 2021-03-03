@@ -113,6 +113,7 @@ if g:colors_name ==# 'ayu'
   hi VimspectorBPCond guifg=#FFAE57
   hi VimspectorPC     guifg=#D4BFFF
   hi VimspectorPCBP   guifg=#D4BFFF
+  hi TaskwikiTaskPriority gui=bold guifg=#F07178
   hi! link IncSearchCursor IncSearch
 endif
 

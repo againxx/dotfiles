@@ -86,40 +86,52 @@ let g:which_leader_map.c = {
 \   'w':    'toggle-wiki-autoreload'
 \ }
 
-let g:which_leader_map.t = {
-\   'name': '+table/test/translate',
-\   'm':    'table-toggle',
-\   'r':    'table-realign',
-\   'n':    'test-nearest',
-\   'f':    'test-file',
-\   's':    'test-suite',
-\   'l':    'test-last',
-\   'v':    'test-visit',
-\   't':    'translate'
-\ }
-
 let g:which_leader_map.w = {
 \   'name': '+wiki',
 \   'w':    'default-wiki-index',
 \   'T':    'default-wiki-index-in-new-tab',
 \   's':    'select-and-open-wiki-index',
-\   'x':    'delete-wiki-file',
 \   'r':    'rename-wiki-file',
 \   'n':    'notes-wiki-index',
-\   'd':    'todo-wiki-index',
+\   'd':    'diary-index',
+\   'D':    'delete-wiki-file',
 \   'g':    'generate-tag-links',
-\   'tt':   'search-tag-under-current-cursor',
-\   'ts':   'search-tags',
+\   'h':    'convert-to-html',
+\   'hh':   'browse-html',
 \   'b':    'search-back-links',
 \   'B':    'generate-back-links',
 \   'f':    'open-wiki-file',
 \   'a':    'new-wiki-file',
 \   'i':    'insert-note',
+\   't': {
+\     'name': '+tag',
+\     't':    'search-tag-under-current-cursor',
+\     's':    'search-tags',
+\   },
+\   '\': {
+\     'name': '+diary',
+\     'w':    'today-diary',
+\     't':    'today-diary-in-new-tab',
+\     'y':    'yesterday-diary',
+\     'm':    'tomorrow-diary',
+\     'd':    'generate-diary-links',
+\     'i':    'generate-diary-links',
+\   }
 \ }
 
 let g:which_leader_map.y = {
 \   'name': '+yank',
 \   'c': 'yank-diagnostic-code',
+\ }
+
+let g:which_leader_map.t = {
+\   'name': '+table',
+\   'm':    'table-toggle',
+\   'r':    'table-realign',
+\   'a':    'tableize',
+\   '?':    'cell-representation',
+\   'dd':   'delete-row',
+\   'dc':   'delete-column'
 \ }
 
 let g:which_leader_map.a = 'coc-actions'
@@ -209,19 +221,12 @@ nnoremap <Leader>cg :<C-u>CocCommand git.toggleGutters<CR>
 nnoremap <Leader>ci :<C-u>IndentLinesToggle<CR>
 
 " ===
-" === Table-mode
-" ===
-nnoremap <Leader>tm :<C-u>TableModeToggle<CR>
-let g:table_mode_realign_map = '<Leader>tr'
-
-" ===
 " === Vimwiki
 " ===
 nnoremap <Leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
 nmap <Leader>wT <Plug>VimwikiTabIndex
 nnoremap <Leader>wn :<C-u>VimwikiIndex 2<CR>
-nnoremap <Leader>wd :<C-u>VimwikiIndex 3<CR>
-nnoremap <Leader>wx <Plug>VimwikiDeleteLink
+nmap <Leader>wd <Plug>VimwikiDiaryIndex
 nnoremap <Leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
 nnoremap <Leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<Bar>CocList -A --normal locationlist<CR>
 nnoremap <Leader>wts :<C-u>VimwikiSearchTags<Space>
@@ -232,20 +237,10 @@ nnoremap <Leader>wa :<C-u>ZettelNew<Space>
 nnoremap <Leader>wi :<C-u>ZettelInsertNote<CR>
 
 " ===
-" === Test
+" === Table-mode
 " ===
-nnoremap <silent> <Leader>tn :<C-u>TestNearest<CR>
-nnoremap <silent> <Leader>tf :<C-u>TestFile<CR>
-nnoremap <silent> <Leader>ts :<C-u>TestSuite<CR>
-nnoremap <silent> <Leader>tl :<C-u>TestLast<CR>
-nnoremap <silent> <Leader>tv :<C-u>TestVisit<CR>
-
-" ===
-" ===  coc-translator
-" ===
-" popup
-nmap <Leader>tt <Plug>(coc-translator-p)
-vmap <Leader>tt <Plug>(coc-translator-pv)
+nnoremap <Leader>tm :<C-u>TableModeToggle<CR>
+let g:table_mode_tableize_map = '<Leader>ta'
 
 " ===
 " === Yank
@@ -257,11 +252,11 @@ nnoremap <silent> <Leader>yc :<C-u>call <SID>YankDiagnosticCodes()<CR>
 " ===
 
 function! s:AutoVerticalSplit(fname)
-    if winlayout()[0] ==# 'leaf'
-        exec 'vsplit '.a:fname
-    else
-        exec 'edit '.a:fname
-    endif
+  if winlayout()[0] ==# 'leaf'
+    exec 'vsplit '.a:fname
+  else
+    exec 'edit '.a:fname
+  endif
 endfunction
 
 " Ale
