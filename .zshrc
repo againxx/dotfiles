@@ -120,6 +120,9 @@ fi
 export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
 compdef vman="man"
 
+# Use taskwarrior's completion for vit
+compdef vit="task"
+
 # Won't have effect in .profle, strange!
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 
@@ -192,12 +195,13 @@ KEYTIMEOUT=1
 # bindkey alt+l for clear screen
 bindkey "^J" forward-word
 bindkey "^L" forward-char
+bindkey "^B" beginning-of-line
 bindkey "^[l" clear-screen
+bindkey "^[." insert-last-word
 
 bindkey -M vicmd "_" vi-first-non-blank
 bindkey -M vicmd -r "vv"
 bindkey -M vicmd "^V" edit-command-line
-bindkey -M viins "^B" beginning-of-line
 
 zle -N fzf-choose-dirs-widget
 bindkey "^[m" fzf-choose-dirs-widget
