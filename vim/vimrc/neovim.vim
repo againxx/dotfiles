@@ -18,6 +18,7 @@ let g:loaded_ruby_provider = 0
 
 " use nvr as primary editor for lazygit
 if executable('nvr')
+  let $EDITOR = 'nvr -cc tabprevious'
   let $VISUAL = 'nvr -cc tabprevious'
 endif
 
