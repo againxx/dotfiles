@@ -54,6 +54,7 @@ if [[ -x "$(command -v brew)" ]]; then
     brew_pack[fd]=fd
     brew_pack[xdotool]=xdotool
     brew_pack[valgrind]=valgrind
+    brew_pack[duf]=duf
 
     for exec_name in "${!brew_pack[@]}"; do
         if ! command -v $exec_name &> /dev/null; then
