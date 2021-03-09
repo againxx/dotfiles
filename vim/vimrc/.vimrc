@@ -159,7 +159,7 @@ Plug 'tpope/vim-capslock'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
 " Extand register and macro
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
 Plug 'junegunn/vim-easy-align'
