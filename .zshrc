@@ -90,6 +90,8 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+fpath=(/usr/share/zsh/site-functions $fpath)
+
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
