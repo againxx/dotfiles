@@ -178,6 +178,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Plug 'airblade/vim-rooter'
 " Work with variants of a word
 Plug 'tpope/vim-abolish'
+Plug 'yuttie/comfortable-motion.vim'
 
 " ===
 " === Custom Text Objects
