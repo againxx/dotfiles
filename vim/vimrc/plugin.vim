@@ -139,7 +139,7 @@ let g:ultisnips_cpp_style = 'google'
 " Extensions
 let g:coc_global_extensions = [
 \   'coc-json',
-\   'coc-python',
+\   'coc-jedi',
 \   'coc-yank',
 \   'coc-lists',
 \   'coc-git',

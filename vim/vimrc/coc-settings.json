@@ -56,10 +56,6 @@
         "--hidden",
         "--files"
     ],
-    "python.jediEnabled": true,
-    "python.linting.enabled": false,
-    "python.formatting.provider": "yapf",
-    "python.analysis.logLevel": "Error",
     "highlight.document.enable": true,
     "highlight.disableLanguages": [
         "vimwiki"
