@@ -31,11 +31,12 @@ create_tmux_session_and_window() {
 
     available_windows["Other: ranger"]=""
     available_windows["Other: tasks"]=""
-    available_windows["Other: dofiles"]=~/dofiles
+    available_windows["Other: dotfiles"]=~/dotfiles
     available_windows["Other: vimrc"]=~/dotfiles/vim
 
     available_windows["Learning: cpp"]=""
     available_windows["Learning: python"]=""
+    available_windows["Learning: bash_script"]=~/Programming_Learning/bash_learning
     available_windows["Learning: matplotlib"]=~/Programming_Learning/python_learning/matplotlib_learning
     available_windows["Learning: habitat"]=~/Programming_Learning/habitat_learning
 
@@ -53,20 +54,20 @@ create_tmux_session_and_window() {
 
     if tmux display-message -p "#{window_name}" | grep -q "bash"; then
         tmux rename-window "$selected_window"
+        if [[ -n ${available_windows[$selection]} ]]; then
+            tmux send-keys -t "{last}" "cd ${available_windows[$selection]}" Enter
+        fi
     fi
 
     local existing_windows
     if tmux has-session -t "$selected_session" 2>/dev/null; then
-        tmux switch-client -t "$selected_session"
-        existing_windows=$(tmux list-windows -F "#{window_name}")
+        existing_windows=$(tmux list-windows -t "$selected_session" -F "#{window_name}")
         if [[ "${existing_windows[*]}" != *"$selected_window"* ]]; then
             if [[ -n ${available_windows[$selection]} ]]; then
-                tmux new-window -n "$selected_window" -c ${available_windows[$selection]}
+                tmux new-window -n "$selected_window" -t "$selected_session:" -c ${available_windows[$selection]}
             else
-                tmux new-window -n "$selected_window"
+                tmux new-window -n "$selected_window" -t "$selected_session:"
             fi
-        else
-            tmux select-window -t "$selected_window"
         fi
     else
         if [[ -n ${available_windows[$selection]} ]]; then
@@ -74,6 +75,6 @@ create_tmux_session_and_window() {
         else
             tmux new-session -s "$selected_session" -n "$selected_window" -d
         fi
-        tmux switch-client -t "$selected_session"
     fi
+    tmux switch-client -t "$selected_session:$selected_window"
 }
