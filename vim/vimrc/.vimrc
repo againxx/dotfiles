@@ -117,6 +117,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 " ===
 " Switch between header and source file
 " Plug 'vim-scripts/a.vim', { 'for': 'cpp' }
+Plug 'skywind3000/vim-cppman'
 
 " ===
 " === Markdown
