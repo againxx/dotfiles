@@ -35,5 +35,3 @@ nnoremap <buffer> [h
 \   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
-nnoremap <buffer> <silent> <space>rr :CocCommand python.execInTerminal<CR>
-xnoremap <buffer> <silent> <space>rs :CocCommand python.execSelectionInTerminal<CR>
