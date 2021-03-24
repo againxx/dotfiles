@@ -117,6 +117,7 @@ if g:colors_name ==# 'ayu'
   hi VimspectorPCBP   guifg=#D4BFFF
   hi TaskwikiTaskPriority gui=bold guifg=#F07178
   hi! link IncSearchCursor IncSearch
+  hi Searchlight guifg=#FFEE99 guibg=#A37ACC
 endif
 
 if g:colors_name ==# 'onehalfdark'
