@@ -13,7 +13,7 @@ inoremap <buffer> ;i **<Space><++><Esc>F*i
 inoremap <buffer> ;C ```<CR>```<Esc>ka
 inoremap <buffer> ;p ![](<++>)<Space><++><Esc>F[a
 inoremap <buffer> ;a [](<++>)<Space><++><Esc>F[a
-inoremap <buffer> ;r ##<Space>Reference<Esc>
+inoremap <buffer> ;r ##<Space>Reference<CR><Esc>
 inoremap <buffer> ;M $$<CR>$$<Esc>O
 inoremap <buffer> ;1 #<Space>
 inoremap <buffer> ;2 ##<Space>
