@@ -15,7 +15,7 @@ augroup vimwiki_special
   autocmd!
   autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')
   autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')
-  autocmd User visual_multi_start call s:VMStart()
+  " autocmd User visual_multi_start call s:VMStart()
   autocmd User visual_multi_exit  call s:VMExit()
 augroup END
 
@@ -26,6 +26,9 @@ if has('nvim')
   silent! nunmap <buffer> <S-Tab>
 endif
 
+" unmap automatic list adding
+silent! nunmap <buffer> o
+silent! nunmap <buffer> O
 nnoremap <silent><buffer> gl? :<C-u>WhichKey 'gl'<CR>
 nnoremap <silent><buffer> gL? :<C-u>WhichKey 'gL'<CR>
 nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
@@ -84,7 +87,7 @@ if expand('%:e') ==# 'wiki'
   inoremap <buffer> ;p {{<bar><++>}}<Space><++><Esc>F{a
   inoremap <buffer> ;a [[<bar><++>]]<Space><++><Esc>F[a
   inoremap <buffer> ;M {{$<CR>}}$<Esc>kA
-  inoremap <buffer> ;r ==<Space>Reference<Space>==<Esc>
+  inoremap <buffer> ;r ==<Space>Reference<Space>==<CR><Esc>
   inoremap <buffer> ;1 =<Space><Space>=<Space><++><Esc>F=hi
   inoremap <buffer> ;2 ==<Space><Space>==<Space><++><Esc>F=2hi
   inoremap <buffer> ;3 ===<Space><Space>===<Space><++><Esc>F=3hi
@@ -142,7 +145,7 @@ function! s:VMStart() abort
 endfunction
 
 function! s:VMExit() abort
-  nmap <buffer> o <Plug>VimwikiListo
+  " nmap <buffer> o <Plug>VimwikiListo
   imap <buffer> <C-d> <Plug>VimwikiDecreaseLvlSingleItem
-  inoremap <expr><silent><buffer> <CR> pumvisible() ? '<CR>' : '<C-]><Esc>:VimwikiReturn 1 5<CR>'
+  " inoremap <expr><silent><buffer> <CR> pumvisible() ? '<CR>' : '<C-]><Esc>:VimwikiReturn 1 5<CR>'
 endfunction
