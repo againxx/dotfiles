@@ -223,7 +223,6 @@ nnoremap <silent> <Space>q :<C-u>CocList --normal quickfix<CR>
 nnoremap <silent> <Space><C-q> :<C-u>CocCommand fzf-preview.QuickFix<CR>
 nnoremap <silent> <Space>h :<C-u>CocList helptags<CR>
 nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
-nnoremap <silent> <Space>D :<C-u>CocList --normal todolist<CR>
 nnoremap <silent> <Space>K :<C-u>CocList maps<CR>
 nnoremap <silent> <Space>P :<C-u>CocList grep<CR>
 xnoremap <silent> <Space>P :<C-u>call <SID>GrepFromSelected(visualmode(), 1)<CR>
@@ -259,7 +258,9 @@ nnoremap <silent> <Space>gr :<C-u>Git restore --staged %<Bar>CocCommand git.refr
 " nnoremap <silent> <Space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 nnoremap <silent> <Space>ee :<C-u>CocCommand explorer<CR>
 nnoremap <silent> <Space>ev :<C-u>CocCommand explorer --preset vimrc<CR>
-nnoremap <silent> <Space>ed :<C-u>CocCommand explorer --preset dotfiles<CR>
+nnoremap <silent> <Space>eD :<C-u>CocCommand explorer --preset dotfiles<CR>
+nnoremap <silent> <Space>ew :<C-u>CocCommand explorer --preset dictionaries<CR>
+nnoremap <silent> <Space>ed :<C-u>Clap dotfiles<CR>
 nnoremap <silent> <Space>ec :<C-u>execute 'CocCommand explorer' expand('%:p:h')<CR>
 
 " vimwiki

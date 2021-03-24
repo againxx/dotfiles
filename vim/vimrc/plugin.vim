@@ -150,7 +150,6 @@ let g:coc_global_extensions = [
 \   'coc-pairs',
 \   'coc-vimlsp',
 \   'coc-snippets',
-\   'coc-todolist',
 \   'coc-zi',
 \   'coc-ci',
 \   'coc-tasks',
@@ -179,6 +178,10 @@ let g:coc_explorer_global_presets = {
 \           {'name': 'file', 'expand': v:true}
 \       ]
 \   },
+\   'dictionaries': {
+\       'root-uri': '~/Programming_Tools/cSpell_dictionaries/',
+\       'sources': [{'name': 'file', 'expand': v:true}]
+\   },
 \   'floatingLeftside': {
 \       'position': 'floating',
 \       'floating-position': 'left-center',
@@ -197,6 +200,7 @@ let g:coc_explorer_global_presets = {
 let g:fzf_preview_fzf_preview_window_option = 'up:60%'
 let $FZF_PREVIEW_PREVIEW_BAT_THEME='Dracula'
 let $FZF_DEFAULT_OPTS = '--reverse'
+let g:fzf_preview_mru_limit = 5000
 let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard $(git rev-parse --show-toplevel)'
 let g:fzf_preview_preview_key_bindings = 'ctrl-a:toggle-all,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-/:toggle-preview'
@@ -291,6 +295,7 @@ let g:vimwiki_list = [
 let g:vimwiki_key_mappings = {
 \   'table_format': 0,
 \   'table_mappings': 0,
+\   'lists_return': 0
 \ }
 let g:vimwiki_folding = 'expr'
 " let g:vimwiki_filetypes = ['markdown']

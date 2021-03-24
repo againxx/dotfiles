@@ -8,15 +8,7 @@ vnoremap <silent> <Leader> :<C-u>WhichKeyVisual '\'<CR>
 let g:which_leader_map = {}
 let g:which_leader_map.e = {
 \   'name': '+edit',
-\   'v':    'edit-vimrc',
-\   'l':    'edit-leadermap',
-\   'k':    'edit-keymap',
-\   'p':    'edit-plugin-setting',
-\   'a':    'edit-autocmd',
-\   'g':    'edit-general-setting',
-\   'b':    'edit-abbrev',
-\   'c':    'edit-coc-config',
-\   'C':    'edit-coc-local-config',
+\   'c':    'edit-coc-local-config',
 \   's':    'edit-snippets',
 \   'm':    'edit-macro&register',
 \   't':    'edit-local-task',
@@ -122,6 +114,7 @@ let g:which_leader_map.w = {
 let g:which_leader_map.y = {
 \   'name': '+yank',
 \   'c': 'yank-diagnostic-code',
+\   'p': 'yank-file-path',
 \ }
 
 let g:which_leader_map.t = {
@@ -140,15 +133,7 @@ let g:which_leader_map.f = 'coc-lists-grep'
 " ===
 " === Edit files
 " ===
-nnoremap <Leader>ev :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/.vimrc')<CR>
-nnoremap <Leader>el :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/leadermap.vim')<CR>
-nnoremap <Leader>ek :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/keymap.vim')<CR>
-nnoremap <Leader>ep :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/plugin.vim')<CR>
-nnoremap <Leader>ea :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/autocmd.vim')<CR>
-nnoremap <Leader>eg :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/general.vim')<CR>
-nnoremap <Leader>eb :<C-u>call <SID>AutoVerticalSplit('~/dotfiles/vimrc/abbrev.vim')<CR>
-nnoremap <Leader>ec :<C-u>CocConfig<CR>
-nnoremap <Leader>eC :<C-u>CocLocalConfig<CR>
+nnoremap <Leader>ec :<C-u>CocLocalConfig<CR>
 " nnoremap <Leader>es :CocCommand snippets.editSnippets<CR>
 nnoremap <Leader>es :<C-u>UltiSnipsEdit!<CR>
 nnoremap <Leader>em :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-f><left>
@@ -246,6 +231,7 @@ let g:table_mode_tableize_map = '<Leader>ta'
 " === Yank
 " ===
 nnoremap <silent> <Leader>yc :<C-u>call <SID>YankDiagnosticCodes()<CR>
+nnoremap <silent> <Leader>yp :<C-u>let @+=expand('%:p')<CR>
 
 " ===
 " === Functions
