@@ -44,6 +44,7 @@ function! coc#source#marktex#complete(opt, cb) abort
   \ '\geq',
   \ '\gt',
   \ '\hat',
+  \ '\iff',
   \ '\impliedby',
   \ '\implies',
   \ '\in',
