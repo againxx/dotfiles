@@ -51,8 +51,8 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 " ===
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-" Plug 'maximbaz/lightline-ale'
 Plug 'againxx/lightline-utils'
+" Plug 'maximbaz/lightline-ale'
 
 " ===
 " === Window & Buffer & Keybindings
@@ -88,6 +88,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope' " highlight for f & t
+Plug 'yuttie/comfortable-motion.vim' " physically plausible motion
 
 " ===
 " === Comment & Surround & Parenthsis
@@ -110,6 +111,7 @@ Plug 'againxx/vim-snippets'
 Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'fs111/pydoc.vim'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " ===
@@ -153,9 +155,21 @@ Plug 'tools-life/taskwiki'
 " Plug 'lordm/vim-browser-reload-linux'
 
 " ===
-" === Utility
+" === Curosr & Alignment
 " ===
 Plug 'mg979/vim-visual-multi'
+Plug 'junegunn/vim-easy-align'
+
+" ===
+" === Documentation
+" ===
+" Read Unix man pages in vim
+Plug 'jez/vim-superman'
+" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+" ===
+" === Utility
+" ===
 Plug 'tpope/vim-capslock'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
@@ -163,12 +177,9 @@ Plug 'Yggdroot/indentLine'
 " Plug 'junegunn/vim-peekaboo'
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Automatically add sudo
 Plug 'lambdalisue/suda.vim'
-" Read Unix man pages in vim
-Plug 'jez/vim-superman'
 " Plug 'kevinhwang91/vim-ibus-sw'
 Plug 'rlue/vim-barbaric', { 'for': ['markdown', 'vimwiki'] }
 " Maximize and restore current window
@@ -179,13 +190,13 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Plug 'airblade/vim-rooter'
 " Work with variants of a word
 Plug 'tpope/vim-abolish'
-Plug 'yuttie/comfortable-motion.vim'
 
 " ===
 " === Custom Text Objects
 " ===
 Plug 'kana/vim-textobj-user'
-Plug 'againxx/vim-textobj-underscore'
+" Plug 'againxx/vim-textobj-underscore'
+Plug 'Julian/vim-textobj-variable-segment'
 
 " ===
 " === ROS
