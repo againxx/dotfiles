@@ -154,7 +154,7 @@ alias pch="proxychains4 -q"
 alias lg="lazygit"
 alias setp='export http_proxy="http://127.0.0.1:2340"; export https_proxy="http://127.0.0.1:2340"'
 alias usetp='unset http_proxy; unset https_proxy'
-alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed "{s/\/.*//;N;N;s/\n/^/}" | column -t -s^ | fzf --multi'
+alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
 
 # suffix aliases
 alias -s {cpp,h,md,wiki,txt,json,yaml,yml,vim}=nvim
