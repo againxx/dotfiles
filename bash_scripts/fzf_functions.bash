@@ -37,8 +37,10 @@ create_tmux_session_and_window() {
     available_windows["Learning: cpp"]=""
     available_windows["Learning: python"]=""
     available_windows["Learning: bash_script"]=~/Programming_Learning/bash_learning
+    available_windows["Learning: sed"]=~/Programming_Learning/sed_learning
     available_windows["Learning: matplotlib"]=~/Programming_Learning/python_learning/matplotlib_learning
     available_windows["Learning: habitat"]=~/Programming_Learning/habitat_learning
+    available_windows["Learning: rust"]=~/Programming_Learning/rust_learning
 
     local fzf_input
     printf -v fzf_input "%s\n" "${!available_windows[@]}"
