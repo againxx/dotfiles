@@ -162,7 +162,8 @@ let g:coc_global_extensions = [
 \   'coc-fzf-preview',
 \   'coc-tsserver',
 \   'coc-html',
-\   'coc-diagnostic'
+\   'coc-diagnostic',
+\   'coc-rls'
 \ ]
 
 " coc-explorer
