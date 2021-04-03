@@ -1,6 +1,8 @@
+setlocal nolist
+
 if has('nvim')
-  nnoremap <buffer><silent> <M-j> :<C-u>call <SID>SearchEditableField(1)<CR>
-  nnoremap <buffer><silent> <M-k> :<C-u>call <SID>SearchEditableField(0)<CR>
+  nnoremap <buffer><silent> <M-i> :<C-u>call <SID>SearchEditableField(1)<CR>
+  nnoremap <buffer><silent> <M-o> :<C-u>call <SID>SearchEditableField(0)<CR>
 endif
 
 function! s:SearchEditableField(forward) abort

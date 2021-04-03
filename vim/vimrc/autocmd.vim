@@ -10,9 +10,6 @@ augroup common
   autocmd CmdLineEnter : set nosmartcase
   autocmd CmdLineLeave : set smartcase
   autocmd VimResized * :wincmd =
-  autocmd FileType help nnoremap <buffer> [t ?<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
-  autocmd FileType help nnoremap <buffer> ]t /<Bar>.\{-}<Bar><CR>:nohlsearch<CR>
-  autocmd FileType taskedit setlocal nolist
   autocmd TabClosed * call s:DeleteFinishedTerminalBuffers()
 augroup END
 
