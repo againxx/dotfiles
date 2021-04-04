@@ -217,7 +217,6 @@ nnoremap <Leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<Bar>Co
 nnoremap <Leader>wts :<C-u>VimwikiSearchTags<Space>
 nnoremap <Leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<CR>
 nnoremap <Leader>wB :<C-u>ZettelBackLinks<CR>
-nnoremap <Leader>wf :<C-u>ZettelOpen<CR>
 nnoremap <Leader>wa :<C-u>ZettelNew<Space>
 nnoremap <Leader>wi :<C-u>ZettelInsertNote<CR>
 

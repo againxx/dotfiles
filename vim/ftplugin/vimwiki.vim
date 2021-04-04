@@ -97,6 +97,8 @@ if expand('%:e') ==# 'wiki'
   nmap <buffer> gy <Plug>ZettelYankNameMap
   xmap <buffer> gz <Plug>ZettelNewSelectedMap
   nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
+  nnoremap <buffer> <Space>p :<C-u>call zettel#fzf#sink_onefile("", 'zettel#fzf#search_open', g:fzf_layout)<CR>
+
   if executable('xdotool')
     nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromiumPage('ctrl+r')<CR>
     nnoremap <silent><buffer> <Space>wj :<C-u>call <SID>ControlChromiumPage('Down', v:count1)<CR>
