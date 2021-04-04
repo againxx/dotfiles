@@ -97,7 +97,7 @@ if expand('%:e') ==# 'wiki'
   nmap <buffer> gy <Plug>ZettelYankNameMap
   xmap <buffer> gz <Plug>ZettelNewSelectedMap
   nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
-  nnoremap <buffer> <Space>p :<C-u>call zettel#fzf#sink_onefile("", 'zettel#fzf#search_open', g:fzf_layout)<CR>
+  " nnoremap <buffer> <Space>p :<C-u>call zettel#fzf#sink_onefile("", 'zettel#fzf#search_open', g:fzf_layout)<CR>
 
   if executable('xdotool')
     nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromiumPage('ctrl+r')<CR>
@@ -134,7 +134,7 @@ endfunction
 function! s:ToggleWikiAutoReload() abort
   let buffer_autocmds = split(execute('autocmd vimwiki_special BufWritePost <buffer>'), '\n')[1:]
   if empty(buffer_autocmds)
-    autocmd vimwiki_special BufWritePost <buffer> call s:controlChromiumPage('ctrl+r')
+    autocmd vimwiki_special BufWritePost <buffer> call s:ControlChromiumPage('ctrl+r')
     echohl MoreMsg | echo 'Auto reload turned on' | echohl NONE
   else
     autocmd! vimwiki_special BufWritePost <buffer>
