@@ -156,9 +156,9 @@ alias setp='export http_proxy="http://127.0.0.1:2340"; export https_proxy="http:
 alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
 if [[ -x "$(command -v exa)" ]]; then
-    alias l=exa
-    alias ll=exa -l
-    alias la=exa -al
+    alias l="exa"
+    alias ll"=exa -l"
+    alias la="exa -al"
 fi
 
 # suffix aliases
