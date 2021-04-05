@@ -145,6 +145,8 @@ function! LightlineFileTypeWithSymbol()
     let ft_with_symbol .= ' '
   elseif &filetype ==# 'qf'
     let ft_with_symbol .= ' ' " 
+  elseif &filetype ==# 'sed'
+    let ft_with_symbol .= ' 搜'
   elseif &filetype ==# 'unknown'
     let ft_with_symbol .= ' '
   else
