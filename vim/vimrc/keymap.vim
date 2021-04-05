@@ -507,6 +507,8 @@ let g:which_space_map.v = {
 \   '/':     'regex-search',
 \   'z':     'run-normal-command',
 \   'Z':     'run-last-normal-command',
+\   'n':     'append-numbers',
+\   'N':     'insert-numbers',
 \   '<C-V>': 'run-visual-command',
 \   'V':     'run-last-visual-command',
 \   '@':     'run-macro',
