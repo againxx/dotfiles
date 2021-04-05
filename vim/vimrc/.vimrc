@@ -111,6 +111,7 @@ Plug 'againxx/vim-snippets'
 Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'goerz/jupytext.vim'
 " Plug 'fs111/pydoc.vim'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
