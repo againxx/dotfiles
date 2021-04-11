@@ -44,6 +44,7 @@ let g:which_leader_map.v = {
 \   'm':    'markdown-preview',
 \   'c':    'view-error-code',
 \   'h':    'view-highlight-group',
+\   'H':    'view-highlight-stack',
 \   'a':    'view-ascii-value',
 \ }
 

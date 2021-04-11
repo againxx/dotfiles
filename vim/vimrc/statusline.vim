@@ -28,7 +28,7 @@ let g:lightline#whitespace#trailing_format = '%s'
 let g:lightline.active = {
 \   'left': [['mode'],
 \            ['git', 'spell'],
-\            ['filename', 'readonly', 'coc_status_with_nearest_function']],
+\            ['relativepath', 'readonly', 'coc_status_with_nearest_function']],
 \   'right': [['linter_errors', 'linter_warnings_with_whitespace_check'],
 \             ['lineinfo'],
 \             ['filetype'],
