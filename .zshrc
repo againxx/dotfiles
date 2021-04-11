@@ -70,6 +70,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# zsh-autosuggestions configuration
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -201,7 +205,7 @@ KEYTIMEOUT=1
 # bindkey ctrl+l for complete accept zsh-autosuggestions
 # bindkey alt+l for clear screen
 bindkey "^J" forward-word
-bindkey "^L" forward-char
+bindkey "^L" autosuggest-accept
 bindkey "^B" beginning-of-line
 bindkey "^[l" clear-screen
 bindkey "^[." insert-last-word
