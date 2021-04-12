@@ -332,6 +332,10 @@
             }
         },
         "cpplint": {
+            "args": [
+                "--filter=-build/include_subdir,-build/header_guard",
+                "%file"
+            ],
             "securities": {
                 "1": "hint",
                 "2": "info",
