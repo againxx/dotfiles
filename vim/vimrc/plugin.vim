@@ -65,10 +65,6 @@ let g:fzf_layout = {
 \   }
 \ }
 let g:fzf_preview_window = ['up:60%', 'ctrl-/']
-command! -bang -nargs=* Rg call fzf#vim#grep(
-\   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
-\   1, fzf#vim#with_preview({'options': ['--nth', '4..']}), <bang>0
-\ )
 
 " ===
 " === Vista

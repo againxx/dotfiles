@@ -108,6 +108,11 @@ if expand('%:e') ==# 'wiki'
     nnoremap <silent><buffer> <Space>wgg :<C-u>call <SID>ControlChromiumPage('Home')<CR>
     nnoremap <Leader>cw :<C-u>call <SID>ToggleWikiAutoReload()<CR>
   endif
+
+  command! -buffer -bang -nargs=* Rg call fzf#vim#grep(
+  \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+  \   1, fzf#vim#with_preview({'options': ['--nth', '4..']}), <bang>0
+  \ )
 endif
 
 function! s:ControlChromiumPage(key, ...) abort
