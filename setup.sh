@@ -60,6 +60,7 @@ if [[ -x "$(command -v brew)" ]]; then
     brew_pack[tldr]=tealdeer
     brew_pack[bat]=bat
     brew_pack[procs]=procs
+    brew_pack[cpulimit]=cpulimit
 
     for exec_name in "${!brew_pack[@]}"; do
         if ! command -v $exec_name &> /dev/null; then

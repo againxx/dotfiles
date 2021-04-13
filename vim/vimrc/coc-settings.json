@@ -345,8 +345,12 @@
             }
         },
         "languagetool": {
-            "command": "languagetool",
+            "command": "cpulimit",
             "args": [
+                "-i",
+                "-l",
+                "20",
+                "languagetool",
                 "-l",
                 "en",
                 "-d",
