@@ -5,7 +5,7 @@ let s:default_dotfiles_dir = '~/dotfiles/'
 let s:dotfiles = {}
 
 function! s:list_dotfiles() abort
-  let l:dotfiles = split(system('rg --hidden --ignore-file ~/dotfiles/.rgignore --files ~/dotfiles/'), '\n')
+  let l:dotfiles = systemlist('rg --hidden --ignore-file ~/dotfiles/.rgignore --files ~/dotfiles/')
   call map(l:dotfiles, 's:modify_file_name(v:val)')
   return l:dotfiles
 endfunction
