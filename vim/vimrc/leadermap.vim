@@ -76,7 +76,8 @@ let g:which_leader_map.c = {
 \   'a':    'change-diagnostic-level',
 \   'g':    'toggle-git-gutters',
 \   'i':    'toggle-indent-line',
-\   'w':    'toggle-wiki-autoreload'
+\   'w':    'toggle-wiki-autoreload',
+\   'd':    'toggle-coc-diagnostic'
 \ }
 
 let g:which_leader_map.w = {
@@ -205,6 +206,7 @@ nnoremap <Leader>ca :<C-u>call <SID>ChangeDiagnosticLevel()<CR>i<Esc>
 nnoremap <Leader>cg :<C-u>CocCommand git.toggleGutters<CR>
 " nmap <Leader>ci <Plug>IndentGuidesToggle
 nnoremap <Leader>ci :<C-u>IndentLinesToggle<CR>
+nnoremap <Leader>cd :<C-u>call <SID>ToggleCocDiagnostic()<CR>
 
 " ===
 " === Vimwiki
@@ -361,7 +363,7 @@ function! s:ToggleGitBlame() abort
   endif
 endfunction
 
-function s:ChangeBuildProfile() abort
+function! s:ChangeBuildProfile() abort
   if g:asynctasks_profile ==# 'debug'
     execute 'AsyncTaskProfile release'
   elseif g:asynctasks_profile ==# 'release'
@@ -371,6 +373,15 @@ function s:ChangeBuildProfile() abort
   else
     echo 'Unknown current profile!'
   endif
+endfunction
+
+function! s:ToggleCocDiagnostic() abort
+  if  get(b:, 'coc_diagnostic_disable', 0)
+    let b:coc_diagnostic_disable = 0
+  else
+    let b:coc_diagnostic_disable = 1
+  endif
+  edit
 endfunction
 
 " echo different formats and the corresponding char for a given number
