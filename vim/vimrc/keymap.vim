@@ -214,8 +214,8 @@ nnoremap <silent> <Space>s :<C-u>Vista finder<CR>
 nnoremap <silent> <Space>S :<C-u>CocList -I symbols<CR>
 nnoremap <silent> <Space>. :<C-u>CocListResume<CR>
 " Show all diagnostics.
-nnoremap <silent> <Space>a :<C-u>CocList diagnostics<CR>
-nnoremap <silent> <Space><C-a> :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
+nnoremap <silent> <Space>dg :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <Space>dG :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
 " Show locationlist
 nnoremap <silent> <Space>l :<C-u>CocList --normal locationlist<CR>
 nnoremap <silent> <Space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
@@ -255,6 +255,7 @@ nnoremap <silent> <Space>ga :<C-u>CocCommand git.chunkStage<CR>
 nnoremap <silent> <Space>gu :<C-u>CocCommand git.chunkUndo<CR>
 nnoremap <silent> <Space>gz :<C-u>CocCommand git.foldUnchanged<CR>
 nnoremap <silent> <Space>gr :<C-u>Git restore --staged %<Bar>CocCommand git.refresh<CR>
+nnoremap <silent> <Space>go :<C-u>Clap git_object_files<CR>
 " nnoremap <silent> <Space>w :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 nnoremap <silent> <Space>ee :<C-u>CocCommand explorer<CR>
 nnoremap <silent> <Space>ev :<C-u>CocCommand explorer --preset vimrc<CR>
@@ -386,7 +387,6 @@ let g:which_space_map.y = 'yank'
 let g:which_space_map.Y = 'source'
 let g:which_space_map.s = 'vista'
 let g:which_space_map.S = 'coc-symbol'
-let g:which_space_map.a = 'diagnostic'
 let g:which_space_map.l = 'location-list'
 let g:which_space_map.q = 'quickfix'
 let g:which_space_map.h = 'help'
@@ -407,7 +407,6 @@ let g:which_space_map['?'] = 'line-in-all-buffer'
 let g:which_space_map["'"] = 'mark-preview'
 let g:which_space_map['"'] = 'mark'
 let g:which_space_map['*'] = 'grep-current-word'
-let g:which_space_map['<C-A>'] = 'diagnostic-preview'
 let g:which_space_map['<C-F>'] = 'git-file'
 let g:which_space_map['<C-P>'] = 'grep-by-motion'
 let g:which_space_map['<C-B>'] = 'buffer-project-mru'
@@ -446,6 +445,7 @@ let g:which_space_map.g = {
 \   'u':    'undo-chunk',
 \   'z':    'fold-unchanged',
 \   'r':    'restore-current-file',
+\   'o':    'object-file',
 \ }
 
 " For refactor/run
@@ -468,7 +468,7 @@ let g:which_space_map.r = {
 
 " For vimspector
 let g:which_space_map.d = {
-\   'name': '+debug',
+\   'name': '+debug/diagnostic',
 \   'd':    'start',
 \   'q':    'stop',
 \   'c':    'browse-code',
@@ -485,6 +485,8 @@ let g:which_space_map.d = {
 \   ';':    'toggle-breakpoint',
 \   'i':    'toggle-conditional-breakpoint',
 \   'x':    'clear-all-breakpoints',
+\   'g':    'diagnostic',
+\   'G':    'diagnostic-preview'
 \ }
 
 " For visual-multi
