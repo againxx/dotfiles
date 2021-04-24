@@ -129,7 +129,9 @@
         "<C-h>": "toggleHidden",
         "[g": "gitPrev",
         "]g": "gitNext",
-        "cw": "rename"
+        "cw": "rename",
+        "df": "deleteForever",
+        "dt": "delete"
     },
     "zi.patterns": {
         "javascript": [
