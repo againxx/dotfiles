@@ -123,6 +123,7 @@ let g:clap_theme = 'ayu'
 let g:clap_enable_background_shadow = v:false
 let g:clap_open_preview = 'never'
 let g:clap_preview_direction = 'UD'
+let g:clap_enable_yanks_provider = 0
 
 " ===
 " === Ultisnips
