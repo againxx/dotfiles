@@ -125,21 +125,21 @@ endfunction
 
 " Used by firenvim
 function! OnUIEnter(event) abort
- if s:IsFirenvimActive(a:event)
-  set guifont=InconsolataLGC\ Nerd\ Font:h20
-  set showtabline=0
-  if g:colors_name ==# 'ayu'
-    hi Normal guibg=#212733
+  if s:IsFirenvimActive(a:event)
+    if g:colors_name ==# 'ayu'
+      hi Normal guibg=#212733
+    endif
+    set guifont=InconsolataLGC\ Nerd\ Font:h20
+    set showtabline=0
+    hi Pmenu      guibg=NONE
+    hi PmenuSbar  guibg=NONE
+    hi PmenuThumb guibg=NONE
+    " Use Alt_=-,. to resize firenvim window
+    nnoremap <M-=> :<C-u>silent! set lines+=5<CR>
+    nnoremap <M--> :<C-u>silent! set lines-=5<CR>
+    nnoremap <M-,> :<C-u>silent! set columns-=5<CR>
+    nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
   endif
-  hi Pmenu      guibg=NONE
-  hi PmenuSbar  guibg=NONE
-  hi PmenuThumb guibg=NONE
-  " Use Alt_=-,. to resize firenvim window
-  nnoremap <M-=> :<C-u>silent! set lines+=5<CR>
-  nnoremap <M--> :<C-u>silent! set lines-=5<CR>
-  nnoremap <M-,> :<C-u>silent! set columns-=5<CR>
-  nnoremap <M-.> :<C-u>silent! set columns+=5<CR>
- endif
 endfunction
 
 " Firenvim settings
