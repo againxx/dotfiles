@@ -55,6 +55,11 @@ augroup clap_special
   autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
 augroup END
 
+augroup other_filetypes
+  autocmd!
+  autocmd FileType asm setlocal nolist
+augroup END
+
 function! s:DeleteFinishedTerminalBuffers() abort
   let term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
   for term_buffer in term_buffers
