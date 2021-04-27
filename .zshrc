@@ -80,6 +80,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     autojump
+    autoupdate
     colored-man-pages
     conda-zsh-completion
     extract
