@@ -159,13 +159,13 @@ nnoremap <silent> <Leader>sv :<C-u>source $MYVIMRC<CR>:nohlsearch<CR>
 " ===
 " === Quit
 " ===
-nnoremap <silent> <Leader>qq :silent! Bdelete!<CR>:redrawtabline<CR>
-nnoremap <silent> <Leader>qb :silent! bdelete!<CR>
-nnoremap <silent> <Leader>qw :silent! bwipeout!<CR>
-nnoremap <silent> <Leader>qt :tabclose<CR>
-nnoremap <silent> <Leader>qd :VimspectorReset<CR>
-nnoremap <silent> <Leader>qc :cclose<CR>
-nnoremap <silent> <Leader>ql :lclose<CR>
+nnoremap <silent> <Leader>qq :<C-u>call <SID>CloseBufferOrQuickfixOrLocalistWindow()<CR>
+nnoremap <silent> <Leader>qb :<C-u>silent! bdelete!<CR>
+nnoremap <silent> <Leader>qw :<C-u>silent! bwipeout!<CR>
+nnoremap <silent> <Leader>qt :<C-u>tabclose<CR>
+nnoremap <silent> <Leader>qd :<C-u>VimspectorReset<CR>
+nnoremap <silent> <Leader>qc :<C-u>cclose<CR>
+nnoremap <silent> <Leader>ql :<C-u>lclose<CR>
 
 " ===
 " === Coc
@@ -427,4 +427,14 @@ function! s:QuerySyntaxStack() abort
   for id in synstack(line('.'), col('.'))
     echo synIDattr(id, 'name')
   endfor
+endfunction
+
+function s:CloseBufferOrQuickfixOrLocalistWindow() abort
+  if !empty(filter(getwininfo(), 'v:val.quickfix'))
+    cclose
+    lclose
+  else
+    silent! Bdelete!
+    redrawtabline
+  endif
 endfunction
