@@ -438,3 +438,6 @@ let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decreas
 
 " jupytext
 let g:jupytext_fmt = 'py:percent'
+
+" superman
+cabbrev man <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Man" : "man"<CR>
