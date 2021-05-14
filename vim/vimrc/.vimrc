@@ -192,6 +192,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Plug 'airblade/vim-rooter'
 " Work with variants of a word
 Plug 'tpope/vim-abolish'
+Plug 'danro/rename.vim'
 
 " ===
 " === Custom Text Objects
