@@ -66,6 +66,14 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
 nnoremap <silent> <M-p> :TmuxNavigatePrevious<CR>
 
 " ===
+" === Command-line Cursor Movement
+" ===
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
+cnoremap <M-k> <S-Left>
+cnoremap <M-j> <S-Right>
+
+" ===
 " === Window Resize
 " ===
 nnoremap <M-=> <C-w>+
