@@ -11,6 +11,9 @@ augroup common
   autocmd CmdLineLeave : set smartcase
   autocmd VimResized * :wincmd =
   autocmd TabClosed * call s:DeleteFinishedTerminalBuffers()
+  " fix vim script user command syntax highlighting
+  " (should be unnecessary when https://github.com/vim/vim/issues/6587 is fixed)
+  autocmd Syntax vim syn match vimUsrCmd '^\s*\zs\u\%(\w*\)\@>(\@!'
 augroup END
 
 augroup lightline_special
