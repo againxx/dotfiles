@@ -160,6 +160,8 @@ alias lg="lazygit"
 alias setp='export http_proxy="http://127.0.0.1:2340"; export https_proxy="http://127.0.0.1:2340"'
 alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
+alias disable-peda='sed -i "s/^source.*peda.py$/# &/" ~/.gdbinit'
+alias enable-peda='sed -i "s/^# \(source.*peda.py\)$/\1/" ~/.gdbinit'
 if [[ -x "$(command -v exa)" ]]; then
     alias l="exa"
     alias ll"=exa -l"
@@ -198,6 +200,18 @@ fzf-choose-dirs-widget() {
     cd "$selected_dir"
     zle fzf-redraw-prompt
     return $?
+}
+
+assemble() {
+    name="$1"
+    base="$(basename ${name} .s)"
+    base="$(basename ${base} .S)"
+    as "${name}" -o "${base}".o $2
+    ld "${base}".o -o "${base}"
+}
+
+findsyscall() {
+    egrep -i "${1}" /usr/include/x86_64-linux-gnu/asm/unistd_64.h
 }
 
 bindkey -v
