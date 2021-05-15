@@ -124,6 +124,11 @@ Plug 'goerz/jupytext.vim'
 Plug 'skywind3000/vim-cppman'
 
 " ===
+" === Assembly
+" ===
+Plug 'Shirk/vim-gas'
+
+" ===
 " === Markdown
 " ===
 " this plugin is needed by vim-markdown and can be used to align text
