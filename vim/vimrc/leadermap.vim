@@ -17,7 +17,6 @@ let g:which_leader_map.e = {
 
 let g:which_leader_map.d = {
 \   'name': '+directory',
-\   'v':    'vimrc-dir',
 \   'c':    'current-dir',
 \ }
 
@@ -145,7 +144,6 @@ nnoremap <Leader>eT :<C-u>AsyncTaskEdit!<CR>
 " ===
 " === Change directory
 " ===
-nnoremap <Leader>dv :<C-u>cd ~/dotfiles/vimrc<CR>
 nnoremap <Leader>dc :<C-u>cd %:p:h<CR>
 
 " ===
