@@ -23,13 +23,6 @@ augroup lightline_special
   autocmd BufWipeout * call lightline#update()
 augroup END
 
-augroup asm_special
-  autocmd!
-  autocmd FileType asm setlocal filetype=gas
-  autocmd FileType gas hi! Keyword guifg=#BBE67E guibg=NONE
-  autocmd FileType gas hi! Function guifg=#F07178 guibg=NONE
-augroup END
-
 augroup coc_special
   autocmd!
   " Close the preview window (not completion window, this is why pumvisible() == 0) when completion is done
@@ -68,6 +61,7 @@ augroup END
 augroup other_filetypes
   autocmd!
   autocmd FileType asm setlocal nolist
+  autocmd FileType asm setlocal filetype=gas
 augroup END
 
 function! s:DeleteFinishedTerminalBuffers() abort
