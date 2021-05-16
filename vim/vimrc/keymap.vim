@@ -304,7 +304,7 @@ nmap <Space>rx <Plug>(coc-fix-current)
 " nmap <Space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <Space>rn <Plug>(coc-rename)
-nnoremap <silent> <Space>rr :<C-u>AsyncTask file-run<CR>
+nnoremap <silent> <Space>rr :<C-u>cclose<Bar>AsyncTask file-run<CR>
 nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
 nnoremap <silent> <Space>rl :<C-u>CocList tasks<CR>
 
