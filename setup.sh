@@ -23,6 +23,7 @@ ln -sf "$dotfiles_dir/alacritty" ~/.config/
 ln -sf "$dotfiles_dir/kitty" ~/.config/
 ln -sf "$dotfiles_dir/ranger" ~/.config/
 ln -sf "$dotfiles_dir/lazygit/config.yml" ~/.config/jesseduffield/lazygit/
+ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
