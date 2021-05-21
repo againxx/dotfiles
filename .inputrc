@@ -1,0 +1,9 @@
+set editing-mode vi
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+"\C-xa": tui-switch-mode
+"\C-x\C-a": tui-switch-mode
+"\C-x1": tui-delete-other-windows
+"\C-x2": tui-change-windows
+"\C-xo": tui-other-window
+"\C-xs": next-keymap

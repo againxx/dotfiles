@@ -15,6 +15,8 @@ ln -sf "$dotfiles_dir/.bashrc" ~/
 ln -sf "$dotfiles_dir/.tmux.conf" ~/
 ln -sf "$dotfiles_dir/.gitconfig" ~/
 ln -sf "$dotfiles_dir/.gitignore_global" ~/
+ln -sf "$dotfiles_dir/.inputrc" ~/
+ln -sf "$dotfiles_dir/.editrc" ~/
 
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/jesseduffield/lazygit

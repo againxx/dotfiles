@@ -1,0 +1,6 @@
+lldb:bind '^[[5C' vi-next-word
+lldb:bind '^[[5D' vi-prev-word
+lldb:bind '^D' ed-delete-next-char
+lldb:bind '^B' ed-command
+lldb:bind '^P' ed-search-prev-history
+lldb:bind '^N' ed-search-next-history
