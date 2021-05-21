@@ -51,3 +51,6 @@ set showtabline=2
 set showbreak=╰─▸\ 
 set diffopt+=vertical
 set helplang=en
+
+" Disable some error highlights for shell script
+let g:sh_no_error = 1
