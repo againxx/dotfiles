@@ -133,6 +133,7 @@
         "df": "deleteForever",
         "dt": "delete"
     },
+    "zi.hover": false,
     "zi.patterns": {
         "javascript": [
             "^\\s*\\/\\/",
@@ -417,5 +418,14 @@
             ],
             "url": "https://puremourning.github.io/vimspector/schema/gadgets.schema.json"
         }
-    ]
+    ],
+    "languageserver": {
+        "asm-lsp": {
+            "command": "asm-lsp",
+            "filetypes": [
+                "gas",
+                "asm"
+            ]
+        }
+    }
 }
