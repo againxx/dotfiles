@@ -152,6 +152,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'edkolev/tmuxline.vim', { 'on': ['Tmuxline', 'TmuxlineSnapshot'] }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jpalardy/vim-slime'
+Plug 'wellle/tmux-complete.vim'
 
 " ===
 " === Wiki
