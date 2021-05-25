@@ -226,7 +226,8 @@ nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
 nnoremap <silent> <Space>K :<C-u>CocList maps<CR>
 nnoremap <silent> <Space>P :<C-u>CocList grep<CR>
 xnoremap <silent> <Space>P :<C-u>call <SID>GrepFromSelected(visualmode(), 1)<CR>
-nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+" nnoremap <silent> <Space><C-p> :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+nnoremap <silent> <Space><C-p> :<C-u>CocCommand fzf-preview.ProjectGrep <C-r><C-w><CR>
 xnoremap <silent> <Space><C-p> :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap <silent> <Space>j :<C-u>CocNext<CR>
 nnoremap <silent> <Space>k :<C-u>CocPrev<CR>
