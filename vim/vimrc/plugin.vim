@@ -407,6 +407,7 @@ let g:qs_lazy_highlight = 1
 
 " Matchup
 let g:matchup_matchparen_nomode = 'i'
+let g:matchup_matchparen_enabled = 0
 
 " Vim-tmux-navigator
 " Disable tmux navigator when zooming the Vim pane
