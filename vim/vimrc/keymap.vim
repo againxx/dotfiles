@@ -48,6 +48,8 @@ nnoremap <C-q> @@
 " it into <C-c><C-x>
 nnoremap <C-c> <nop>
 nnoremap <C-c><C-x> <C-c>
+nmap <C-c><C-l> <Plug>SlimeLineSend
+nmap <C-c>l <Plug>SlimeLineSend
 
 " Use [a and ]a in visual mode to move selection up and down
 xnoremap [a :<C-u>call <SID>MoveSelectedLines(-v:count1)<CR>
