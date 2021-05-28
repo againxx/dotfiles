@@ -336,7 +336,7 @@
         },
         "cpplint": {
             "args": [
-                "--filter=-build/include_subdir,-build/header_guard",
+                "--filter=-build/include_subdir,-build/header_guard,-build/c++11",
                 "%file"
             ],
             "securities": {
