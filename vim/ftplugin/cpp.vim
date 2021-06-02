@@ -19,7 +19,6 @@ nnoremap <buffer> [h
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
 nnoremap <buffer> <Space>rp :AsyncTask project-run<CR>
-nnoremap <buffer> <Space>rb :AsyncTask project-build<CR>
 nnoremap <buffer> <Space>ri :AsyncTask project-init<CR>
 nnoremap <buffer> <Space>rc :AsyncTask project-clean<CR>
 " nnoremap <buffer> <space>rF :ALEFix clang-format<CR>
