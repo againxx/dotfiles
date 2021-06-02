@@ -308,6 +308,7 @@ nmap <Space>rx <Plug>(coc-fix-current)
 " Symbol renaming.
 nmap <Space>rn <Plug>(coc-rename)
 nnoremap <silent> <Space>rr :<C-u>cclose<Bar>AsyncTask file-run<CR>
+nnoremap <silent> <Space>rb :<C-u>AsyncTask project-build<CR>
 nnoremap <silent> <Space>rB :<C-u>AsyncTask file-build<CR>
 nnoremap <silent> <Space>rl :<C-u>CocList tasks<CR>
 
@@ -322,11 +323,11 @@ let g:table_mode_motion_down_map = ']T'
 " ===
 " === Test
 " ===
-nnoremap <silent> <Space>tn :<C-u>TestNearest<CR>
-nnoremap <silent> <Space>tf :<C-u>TestFile<CR>
-nnoremap <silent> <Space>ts :<C-u>TestSuite<CR>
-nnoremap <silent> <Space>tl :<C-u>TestLast<CR>
-nnoremap <silent> <Space>to :<C-u>TestVisit<CR>
+nnoremap <silent> <Space>tn :<C-u>call <SID>FindTestRootDir()<bar>TestNearest<CR>
+nnoremap <silent> <Space>tf :<C-u>call <SID>FindTestRootDir()<bar>TestFile<CR>
+nnoremap <silent> <Space>ts :<C-u>call <SID>FindTestRootDir()<bar>TestSuite<CR>
+nnoremap <silent> <Space>tl :<C-u>call <SID>FindTestRootDir()<bar>TestLast<CR>
+nnoremap <silent> <Space>to :<C-u>call <SID>FindTestRootDir()<bar>TestVisit<CR>
 
 " ===
 " ===  coc-translator
@@ -663,4 +664,16 @@ function! s:MoveSelectedLines(count) abort
     execute "'<,'>move '>+" . move_dist
   endif
   normal! gv=gv
+endfunction
+
+function! s:FindTestRootDir() abort
+  if exists('g:test_project_root_pattern')
+    for pattern in g:test_project_root_pattern
+      let l:root_dir = finddir(pattern, '.;' . $HOME)
+      if !empty(l:root_dir)
+        let g:test#project_root = fnamemodify(l:root_dir, ':h')
+        return
+      endif
+    endfor
+  endif
 endfunction
