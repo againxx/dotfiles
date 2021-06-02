@@ -81,6 +81,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
 Plug 'chrisbra/Colorizer'
+Plug 'kevinoid/vim-jsonc'
 
 " ===
 " === Search & Move
@@ -174,6 +175,8 @@ Plug 'junegunn/vim-easy-align'
 " Read Unix man pages in vim
 Plug 'jez/vim-superman'
 " Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+" Plug 'alx741/vinfo'
+Plug 'HiPhish/info.vim'
 
 " ===
 " === Utility

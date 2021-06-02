@@ -129,6 +129,7 @@ compdef vman="man"
 
 # Use taskwarrior's completion for vit
 compdef vit="task"
+compdef vinfo="info"
 
 # Won't have effect in .profle, strange!
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
@@ -162,6 +163,7 @@ alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
 alias disable-peda='sed -i "s/^source.*peda.py$/# &/" ~/.gdbinit'
 alias enable-peda='sed -i "s/^# \(source.*peda.py\)$/\1/" ~/.gdbinit'
+alias you-get="proxychains4 -q you-get"
 if [[ -x "$(command -v exa)" ]]; then
     alias l="exa"
     alias ll"=exa -l"
@@ -192,6 +194,10 @@ ra() {
     else
         exit
     fi
+}
+
+vinfo() {
+    nvim -R -M -c "Info $1 $2" -c "wincmd w" +bwipeout
 }
 
 fzf-choose-dirs-widget() {
@@ -241,10 +247,10 @@ if [ -f "/opt/ros/melodic/setup.zsh" ]; then
     source /opt/ros/melodic/setup.zsh
 fi
 
-for ws_setup_file in $(find ~/Projects -regex ".*\(WorkSpace\|workspace\|ws\)/devel\(_isolated\)?/setup\.zsh"); do
-    source $ws_setup_file
-done
-unset ws_setup_file
+# for ws_setup_file in $(find ~/Projects -regex ".*\(WorkSpace\|workspace\|ws\)/devel\(_isolated\)?/setup\.zsh"); do
+#     source $ws_setup_file
+# done
+# unset ws_setup_file
 
 # ROS environment variables
 # export TURTLEBOT_3D_SENSOR=kinect
