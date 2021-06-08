@@ -167,6 +167,7 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-declration)
 nmap <silent> gL <Plug>(coc-implementation)
+nmap <silent> g<C-l> :<C-u>CocCommand fzf-preview.CocImplementations<CR>
 nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 nmap <silent> gR <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -198,6 +199,12 @@ xmap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ic <Plug>(coc-classobj-i)
 omap ac <Plug>(coc-classobj-a)
+
+nmap <Space>af <Plug>(coc-codeaction)
+nmap <Space>aa <Plug>(coc-codeaction-cursor)
+nmap <Space>al <Plug>(coc-codeaction-line)
+nmap <Space>a <Plug>(coc-codeaction-selected)
+xmap <Space>a <Plug>(coc-codeaction-selected)
 " coc-lists
 nnoremap <silent> <Space>m :<C-u>CocCommand fzf-preview.MruFiles<CR>
 nnoremap <silent> <Space>F :<C-u>Clap filer<CR>
@@ -420,6 +427,14 @@ let g:which_space_map['<C-Q>'] = 'quickfix-preview'
 let g:which_space_map['<C-G>'] = 'lazygit'
 let g:which_space_map['<C-T>'] = 'vit'
 let g:which_space_map['<C-O>'] = 'jump-location'
+
+" For actions
+let g:which_space_map.a = {
+\   'name': '+action',
+\   'a':    'action-under-cursor',
+\   'l':    'action-for-line',
+\   'f':    'action-for-file'
+\ }
 
 " For commands
 let g:which_space_map.c = {
