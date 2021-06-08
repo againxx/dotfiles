@@ -264,6 +264,7 @@ nnoremap <silent> <Space>ee :<C-u>CocCommand explorer<CR>
 nnoremap <silent> <Space>ev :<C-u>CocCommand explorer --preset vimrc<CR>
 nnoremap <silent> <Space>eD :<C-u>CocCommand explorer --preset dotfiles<CR>
 nnoremap <silent> <Space>ew :<C-u>CocCommand explorer --preset dictionaries<CR>
+nnoremap <silent> <Space>et :<C-u>CocCommand explorer --preset tmuxp<CR>
 nnoremap <silent> <Space>ed :<C-u>Clap dotfiles<CR>
 nnoremap <silent> <Space>ec :<C-u>execute 'CocCommand explorer' expand('%:p:h')<CR>
 

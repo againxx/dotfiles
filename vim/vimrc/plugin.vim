@@ -111,6 +111,7 @@ let g:vista#renderer#icons = {
 \   'struct': 'פּ ',
 \   'union': '謹',
 \   'namespace': 'ﱾ ',
+\   'implementation': ' ',
 \ }
 
 " To enable fzf preview window set g:vista_fzf_preview.
@@ -184,6 +185,10 @@ let g:coc_explorer_global_presets = {
 \   },
 \   'dictionaries': {
 \       'root-uri': '~/Programming_Tools/cSpell_dictionaries/',
+\       'sources': [{'name': 'file', 'expand': v:true}]
+\   },
+\   'tmuxp': {
+\       'root-uri': '~/.config/tmuxp/',
 \       'sources': [{'name': 'file', 'expand': v:true}]
 \   },
 \   'floatingLeftside': {
