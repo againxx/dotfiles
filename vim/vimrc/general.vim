@@ -54,3 +54,5 @@ set helplang=en
 
 " Disable some error highlights for shell script
 let g:sh_no_error = 1
+" Set bash as default shell script language
+let g:is_bash = 1
