@@ -62,7 +62,7 @@ augroup other_filetypes
   autocmd!
   autocmd FileType asm setlocal nolist
   autocmd FileType asm setlocal filetype=gas
-  autocmd FileType man nnoremap <buffer> <Space>/ /^\s\+\zs
+  autocmd FileType man nmap <buffer> <Space>/ <Plug>(incsearch-forward)^\s\+\zs
 augroup END
 
 function! s:DeleteFinishedTerminalBuffers() abort
