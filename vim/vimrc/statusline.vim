@@ -116,15 +116,6 @@ let g:lightline.subseparator = {
 \   'left': '¦',
 \   'right': '¦'
 \ }
-" if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
-" let g:lightline.separator = {
-" \   'left': '',
-" \   'right': ''
-" \ }
-" let g:lightline.subseparator = {
-" \   'left': '',
-" \   'right': ''
-" \ }
 
 function! LightlineFileTypeWithSymbol()
   let ft_with_symbol = &filetype !=# '' ? &filetype : 'unknown'
