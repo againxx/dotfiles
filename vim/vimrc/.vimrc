@@ -76,7 +76,6 @@ Plug 'aklt/plantuml-syntax'
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
 Plug 'chrisbra/Colorizer'
 Plug 'kevinoid/vim-jsonc'
-" Plug 'uiiaoo/java-syntax.vim'
 
 " ===
 " === Search & Move
