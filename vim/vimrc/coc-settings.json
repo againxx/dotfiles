@@ -252,6 +252,7 @@
         "--clang-tidy",
         "--header-insertion=never"
     ],
+    "jedi.completion.disableSnippets": true,
     "diagnostic-languageserver.mergeConfig": true,
     "diagnostic-languageserver.linters": {
         "cppcheck": {
