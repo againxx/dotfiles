@@ -60,7 +60,7 @@ augroup END
 
 augroup other_filetypes
   autocmd!
-  autocmd FileType asm setlocal nolist
+  autocmd FileType asm,gitcommit setlocal nolist
   autocmd FileType asm setlocal filetype=gas
   autocmd FileType man nmap <buffer> <Space>/ <Plug>(incsearch-forward)^\s\+\zs
 augroup END
