@@ -54,6 +54,46 @@ let g:rainbow_conf = {
 " let g:ale_cpp_clangtidy_checks = ['*']
 
 " ===
+" === Treesitter
+" ===
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["error"] = "CocWarningSign",
+    },
+  },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
+
+-- Disable highlight for bracket
+require 'nvim-treesitter.highlight'
+local hlmap = vim.treesitter.highlighter.hl_map
+hlmap.error = nil
+hlmap["punctuation.delimiter"] = "Delimiter"
+hlmap["punctuation.bracket"] = nil
+EOF
+
+" ===
 " === fzf
 " ===
 let $FZF_PREVIEW_PREVIEW_BAT_THEME='Dracula'

@@ -78,11 +78,11 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'againxx/python-syntax'
 Plug 'againxx/vim-valgrind'
 Plug 'aklt/plantuml-syntax'
-Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
+" Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
 Plug 'chrisbra/Colorizer'
 Plug 'kevinoid/vim-jsonc'
-Plug 'uiiaoo/java-syntax.vim'
+" Plug 'uiiaoo/java-syntax.vim'
 
 " ===
 " === Search & Move
@@ -229,6 +229,8 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 if has('nvim')
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
 endif
 
 call plug#end()

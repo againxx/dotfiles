@@ -88,8 +88,11 @@ if g:colors_name ==# 'ayu'
   hi VimspectorBPCond guifg=#FFAE57
   hi VimspectorPC     guifg=#D4BFFF
   hi VimspectorPCBP   guifg=#D4BFFF
+  hi Searchlight      guifg=#FFEE99 guibg=#A37ACC
+  hi TSNamespace      guifg=#B8CC52
+  hi TSParameter      guifg=#F07178
+  hi shCommandSub     guifg=#D4BFFF
   hi! link IncSearchCursor IncSearch
-  hi Searchlight guifg=#FFEE99 guibg=#A37ACC
 endif
 
 if g:colors_name ==# 'onehalfdark'
