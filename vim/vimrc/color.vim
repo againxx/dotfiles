@@ -47,9 +47,6 @@ if g:colors_name ==# 'ayu'
   hi CursorLineNr        ctermbg=NONE guibg=NONE
   hi Comment             cterm=italic gui=italic
   hi ALEWarning          ctermbg=NONE guibg=NONE
-  hi pythonSelf          gui=italic guifg=#A37ACC guibg=NONE
-  hi pythonParam         guifg=#F07178 guibg=NONE
-  hi pythonInclude       gui=bold,italic guifg=#FFC44C
   hi Statement           gui=bold,italic
   hi ALEErrorSign        cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
   hi ALEWarningSign      guifg=#E7C547 guibg=NONE
@@ -64,41 +61,17 @@ if g:colors_name ==# 'ayu'
   hi Sneak               guifg=#212733 guibg=#D4BFFF
   hi QuickScopePrimary   guifg=#86B300 gui=underline,bold,italic
   hi QuickScopeSecondary guifg=#36A3D9 gui=underline,bold,italic
-  " vim-markdown
-  hi htmlH1           gui=bold guifg=#D4BFFF guibg=NONE
-  hi htmlH2           gui=bold guifg=#BBE67E guibg=NONE
-  hi htmlH3           gui=bold guifg=#5CCFE6 guibg=NONE
-  hi htmlH4           gui=bold guifg=#FFAE57 guibg=NONE
-  hi htmlH5           guifg=#F07178 guibg=NONE
-  hi htmlH6           guifg=#95E6CB guibg=NONE
-  hi VimwikiHeader1   gui=bold guifg=#D4BFFF guibg=NONE
-  hi VimwikiHeader2   gui=bold guifg=#BBE67E guibg=NONE
-  hi VimwikiHeader3   gui=bold guifg=#5CCFE6 guibg=NONE
-  hi VimwikiHeader4   gui=bold guifg=#FFAE57 guibg=NONE
-  hi VimwikiHeader5   guifg=#F07178 guibg=NONE
-  hi VimwikiHeader6   guifg=#95E6CB guibg=NONE
   hi MatchParen       gui=underline guifg=#95E6CB
   hi jsonKeyword      guifg=#FFAE57
   hi ColorColumn      guibg=#242F3C
   " hi textSnipTEX      guifg=#FFAE57
-  " hi pythonMethod     guifg=#ffaf87 guibg=NONE
-  hi! link pythonDocstring pythonComment
   hi! link CocHintHighlight NONE
   let g:VM_Extend_hl = 'CocListBlackCyan'
   let g:VM_Cursor_hl = 'CocListBlackGreen'
   let g:VM_Mono_hl = 'CocListBlackRed'
   " let g:VM_highlight_matches = ''
   " use by indentLine
-  augroup conceal_color
-    autocmd!
-    autocmd FileType c hi Conceal guifg=#0F1419
-    autocmd FileType cpp hi Conceal guifg=#0F1419
-    autocmd FileType cmake hi Conceal guifg=#0F1419
-    autocmd FileType python hi Conceal guifg=#0F1419
-    autocmd FileType sh hi Conceal guifg=#0F1419
-    autocmd FileType zsh hi Conceal guifg=#0F1419
-    autocmd FileType markdown,vimwiki hi! link Conceal Function
-  augroup END
+  hi Conceal guifg=#0F1419
   hi ClapFuzzyMatches1  gui=bold guifg=#D4BFFF
   hi ClapFuzzyMatches2  gui=bold guifg=#C0C2FB
   hi ClapFuzzyMatches3  gui=bold guifg=#ACC4F7
@@ -115,7 +88,6 @@ if g:colors_name ==# 'ayu'
   hi VimspectorBPCond guifg=#FFAE57
   hi VimspectorPC     guifg=#D4BFFF
   hi VimspectorPCBP   guifg=#D4BFFF
-  hi TaskwikiTaskPriority gui=bold guifg=#F07178
   hi! link IncSearchCursor IncSearch
   hi Searchlight guifg=#FFEE99 guibg=#A37ACC
 endif

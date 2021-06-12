@@ -115,6 +115,15 @@ if expand('%:e') ==# 'wiki'
   \ )
 endif
 
+if g:colors_name ==# 'ayu'
+  hi VimwikiHeader1   gui=bold guifg=#D4BFFF guibg=NONE
+  hi VimwikiHeader2   gui=bold guifg=#BBE67E guibg=NONE
+  hi VimwikiHeader3   gui=bold guifg=#5CCFE6 guibg=NONE
+  hi VimwikiHeader4   gui=bold guifg=#FFAE57 guibg=NONE
+  hi VimwikiHeader5   guifg=#F07178 guibg=NONE
+  hi VimwikiHeader6   guifg=#95E6CB guibg=NONE
+endif
+
 function! s:ControlChromiumPage(key, ...) abort
   let current_window = system('xdotool getactivewindow')[:-2]
   let file_name = expand('%')

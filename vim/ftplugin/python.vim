@@ -35,3 +35,11 @@ nnoremap <buffer> [h
 \   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
+
+if g:colors_name ==# 'ayu'
+  hi pythonSelf          gui=italic guifg=#A37ACC guibg=NONE
+  hi pythonParam         guifg=#F07178 guibg=NONE
+  hi pythonInclude       gui=bold,italic guifg=#FFC44C
+  " hi pythonMethod     guifg=#ffaf87 guibg=NONE
+  hi! link pythonDocstring pythonComment
+endif

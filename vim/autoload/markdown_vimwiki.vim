@@ -62,6 +62,11 @@ function markdown_vimwiki#SetCommonConfigs() abort
   inoreabbrev <expr> <buffer> <bar><bar>
   \   <SID>IsAtStartOfLine('\|\|') ?
   \   '<c-o>:TableModeEnable<cr><c-o>`.<bar><space><bar><left><left>' : '<bar><bar>'
+
+  if g:colors_name ==# 'ayu'
+    hi! link Conceal Function
+    hi TaskwikiTaskPriority gui=bold guifg=#F07178
+  endif
 endfunction
 
 function! s:IsAtStartOfLine(mapping)
