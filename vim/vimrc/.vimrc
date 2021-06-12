@@ -82,6 +82,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': 'cpp' }
 Plug 'PeterRincker/vim-searchlight' " highlight current search match
 Plug 'chrisbra/Colorizer'
 Plug 'kevinoid/vim-jsonc'
+Plug 'uiiaoo/java-syntax.vim'
 
 " ===
 " === Search & Move
