@@ -238,16 +238,6 @@ function! s:AutoVerticalSplit(fname)
   endif
 endfunction
 
-" Ale
-" Reset b:ale_echo_msg_format to show error code
-function! s:ToggleAleErrorCode() abort
-  if exists('b:ale_echo_msg_format')
-    unlet b:ale_echo_msg_format
-  else
-    let b:ale_echo_msg_format = '[%linter%] %s [%severity%] # Disable: %code% #'
-  endif
-endfunction
-
 " Coc
 function! s:ToggleCocErrorCode() abort
   if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"

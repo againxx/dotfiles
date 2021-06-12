@@ -20,9 +20,6 @@ let g:lightline.symbols = {
 let g:lightline#bufferline#modified = ' ' " 
 let g:lightline#bufferline#read_only = ' ' " 
 let g:lightline#bufferline#unnamed = ''
-" let g:lightline#ale#indicator_checking = '...'
-" let g:lightline#ale#indicator_warnings = '● '
-" let g:lightline#ale#indicator_errors = '✖ '
 let g:lightline#whitespace#trailing_format = '%s'
 
 let g:lightline.active = {
@@ -180,22 +177,6 @@ endfunction
 
 function! LightlineReadonly()
   return &readonly && &filetype !~# '\v(help|vista|coc-explorer)' ? '' : ''
-endfunction
-
-function! LightlineAleLinterWarningsWithWhitespaceCheck()
-  if strlen(lightline#ale#checking()) > 0
-    return ''
-  else
-    let l:warnings = lightline#ale#warnings()
-    let l:whitespace = lightline#whitespace#check()
-    if strlen(l:warnings) == 0
-      return l:whitespace
-    elseif strlen(l:whitespace) == 0
-      return l:warnings
-    else
-      return l:whitespace.' '.l:warnings
-    endif
-  endif
 endfunction
 
 function! LightlineCocLinterWarningsWithWhitespaceCheck()

@@ -131,15 +131,6 @@ nmap y? <Plug>(incsearch-fuzzy-?)
 nmap yg/ <Plug>(incsearch-fuzzy-stay)
 
 " ===
-" === Ale
-" ===
-" Use [e \ [w and ]e \ ]w to navigate diagnostics
-" nmap <silent> [e <Plug>(ale_previous_wrap_error)
-" nmap <silent> ]e <Plug>(ale_next_wrap_error)
-" nmap <silent> [w <Plug>(ale_previous_wrap)
-" nmap <silent> ]w <Plug>(ale_next_wrap)
-
-" ===
 " === Coc
 " ===
 " navigate diagnostics
@@ -311,8 +302,6 @@ nmap <Space>rF <Plug>(coc-format)
 " nmap <Space>rf <Plug>(coc-refactor)
 " Apply AutoFix to problem on the current line.
 nmap <Space>rx <Plug>(coc-fix-current)
-" Apply ALEFix for the whole buffer
-" nmap <Space>rX <Plug>(ale_fix)
 " Symbol renaming.
 nmap <Space>rn <Plug>(coc-rename)
 nnoremap <silent> <Space>rr :<C-u>cclose<Bar>AsyncTask file-run<CR>

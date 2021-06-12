@@ -6,11 +6,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " ===
-" === Linting & Fixing
-" ===
-" Plug 'dense-analysis/ale'
-
-" ===
 " === Debugger
 " ===
 Plug 'puremourning/vimspector'
@@ -52,7 +47,6 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'againxx/lightline-utils'
-" Plug 'maximbaz/lightline-ale'
 
 " ===
 " === Window & Buffer & Keybindings

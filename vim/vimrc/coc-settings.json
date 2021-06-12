@@ -43,7 +43,6 @@
         "value": "",
         "variable": ""
     },
-    "diagnostic.displayByAle": false,
     "diagnostic.errorSign": "->",
     "diagnostic.warningSign": "--",
     "diagnostic.infoSign": "--",

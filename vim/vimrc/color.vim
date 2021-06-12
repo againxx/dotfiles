@@ -34,8 +34,6 @@ if g:colors_name ==# 'space-vim-dark'
   hi pythonSelf       ctermfg=103 guifg=#8787af ctermbg=NONE guibg=NONE
   hi pythonMethod     ctermfg=216 guifg=#ffaf87 ctermbg=NONE guibg=NONE
   " hi pythonMethod     ctermfg=215 guifg=#ffaf5f ctermbg=NONE guibg=NONE
-  hi ALEWarning       ctermbg=NONE guibg=NONE
-  hi ALEErrorSign     cterm=bold ctermfg=160 ctermbg=NONE gui=bold guifg=#e0211d guibg=NONE
   hi CocHighlightText ctermbg=236 guibg=#34323e
   " hi CocHighlightText ctermbg=237 guibg=#443e51
   " hi Folded           ctermbg=NONE guibg=NONE
@@ -46,11 +44,7 @@ if g:colors_name ==# 'ayu'
   hi SignColumn          ctermbg=NONE guibg=NONE
   hi CursorLineNr        ctermbg=NONE guibg=NONE
   hi Comment             cterm=italic gui=italic
-  hi ALEWarning          ctermbg=NONE guibg=NONE
   hi Statement           gui=bold,italic
-  hi ALEErrorSign        cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
-  hi ALEWarningSign      guifg=#E7C547 guibg=NONE
-  hi ALEInfoSign         guifg=#95E6CB guibg=NONE
   hi CocErrorSign        cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
   hi CocWarningSign      guifg=#E7C547 guibg=NONE
   hi CocInfoSign         guifg=#95E6CB guibg=NONE
@@ -100,7 +94,6 @@ if g:colors_name ==# 'onehalfdark'
   hi LineNr                ctermbg=NONE  guibg=NONE
   hi SignColumn            ctermbg=NONE  guibg=NONE
   hi CursorLineNr          ctermbg=NONE  guibg=NONE
-  hi ALEWarning            ctermbg=NONE  guibg=NONE
   hi GitGutterAdd          ctermbg=NONE  guibg=NONE
   hi GitGutterChange       ctermbg=NONE  guibg=NONE
   hi GitGutterDelete       ctermbg=NONE  guibg=NONE

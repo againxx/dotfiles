@@ -26,34 +26,6 @@ let g:rainbow_conf = {
 \ }
 
 " ===
-" === Ale
-" ===
-" let g:ale_sign_error = '->'
-" let g:ale_sign_warning = '--'
-" let g:ale_sign_info = '--'
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_info_str = 'I'
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_insert_leave = 0
-" let g:ale_linters = {
-" \   'python': ['pylint', 'mypy'],
-" \   'cpp': ['ccls', 'cppcheck'],
-" \   'sh': ['shellcheck']
-" \ }
-" let g:ale_fixers = {
-" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-" \   'cpp': ['clang-format']
-" \ }
-" let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
-" let g:ale_python_mypy_ignore_invalid_syntax = 1
-" let g:ale_python_mypy_options = '--cache-dir=' . $HOME . '/.cache/mypy'
-" let g:ale_cpp_ccls_init_options = {'cache': {'directory': '.cache/ccls'}}
-" let g:ale_c_clangformat_options = '--style=file'
-" let g:ale_cpp_clangtidy_checks = ['*']
-
-" ===
 " === Treesitter
 " ===
 lua <<EOF
