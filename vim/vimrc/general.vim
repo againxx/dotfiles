@@ -51,6 +51,9 @@ set showtabline=2
 set showbreak=╰─▸\ 
 set diffopt+=vertical
 set helplang=en
+" Workaround for ghost highlight for blankline
+" https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
+set colorcolumn=99999
 
 " Disable some error highlights for shell script
 let g:sh_no_error = 1

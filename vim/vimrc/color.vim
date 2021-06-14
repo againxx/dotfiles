@@ -65,7 +65,7 @@ if g:colors_name ==# 'ayu'
   let g:VM_Mono_hl = 'CocListBlackRed'
   " let g:VM_highlight_matches = ''
   " use by indentLine
-  hi Conceal guifg=#0F1419
+  hi IndentBlanklineChar guifg=#0F1419 gui=nocombine
   hi ClapFuzzyMatches1  gui=bold guifg=#D4BFFF
   hi ClapFuzzyMatches2  gui=bold guifg=#C0C2FB
   hi ClapFuzzyMatches3  gui=bold guifg=#ACC4F7

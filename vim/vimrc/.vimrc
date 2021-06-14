@@ -104,7 +104,7 @@ Plug 'againxx/vim-snippets'
 " ===
 " === Python
 " ===
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'goerz/jupytext.vim'
@@ -177,9 +177,9 @@ Plug 'HiPhish/info.vim'
 " ===
 Plug 'tpope/vim-capslock'
 " Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Yggdroot/indentLine'
 " Extand register and macro
 " Plug 'junegunn/vim-peekaboo'
+" Plug 'Yggdroot/indentLine'
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -214,15 +214,15 @@ endif
 " ===
 " === Training Vim
 " ===
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'ThePrimeagen/vim-be-good', { 'do': './install.sh' }
 
 " ===
 " === Neovim Special
 " ===
 if has('nvim')
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'nvim-treesitter/playground'
 endif
 
