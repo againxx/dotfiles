@@ -334,7 +334,9 @@ function! s:ToggleCodeLens() abort
   else
     call coc#config('codeLens.enable', 1)
   endif
-  execute 'CocCommand rust-analyzer.toggleInlayHints'
+  if &filetype ==# 'rust'
+    execute 'CocCommand rust-analyzer.toggleInlayHints'
+  endif
 endfunction
 
 function! s:ToggleGitBlame() abort
