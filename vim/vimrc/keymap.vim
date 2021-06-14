@@ -235,7 +235,6 @@ nnoremap <silent> <Space>H :<C-u>CocFirst<CR>
 nnoremap <silent> <Space>L :<C-u>CocLast<CR>
 nnoremap <silent> <Space>' :<C-u>CocCommand fzf-preview.Marks<CR>
 nnoremap <silent> <Space>" :<C-u>CocList marks<CR>
-nnoremap <silent> <Space><C-r> :<C-u>Clap registers<CR>
 nnoremap <silent> <Space>g/ :<C-u>CocList searchhistory<CR>
 nnoremap <silent> <Space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <Space>p :<C-u>Rg<CR>

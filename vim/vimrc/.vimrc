@@ -177,8 +177,6 @@ Plug 'HiPhish/info.vim'
 " ===
 Plug 'tpope/vim-capslock'
 " Plug 'nathanaelkane/vim-indent-guides'
-" Extand register and macro
-" Plug 'junegunn/vim-peekaboo'
 " Plug 'Yggdroot/indentLine'
 Plug 'Konfekt/FastFold', { 'for': 'python' }
 Plug 'AndrewRadev/switch.vim'
@@ -224,6 +222,8 @@ if has('nvim')
     Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'nvim-treesitter/playground'
+    " Show register content when access it
+    Plug 'tversteeg/registers.nvim'
 endif
 
 call plug#end()
