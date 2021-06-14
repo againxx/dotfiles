@@ -49,6 +49,8 @@
     "diagnostic.hintSign": "··",
     "diagnostic.enableHighlightLineNumber": false,
     "diagnostic.format": "%message\n[%source]",
+    "codeLens.separator": "",
+    "rust-analyzer.inlayHints.typeHintsSeparator": " ",
     "signature.maxWindowHeight": 10,
     "signature.preferShownAbove": false,
     "list.source.files.args": [
