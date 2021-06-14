@@ -115,6 +115,55 @@ nnoremap <silent> <Space><M-l> :<C-u>Snippets<CR>
 let g:which_space_map['<M-l>'] = 'snippets'
 
 " ===
+" === Treesitter
+" ===
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {'python'},
+    custom_captures = {
+      -- Highlight the error capture group with the "CocWarningSign" highlight group.
+      ["error"] = "CocWarningSign",
+    },
+  },
+  indent = {
+    enable = true,
+    disable = {'python'},
+  },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
+
+-- Disable highlight for bracket
+require 'nvim-treesitter.highlight'
+local hlmap = vim.treesitter.highlighter.hl_map
+hlmap.error = nil
+hlmap["punctuation.delimiter"] = "Delimiter"
+hlmap["punctuation.bracket"] = nil
+EOF
+
+set indentexpr=nvim_treesitter#indent()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" ===
 " === Autocmd
 " ===
 augroup neovim_special
