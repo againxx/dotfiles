@@ -163,6 +163,8 @@ alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
 alias disable-peda='sed -i "s/^source.*peda.py$/# &/" ~/.gdbinit'
 alias enable-peda='sed -i "s/^# \(source.*peda.py\)$/\1/" ~/.gdbinit'
+alias disable-gef='sed -i "s/^source.*gef.py$/# &/" ~/.gdbinit'
+alias enable-gef='sed -i "s/^# \(source.*gef.py\)$/\1/" ~/.gdbinit'
 alias you-get="proxychains4 -q you-get"
 if [[ -x "$(command -v exa)" ]]; then
     alias l="exa"
