@@ -19,71 +19,7 @@ fs() {
     fi
 }
 
-# create_tmux_session_and_window() {
-#     local -A available_windows
-
-#     available_windows["Notes: md"]=~/Documents/Notes
-#     available_windows["Notes: wiki"]=~/Documents/Vimwiki/wiki
-
-#     available_windows["Projects: scanbot2d"]=~/Projects/scanbot/scanbot2d
-#     available_windows["Projects: neural-slam"]=~/Projects/Neural-SLAM
-#     available_windows["Projects: co_scan"]=~/Projects/sem_co_scan_ws/src/co_scan
-#     available_windows["Projects: virtual_scan"]=~/Projects/sem_co_scan_ws/src/virtual_scan
-
-#     available_windows["Other: ranger"]=""
-#     available_windows["Other: tasks"]=""
-#     available_windows["Other: dotfiles"]=~/dotfiles
-#     available_windows["Other: vimrc"]=~/dotfiles/vim
-
-#     available_windows["Learning: cpp"]=""
-#     available_windows["Learning: python"]=""
-#     available_windows["Learning: bash_script"]=~/Programming_Learning/bash_learning
-#     available_windows["Learning: sed"]=~/Programming_Learning/sed_learning
-#     available_windows["Learning: matplotlib"]=~/Programming_Learning/python_learning/matplotlib_learning
-#     available_windows["Learning: habitat"]=~/Programming_Learning/habitat_learning
-#     available_windows["Learning: rust"]=~/Programming_Learning/rust_learning
-
-#     local fzf_input
-#     printf -v fzf_input "%s\n" "${!available_windows[@]}"
-
-#     local selection selected_window selected_session
-#     selection=$(echo "$fzf_input" | sort | fzf)
-#     selected_session=${selection%: *}
-#     selected_window=${selection#*: }
-
-#     if tmux display-message -p "#{session_name}" | grep -q "[[:digit:]]\+"; then
-#         tmux rename-session "$selected_session"
-#     fi
-
-#     if tmux display-message -p "#{window_name}" | grep -q "bash"; then
-#         tmux rename-window "$selected_window"
-#         if [[ -n ${available_windows[$selection]} ]]; then
-#             tmux send-keys -t "{last}" "cd ${available_windows[$selection]}" Enter
-#         fi
-#     fi
-
-#     local existing_windows
-#     if tmux has-session -t "$selected_session" 2>/dev/null; then
-#         existing_windows=$(tmux list-windows -t "$selected_session" -F "#{window_name}")
-#         if [[ "${existing_windows[*]}" != *"$selected_window"* ]]; then
-#             if [[ -n ${available_windows[$selection]} ]]; then
-#                 tmux new-window -n "$selected_window" -t "$selected_session:" -c ${available_windows[$selection]}
-#             else
-#                 tmux new-window -n "$selected_window" -t "$selected_session:"
-#             fi
-#         fi
-#     else
-#         if [[ -n ${available_windows[$selection]} ]]; then
-#             tmux new-session -s "$selected_session" -n "$selected_window" -c ${available_windows[$selection]} -d
-#         else
-#             tmux new-session -s "$selected_session" -n "$selected_window" -d
-#         fi
-#     fi
-#     tmux switch-client -t "$selected_session:$selected_window"
-# }
-
 tmuxp_session_and_window() {
-    source $HOME/Manually_Installed/tmuxp/.venv/bin/activate
     local -a existing_windows
     local -A preset_windows
     for existing_session in $(tmux list-sessions -F "#{session_name}"); do
