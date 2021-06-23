@@ -279,9 +279,13 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-kitty + complete setup zsh | source /dev/stdin
+if command -v kitty &> /dev/null; then
+    kitty + complete setup zsh | source /dev/stdin
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /home/ustc-1314/.config/broot/launcher/bash/br
+if [ -f "$HOME/.config/broot/launcher/bash/br" ]; then
+    source "$HOME/.config/broot/launcher/bash/br"
+fi
