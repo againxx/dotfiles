@@ -31,6 +31,7 @@ ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
 ln -sf "$dotfiles_dir/taskwarrior/.taskrc" ~/
 ln -sf "$dotfiles_dir/taskwarrior/.taskopenrc" ~/
 ln -sf "$dotfiles_dir/taskwarrior/ayu.theme" ~/Documents/tasks/
+ln -sfT "$dotfiles_dir/taskwarrior/vit" ~/.vit
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

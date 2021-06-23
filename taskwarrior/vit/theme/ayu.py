@@ -1,0 +1,15 @@
+theme = [
+    ('list-header', '', '', '', '', ''),
+    ('list-header-column', 'black', 'light blue', '', 'black', 'light blue'),
+    ('list-header-column-separator', 'black', 'light blue', '', 'black', 'light blue'),
+    ('striped-table-row', 'white', 'black', '', 'white', 'black'),
+    ('reveal focus', 'black', 'light green', 'standout', 'black', 'light green'),
+    ('message status', 'dark gray', 'yellow', 'standout', 'dark gray', 'yellow'),
+    ('message error', 'dark gray', 'dark red', 'standout', 'dark gray', 'dark red'),
+    ('status', 'dark magenta', 'black', '', 'dark magenta', 'black'),
+    ('flash off', 'black', 'black', 'standout', 'black', 'black'),
+    ('flash on', 'white', 'black', 'standout', 'white', 'black'),
+    ('pop_up', 'white', 'black', '', 'white', 'black'),
+    ('button action', 'white', 'light red', '', 'white', 'light red'),
+    ('button cancel', 'black', 'light gray', '', 'black', 'light gray'),
+]
