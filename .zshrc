@@ -128,7 +128,9 @@ export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
 compdef vman="man"
 
 # Use taskwarrior's completion for vit
-compdef vit="task"
+if command -v task &> /dev/null; then
+    compdef vit="task"
+fi
 compdef vinfo="info"
 
 # Won't have effect in .profle, strange!
@@ -245,8 +247,8 @@ bindkey "^[m" fzf-choose-dirs-widget
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # ROS working space related
-if [ -f "/opt/ros/melodic/setup.zsh" ]; then
-    source /opt/ros/melodic/setup.zsh
+if [ -f /opt/ros/*/setup.zsh ]; then
+    source /opt/ros/*/setup.zsh
 fi
 
 # for ws_setup_file in $(find ~/Projects -regex ".*\(WorkSpace\|workspace\|ws\)/devel\(_isolated\)?/setup\.zsh"); do
@@ -273,7 +275,7 @@ if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     . "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 
-if [ -z "$ROS_ROOT" ]; then
+if [ -z "$ROS_ROOT" ] && command -v conda &> /dev/null; then
     conda activate base
 fi
 
