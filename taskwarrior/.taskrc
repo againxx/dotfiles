@@ -1,0 +1,67 @@
+# [Created by task 2.5.1 2/20/2021 12:32:25]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/Documents/tasks
+
+# Defaults
+default.project=Inbox
+
+# Terminal
+editor=nvim
+
+# Dates
+weekstart=Monday
+
+# Server
+taskd.certificate=~/Documents/tasks/ustc-1314.cert.pem
+taskd.key=~/Documents/tasks/ustc-1314.key.pem
+taskd.ca=~/Documents/tasks/ustc-1314.ca.pem
+taskd.server=35.73.183.75:53589
+taskd.credentials=USTC/ustc-1314/71858fe3-ce63-4669-9ee7-837cfc0f3c0c
+taskd.trust=ignore hostname
+
+# Reports
+report.vit.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.vit.description=Most urgent tasks to show in vit
+report.vit.filter=status:pending limit:page
+report.vit.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.vit.sort=urgency-
+
+# Urgency
+urgency.uda.priority.H.coefficient=10.0
+urgency.uda.priority.L.coefficient=-1.2
+urgency.user.project.TA.coefficient=-1.0
+urgency.user.project.League.coefficient=-1.0
+urgency.user.project.Note.coefficient=2.0
+urgency.user.project.Scanbot.coefficient=10.0
+
+# Aliases
+alias.open=execute taskopen $@
+
+# Color theme (uncomment one to use)
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/light-16.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/light-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-16.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-red-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-green-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-blue-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-violets-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-yellow-green.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-blue-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
+#include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
+include ~/Documents/tasks/ayu.theme
+
+recurrence=on
