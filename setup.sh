@@ -20,6 +20,7 @@ ln -sf "$dotfiles_dir/.editrc" ~/
 
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/jesseduffield/lazygit
+mkdir -p ~/Documents/tasks
 ln -sf "$dotfiles_dir/gtk.css" ~/.config/gtk-3.0/
 ln -sf "$dotfiles_dir/alacritty" ~/.config/
 ln -sf "$dotfiles_dir/kitty" ~/.config/
@@ -27,6 +28,9 @@ ln -sf "$dotfiles_dir/ranger" ~/.config/
 ln -sf "$dotfiles_dir/tealdeer" ~/.config/
 ln -sf "$dotfiles_dir/lazygit/config.yml" ~/.config/jesseduffield/lazygit/
 ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
+ln -sf "$dotfiles_dir/taskwarrior/.taskrc" ~/
+ln -sf "$dotfiles_dir/taskwarrior/.taskopenrc" ~/
+ln -sf "$dotfiles_dir/taskwarrior/ayu.theme" ~/Documents/tasks/
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
