@@ -101,7 +101,9 @@ elif [[ -x "$(command -v pacman)" ]]; then
             unset pacman_pack[$exec_name]
         fi
     done
-    sudo pacman -S ${pacman_pack[*]}
+    if [[ ${#pacman_pack[@]} -ge 1 ]]; then
+        sudo pacman -S ${pacman_pack[*]}
+    fi
 else
     echo "Please first install homebrew manually!"
 fi
