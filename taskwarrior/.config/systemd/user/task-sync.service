@@ -1,0 +1,14 @@
+# This service unit is for taskwarrior synchronization
+# By Xi Xia
+# Licensed under GPL V2
+
+[Unit]
+Description=Synchronize taskwarrior's data to taskd server
+Wants=task-sync.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/ustc-1314/.local/bin/task sync
+
+[Install]
+WantedBy=default.target

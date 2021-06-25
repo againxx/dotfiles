@@ -1,0 +1,14 @@
+# This timer unit is for automatic taskwarrior synchronization
+# By Xi Xia
+# Licensed under GPL V2
+
+[Unit]
+Description=Automatically synchronize taskwarrior's data to taskd server
+Requires=task-sync.service
+
+[Timer]
+Unit=task-sync.service
+OnCalendar=*-*-* 10,22:00:00
+
+[Install]
+WantedBy=timers.target
