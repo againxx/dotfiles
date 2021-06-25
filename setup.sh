@@ -82,19 +82,20 @@ elif [[ -x "$(command -v pacman)" ]]; then
     pacman_pack[delta]=git-delta
     pacman_pack[clang-format]=clang
     pacman_pack[clangd]=clang
-    # pacman_pack[cppcheck]=cppcheck
-    # pacman_pack[shellcheck]=shellcheck
+    pacman_pack[cppcheck]=cppcheck
+    pacman_pack[shellcheck]=shellcheck
     pacman_pack[rg]=ripgrep
     pacman_pack[fd]=fd
-    # pacman_pack[xdotool]=xdotool
-    # pacman_pack[valgrind]=valgrind
-    # pacman_pack[duf]=duf
-    # pacman_pack[ncdu]=ncdu
+    pacman_pack[xdotool]=xdotool
+    pacman_pack[gdb]=gdb
+    pacman_pack[valgrind]=valgrind
+    pacman_pack[duf]=duf
+    pacman_pack[ncdu]=ncdu
     pacman_pack[exa]=exa
     pacman_pack[tldr]=tealdeer
     pacman_pack[bat]=bat
-    # pacman_pack[procs]=procs
-    # pacman_pack[cpulimit]=cpulimit
+    pacman_pack[procs]=procs
+    pacman_pack[cpulimit]=cpulimit
 
     for exec_name in "${!pacman_pack[@]}"; do
         if command -v $exec_name &> /dev/null; then
