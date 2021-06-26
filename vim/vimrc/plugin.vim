@@ -213,8 +213,8 @@ let g:mkdp_preview_options = {
 \   'sequence_diagrams': {},
 \   'flowchart_diagrams': {}
 \ }
-let g:mkdp_markdown_css = $HOME.'/Git_Repo/markdown-tex/custom_css/markdown/solarized-light.css'
-let g:mkdp_highlight_css = $HOME.'/Git_Repo/markdown-tex/custom_css/highlight/solarized-light.css'
+let g:mkdp_markdown_css = $HOME.'/dotfiles/custom_css/markdown/solarized-light.css'
+let g:mkdp_highlight_css = $HOME.'/dotfiles/custom_css/highlight/solarized-light.css'
 
 " ===
 " === vim-indent-guides
