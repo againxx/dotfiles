@@ -1,0 +1,7 @@
+session_name: Notes
+windows:
+    - window_name: wiki
+      focus: true
+      start_directory: '~/Documents/Vimwiki/wiki/'
+      panes:
+          - nv index.wiki

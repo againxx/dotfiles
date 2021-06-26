@@ -1,0 +1,7 @@
+session_name: Learning
+windows:
+    - window_name: rust
+      focus: true
+      start_directory: '~/Programming_Learning/rust_learning/'
+      panes:
+          - null

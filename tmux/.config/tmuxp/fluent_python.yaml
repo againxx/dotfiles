@@ -1,0 +1,11 @@
+session_name: Learning
+windows:
+    - window_name: fluent_python
+      focus: true
+      start_directory: '~/Programming_Learning/python_learning/fluent_python/'
+      layout: main-horizontal
+      options:
+        main-pane-height: 30
+      panes:
+          - focus: true
+          - ipython3

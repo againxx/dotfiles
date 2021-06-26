@@ -1,0 +1,7 @@
+session_name: Other
+windows:
+    - window_name: tasks
+      focus: true
+      start_directory: '~'
+      panes:
+          - vit

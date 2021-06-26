@@ -1,0 +1,7 @@
+session_name: Other
+windows:
+    - window_name: vimrc
+      focus: true
+      start_directory: '~/dotfiles/vim/'
+      panes:
+          - null

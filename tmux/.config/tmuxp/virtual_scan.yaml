@@ -1,0 +1,11 @@
+session_name: Projects
+windows:
+    - window_name: virtual_scan_code
+      focus: true
+      start_directory: '~/Projects/sem_co_scan_ws/src/virtual_scan/'
+      panes:
+          - null
+    - window_name: virtual_scan_build
+      start_directory: '~/Projects/sem_co_scan_ws/src/virtual_scan/'
+      panes:
+          - null

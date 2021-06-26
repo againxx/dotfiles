@@ -1,0 +1,8 @@
+session_name: Other
+windows:
+    - window_name: numerical_method
+      focus: true
+      start_directory: '~/Documents/Courses/Numerical_Method/answers/'
+      panes:
+          - null
+

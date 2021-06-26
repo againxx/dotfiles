@@ -1,0 +1,13 @@
+session_name: Projects
+start_directory: '~/Programming_Learning/habitat_learning/habitat-lab/'
+shell_command_before:
+  - conda activate habitat_stable
+  - clear
+windows:
+    - window_name: habitat_code
+      focus: true
+      panes:
+          - null
+    - window_name: habitat_test
+      panes:
+          - null

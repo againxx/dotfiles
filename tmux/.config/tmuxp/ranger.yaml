@@ -1,0 +1,8 @@
+session_name: Other
+windows:
+    - window_name: ranger
+      focus: true
+      start_directory: '~'
+      panes:
+          - ranger
+

@@ -1,0 +1,13 @@
+session_name: Projects
+start_directory: '~/Projects/sem_co_scan_ws/src/co_scan/'
+shell_command_before:
+  - '[ -e ../../devel/setup.zsh ] && source ../../devel/setup.zsh'
+  - clear
+windows:
+    - window_name: co_scan_code
+      focus: true
+      panes:
+          - null
+    - window_name: co_scan_build
+      panes:
+          - null

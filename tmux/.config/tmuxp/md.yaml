@@ -1,0 +1,7 @@
+session_name: Notes
+windows:
+    - window_name: md
+      focus: true
+      start_directory: '~/Documents/Notes/'
+      panes:
+          - nv index.md

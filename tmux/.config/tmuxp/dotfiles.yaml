@@ -1,0 +1,7 @@
+session_name: Other
+windows:
+    - window_name: dotfiles
+      focus: true
+      start_directory: '~/dotfiles/'
+      panes:
+          - null

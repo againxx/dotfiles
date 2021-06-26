@@ -1,0 +1,11 @@
+session_name: Learning
+windows:
+    - window_name: python_cookbook
+      focus: true
+      start_directory: '~/Programming_Learning/python_learning/python_cookbook/'
+      layout: main-horizontal
+      options:
+        main-pane-height: 30
+      panes:
+          - focus: true
+          - ipython3

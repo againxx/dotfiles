@@ -1,0 +1,7 @@
+session_name: Learning
+windows:
+    - window_name: bash
+      focus: true
+      start_directory: '~/Programming_Learning/bash_learning/'
+      panes:
+          - null

@@ -1,0 +1,7 @@
+session_name: Learning
+windows:
+    - window_name: cpp_primer
+      focus: true
+      start_directory: '~/Programming_Learning/cpp_primer_examples/'
+      panes:
+          - null
