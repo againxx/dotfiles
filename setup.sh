@@ -2,6 +2,13 @@
 
 dotfiles_dir=$(dirname "$(realpath "$0")")
 
+if [[ -x "$(command -v stow)" ]]; then
+    stow --target="$HOME" lazygit/ taskwarrior/
+else
+    echo "Please install stow first!"
+    exit 1
+fi
+
 ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
 ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
