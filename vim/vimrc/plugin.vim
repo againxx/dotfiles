@@ -400,9 +400,10 @@ let g:vim_be_good_floating = 0
 
 " Barbaric
 " The IME to invoke for managing input languages (macos, fcitx, ibus, xkb-switch)
-let g:barbaric_ime = 'ibus'
+let g:barbaric_ime = 'fcitx'
+let g:barbaric_fcitx_cmd = 'fcitx5-remote'
 " The input method for Normal mode (as defined by `xkbswitch -g`, `ibus engine`, or `xkb-switch -p`)
-let g:barbaric_default = 'xkb:us::eng'
+let g:barbaric_default = '-c'
 
 " Vim-table-mode
 let g:table_mode_corner = '|'
