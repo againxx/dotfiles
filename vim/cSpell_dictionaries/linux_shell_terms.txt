@@ -1,0 +1,8 @@
+gdebi
+xargs
+systemd
+popd
+pushd
+systemctl
+journalctl
+tmuxp
