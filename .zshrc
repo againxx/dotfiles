@@ -74,6 +74,17 @@ HIST_STAMPS="yyyy-mm-dd"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+fpath=(~/.local/share/zsh/site-functions $fpath)
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+source /usr/share/fzf/completion.zsh
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -90,29 +101,17 @@ plugins=(
     python
     tmux
     vi-mode
+    fzf-tab
     zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
 )
 
-fpath=(/usr/share/zsh/site-functions ~/.local/share/zsh/site-functions $fpath)
-
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-
 source $ZSH/oh-my-zsh.sh
 
 # This autoload should put below the line "source $ZSH/oh-my-zsh.sh"
 # Reference: https://github.com/esc/conda-zsh-completion/issues/26
-autoload -U compinit && compinit
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-# export LANG=zh_CN.UTF-8
+# autoload -U compinit && compinit
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -169,9 +168,9 @@ alias disable-gef='sed -i "s/^source.*gef.py$/# &/" ~/.gdbinit'
 alias enable-gef='sed -i "s/^# \(source.*gef.py\)$/\1/" ~/.gdbinit'
 alias you-get="proxychains4 -q you-get"
 if [[ -x "$(command -v exa)" ]]; then
-    alias l="exa"
-    alias ll"=exa -l"
-    alias la="exa -al"
+    alias l="exa --icons"
+    alias ll"=exa -l --icons"
+    alias la="exa -al --icons"
 fi
 
 # suffix aliases
@@ -208,8 +207,12 @@ fzf-choose-dirs-widget() {
     local selected_dir
     selected_dir="$(dirs -lv | fzf --height 40% --select-1 | cut -f 2)"
     cd "$selected_dir"
-    zle fzf-redraw-prompt
-    return $?
+    zle push-line # Clear buffer. Auto-restored on next prompt.
+    BUFFER="cd ${(q)selected_dir}"
+    zle accept-line
+    local ret=$?
+    zle reset-prompt
+    return $ret
 }
 
 assemble() {
@@ -241,6 +244,7 @@ bindkey -M vicmd "^V" edit-command-line
 
 zle -N fzf-choose-dirs-widget
 bindkey "^[m" fzf-choose-dirs-widget
+bindkey "^[[Z" fzf-completion
 
 # User configuration
 
@@ -279,11 +283,14 @@ if [ -z "$ROS_ROOT" ] && command -v conda &> /dev/null; then
     conda activate base
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if command -v kitty &> /dev/null; then
     kitty + complete setup zsh | source /dev/stdin
 fi
+
+source /usr/share/fzf/key-bindings.zsh
+
+# Configuration for fzf-tab
+zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:accept'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
