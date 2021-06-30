@@ -33,3 +33,4 @@ gmail
 xixia
 xiaxi
 significand
+versor

@@ -156,7 +156,7 @@ let g:coc_explorer_global_presets = {
 \       ]
 \   },
 \   'dictionaries': {
-\       'root-uri': '~/Programming_Tools/cSpell_dictionaries/',
+\       'root-uri': '~/dotfiles/vim/cSpell_dictionaries/',
 \       'sources': [{'name': 'file', 'expand': v:true}]
 \   },
 \   'tmuxp': {
