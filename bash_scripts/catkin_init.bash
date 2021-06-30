@@ -49,12 +49,12 @@ cd "$catkin_ws_dir" || {
 
 if [[ ! -d ".catkin_tools" ]]; then
     catkin init
-    catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     catkin profile set $build_type
 else
     mapfile -t available_build_type < <(catkin profile list --unformatted)
     if [[ "${available_build_type[*]}" != *"$build_type"* ]]; then
-        catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+        catkin config --profile $build_type --cmake-args -DCMAKE_BUILD_TYPE=${build_type^} -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
         catkin clean
     else
         if (( ${#package_names[@]} != 0 || all_packages == 1 )); then
@@ -81,9 +81,9 @@ for package_name in "${package_names[@]}"; do
 done
 
 mkdir -p src/.vim
-cp ~/dotfiles/asynctasks/catkin_tasks.ini src/.tasks
+cp ~/dotfiles/vim/asynctasks/catkin_tasks.ini src/.tasks
 cp ~/dotfiles/clang_formats/ros-clang-format src/.clang-format
-cp ~/dotfiles/vimrc/catkin-coc-settings.json src/.vim/coc-settings.json
+cp ~/dotfiles/vim/vimrc/catkin-coc-settings.json src/.vim/coc-settings.json
 
 echo -e "\n"
 echo "======================================"
