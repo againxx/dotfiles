@@ -1,13 +1,15 @@
 session_name: Projects
-start_directory: '~/Programming_Learning/habitat_learning/habitat-lab/'
 shell_command_before:
+  - export MYPYPATH=~/Projects/scanbot/stubs
   - conda activate habitat_stable
   - clear
 windows:
-    - window_name: habitat_code
+    - window_name: scanbot_code
+      start_directory: '~/Projects/scanbot/habitat_scanbot2d/'
       focus: true
       panes:
           - null
     - window_name: habitat_test
+      start_directory: '~/Programming_Learning/habitat_learning/habitat-lab/'
       panes:
           - null
