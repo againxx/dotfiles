@@ -45,3 +45,8 @@ skipif
 randn
 rfind
 repr
+vstack
+xlabel
+ylabel
+zlabel
+asarray
