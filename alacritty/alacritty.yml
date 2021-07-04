@@ -21,7 +21,8 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: tmux-256color
+  # TERM: tmux-256color
+  ZSH_TMUX_AUTOSTART: "true"
 
 window:
   # Window dimensions (changes require restart)
@@ -247,7 +248,7 @@ colors:
    green:   '#a6cc70'
    yellow:  '#fad07b'
    blue:    '#6dcbfa'
-   magenta: '#A37ACC'
+   magenta: '#a37acc'
    cyan:    '#90e1c6'
    white:   '#c7c7c7'
 
