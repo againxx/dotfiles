@@ -1,6 +1,5 @@
 let b:coc_pairs_disabled = ['<']
 let g:vim_markdown_folding_disabled = 0
-let g:sneak#label = 0 | call sneak#init()
 " one or two spaces aren't considered as trailing
 let b:lightline_whitespace_trailing_regexp = '\( \{3,}\|\t\)$'
 

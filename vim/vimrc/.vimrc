@@ -206,7 +206,7 @@ Plug 'Julian/vim-textobj-variable-segment'
 " === ROS
 " ===
 if !empty($ROS_ROOT)
-    Plug 'taketwo/vim-ros'
+  Plug 'taketwo/vim-ros'
 endif
 
 " ===
@@ -218,17 +218,17 @@ Plug 'ThePrimeagen/vim-be-good', { 'do': './install.sh' }
 " === Neovim Special
 " ===
 if has('nvim')
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
-    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-    Plug 'nvim-treesitter/playground'
-    " Show register content when access it
-    Plug 'tversteeg/registers.nvim'
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " embed neovim in browser input box
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/playground'
+  " Show register content when access it
+  Plug 'tversteeg/registers.nvim'
 endif
 
 call plug#end()
 
 " vimrc files
 for s:path in split(glob('~/dotfiles/vim/vimrc/*.vim'), "\n")
-    exe 'source ' . s:path
+  execute 'source ' . s:path
 endfor
