@@ -12,6 +12,7 @@
 
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+HISTFILE=$HOME/.config/zsh/.zhistory
 
 #
 # Input/output
@@ -36,13 +37,6 @@ fi
 
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
-
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy-mm-dd"
 
 # --------------------
 # Module configuration
@@ -131,3 +125,5 @@ source $HOME/.config/zsh/completions.zsh
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/fzf.zsh
 source $HOME/.config/zsh/opts.zsh
+
+alias zshconf="nvim ~/.config/zsh-st/.zshrc"

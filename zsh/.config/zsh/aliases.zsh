@@ -18,6 +18,7 @@ alias jb="j -b"
 alias jbf="j -b -I"
 alias jh="j -I -t ."
 alias jc="j -c"
+alias dt="gio trash"
 if [[ -x "$(command -v exa)" ]]; then
     alias l="exa --icons"
     alias ll"=exa -l --icons"
