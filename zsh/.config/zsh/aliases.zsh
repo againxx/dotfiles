@@ -46,7 +46,7 @@ ra() {
 }
 
 racd() {
-    tmp="$(mktemp)"
+    tmp="$(mktemp /tmp/ranger-cd.XXXXXX)"
     ranger --choosedir="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"

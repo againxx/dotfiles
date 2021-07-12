@@ -8,7 +8,7 @@ Wants=task-sync.timer
 
 [Service]
 Type=oneshot
-ExecStart=/home/ustc-1314/.local/bin/task sync
+ExecStart=/usr/bin/task sync
 
 [Install]
 WantedBy=default.target

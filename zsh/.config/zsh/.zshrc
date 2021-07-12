@@ -82,7 +82,7 @@ zstyle ':zim:termtitle:precmd'  format '%1~'
 #
 # theme
 #
-source $HOME/dotfiles/powlevel9k_conf.zsh
+source $HOME/.config/zsh/powlevel9k_conf.zsh
 
 #
 # zsh-autosuggestions

@@ -1,0 +1,4 @@
+set statusbar-bg "#272D38"
+set statusbar-fg "#D9D7CE"
+map , zoom out
+map . zoom in

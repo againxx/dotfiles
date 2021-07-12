@@ -2,14 +2,13 @@
 
 dotfiles_dir=$(dirname "$(realpath "$0")")
 
-if [[ -x "$(command -v stow)" ]]; then
-    stow --target="$HOME" lazygit/ taskwarrior/
-else
+if [[ ! -x "$(command -v stow)" ]]; then
     echo "Please install stow first!"
     exit 1
 fi
 
 ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
+ln -sf "$dotfiles_dir/vim/plugin" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/syntax" ~/.vim/after/
@@ -17,22 +16,23 @@ ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.vim/coc-settings.json
 ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.config/nvim/coc-settings.json
 ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
 ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.config/nvim/tasks.ini
-ln -sf "$dotfiles_dir/.zshrc" ~/
 ln -sf "$dotfiles_dir/.bashrc" ~/
-ln -sf "$dotfiles_dir/.tmux.conf" ~/
-ln -sf "$dotfiles_dir/.gitconfig" ~/
-ln -sf "$dotfiles_dir/.gitignore_global" ~/
 ln -sf "$dotfiles_dir/.inputrc" ~/
 ln -sf "$dotfiles_dir/.editrc" ~/
 
+stow --target="$HOME" zsh/
+stow --target="$HOME" tmux/
+stow --target="$HOME" git/
+stow --target="$HOME" python/
+stow --target="$HOME" lazygit/
+stow --target="$HOME" taskwarrior/
+stow --target="$HOME" alacritty/
+stow --target="$HOME" gtk/
+stow --target="$HOME" tldr/
+stow --target="$HOME" ranger/
+
 mkdir -p ~/.config/gtk-3.0
-mkdir -p ~/.config/jesseduffield/lazygit
-ln -sf "$dotfiles_dir/gtk.css" ~/.config/gtk-3.0/
-ln -sf "$dotfiles_dir/alacritty" ~/.config/
 ln -sf "$dotfiles_dir/kitty" ~/.config/
-ln -sf "$dotfiles_dir/ranger" ~/.config/
-ln -sf "$dotfiles_dir/tealdeer" ~/.config/
-ln -sf "$dotfiles_dir/lazygit/config.yml" ~/.config/jesseduffield/lazygit/
 ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
@@ -92,12 +92,16 @@ elif [[ -x "$(command -v pacman)" ]]; then
     pacman_pack[gdb]=gdb
     pacman_pack[valgrind]=valgrind
     pacman_pack[duf]=duf
-    pacman_pack[ncdu]=ncdu
+    pacman_pack[gdu]=gdu
     pacman_pack[exa]=exa
     pacman_pack[tldr]=tealdeer
     pacman_pack[bat]=bat
     pacman_pack[procs]=procs
     pacman_pack[cpulimit]=cpulimit
+    pacman_pack[tokei]=tokei
+    pacman_pack[atool]=atool
+    pacman_pack[xclip]=xclip
+    pacman_pack[btm]=bottom-bin
 
     for exec_name in "${!pacman_pack[@]}"; do
         if command -v $exec_name &> /dev/null; then

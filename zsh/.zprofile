@@ -9,7 +9,7 @@ export VISUAL=nvim
 export ZDOTDIR="$HOME/.config/zsh"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export BAT_STYLE=Dracula
+export BAT_THEME=Dracula
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 

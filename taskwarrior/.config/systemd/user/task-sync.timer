@@ -8,7 +8,7 @@ Requires=task-sync.service
 
 [Timer]
 Unit=task-sync.service
-OnCalendar=*-*-* 10,22:00:00
+OnCalendar=hourly
 
 [Install]
 WantedBy=timers.target

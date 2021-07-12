@@ -57,7 +57,6 @@ if g:colors_name ==# 'ayu'
   hi QuickScopeSecondary guifg=#36A3D9 gui=underline,bold,italic
   hi MatchParen       gui=underline guifg=#95E6CB
   hi jsonKeyword      guifg=#FFAE57
-  hi ColorColumn      guibg=#242F3C
   " hi textSnipTEX      guifg=#FFAE57
   hi! link CocHintHighlight NONE
   let g:VM_Extend_hl = 'CocListBlackCyan'
