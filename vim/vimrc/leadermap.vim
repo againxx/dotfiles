@@ -46,21 +46,12 @@ let g:which_leader_map.v = {
 \   'h':    'view-highlight-group',
 \   'H':    'view-highlight-stack',
 \   'a':    'view-ascii-value',
-\ }
-
-let g:which_leader_map['\'] = {
-\   'name': '+multi-cursor',
-\   'j':    'select-cursor-down',
-\   'k':    'select-cursor-up',
-\   'A':    'select-all',
-\   '\':    'add-cursor-at-pos',
-\   '/':    'start-regex-search',
+\   's':    'view-code-statistic',
 \ }
 
 let g:which_leader_map.n = {
 \   'name': '+new',
 \   't':    'new-tab',
-\   'd':    'new-todo',
 \   'x':    'new-figlet-symbol',
 \ }
 
@@ -173,12 +164,12 @@ nnoremap <Leader>vh :<C-u>call SyntaxAttr()<CR>
 nnoremap <Leader>vH :<C-u>call <SID>QuerySyntaxStack()<CR>
 nnoremap <Leader>va ga
 vnoremap <Leader>va y:call <SID>EchoFormatsAndChar(@0)<CR>
+nnoremap <Leader>vs :<C-u>terminal tokei<CR>
 
 " ===
 " === New
 " ===
 nnoremap <Leader>nt :tabnew %<CR>
-nnoremap <Leader>nd :<C-u>CocCommand todolist.create<CR>
 nnoremap <Leader>nx :read !figlet<Space>
 
 " ===
