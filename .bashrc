@@ -131,7 +131,9 @@ fi
 # unset __conda_setup
 # <<< conda initialize <<<
 
-if [ -f ~/.fzf.bash ]; then
-    source ~/.fzf.bash
+if command -v fzf &> /dev/null; then
     source ~/dotfiles/bash_scripts/fzf_functions.bash
+    if [ -f ~/.fzf.bash ]; then
+        source ~/.fzf.bash
+    fi
 fi
