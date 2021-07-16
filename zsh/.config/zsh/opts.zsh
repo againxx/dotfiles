@@ -1,5 +1,5 @@
 # ROS working space related
-if noglob [ -f /opt/ros/*/setup.zsh ]; then
+if [ -d /opt/ros ]; then
     source /opt/ros/*/setup.zsh
 fi
 
