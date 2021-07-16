@@ -5,3 +5,7 @@ liuchengxu
 iamcco
 vint
 omni
+katex
+xoffset
+ulti
+tableize
