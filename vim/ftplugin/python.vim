@@ -15,7 +15,7 @@ call coc#config('diagnostic-languageserver.linters', {
 \ })
 " dynamically set python.condaPath
 if !empty($CONDA_PREFIX)
-    call coc#config('python.condaPath', $CONDA_PREFIX.'/bin/python')
+  call coc#config('python.condaPath', $CONDA_PREFIX.'/bin/python')
 endif
 let b:switch_custom_definitions = [
 \   {
