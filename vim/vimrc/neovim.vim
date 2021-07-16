@@ -119,7 +119,7 @@ let g:which_space_map['<M-l>'] = 'snippets'
 " ===
 lua <<EOF
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = {'c', 'cpp', 'query', 'java', 'rust', 'python'},
+  ensure_installed = {'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua'},
   highlight = {
     enable = true,
     disable = {'python'},

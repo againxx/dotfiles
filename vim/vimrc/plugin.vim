@@ -116,6 +116,7 @@ let g:ultisnips_cpp_style = 'google'
 let g:coc_global_extensions = [
 \   'coc-json',
 \   'coc-jedi',
+\   'coc-pyright',
 \   'coc-yank',
 \   'coc-lists',
 \   'coc-git',
@@ -139,7 +140,8 @@ let g:coc_global_extensions = [
 \   'coc-tsserver',
 \   'coc-html',
 \   'coc-diagnostic',
-\   'coc-rls'
+\   'coc-rls',
+\   'coc-lua'
 \ ]
 
 " coc-explorer
