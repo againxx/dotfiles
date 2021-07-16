@@ -7,6 +7,16 @@ if [[ ! -x "$(command -v stow)" ]]; then
     exit 1
 fi
 
+mkdir -p ~/.vim/after
+mkdir -p ~/.config/gtk-3.0
+mkdir -p ~/.config/zsh
+mkdir -p ~/Documents/tasks
+
+if [[ ! -e ~/.vim/autoload/plug.vim ]]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
 ln -sf "$dotfiles_dir/vim/plugin" ~/.vim/after/
 ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
@@ -31,7 +41,6 @@ stow --target="$HOME" gtk/
 stow --target="$HOME" tldr/
 stow --target="$HOME" ranger/
 
-mkdir -p ~/.config/gtk-3.0
 ln -sf "$dotfiles_dir/kitty" ~/.config/
 ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
 
