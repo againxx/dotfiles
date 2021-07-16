@@ -389,8 +389,7 @@
             "cppcheck"
         ],
         "python": [
-            "pylint",
-            "mypy"
+            "pylint"
         ],
         "vim": "vint",
         "vimwiki": [

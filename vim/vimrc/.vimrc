@@ -61,6 +61,7 @@ Plug 'moll/vim-bbye'
 " Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 " Plug 'liuchengxu/space-vim-dark'
 Plug 'ayu-theme/ayu-vim'
+" Plug 'folke/tokyonight.nvim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ryanoasis/vim-devicons'
 
