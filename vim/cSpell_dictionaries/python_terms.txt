@@ -52,3 +52,4 @@ zlabel
 asarray
 unsqueeze
 mkline
+pyright
