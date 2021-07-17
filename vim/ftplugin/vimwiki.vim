@@ -100,12 +100,12 @@ if expand('%:e') ==# 'wiki'
   " nnoremap <buffer> <Space>p :<C-u>call zettel#fzf#sink_onefile("", 'zettel#fzf#search_open', g:fzf_layout)<CR>
 
   if executable('xdotool')
-    nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromiumPage('ctrl+r')<CR>
-    nnoremap <silent><buffer> <Space>wj :<C-u>call <SID>ControlChromiumPage('Down', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wk :<C-u>call <SID>ControlChromiumPage('Up', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wd :<C-u>call <SID>ControlChromiumPage('Page_Down', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wu :<C-u>call <SID>ControlChromiumPage('Page_Up', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wgg :<C-u>call <SID>ControlChromiumPage('Home')<CR>
+    nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromePage('ctrl+r')<CR>
+    nnoremap <silent><buffer> <Space>wj :<C-u>call <SID>ControlChromePage('Down', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wk :<C-u>call <SID>ControlChromePage('Up', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wd :<C-u>call <SID>ControlChromePage('Page_Down', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wu :<C-u>call <SID>ControlChromePage('Page_Up', v:count1)<CR>
+    nnoremap <silent><buffer> <Space>wgg :<C-u>call <SID>ControlChromePage('Home')<CR>
     nnoremap <Leader>cw :<C-u>call <SID>ToggleWikiAutoReload()<CR>
   endif
 
@@ -124,7 +124,7 @@ if g:colors_name ==# 'ayu'
   hi VimwikiHeader6   guifg=#95E6CB guibg=NONE
 endif
 
-function! s:ControlChromiumPage(key, ...) abort
+function! s:ControlChromePage(key, ...) abort
   let current_window = system('xdotool getactivewindow')[:-2]
   let file_name = expand('%')
   let title =zettel#vimwiki#get_title(file_name)
@@ -132,7 +132,7 @@ function! s:ControlChromiumPage(key, ...) abort
     " use the Zettel filename as title if it is empty
     let title = fnamemodify(file_name, ':t:r')
   endif
-  let search_pattern = title . '.*Chromium'
+  let search_pattern = title . '.*(Chrome|Chromium)'
   let target_window = system('xdotool search --onlyvisible --name ' . shellescape(search_pattern))[:-2]
   if target_window != ''
     let key_sequence = [a:key]
@@ -148,7 +148,7 @@ endfunction
 function! s:ToggleWikiAutoReload() abort
   let buffer_autocmds = split(execute('autocmd vimwiki_special BufWritePost <buffer>'), '\n')[1:]
   if empty(buffer_autocmds)
-    autocmd vimwiki_special BufWritePost <buffer> call s:ControlChromiumPage('ctrl+r')
+    autocmd vimwiki_special BufWritePost <buffer> call s:ControlChromePage('ctrl+r')
     echohl MoreMsg | echo 'Auto reload turned on' | echohl NONE
   else
     autocmd! vimwiki_special BufWritePost <buffer>

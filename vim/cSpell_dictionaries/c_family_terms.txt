@@ -26,3 +26,4 @@ rpath
 pimpl
 vtable
 jthread
+simd
