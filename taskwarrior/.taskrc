@@ -63,5 +63,4 @@ alias.open=execute taskopen $@
 #include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
 #include /home/linuxbrew/.linuxbrew/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
 include ~/Documents/tasks/ayu.theme
-
-recurrence=on
+include ~/Documents/tasks/local.taskrc
