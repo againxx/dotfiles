@@ -59,11 +59,11 @@ tnoremap <M-j> <C-\><C-n><C-w>j
 tnoremap <M-k> <C-\><C-n><C-w>k
 tnoremap <M-l> <C-\><C-n><C-w>l
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
-nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
-nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
-nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
-nnoremap <silent> <M-p> :TmuxNavigatePrevious<CR>
+nnoremap <M-h> <Cmd>TmuxNavigateLeft<CR>
+nnoremap <M-j> <Cmd>TmuxNavigateDown<CR>
+nnoremap <M-k> <Cmd>TmuxNavigateUp<CR>
+nnoremap <M-l> <Cmd>TmuxNavigateRight<CR>
+nnoremap <M-p> <Cmd>TmuxNavigatePrevious<CR>
 
 " ===
 " === Command-line Cursor Movement
@@ -80,13 +80,13 @@ nnoremap <M-=> <C-w>+
 nnoremap <M--> <C-w>-
 nnoremap <M-[> <C-w><
 nnoremap <M-]> <C-w>>
-nnoremap <M-,> :bprevious<CR>
-nnoremap <M-.> :bnext<CR>
-nnoremap <M-9> :cprevious<CR>
-nnoremap <M-0> :cnext<CR>
-nnoremap <silent><M-z> :MaximizerToggle!<CR>
-vnoremap <silent><M-z> :MaximizerToggle!<CR>gv
-inoremap <silent><M-z> <C-o>:MaximizerToggle!<CR>
+nnoremap <M-,> <Cmd>bprevious<CR>
+nnoremap <M-.> <Cmd>bnext<CR>
+nnoremap <M-9> <Cmd>cprevious<CR>
+nnoremap <M-0> <Cmd>cnext<CR>
+nnoremap <M-z> <Cmd>MaximizerToggle!<CR>
+vnoremap <M-z> <Cmd>MaximizerToggle!<CR>gv
+inoremap <M-z> <Cmd>MaximizerToggle!<CR>
 
 " ===
 " === Window Split

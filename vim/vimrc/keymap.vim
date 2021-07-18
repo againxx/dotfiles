@@ -13,13 +13,13 @@ nnoremap yP "+P
 nnoremap z; za
 
 " map ZA to :qa
-nnoremap ZA :qa!<CR>
+nnoremap ZA <Cmd>qa!<CR>
 
 " map gus to ~
 nnoremap gus ~
 
 " text object for parameter
-onoremap i, :<C-u>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
+onoremap i, <Cmd>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 " alias r to ], a to >, same as surround.vim
 onoremap ir i]
 onoremap ar a]
@@ -55,12 +55,12 @@ nmap <C-c>l <Plug>SlimeLineSend
 xnoremap [a :<C-u>call <SID>MoveSelectedLines(-v:count1)<CR>
 xnoremap ]a :<C-u>call <SID>MoveSelectedLines(v:count1)<CR>
 " Move one line in normal mode
-nnoremap [a :<C-u>execute 'move -1-'.v:count1<CR>==
-nnoremap ]a :<C-u>execute 'move +'.v:count1<CR>==
+nnoremap [a <Cmd>execute 'move -1-'.v:count1<CR>==
+nnoremap ]a <Cmd>execute 'move +'.v:count1<CR>==
 
 " Add empty line
-nnoremap [<Space> :<C-u>call <SID>AddEmptyLines(-v:count1)<CR>
-nnoremap ]<Space> :<C-u>call <SID>AddEmptyLines(v:count1)<CR>
+nnoremap [<Space> <Cmd>call <SID>AddEmptyLines(-v:count1)<CR>
+nnoremap ]<Space> <Cmd>call <SID>AddEmptyLines(v:count1)<CR>
 
 " Continuous indent
 xnoremap < <gv
@@ -81,19 +81,19 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
 " Buffer navigation
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :blast<CR>
+nnoremap [b <Cmd>bprevious<CR>
+nnoremap ]b <Cmd>bnext<CR>
+nnoremap [B <Cmd>bfirst<CR>
+nnoremap ]B <Cmd>blast<CR>
 
 " Quickfix navigation
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
+nnoremap [q <Cmd>cprevious<CR>
+nnoremap ]q <Cmd>cnext<CR>
+nnoremap [Q <Cmd>cfirst<CR>
+nnoremap ]Q <Cmd>clast<CR>
 
 " Terminal
-nnoremap <Space>x :<C-u>call <SID>OpenTerminal()<CR>
+nnoremap <Space>x <Cmd>call <SID>OpenTerminal()<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -194,25 +194,25 @@ omap ac <Plug>(coc-classobj-a)
 nmap <Space>af <Plug>(coc-codeaction)
 nmap <Space>aa <Plug>(coc-codeaction-cursor)
 nmap <Space>al <Plug>(coc-codeaction-line)
-nmap <Space>a <Plug>(coc-codeaction-selected)
+" nmap <Space>a <Plug>(coc-codeaction-selected)
 xmap <Space>a <Plug>(coc-codeaction-selected)
 " coc-lists
-nnoremap <silent> <Space>m :<C-u>CocCommand fzf-preview.MruFiles<CR>
-nnoremap <silent> <Space>F :<C-u>Clap filer<CR>
-nnoremap <silent> <Space>f :<C-u>Clap files ++finder=rg --files --hidden --ignore-file ~/dotfiles/.rgignore<CR>
-nnoremap <silent> <Space>b :<C-u>Clap buffers<CR>
-nnoremap <silent> <Space><C-b> :<C-u>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
-nnoremap <silent> <Space>y :<C-u>CocList -A --normal yank<CR>
-nnoremap <silent> <Space>Y :<C-u>CocList --normal sources<CR>
+nnoremap <silent> <Space>m <Cmd>CocCommand fzf-preview.MruFiles<CR>
+nnoremap <silent> <Space>F <Cmd>Clap filer<CR>
+nnoremap <silent> <Space>f <Cmd>Clap files ++finder=rg --files --hidden --ignore-file ~/dotfiles/.rgignore<CR>
+nnoremap <silent> <Space>b <Cmd>Clap buffers<CR>
+nnoremap <silent> <Space><C-b> <Cmd>CocCommand fzf-preview.FromResources buffer project_mru --add-fzf-arg=--preview-window="right:70%"<CR>
+nnoremap <silent> <Space>y <Cmd>CocList -A --normal yank<CR>
+nnoremap <silent> <Space>Y <Cmd>CocList --normal sources<CR>
 " Search coc commands
-nnoremap <silent> <Space>cc :<C-u>CocList commands<CR>
+nnoremap <silent> <Space>cc <Cmd>CocList commands<CR>
 " Search vim commands
-nnoremap <silent> <Space>cv :<C-u>Clap command<CR>
-nnoremap <silent> <Space>ch :<C-u>CocCommand fzf-preview.CommandPalette<CR>
+nnoremap <silent> <Space>cv <Cmd>Clap command<CR>
+nnoremap <silent> <Space>ch <Cmd>CocCommand fzf-preview.CommandPalette<CR>
 " Search workspace symbols.
-nnoremap <silent> <Space>s :<C-u>Vista finder<CR>
-nnoremap <silent> <Space>S :<C-u>CocList -I symbols<CR>
-nnoremap <silent> <Space>. :<C-u>CocListResume<CR>
+nnoremap <silent> <Space>s <Cmd>Vista finder<CR>
+nnoremap <silent> <Space>S <Cmd>CocList -I symbols<CR>
+nnoremap <silent> <Space>. <Cmd>CocListResume<CR>
 " Show all diagnostics.
 nnoremap <silent> <Space>dg :<C-u>CocList diagnostics<CR>
 nnoremap <silent> <Space>dG :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
@@ -234,14 +234,14 @@ nnoremap <silent> <Space>H :<C-u>CocFirst<CR>
 nnoremap <silent> <Space>L :<C-u>CocLast<CR>
 nnoremap <silent> <Space>' :<C-u>CocCommand fzf-preview.Marks<CR>
 nnoremap <silent> <Space>" :<C-u>CocList marks<CR>
-nnoremap <silent> <Space>g/ :<C-u>CocList searchhistory<CR>
+nnoremap <silent> <Space>/ :<C-u>CocList searchhistory<CR>
 nnoremap <silent> <Space><C-f> :<C-u>CocCommand fzf-preview.GitFiles --add-fzf-arg=--preview-window="right:70%"<CR>
 nnoremap <silent> <Space>p :<C-u>Rg<CR>
 nnoremap <silent> <Space><C-g> :<C-u>call <SID>OpenTerminal('lazygit')<CR>
 nnoremap <silent> <Space><C-t> :<C-u>call <SID>OpenTerminal('vit')<CR>
 nnoremap <silent> <Space><C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
 nnoremap <silent> <Space>g; :<C-u>CocCommand fzf-preview.Changes<CR>
-nnoremap <silent> <Space>/ :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> <C-_> :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--query="'"<CR>
 nnoremap <silent> <Space>? :<C-u>CocCommand fzf-preview.BufferLines<CR>
 nnoremap <silent> <Space>* :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
 nnoremap <silent> <Space>gs :<C-u>let g:fzf_preview_fzf_preview_window_option='right:70%'<Bar>CocCommand fzf-preview.GitStatus<CR>
@@ -413,7 +413,7 @@ let g:which_space_map.H = 'first-item'
 let g:which_space_map.L = 'last-item'
 let g:which_space_map.x = 'open-terminal'
 let g:which_space_map['.'] = 'last-list'
-let g:which_space_map['/'] = 'line-in-current-buffer'
+let g:which_space_map['/'] = 'search-history'
 let g:which_space_map['?'] = 'line-in-all-buffer'
 let g:which_space_map["'"] = 'mark-preview'
 let g:which_space_map['"'] = 'mark'
@@ -454,7 +454,6 @@ let g:which_space_map.e = {
 " For git/go-to-line
 let g:which_space_map.g = {
 \   'name': '+git/history',
-\   '/':    'search-history',
 \   ';':    'change-history',
 \   's':    'show-git-status',
 \   'd':    'show-chunk-diff',
