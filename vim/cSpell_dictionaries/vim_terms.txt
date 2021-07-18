@@ -9,3 +9,4 @@ katex
 xoffset
 ulti
 tableize
+vint
