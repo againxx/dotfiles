@@ -78,8 +78,12 @@ cnoremap <M-j> <S-Right>
 " ===
 nnoremap <M-=> <C-w>+
 nnoremap <M--> <C-w>-
-nnoremap <M-,> <C-w><
-nnoremap <M-.> <C-w>>
+nnoremap <M-[> <C-w><
+nnoremap <M-]> <C-w>>
+nnoremap <M-,> :bprevious<CR>
+nnoremap <M-.> :bnext<CR>
+nnoremap <M-9> :cprevious<CR>
+nnoremap <M-0> :cnext<CR>
 nnoremap <silent><M-z> :MaximizerToggle!<CR>
 vnoremap <silent><M-z> :MaximizerToggle!<CR>gv
 inoremap <silent><M-z> <C-o>:MaximizerToggle!<CR>
