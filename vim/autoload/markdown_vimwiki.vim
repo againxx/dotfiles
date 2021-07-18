@@ -65,7 +65,7 @@ function markdown_vimwiki#SetCommonConfigs() abort
 
   if g:colors_name ==# 'ayu'
     hi! link Conceal Function
-    hi TaskwikiTaskPriority gui=bold guifg=#F07178
+    hi! link TaskwikiTaskPriority CocErrorSign
   endif
 endfunction
 
