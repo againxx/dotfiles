@@ -219,7 +219,6 @@ nnoremap <silent> <Space>dG :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<C
 " Show locationlist
 nnoremap <silent> <Space>l :<C-u>CocList --normal locationlist<CR>
 nnoremap <silent> <Space><C-l> :<C-u>CocCommand fzf-preview.LocationList<CR>
-nnoremap <silent> <Space>q :<C-u>CocList --normal quickfix<CR>
 nnoremap <silent> <Space><C-q> :<C-u>CocCommand fzf-preview.QuickFix<CR>
 nnoremap <silent> <Space>h :<C-u>CocList helptags<CR>
 nnoremap <silent> <Space>u :<C-u>UndotreeToggle<CR>
@@ -333,6 +332,19 @@ nmap <Space>T <Plug>(coc-translator-p)
 vmap <Space>T <Plug>(coc-translator-pv)
 
 " ===
+" === Quit / Quickfix
+" ===
+nnoremap <silent> <Space>qf :<C-u>CocList --normal quickfix<CR>
+nnoremap <silent> <Space>qq :<C-u>call <SID>CloseBufferOrQuickfixOrLocalistWindow()<CR>
+nnoremap <silent> <Space>qb :<C-u>silent! bdelete!<CR>
+nnoremap <silent> <Space>qw :<C-u>silent! bwipeout!<CR>
+nnoremap <silent> <Space>qt :<C-u>tabclose<CR>
+nnoremap <silent> <Space>qd :<C-u>VimspectorReset<CR>
+nnoremap <silent> <Space>qD :<C-u>let b:coc_diagnostic_disable = 1<Bar>edit<CR>
+nnoremap <silent> <Space>qc :<C-u>cclose<CR>
+nnoremap <silent> <Space>ql :<C-u>lclose<CR>
+
+" ===
 " === Visual-multi
 " ===
 let g:VM_leader = '<Space>v'
@@ -388,7 +400,6 @@ let g:which_space_map.Y = 'source'
 let g:which_space_map.s = 'vista'
 let g:which_space_map.S = 'coc-symbol'
 let g:which_space_map.l = 'location-list'
-let g:which_space_map.q = 'quickfix'
 let g:which_space_map.h = 'help'
 let g:which_space_map.u = 'undo-tree'
 let g:which_space_map.D = 'todo-list'
@@ -570,6 +581,19 @@ let g:which_space_map.t = {
 \   }
 \ }
 
+let g:which_space_map.q = {
+\   'name': '+quit/quickfix',
+\   'f':    'quickfix',
+\   'q':    'only-quit-buffer',
+\   'b':    'quit-buffer',
+\   'w':    'wipeout-buffer',
+\   't':    'quit-tab',
+\   'd':    'quit-debugger',
+\   'D':    'close-diagnostic',
+\   'c':    'quit-quickfix',
+\   'l':    'quit-location-list',
+\ }
+
 function! s:GotoWindowAndMaximize(win_id) abort
   call win_gotoid(a:win_id)
   execute 'MaximizerToggle!'
@@ -679,5 +703,15 @@ function! s:FindTestRootDir() abort
         return
       endif
     endfor
+  endif
+endfunction
+
+function s:CloseBufferOrQuickfixOrLocalistWindow() abort
+  if !empty(filter(getwininfo(), 'v:val.quickfix'))
+    cclose
+    lclose
+  else
+    silent! Bdelete!
+    redrawtabline
   endif
 endfunction

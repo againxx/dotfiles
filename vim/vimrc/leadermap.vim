@@ -27,18 +27,6 @@ let g:which_leader_map.s = {
 \   'v':    'source-vimrc',
 \ }
 
-let g:which_leader_map.q = {
-\   'name': '+quit',
-\   'q':    'only-quit-buffer',
-\   'b':    'quit-buffer',
-\   'w':    'wipeout-buffer',
-\   't':    'quit-tab',
-\   'd':    'quit-debugger',
-\   'D':    'close-diagnostic',
-\   'c':    'quit-quickfix',
-\   'l':    'quit-location-list',
-\ }
-
 let g:which_leader_map.v = {
 \   'name': '+view',
 \   'm':    'markdown-preview',
@@ -142,18 +130,6 @@ nnoremap <Leader>ss :<C-u>CocCommand session.save<CR>
 nnoremap <Leader>sl :<C-u>CocCommand session.load<CR>
 " Source vimrc file
 nnoremap <silent> <Leader>sv :<C-u>source $MYVIMRC<Bar>nohlsearch<CR>
-
-" ===
-" === Quit
-" ===
-nnoremap <silent> <Leader>qq :<C-u>call <SID>CloseBufferOrQuickfixOrLocalistWindow()<CR>
-nnoremap <silent> <Leader>qb :<C-u>silent! bdelete!<CR>
-nnoremap <silent> <Leader>qw :<C-u>silent! bwipeout!<CR>
-nnoremap <silent> <Leader>qt :<C-u>tabclose<CR>
-nnoremap <silent> <Leader>qd :<C-u>VimspectorReset<CR>
-nnoremap <silent> <Leader>qD :<C-u>let b:coc_diagnostic_disable = 1<Bar>edit<CR>
-nnoremap <silent> <Leader>qc :<C-u>cclose<CR>
-nnoremap <silent> <Leader>ql :<C-u>lclose<CR>
 
 " ===
 " === View
@@ -402,14 +378,4 @@ function! s:QuerySyntaxStack() abort
   for id in synstack(line('.'), col('.'))
     echo synIDattr(id, 'name')
   endfor
-endfunction
-
-function s:CloseBufferOrQuickfixOrLocalistWindow() abort
-  if !empty(filter(getwininfo(), 'v:val.quickfix'))
-    cclose
-    lclose
-  else
-    silent! Bdelete!
-    redrawtabline
-  endif
 endfunction
