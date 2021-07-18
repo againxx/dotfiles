@@ -21,7 +21,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  # TERM: tmux-256color
+  TERM: tmux-256color
   ZSH_TMUX_AUTOSTART: "true"
 
 window:
@@ -182,8 +182,8 @@ font:
 colors:
   # Default colors
   primary:
-   background: '#212733'
-   foreground: '#d9d7ce'
+   background: '#1F2430'
+   foreground: '#CBCCC6'
 
     # Bright and dim foreground colors
     #
@@ -221,8 +221,8 @@ colors:
   # Allowed values are CellForeground and CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
   selection:
-   text: '#212733'
-   background: '#343f4c'
+   text: '#191E2A'
+   background: '#33415E'
 
   # Search colors
   #
@@ -261,7 +261,7 @@ colors:
    blue:    '#73d0ff'
    magenta: '#d4bfff'
    cyan:    '#95e6cb'
-   white:   '#ffffff'
+   white:   '#fafafa'
 
   # Dim colors
   #
