@@ -6,22 +6,22 @@ set cpoptions&vim
 
 let s:palette = {}
 
-let s:palette.display = { 'guibg': '#212733' }
+let s:palette.display = { 'guibg': '#1F2430' }
 
 " Let ClapInput, ClapSpinner and ClapSearchText use the same background.
-let s:bg0 = { 'guibg': '#272D38' }
+let s:bg0 = { 'guibg': '#232834' }
 let s:palette.input = s:bg0
-let s:palette.indicator = extend({ 'guifg':'#607080' }, s:bg0)
-let s:palette.spinner = extend({ 'guifg':'#FFCC66', 'gui': 'bold'}, s:bg0)
+let s:palette.indicator = extend({ 'guifg':'#707A8C' }, s:bg0)
+let s:palette.spinner = extend({ 'guifg':'#FFB454', 'gui': 'bold'}, s:bg0)
 let s:palette.search_text = extend({ 'guifg': '#FFEE99', 'gui': 'bold' }, s:bg0)
 
-let s:palette.preview = { 'guibg': '#343F4C' }
+let s:palette.preview = { 'guibg': '#33415E' }
 
-let s:palette.selected = { 'guifg': '#5CCFE6', 'gui': 'bold,underline' }
-let s:palette.current_selection = { 'guibg': '#151A1E', 'gui': 'bold' }
+let s:palette.selected = { 'guifg': '#73D0FF', 'gui': 'bold,underline' }
+let s:palette.current_selection = { 'guibg': '#101521', 'gui': 'bold' }
 
 let s:palette.selected_sign = { 'guifg': '#D4BFFF' }
-let s:palette.current_selection_sign = { 'guifg': '#F07178' }
+let s:palette.current_selection_sign = { 'guifg': '#F28779' }
 
 let g:clap#themes#ayu#palette = s:palette
 
