@@ -11,16 +11,12 @@ set termguicolors   " Use gui color (true color) in terminal
 " colorscheme space-vim-dark
 
 " ===
-" === Ayu & One half
+" === Ayu
 " ===
-" if exists("$WINDOWID") " Gnome-terminal don't set $WINDOWID
 set background=dark
 let g:ayucolor = 'mirage'
+let g:ayutrans = 1
 colorscheme ayu
-" else
-    " One half
-    " colorscheme onehalfdark
-" endif
 
 " ===
 " === Custom Highlight
@@ -40,31 +36,13 @@ if g:colors_name ==# 'space-vim-dark'
 endif
 
 if g:colors_name ==# 'ayu'
-  hi Normal              ctermbg=NONE guibg=NONE
-  hi SignColumn          ctermbg=NONE guibg=NONE
-  hi CursorLineNr        ctermbg=NONE guibg=NONE
-  hi Comment             cterm=italic gui=italic
-  hi Statement           gui=bold,italic
-  hi CocErrorSign        cterm=bold ctermfg=11 ctermbg=NONE gui=bold guifg=#F07178 guibg=NONE
-  hi CocWarningSign      guifg=#E7C547 guibg=NONE
-  hi CocInfoSign         guifg=#95E6CB guibg=NONE
-  hi CocHighlightText    guibg=#151A1E
-  hi WhiteSpace          guifg=#151A1E
-  hi IndentGuidesOdd     ctermbg=NONE guibg=#242F3C
-  hi IndentGuidesEven    ctermbg=NONE guibg=#293137
-  hi Sneak               guifg=#212733 guibg=#D4BFFF
   hi QuickScopePrimary   guifg=#86B300 gui=underline,bold,italic
-  hi QuickScopeSecondary guifg=#36A3D9 gui=underline,bold,italic
-  hi MatchParen       gui=underline guifg=#95E6CB
-  hi jsonKeyword      guifg=#FFAE57
-  " hi textSnipTEX      guifg=#FFAE57
+  hi QuickScopeSecondary guifg=#399EE6 gui=underline,bold,italic
   hi! link CocHintHighlight NONE
   let g:VM_Extend_hl = 'CocListBlackCyan'
   let g:VM_Cursor_hl = 'CocListBlackGreen'
   let g:VM_Mono_hl = 'CocListBlackRed'
   " let g:VM_highlight_matches = ''
-  " use by indentLine
-  hi IndentBlanklineChar guifg=#0F1419 gui=nocombine
   hi ClapFuzzyMatches1  gui=bold guifg=#D4BFFF
   hi ClapFuzzyMatches2  gui=bold guifg=#C0C2FB
   hi ClapFuzzyMatches3  gui=bold guifg=#ACC4F7
@@ -77,33 +55,8 @@ if g:colors_name ==# 'ayu'
   hi ClapFuzzyMatches10 gui=bold guifg=#52C5B8
   hi ClapFuzzyMatches11 gui=bold guifg=#4FC2A8
   hi ClapFuzzyMatches12 gui=bold guifg=#4CBF99
-  hi VimspectorBP     guifg=#F07178
-  hi VimspectorBPCond guifg=#FFAE57
-  hi VimspectorPC     guifg=#D4BFFF
-  hi VimspectorPCBP   guifg=#D4BFFF
   hi Searchlight      guifg=#FFEE99 guibg=#A37ACC
-  hi TSNamespace      guifg=#B8CC52
-  hi TSParameter      guifg=#F07178
-  hi shCommandSub     guifg=#D4BFFF
+  hi! link shCommandSub    Constant
   hi! link IncSearchCursor IncSearch
-endif
-
-if g:colors_name ==# 'onehalfdark'
-  hi Normal                ctermbg=NONE  guibg=NONE
-  hi LineNr                ctermbg=NONE  guibg=NONE
-  hi SignColumn            ctermbg=NONE  guibg=NONE
-  hi CursorLineNr          ctermbg=NONE  guibg=NONE
-  hi GitGutterAdd          ctermbg=NONE  guibg=NONE
-  hi GitGutterChange       ctermbg=NONE  guibg=NONE
-  hi GitGutterDelete       ctermbg=NONE  guibg=NONE
-  hi GitGutterChangeDelete ctermbg=NONE  guibg=NONE
-  hi Error                 ctermbg=NONE  guibg=NONE
-  hi IndentGuidesOdd       ctermbg=NONE  guibg=#2E3437
-  hi IndentGuidesEven      ctermbg=NONE  guibg=#30303C
-  hi pythonParam           guifg=#56b6c2 guibg=NONE
-  hi CocHighlightText      guibg=#22252C
-  " hi IndentGuidesOdd  ctermbg=NONE guibg=#3E4A42
-  " hi IndentGuidesEven ctermbg=NONE guibg=#483B56
-  " hi IndentGuidesOdd  ctermbg=NONE guibg=#333B3B
-  " hi IndentGuidesEven ctermbg=NONE guibg=#383445
+  hi! link jsonKeyword     Function
 endif

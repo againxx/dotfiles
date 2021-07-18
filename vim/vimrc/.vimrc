@@ -60,9 +60,10 @@ Plug 'moll/vim-bbye'
 " ===
 " Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 " Plug 'liuchengxu/space-vim-dark'
-Plug 'ayu-theme/ayu-vim'
+Plug 'againxx/ayu-vim'
 " Plug 'folke/tokyonight.nvim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'theniceboy/nvim-deus'
 Plug 'ryanoasis/vim-devicons'
 
 " ===

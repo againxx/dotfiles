@@ -38,8 +38,7 @@ nnoremap <buffer> ]h
 
 if g:colors_name ==# 'ayu'
   hi pythonSelf          gui=italic guifg=#A37ACC guibg=NONE
-  hi pythonParam         guifg=#F07178 guibg=NONE
-  hi pythonInclude       gui=bold,italic guifg=#FFC44C
-  " hi pythonMethod     guifg=#ffaf87 guibg=NONE
+  hi pythonInclude       gui=bold,italic guifg=#FFB454
+  hi! link pythonParam TSParameter
   hi! link pythonDocstring pythonComment
 endif

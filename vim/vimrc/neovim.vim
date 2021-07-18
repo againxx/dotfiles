@@ -185,7 +185,7 @@ endfunction
 function! OnUIEnter(event) abort
   if s:IsFirenvimActive(a:event)
     if g:colors_name ==# 'ayu'
-      hi Normal guibg=#212733
+      hi Normal guibg=#1F2430
     endif
     set guifont=InconsolataLGC\ Nerd\ Font:h20
     set showtabline=0
