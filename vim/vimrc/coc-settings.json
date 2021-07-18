@@ -212,7 +212,7 @@
         "haici"
     ],
     "leetcode.language": "cpp",
-    "clangd.semanticHighlighting": true,
+    "clangd.semanticHighlighting": false,
     "clangd.arguments": [
         "--completion-style=detailed",
         "--suggest-missing-includes",
