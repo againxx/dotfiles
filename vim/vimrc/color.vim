@@ -15,7 +15,7 @@ set termguicolors   " Use gui color (true color) in terminal
 " ===
 set background=dark
 let g:ayucolor = 'mirage'
-let g:ayutrans = 1
+let g:ayutrans = v:true
 colorscheme ayu
 
 " ===
@@ -39,9 +39,9 @@ if g:colors_name ==# 'ayu'
   hi QuickScopePrimary   guifg=#86B300 gui=underline,bold,italic
   hi QuickScopeSecondary guifg=#399EE6 gui=underline,bold,italic
   hi! link CocHintHighlight NONE
-  let g:VM_Extend_hl = 'CocListBlackCyan'
-  let g:VM_Cursor_hl = 'CocListBlackGreen'
-  let g:VM_Mono_hl = 'CocListBlackRed'
+  let g:VM_Extend_hl = 'VMExtend'
+  let g:VM_Cursor_hl = 'VMCursor'
+  let g:VM_Mono_hl = 'VMMono'
   " let g:VM_highlight_matches = ''
   hi ClapFuzzyMatches1  gui=bold guifg=#D4BFFF
   hi ClapFuzzyMatches2  gui=bold guifg=#C0C2FB

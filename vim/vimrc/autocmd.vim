@@ -82,6 +82,7 @@ function! s:VMStart() abort
   nmap <buffer> <C-k> <Plug>(VM-Add-Cursor-Up)
   nmap <buffer> <C-l> <Plug>(VM-Single-Select-l)
   nmap <buffer> <C-h> <Plug>(VM-Single-Select-h)
+  execute 'Searchlight!'
 endfunction
 
 function! s:VMExit() abort
@@ -89,4 +90,5 @@ function! s:VMExit() abort
   nunmap <buffer> <C-k>
   nunmap <buffer> <C-h>
   nunmap <buffer> <C-l>
+  execute 'Searchlight'
 endfunction
