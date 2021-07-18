@@ -37,8 +37,8 @@ nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
 
 if g:colors_name ==# 'ayu'
-  hi pythonSelf          gui=italic guifg=#A37ACC guibg=NONE
-  hi pythonInclude       gui=bold,italic guifg=#FFB454
+  hi pythonSelf          gui=italic guifg=#B695E0 guibg=NONE
+  hi pythonInclude       gui=bold,italic guifg=#FFD580
   hi! link pythonParam TSParameter
   hi! link pythonDocstring pythonComment
 endif
