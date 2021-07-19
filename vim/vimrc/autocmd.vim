@@ -48,8 +48,8 @@ augroup END
 
 augroup vim_which_key_special
   autocmd!
-  autocmd User vim-which-key call which_key#register('\', 'g:which_leader_map')
-  autocmd User vim-which-key call which_key#register('<Space>', 'g:which_space_map')
+  autocmd User vim-which-key call which_key#register('\', 'g:which_localleader_map')
+  autocmd User vim-which-key call which_key#register('<Space>', 'g:which_leader_map')
 augroup END
 
 augroup clap_special

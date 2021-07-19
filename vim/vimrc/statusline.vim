@@ -138,7 +138,7 @@ function! LightlineFileTypeWithSymbol()
   elseif &filetype ==# 'unknown'
     let ft_with_symbol .= ' '
   else
-    let ft_with_symbol .= ' ' . WebDevIconsGetFileTypeSymbol()
+    let ft_with_symbol .= ' ' . luaeval("require('nvim-web-devicons').get_icon(_A[1], _A[2], {})", [expand('%'), expand('%:e')])
   endif
   return ft_with_symbol
 endfunction

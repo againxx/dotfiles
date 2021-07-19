@@ -29,7 +29,7 @@ Plug 'kevinhwang91/rnvimr'
 " === Tags
 " ===
 " Plug 'liuchengxu/vista.vim'
-Plug 'againxx/vista.vim'
+" Plug 'againxx/vista.vim'
 
 " ===
 " === Fuzzy Finder
@@ -37,9 +37,15 @@ Plug 'againxx/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 " Build the extra binary if cargo exists on your system.
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-" Plug 'zhyu/clap-tasks'
-" Plug 'vn-ki/coc-clap'
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'GustavoKatel/telescope-asynctasks.nvim'
+Plug 'fhill2/telescope-ultisnips.nvim'
+Plug 'bi0ha2ard/telescope-ros.nvim'
 
 " ===
 " === Stausline
@@ -64,7 +70,8 @@ Plug 'againxx/ayu-vim'
 " Plug 'folke/tokyonight.nvim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'theniceboy/nvim-deus'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " ===
 " === Highlighting
@@ -224,6 +231,7 @@ if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/playground'
+  Plug 'p00f/nvim-ts-rainbow'
   " Show register content when access it
   Plug 'tversteeg/registers.nvim'
 endif

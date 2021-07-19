@@ -115,58 +115,6 @@ let g:coc_snippet_prev = '<M-k>'
 let g:UltiSnipsJumpForwardTrigger = '<M-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<M-k>'
 let g:UltiSnipsListSnippets = '<M-l>'
-nnoremap <silent> <Space><M-l> :<C-u>Snippets<CR>
-let g:which_space_map['<M-l>'] = 'snippets'
-
-" ===
-" === Treesitter
-" ===
-lua <<EOF
-require 'nvim-treesitter.configs'.setup {
-  ensure_installed = {'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua'},
-  highlight = {
-    enable = true,
-    disable = {'python'},
-    custom_captures = {
-      -- Highlight the error capture group with the "CocWarningSign" highlight group.
-      ["error"] = "CocWarningSign",
-    },
-  },
-  indent = {
-    enable = true,
-    disable = {'python'},
-  },
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
-  }
-}
-
--- Disable highlight for bracket
-require 'nvim-treesitter.highlight'
-local hlmap = vim.treesitter.highlighter.hl_map
-hlmap.error = nil
-hlmap["punctuation.delimiter"] = "Delimiter"
-hlmap["punctuation.bracket"] = nil
-EOF
-
-set indentexpr=nvim_treesitter#indent()
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 
 " ===
 " === Autocmd
@@ -217,3 +165,23 @@ let g:firenvim_config = {
 \       },
 \   }
 \ }
+
+lua require('treesitter_config')
+lua require('telescope_config')
+
+set indentexpr=nvim_treesitter#indent()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    disabled = {
+      "vim",
+    },
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+  }
+}
+EOF

@@ -1,8 +1,6 @@
 setlocal foldlevel=1
 setlocal nowrap
 let b:coc_pairs_disabled = ['[', '<']
-" VimwikiSearchTags will use locallist, disable ale to avoid conflict
-" let b:ale_enabled = 0
 " Use vimwiki's folding method instead vim-markdown's
 let g:vim_markdown_folding_disabled = 1
 if !exists('b:key_delay')
@@ -10,6 +8,8 @@ if !exists('b:key_delay')
 endif
 
 call markdown_vimwiki#SetCommonConfigs()
+
+lua require('plenary.filetype').add_file('extra_filetypes')
 
 augroup vimwiki_special
   autocmd!
@@ -29,38 +29,38 @@ endif
 " unmap automatic list adding
 silent! nunmap <buffer> o
 silent! nunmap <buffer> O
-nnoremap <silent><buffer> gl? :<C-u>WhichKey 'gl'<CR>
-nnoremap <silent><buffer> gL? :<C-u>WhichKey 'gL'<CR>
+nnoremap <buffer> gl? <Cmd>WhichKey 'gl'<CR>
+nnoremap <buffer> gL? <Cmd>WhichKey 'gL'<CR>
 nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
 nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
 nmap <buffer> <Leader>wD <Plug>VimwikiDeleteFile
 nmap <buffer> <Leader>w<Leader>d <Plug>VimwikiDiaryGenerateLinks
-nnoremap <silent><buffer> <Space>tg  :<C-u>Tags<cr>
-nnoremap <silent><buffer> <Space>ta  :TaskWikiAnnotate<CR>
-nnoremap <silent><buffer> <Space>tp :TaskWikiChooseProject<CR>
-nnoremap <silent><buffer> <Space>tt :TaskWikiChooseTag<CR>
-nnoremap <silent><buffer> <Space>tC  :TaskWikiCalendar<CR>
-nnoremap <silent><buffer> <Space>td  :TaskWikiDone<CR>
-nnoremap <silent><buffer> <Space>tD  :TaskWikiDelete<CR>
-nnoremap <silent><buffer> <Space>te  :TaskWikiEdit<CR>
-nnoremap <silent><buffer> <Space>thM :TaskWikiGhistoryMonthly<CR>
-nnoremap <silent><buffer> <Space>thA :TaskWikiGhistoryAnnual<CR>
-nnoremap <silent><buffer> <Space>thm :TaskWikiHistoryMonthly<CR>
-nnoremap <silent><buffer> <Space>tha :TaskWikiHistoryAnnual<CR>
-nnoremap <silent><buffer> <Space>ti  :TaskWikiInfo<CR>
-nnoremap <silent><buffer> <Space>tA  :TaskWikiLink<CR>
-nnoremap <silent><buffer> <Space>tm  :TaskWikiMod<CR>
-nnoremap <silent><buffer> <Space>tvp  :TaskWikiProjects<CR>
-nnoremap <silent><buffer> <Space>tvP  :TaskWikiProjectsSummary<CR>
-nnoremap <silent><buffer> <Space>tvd :TaskWikiBurndownDaily<CR>
-nnoremap <silent><buffer> <Space>tvw :TaskWikiBurndownWeekly<CR>
-nnoremap <silent><buffer> <Space>tvm :TaskWikiBurndownMonthly<CR>
-nnoremap <silent><buffer> <Space>tS  :TaskWikiStats<CR>
-nnoremap <silent><buffer> <Space>tG  :TaskWikiTags<CR>
-nnoremap <silent><buffer> <Space>t.  :TaskWikiRedo<CR>
-nnoremap <silent><buffer> <Space>tb  :TaskWikiStart<CR>
-nnoremap <silent><buffer> <Space>tq  :TaskWikiStop<CR>
-nnoremap <silent><buffer> <Space>t<C-g> :TaskWikiGrid<CR>
+nnoremap <buffer> <Leader>tg  <Cmd>lua require('telescope_config').tags()<CR>
+nnoremap <buffer> <Leader>ta  <Cmd>TaskWikiAnnotate<CR>
+nnoremap <buffer> <Leader>tp  <Cmd>TaskWikiChooseProject<CR>
+nnoremap <buffer> <Leader>tt  <Cmd>TaskWikiChooseTag<CR>
+nnoremap <buffer> <Leader>tC  <Cmd>TaskWikiCalendar<CR>
+nnoremap <buffer> <Leader>td  <Cmd>TaskWikiDone<CR>
+nnoremap <buffer> <Leader>tD  <Cmd>TaskWikiDelete<CR>
+nnoremap <buffer> <Leader>te  <Cmd>TaskWikiEdit<CR>
+nnoremap <buffer> <Leader>thM <Cmd>TaskWikiGhistoryMonthly<CR>
+nnoremap <buffer> <Leader>thA <Cmd>TaskWikiGhistoryAnnual<CR>
+nnoremap <buffer> <Leader>thm <Cmd>TaskWikiHistoryMonthly<CR>
+nnoremap <buffer> <Leader>tha <Cmd>TaskWikiHistoryAnnual<CR>
+nnoremap <buffer> <Leader>ti  <Cmd>TaskWikiInfo<CR>
+nnoremap <buffer> <Leader>tA  <Cmd>TaskWikiLink<CR>
+nnoremap <buffer> <Leader>tm  <Cmd>TaskWikiMod<CR>
+nnoremap <buffer> <Leader>tvp <Cmd>TaskWikiProjects<CR>
+nnoremap <buffer> <Leader>tvP <Cmd>TaskWikiProjectsSummary<CR>
+nnoremap <buffer> <Leader>tvd <Cmd>TaskWikiBurndownDaily<CR>
+nnoremap <buffer> <Leader>tvw <Cmd>TaskWikiBurndownWeekly<CR>
+nnoremap <buffer> <Leader>tvm <Cmd>TaskWikiBurndownMonthly<CR>
+nnoremap <buffer> <Leader>tS  <Cmd>TaskWikiStats<CR>
+nnoremap <buffer> <Leader>tG  <Cmd>TaskWikiTags<CR>
+nnoremap <buffer> <Leader>t.  <Cmd>TaskWikiRedo<CR>
+nnoremap <buffer> <Leader>tb  <Cmd>TaskWikiStart<CR>
+nnoremap <buffer> <Leader>tq  <Cmd>TaskWikiStop<CR>
+nnoremap <buffer> <Leader>t<C-g> <Cmd>TaskWikiGrid<CR>
 
 " Mappings for visual mode.
 vnoremap <silent><buffer> <Space>ta  :TaskWikiAnnotate<CR>
@@ -97,16 +97,15 @@ if expand('%:e') ==# 'wiki'
   nmap <buffer> gy <Plug>ZettelYankNameMap
   xmap <buffer> gz <Plug>ZettelNewSelectedMap
   nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
-  " nnoremap <buffer> <Space>p :<C-u>call zettel#fzf#sink_onefile("", 'zettel#fzf#search_open', g:fzf_layout)<CR>
 
   if executable('xdotool')
-    nnoremap <silent><buffer> <Space>ww :<C-u>call <SID>ControlChromePage('ctrl+r')<CR>
-    nnoremap <silent><buffer> <Space>wj :<C-u>call <SID>ControlChromePage('Down', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wk :<C-u>call <SID>ControlChromePage('Up', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wd :<C-u>call <SID>ControlChromePage('Page_Down', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wu :<C-u>call <SID>ControlChromePage('Page_Up', v:count1)<CR>
-    nnoremap <silent><buffer> <Space>wgg :<C-u>call <SID>ControlChromePage('Home')<CR>
-    nnoremap <Leader>cw :<C-u>call <SID>ToggleWikiAutoReload()<CR>
+    nnoremap <buffer> <Leader>bb :<C-u>call <SID>ControlChromePage('ctrl+r')<CR>
+    nnoremap <buffer> <Leader>bj :<C-u>call <SID>ControlChromePage('Down', v:count1)<CR>
+    nnoremap <buffer> <Leader>bk :<C-u>call <SID>ControlChromePage('Up', v:count1)<CR>
+    nnoremap <buffer> <Leader>bd :<C-u>call <SID>ControlChromePage('Page_Down', v:count1)<CR>
+    nnoremap <buffer> <Leader>bu :<C-u>call <SID>ControlChromePage('Page_Up', v:count1)<CR>
+    nnoremap <buffer> <Leader>bgg :<C-u>call <SID>ControlChromePage('Home')<CR>
+    nnoremap <Leader>cw <Cmd>call <SID>ToggleWikiAutoReload()<CR>
   endif
 
   command! -buffer -bang -nargs=* Rg call fzf#vim#grep(

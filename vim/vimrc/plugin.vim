@@ -22,6 +22,7 @@ let g:rainbow_conf = {
 \       'cmake': 0,
 \       'vimwiki': 0,
 \       'fzf': 0,
+\       'cpp': 0,
 \   }
 \ }
 
