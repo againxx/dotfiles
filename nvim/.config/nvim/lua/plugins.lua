@@ -131,7 +131,7 @@ return require('packer').startup({function(use)
   -- ===
   -- this plugin is needed by vim-markdown and can be used to align text
   use { 'godlygeek/tabular', ft = 'markdown' }
-  use { 'plasticboy/vim-markdown', ft = 'markdown' }
+  use 'plasticboy/vim-markdown'
   use {
     'iamcco/markdown-preview.nvim', ft = 'markdown',
     run = function() vim.fn['mkdp#util#install']() end

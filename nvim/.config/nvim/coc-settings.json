@@ -61,6 +61,7 @@
     "highlight.disableLanguages": [
         "vimwiki"
     ],
+    "pairs.disableLanguages": ["TelescopePrompt"],
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
     "snippets.ultisnips.enable": false,

@@ -27,22 +27,17 @@ wk.register({
   },
   p = { require('telescope.builtin').grep_string, 'Grep string' },
   s = {
-    name = '+symbol/session/source',
+    name = '+symbol/session/source/syntax',
     s = { require('telescope_config').document_symbols, 'Document symbols' },
     a = { require('telescope_config').workspace_symbols, 'Workspace symbols' },
     w = { '<cmd>CocCommand session.save<cr>', 'Save session' },
     r = { '<cmd>CocCommand session.load<cr>', 'Load session' },
     v = { '<cmd>source $MYVIMRC<Bar>nohlsearch<cr>', 'Source VIMRC' },
   },
-  q = {
-    name = '+quit/close',
-    b = { '<cmd>silent! bdelete!<cr>', 'Close buffer' },
-    w = { '<cmd>silent! bwipeout!<cr>', 'Wipeout buffer' },
-    t = { '<cmd>tabclose<cr>', 'Close tab' },
-    d = { '<cmd>let b:coc_diagnostic_disable = 1<Bar>edit<cr>', 'Close diagnostic' },
-    c = { '<cmd>cclose<cr>', 'Close quickfix' },
-    l = { '<cmd>lclose<cr>', 'Close location list' },
-  }
+  c = {
+    c = { '<cmd>Telescope coc commands<cr>', 'Coc commands' },
+    v = { require('telescope.builtin').commands, 'Vim commands' },
+  },
 }, { prefix = '<leader>' })
 
 wk.register({

@@ -6,31 +6,8 @@ scriptencoding utf-8
 
 let g:which_leader_map = {}
 
-let g:which_leader_map.c = {
-\   'name': '+change/command',
-\   'l':    'toggle-code-lens',
-\   'b':    'toggle-git-blame',
-\   'L':    'katex-left-equation',
-\   'P':    'toggle-fzf-preview',
-\   'S':    'change-statusline-sep',
-\   's':    'toggle-check-spelling',
-\   'p':    'change-build-profile',
-\   'a':    'change-diagnostic-level',
-\   'g':    'toggle-git-gutters',
-\   'i':    'toggle-indent-line',
-\   'w':    'toggle-wiki-autoreload',
-\   'd':    'change-directory',
-\   'D':    'toggle-coc-diagnostic',
-\   'c':    'coc-command',
-\   'v':    'vim-command',
-\ }
-
 let g:which_leader_map.V = {
 \   'name': '+view',
-\   'm':    'markdown-preview',
-\   'c':    'view-error-code',
-\   'h':    'view-highlight-group',
-\   'H':    'view-highlight-stack',
 \   'a':    'view-ascii-value',
 \   's':    'view-code-statistic',
 \ }
@@ -108,16 +85,6 @@ let g:which_leader_map.w = {
 \   }
 \ }
 
-let g:which_leader_map.y = {
-\   'name': '+yank',
-\   'y': 'yank-history',
-\   'd': 'yank-diagnostic-code',
-\   'p': 'yank-file-path',
-\ }
-
-" Miscellaneous
-let g:which_leader_map['<C-T>'] = 'vit'
-
 let g:which_localleader_map = {}
 
 let g:which_localleader_map.t = {
@@ -154,15 +121,6 @@ let g:which_wikilist_upper_map['*'] = 'change_list_*'
 let g:which_wikilist_upper_map['-'] = 'change_list_-'
 let g:which_wikilist_upper_map['1'] = 'change_list_num'
 
-" Terminal
-nnoremap <Space>x <Cmd>call OpenTerminal()<CR>
-
-nnoremap <Leader>Vc <Cmd>call <SID>ToggleCocErrorCode()<CR>
-nnoremap <Leader>VC <Cmd>call <SID>ToggleCocErrorCode()<CR>
-nnoremap <Leader>Vm <Cmd>MarkdownPreview<CR>
-nnoremap <Leader>VM <Cmd>MarkdownPreview<CR>
-nnoremap <Leader>Vh <Cmd>call SyntaxAttr()<CR>
-nnoremap <Leader>VH <Cmd>call <SID>QuerySyntaxStack()<CR>
 nnoremap <Leader>Va ga
 nnoremap <Leader>VA ga
 vnoremap <Leader>Va y:call <SID>EchoFormatsAndChar(@0)<CR>
@@ -175,26 +133,6 @@ nnoremap <Leader>VS <Cmd>terminal tokei<CR>
 " ===
 nnoremap <Leader>nt :tabnew %<CR>
 nnoremap <Leader>nx :read !figlet<Space>
-
-" ===
-" === Change settings / Commands
-" ===
-nnoremap <Leader>cL <Cmd>call <SID>ToggleEquationFlushedLeft()<CR>
-nnoremap <Leader>cP <Cmd>call <SID>ToggleFZFPreview()<CR>
-nnoremap <Leader>cs <Cmd>CocCommand cSpell.toggleEnableSpellChecker<CR>
-nnoremap <Leader>cl <Cmd>call <SID>ToggleCodeLens()<CR>
-nnoremap <Leader>cb <Cmd>call <SID>ToggleGitBlame()<CR>
-nnoremap <Leader>cp <Cmd>call <SID>ChangeBuildProfile()<CR>
-" enter and exit insert mode to update diagnostics
-nnoremap <Leader>ca :<C-u>call <SID>ChangeDiagnosticLevel()<CR>i<Esc>
-nnoremap <Leader>cg <Cmd>CocCommand git.toggleGutters<CR>
-nnoremap <Leader>ci <Cmd>IndentBlanklineToggle<CR>
-nnoremap <Leader>cd <Cmd>lcd %:p:h<CR>
-nnoremap <Leader>cD <Cmd>call <SID>ToggleCocDiagnostic()<CR>
-" Search coc commands
-nnoremap <Leader>cc <Cmd>Telescope coc commands<CR>
-" Search vim commands
-nnoremap <Leader>cv <Cmd>lua require('telescope.builtin').commands()<CR>
 
 " ===
 " === Vimwiki
@@ -218,88 +156,6 @@ let g:table_mode_map_prefix = '<LocalLeader>t'
 let g:table_mode_tableize_d_map = '<LocalLeader>ta'
 nnoremap <LocalLeader>tm <Cmd>TableModeToggle<CR>
 
-" ===
-" === Yank
-" ===
-nnoremap <Leader>yd <Cmd>call <SID>YankDiagnosticCodes()<CR>
-nnoremap <Leader>yp <Cmd>let @+=expand('%:p')<CR>
-
-nnoremap <Leader><C-t> <Cmd>call OpenTerminal('vit')<CR>
-
-" ===
-" === Functions
-" ===
-
-" Coc
-function! s:ToggleCocErrorCode() abort
-  if coc#util#get_config('diagnostic')['format'] ==# "%message\n[%source]"
-    call coc#config('diagnostic.format', "%message\n[%source:%code]")
-  else
-    call coc#config('diagnostic.format', "%message\n[%source]")
-  endif
-endfunction
-
-function! s:ChangeDiagnosticLevel() abort
-  if coc#util#get_config('diagnostic')['level'] ==# 'warning'
-    call coc#config('diagnostic.level', 'hint')
-  else
-    call coc#config('diagnostic.level', 'warning')
-  endif
-endfunction
-
-" Markdown-Preview
-function! s:ToggleEquationFlushedLeft() abort
-  if exists("g:mkdp_preview_options['katex']['fleqn']")
-    if g:mkdp_preview_options['katex']['fleqn'] == 1
-      let g:mkdp_preview_options['katex']['fleqn'] = 0
-    else
-      let g:mkdp_preview_options['katex']['fleqn'] = 1
-    endif
-  else
-    let g:mkdp_preview_options['katex'] = {'fleqn': 1}
-  endif
-endfunction
-
-function! s:ToggleCodeLens() abort
-  if coc#util#get_config('codeLens')['enable']
-    call coc#config('codeLens.enable', 0)
-  else
-    call coc#config('codeLens.enable', 1)
-  endif
-  if &filetype ==# 'rust'
-    execute 'CocCommand rust-analyzer.toggleInlayHints'
-  endif
-endfunction
-
-function! s:ToggleGitBlame() abort
-  if coc#util#get_config('git')['addGBlameToVirtualText']
-    call coc#config('git.addGBlameToVirtualText', 0)
-  else
-    call coc#config('git.addGBlameToVirtualText', 1)
-  endif
-endfunction
-
-function! s:ChangeBuildProfile() abort
-  if g:asynctasks_profile ==# 'debug'
-    execute 'AsyncTaskProfile release'
-  elseif g:asynctasks_profile ==# 'release'
-    execute 'AsyncTaskProfile release-debug'
-  elseif g:asynctasks_profile ==# 'release-debug'
-    execute 'AsyncTaskProfile debug'
-  else
-    echo 'Unknown current profile!'
-  endif
-endfunction
-
-function! s:ToggleCocDiagnostic() abort
-  if  get(b:, 'coc_diagnostic_disable', 0)
-    let b:coc_diagnostic_disable = 0
-  else
-    let b:coc_diagnostic_disable = 1
-  endif
-  edit
-endfunction
-
 " echo different formats and the corresponding char for a given number
 function! s:EchoFormatsAndChar(num) abort
   let l:input_num = a:num
@@ -316,57 +172,4 @@ function! s:EchoFormatsAndChar(num) abort
   endif
   let @" = nr2char(l:output_num)
   echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
-endfunction
-
-function s:YankDiagnosticCodes() abort
-  let codes = join(s:GetDiagnosticCodes())
-  let @@ = codes
-  let @+ = codes
-endfunction
-
-function! s:GetDiagnosticCodes() abort
-  let coc_diagnostics = CocAction('diagnosticList')
-  let current_line = line('.')
-  let current_file_path = expand('%:p')
-  let codes = []
-  for diagnostic in coc_diagnostics
-    if diagnostic.file ==# current_file_path && current_line == diagnostic.lnum
-    \   && diagnostic.location.range.start.character < col('.')
-    \   && col('.') <= diagnostic.location.range.end.character
-      call add(codes, diagnostic.code)
-    endif
-  endfor
-  return codes
-endfunction
-
-function! s:QuerySyntaxStack() abort
-  for id in synstack(line('.'), col('.'))
-    echo synIDattr(id, 'name')
-  endfor
-endfunction
-
-function! OpenTerminal(...) abort
-  let command_name = a:0 > 0 ? a:1 : $SHELL
-  let shell_buffer = filter(range(1, bufnr('$')),
-  \   "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# '" . command_name . "'")
-  if empty(shell_buffer)
-    tabnew
-    let g:shell_tab_num = tabpagenr()
-    if a:0 > 0
-      execute 'terminal' command_name
-    else
-      terminal
-    endif
-    let g:shell_channel_id = &channel
-    set nobuflisted
-    startinsert
-  else
-    execute g:shell_tab_num . 'tabnext'
-    if command_name ==# 'lazygit'
-      call chansend(g:shell_channel_id, "\<CR>")
-    endif
-    if command_name !=# $SHELL
-      startinsert
-    endif
-  endif
 endfunction

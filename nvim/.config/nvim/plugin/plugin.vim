@@ -14,30 +14,6 @@ let g:rainbow_conf = {
 \ }
 
 " ===
-" === Markdown
-" ===
-" vim-markdown
-let g:vim_markdown_math = 1
-let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_new_list_item_indent = 0
-" markdown-preview
-let g:mkdp_refresh_slow = 1
-let g:mkdp_auto_close = 0
-let g:mkdp_preview_options = {
-\   'mkit': {},
-\   'katex': {'fleqn': 1},
-\   'uml': {},
-\   'maid': {},
-\   'disable_sync_scroll': 0,
-\   'sync_scroll_type': 'middle',
-\   'hide_yaml_meta': 1,
-\   'sequence_diagrams': {},
-\   'flowchart_diagrams': {}
-\ }
-let g:mkdp_markdown_css = $HOME.'/dotfiles/custom_css/markdown/solarized-light.css'
-let g:mkdp_highlight_css = $HOME.'/dotfiles/custom_css/highlight/solarized-light.css'
-
-" ===
 " === indent_blankline
 " ===
 let g:indent_blankline_char = '│'

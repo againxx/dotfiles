@@ -11,14 +11,27 @@ vim.g.asynctasks_confirm = 0
 vim.g.asynctasks_term_pos = 'tab'
 vim.g.asynctasks_term_reuse = 1
 
+local change_build_profile = function()
+  local profiles = { 'debug', 'release', 'release-debug' }
+  for i, v in ipairs(profiles) do
+    if v == vim.g.asynctasks_profile then
+      vim.g.asynctasks_profile = i + 1 <= #profiles and profiles[i + 1] or profiles[1]
+    end
+  end
+  vim.cmd [[echohl MoreMsg | echo 'g:asynctasks_profile' | echohl None]]
+end
+
 local wk = require('which-key')
 wk.register({
-  name = '+refactor/run-tasks',
-  r = { '<cmd>cclose<bar>AsyncTask file-run<cr>', 'Run current file' },
-  b = { '<cmd>AsyncTask project-build<cr>', 'Build whole project' },
-  B = { '<cmd>AsyncTask file-build<cr>', 'Build current file' },
-  p = { '<cmd>AsyncTask project-run<cr>', 'Run whole file' },
-  i = { '<cmd>AsyncTask project-init<cr>', 'Initialize project' },
-  c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
-  l = { require('telescope_config').asynctasks, 'List available tasks' },
-}, { prefix = '<leader>r' })
+  r = {
+    name = '+refactor/run-tasks',
+    r = { '<cmd>cclose<bar>AsyncTask file-run<cr>', 'Run current file' },
+    b = { '<cmd>AsyncTask project-build<cr>', 'Build whole project' },
+    B = { '<cmd>AsyncTask file-build<cr>', 'Build current file' },
+    p = { '<cmd>AsyncTask project-run<cr>', 'Run whole file' },
+    i = { '<cmd>AsyncTask project-init<cr>', 'Initialize project' },
+    c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
+    l = { require('telescope_config').asynctasks, 'List available tasks' },
+  },
+  cp = { change_build_profile, 'Change build profile' }
+}, { prefix = '<leader>' })
