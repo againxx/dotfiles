@@ -7,29 +7,15 @@ if [[ ! -x "$(command -v stow)" ]]; then
     exit 1
 fi
 
-mkdir -p ~/.vim/after
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/zsh
 mkdir -p ~/Documents/tasks
 
-if [[ ! -e ~/.vim/autoload/plug.vim ]]; then
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-ln -sf "$dotfiles_dir/vim/vimrc/.vimrc" ~/
-ln -sf "$dotfiles_dir/vim/plugin" ~/.vim/after/
-ln -sf "$dotfiles_dir/vim/autoload" ~/.vim/after/
-ln -sf "$dotfiles_dir/vim/ftplugin" ~/.vim/after/
-ln -sf "$dotfiles_dir/vim/syntax" ~/.vim/after/
-ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.vim/coc-settings.json
-ln -sf "$dotfiles_dir/vim/vimrc/coc-settings.json" ~/.config/nvim/coc-settings.json
-ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.vim/tasks.ini
-ln -sf "$dotfiles_dir/vim/asynctasks/global_tasks.ini" ~/.config/nvim/tasks.ini
 ln -sf "$dotfiles_dir/.bashrc" ~/
 ln -sf "$dotfiles_dir/.inputrc" ~/
 ln -sf "$dotfiles_dir/.editrc" ~/
 
+stow --target="$HOME" nvim/
 stow --target="$HOME" zsh/
 stow --target="$HOME" tmux/
 stow --target="$HOME" git/

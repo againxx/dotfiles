@@ -386,6 +386,18 @@
             "url": "https://puremourning.github.io/vimspector/schema/gadgets.schema.json"
         }
     ],
+    "Lua": {
+        "workspace.library": {
+            "/usr/share/nvim/runtime/lua": true,
+            "/usr/share/nvim/runtime/lua/vim": true,
+            "/usr/share/nvim/runtime/lua/vim/lsp": true
+        },
+        "diagnostics": {
+            "globals": [
+                "vim"
+            ]
+        }
+    },
     "languageserver": {
         "asm-lsp": {
             "command": "asm-lsp",
