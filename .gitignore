@@ -4,3 +4,4 @@ __pycache__/
 .zcompdump
 .zhistory
 .zim/
+packer_compiled.*
