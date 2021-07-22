@@ -35,7 +35,7 @@ wk.register({
     p = { '<cmd>AsyncTask project-run<cr>', 'Run whole file' },
     i = { '<cmd>AsyncTask project-init<cr>', 'Initialize project' },
     c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
-    l = { require('xx.telescope').asynctasks, 'List available tasks' },
   },
-  cp = { change_build_profile, 'Change build profile' }
+  cp = { change_build_profile, 'Change build profile' },
+  lr = { require('xx.telescope').asynctasks, 'List available tasks' },
 }, { prefix = '<leader>' })

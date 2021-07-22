@@ -71,13 +71,25 @@ return require('packer').startup({function(use)
   use 'nvim-telescope/telescope-fzy-native.nvim'
   use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
-  use 'fhill2/telescope-ultisnips.nvim'
-  use 'bi0ha2ard/telescope-ros.nvim'
+  use {
+    'fhill2/telescope-ultisnips.nvim',
+    keys = '<leader>ls',
+    config = function()
+      require('telescope').load_extension('ultisnips')
+    end
+  }
+  use {
+    'bi0ha2ard/telescope-ros.nvim',
+    keys = '<leader>ls',
+    config = function()
+      require('telescope').load_extension('ros')
+    end
+  }
   use {
     "nvim-telescope/telescope-frecency.nvim",
     requires = 'tami5/sql.nvim',
     config = function()
-      require"telescope".load_extension("frecency")
+      require('telescope').load_extension('frecency')
     end
   }
 
@@ -203,6 +215,13 @@ return require('packer').startup({function(use)
   use 'kana/vim-textobj-user'
   -- use 'againxx/vim-textobj-underscore'
   use 'Julian/vim-textobj-variable-segment'
+
+  -- ===
+  -- === ROS
+  -- ===
+  if os.getenv('ROS_ROOT') then
+    use'taketwo/vim-ros'
+  end
 
   -- ===
   -- === Utility

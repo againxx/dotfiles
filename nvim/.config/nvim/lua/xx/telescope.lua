@@ -27,7 +27,13 @@ require('telescope').setup {
       use_highlighter = false,
     },
     frecency = {
-      ignore_patterns = { "*.git/*", "*/tmp/*" },
+      ignore_patterns = {
+        "*.git/*",
+        "*/tmp/*",
+        "*/build/*",
+        "*/devel/*",
+        "*.cache/*"
+      },
       workspaces = {
         ['nvim']    = os.getenv('HOME') .. '/.config/nvim',
         ['scanbot'] = os.getenv('HOME') .. '/Projects/scanbot',
@@ -238,6 +244,16 @@ function M.grep_last_search(opts)
   opts.search = register
 
   require('telescope.builtin').grep_string(opts)
+end
+
+function M.ultisnips()
+  require('telescope').extensions.ultisnips.ultisnips {
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.6,
+      width = 0.5,
+    },
+  }
 end
 
 return M

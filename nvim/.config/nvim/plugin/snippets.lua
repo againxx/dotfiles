@@ -12,3 +12,12 @@ vim.g.coc_snippet_prev = '<M-k>'
 vim.g.UltiSnipsJumpForwardTrigger = '<M-j>'
 vim.g.UltiSnipsJumpBackwardTrigger = '<M-k>'
 vim.g.UltiSnipsListSnippets = '<M-l>'
+
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
+wk.register({
+  ['<leader>ls'] = { require('xx.telescope').ultisnips, 'List available snippets' },
+})

@@ -50,7 +50,7 @@ wk.register({
   },
   c = {
     name = '+change/command',
-    c = { '<cmd>lcd %:p:h<cr>', 'Change window directory' },
+    d = { '<cmd>lcd %:p:h<cr>', 'Change window directory' },
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
   },
   yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
