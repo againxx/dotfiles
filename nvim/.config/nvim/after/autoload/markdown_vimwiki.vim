@@ -44,6 +44,10 @@ function markdown_vimwiki#SetCommonConfigs() abort
   \   ['- [ ]', '- [X]']
   \ ]
 
+  " Use w/b to move over chinese ci
+  nmap <silent><buffer> w <Plug>(coc-ci-w)
+  nmap <silent><buffer> b <Plug>(coc-ci-b)
+
   inoremap <buffer> ;w <Esc>/<++><CR>:nohlsearch<CR>"_c4l
   inoremap <buffer> ;e <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l
   inoremap <buffer> ;o <Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>
@@ -75,4 +79,3 @@ function! s:IsAtStartOfLine(mapping)
   let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
   return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
 endfunction
-

@@ -18,6 +18,9 @@ nnoremap ZA <Cmd>qa!<CR>
 " map gus to ~
 nnoremap gus ~
 
+" make cw work like dw
+nmap cw caw
+
 " text object for parameter
 onoremap i, <Cmd>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 " alias r to ], a to >, same as surround.vim

@@ -43,6 +43,11 @@ return require('packer').startup({function(use)
   use 'romgrk/barbar.nvim'
 
   -- ===
+  -- === Start Screen
+  -- ===
+  use 'glepnir/dashboard-nvim'
+
+  -- ===
   -- === Window & Buffer & Keybindings
   -- ===
   use {
@@ -64,9 +69,17 @@ return require('packer').startup({function(use)
   use 'nvim-telescope/telescope.nvim'
   use 'fannheyward/telescope-coc.nvim'
   use 'nvim-telescope/telescope-fzy-native.nvim'
+  use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
   use 'fhill2/telescope-ultisnips.nvim'
   use 'bi0ha2ard/telescope-ros.nvim'
+  use {
+    "nvim-telescope/telescope-frecency.nvim",
+    requires = 'tami5/sql.nvim',
+    config = function()
+      require"telescope".load_extension("frecency")
+    end
+  }
 
   -- ===
   -- === Highlighting

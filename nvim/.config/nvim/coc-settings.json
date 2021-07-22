@@ -12,6 +12,7 @@
     "coc.source.omni.filetypes": [
         "VimspectorPrompt"
     ],
+    "session.directory": "~/.cache/vim/session",
     "suggest.noselect": false,
     "suggest.maxCompleteItemCount": 50,
     "suggest.minTriggerInputLength": 2,
@@ -59,7 +60,8 @@
     ],
     "highlight.document.enable": true,
     "highlight.disableLanguages": [
-        "vimwiki"
+        "vimwiki",
+        "dashboard"
     ],
     "pairs.disableLanguages": ["TelescopePrompt"],
     "snippets.priority": 100,

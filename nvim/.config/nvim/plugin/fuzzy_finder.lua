@@ -1,5 +1,5 @@
 local success, wk = pcall(require, 'which-key')
-success = success and pcall(require, 'telescope')
+success = success and pcall(require, 'telescope.builtin')
 if not success then
   return
 end
@@ -14,6 +14,7 @@ wk.register({
     o = { require('xx.telescope').oldfiles, 'Recent files' },
     e = { require('xx.telescope').file_browser, 'File browser' },
     m = { require('xx.telescope').man_pages, 'Man pages' },
+    ['/'] = { require('xx.telescope').grep_last_search, 'Grep last search' },
   },
   l = {
     name = '+list',
@@ -29,7 +30,7 @@ wk.register({
     u = { '<cmd>UndotreeToggle<cr>', 'Undo tree' },
     ['/'] = { require('telescope.builtin').search_history, 'Search history' },
   },
-  p = { require('telescope.builtin').grep_string, 'Grep string' },
+  p = { require('xx.telescope').grep_prompt, 'Grep string with prompt' },
   s = {
     name = '+symbol/session/source/syntax',
     s = { require('xx.telescope').document_symbols, 'Document symbols' },
@@ -37,6 +38,7 @@ wk.register({
     w = { '<cmd>CocCommand session.save<cr>', 'Save session' },
     r = { '<cmd>CocCommand session.load<cr>', 'Load session' },
     v = { '<cmd>source $MYVIMRC<Bar>nohlsearch<cr>', 'Source VIMRC' },
+    c = { '<cmd>source %<cr>', 'Source current file' },
   },
   c = {
     c = { '<cmd>Telescope coc commands<cr>', 'Coc commands' },
@@ -46,7 +48,7 @@ wk.register({
 
 wk.register({
   ['<C-_>'] = {function() require('xx.telescope').current_buffer_fuzzy_find(vim.fn.expand('<cword>')) end, "Current buffer fuzzy find"},
-  ['<C-p>'] = {require('telescope.builtin').live_grep, "Live grep"},
+  ['<C-p>'] = {require('telescope').extensions.fzf_writer.staged_grep, "Live grep"},
 })
 
 wk.register({

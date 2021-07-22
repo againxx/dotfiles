@@ -27,10 +27,6 @@ vim.g.coc_global_extensions = {
   'coc-lua'
 }
 
--- Use w/b to move over chinese ci
-vim.cmd [[nmap <silent> w <Plug>(coc-ci-w)]]
-vim.cmd [[nmap <silent> b <Plug>(coc-ci-b)]]
-
 -- functions
 local toggle_error_code = function()
   if vim.fn['coc#util#get_config']('diagnostic').format == '%message\n[%source]' then

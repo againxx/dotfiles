@@ -1,26 +1,43 @@
 if not pcall(require, 'telescope') then
-   return
+  return
 end
 
 require('telescope').setup {
-    defaults = {
-        prompt_prefix = ' ',
-        selection_caret = '❯ ',
-        dynamic_preview_title = true,
-        mappings = {
-            i = {
-                ['<C-j>'] = 'move_selection_next',
-                ['<C-k>'] = 'move_selection_previous',
-                ['<Esc>'] = 'close',
-                ['<C-o>'] = { '<Cmd>stopinsert<CR>', type = 'command' }
-            }
-        },
-        layout_config = {
-            horizontal = {
-                preview_width = 0.65
-            }
-        },
+  defaults = {
+    prompt_prefix = ' ',
+    selection_caret = '❯ ',
+    dynamic_preview_title = true,
+    mappings = {
+      i = {
+        ['<C-j>'] = 'move_selection_next',
+        ['<C-k>'] = 'move_selection_previous',
+        ['<Esc>'] = 'close',
+        ['<C-o>'] = { '<Cmd>stopinsert<CR>', type = 'command' }
+      }
+    },
+    layout_config = {
+      horizontal = {
+        preview_width = 0.65
+      }
+    },
+  },
+  extensions = {
+    fzf_writer = {
+      minimum_grep_characters = 3,
+      use_highlighter = false,
+    },
+    frecency = {
+      ignore_patterns = { "*.git/*", "*/tmp/*" },
+      workspaces = {
+        ['nvim']    = os.getenv('HOME') .. '/.config/nvim',
+        ['scanbot'] = os.getenv('HOME') .. '/Projects/scanbot',
+        ['co_scan'] = os.getenv('HOME') .. '/Projects/sem_co_scan_ws',
+        ['habitat'] = os.getenv('HOME') .. '/Programming_Learning/habitat_learning',
+        ['note']    = os.getenv('HOME') .. '/Documents/Notes',
+        ['wiki']    = os.getenv('HOME') .. '/Documents/Vimwiki/wiki',
+      }
     }
+  }
 }
 
 require('telescope').load_extension('coc')
@@ -31,91 +48,88 @@ local actions = require('telescope.actions')
 
 local M = {}
 function M.edit_vimrc()
-    require('telescope.builtin').find_files {
-        cwd = '~/.config/nvim',
-        hidden = true,
-        path_display = {
-            shorten = 2,
-        },
-        prompt_title = 'Vim Configs',
-        layout_strategy = 'horizontal',
-        layout_config = {
-            height = 20,
-            preview_width = 0.75,
-        },
-    }
+  require('telescope.builtin').find_files {
+    cwd = '~/.config/nvim',
+    hidden = true,
+    path_display = {
+      shorten = 2,
+    },
+    prompt_title = 'Vim Configs',
+    layout_strategy = 'horizontal',
+    layout_config = {
+      height = 20,
+      preview_width = 0.75,
+    },
+  }
 end
 
 function M.edit_vim_plugins()
-    require('telescope.builtin').find_files {
-        cwd = vim.fn.stdpath('data')..'/site/pack/packer/',
-        hidden = true,
-        path_display = {
-            shorten = 2,
-        },
-        prompt_title = 'Vim Plugins',
-        layout_strategy = 'horizontal',
-        layout_config = {
-            height = 20,
-            preview_width = 0.75,
-        },
-    }
+  require('telescope.builtin').find_files {
+    cwd = vim.fn.stdpath('data')..'/site/pack/packer/',
+    hidden = true,
+    prompt_title = 'Vim Plugins',
+    layout_strategy = 'horizontal',
+    layout_config = {
+      height = 30,
+      preview_width = 0.65,
+    },
+  }
 end
 
 function M.edit_dotfiles()
-    require('telescope.builtin').git_files {
-        cwd = '~/dotfiles',
-        prompt_title = 'Dotfiles',
-        layout_strategy = 'horizontal',
-        layout_config = {
-            preview_width = 0.65,
-        },
-    }
+  require('telescope.builtin').git_files {
+    cwd = '~/dotfiles',
+    prompt_title = 'Dotfiles',
+    layout_strategy = 'horizontal',
+    layout_config = {
+      preview_width = 0.65,
+    },
+  }
 end
 
 function M.edit_dictionaries()
-    local opts = themes.get_dropdown {
-        cwd = '~/dotfiles/vim/cSpell_dictionaries',
-        prompt_title = 'Dictionaries',
-        layout_config = {
-            height = 10,
-        },
-    }
-    require('telescope.builtin').find_files(opts)
+  local opts = themes.get_dropdown {
+    cwd = '~/dotfiles/vim/cSpell_dictionaries',
+    prompt_title = 'Dictionaries',
+    layout_config = {
+      height = 10,
+    },
+  }
+  require('telescope.builtin').find_files(opts)
 end
 
 function M.edit_tmuxp()
-    require('telescope.builtin').find_files {
-        cwd = '~/.config/tmuxp',
-        prompt_title = 'Tmuxp Profiles',
-        layout_strategy = 'horizontal',
-        layout_config = {
-            preview_width = 0.65,
-            height = 20,
-        },
-    }
+  require('telescope.builtin').find_files {
+    cwd = '~/.config/tmuxp',
+    prompt_title = 'Tmuxp Profiles',
+    layout_strategy = 'horizontal',
+    layout_config = {
+      preview_width = 0.65,
+      height = 20,
+    },
+  }
 end
 
 function M.oldfiles()
-    require('telescope.builtin').oldfiles {
-        path_display = {
-            shorten = 2,
-        },
-    }
+  require('telescope').extensions.frecency.frecency {
+    path_display = {
+      shorten = 2,
+    },
+  }
 end
 
 function M.file_browser()
-    require('telescope.builtin').file_browser {
-        sorting_strategy = 'ascending',
-        layout_config = {
-            prompt_position = 'top',
-        },
-        attach_mappings = function (_, map)
-            map('i', '<C-l>', actions.select_default + actions.center)
-            map('n', 'l', actions.select_default + actions.center)
-            return true
-        end
-    }
+  require('telescope.builtin').file_browser {
+    sorting_strategy = 'ascending',
+    layout_config = {
+      prompt_position = 'top',
+    },
+    attach_mappings = function (_, map)
+      map('i', '<C-l>', actions.select_default + actions.center)
+      map('n', 'l', actions.select_default + actions.center)
+      return true
+    end
+  }
 end
 
 function M.man_pages()
@@ -125,54 +139,72 @@ function M.man_pages()
 end
 
 function M.jumplist()
-    require('telescope.builtin').jumplist {
-        layout_strategy = 'vertical',
-        path_display = {
-            shorten = 2,
-        },
-    }
+  require('telescope.builtin').jumplist {
+    layout_strategy = 'vertical',
+    path_display = {
+      shorten = 2,
+    },
+  }
 end
 
 function M.current_buffer_fuzzy_find(current_word)
-    local opts = themes.get_ivy {
-        attach_mappings = function (_, map)
-            map('i', '<C-l>', function ()
-                vim.fn.feedkeys(current_word, 'n')
-            end)
-            return true
-        end
-    }
-    require('telescope.builtin').current_buffer_fuzzy_find(opts)
+  local opts = themes.get_ivy {
+    attach_mappings = function (_, map)
+      map('i', '<C-l>', function ()
+        vim.fn.feedkeys(current_word, 'n')
+      end)
+      return true
+    end
+  }
+  require('telescope.builtin').current_buffer_fuzzy_find(opts)
 end
 
 function M.git_bcommits()
-    require('telescope.builtin').git_bcommits {
-        current_file = vim.fn.expand('%:p')
-    }
+  require('telescope.builtin').git_bcommits {
+    current_file = vim.fn.expand('%:p')
+  }
 end
 
 function M.asynctasks()
-    require('telescope').extensions.asynctasks.all {
-        layout_config = {
-            height = 20,
-        },
-        layout_strategy = 'vertical',
-    }
+  require('telescope').extensions.asynctasks.all {
+    layout_config = {
+      height = 20,
+    },
+    layout_strategy = 'vertical',
+  }
 end
 
 function M.tags()
-    require('telescope.builtin').tags {
-        ctags_file = '.vimwiki_tags',
-    }
+  require('telescope.builtin').tags {
+    ctags_file = '.vimwiki_tags',
+  }
 end
 
 function M.document_symbols()
-    require('telescope').extensions.coc.document_symbols {
-        layout_strategy = 'vertical',
-        layout_config = {
-            preview_height = 0.70,
-        },
-    }
+  require('telescope').extensions.coc.document_symbols {
+    layout_strategy = 'vertical',
+    layout_config = {
+      preview_height = 0.70,
+    },
+  }
+end
+
+function M.workspace_symbols()
+  require('telescope').extensions.coc.workspace_symbols {
+    layout_strategy = 'vertical',
+    layout_config = {
+      preview_height = 0.70,
+    },
+  }
+end
+
+function M.grep_prompt()
+  require('telescope.builtin').grep_string {
+    path_display = {
+      shorten = 1,
+    },
+    search = vim.fn.input "Grep String > ",
+  }
 end
 
 function M.grep_selected()
@@ -194,6 +226,18 @@ function M.grep_selected()
     lines[n_lines] = string.sub(lines[n_lines], 1, ecol)
   end
   require('telescope.builtin').grep_string({search = table.concat(lines, '')})
+end
+
+function M.grep_last_search(opts)
+  opts = opts or {}
+  -- -> Subs out the search things
+  local register = vim.fn.getreg('/'):gsub('\\<', ''):gsub('\\>', ''):gsub('\\C', '')
+
+  opts.path_display = { shorten = 2 }
+  opts.word_match = '-w'
+  opts.search = register
+
+  require('telescope.builtin').grep_string(opts)
 end
 
 return M
