@@ -49,6 +49,9 @@ opt.helplang = 'en'
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 opt.colorcolumn = '99999'
 opt.inccommand = 'nosplit'
+-- FastFold overwrites foldmethod to manual, in order to ensure saved
+-- sessions do no save the default fold method to manual
+opt.sessionoptions:remove('folds')
 
 vim.g.sh_no_error = 1 -- Disable some error highlights for shell script
 vim.g.is_bash = 1 --- Set bash as default shell script language

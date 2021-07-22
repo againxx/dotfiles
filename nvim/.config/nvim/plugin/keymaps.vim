@@ -19,7 +19,7 @@ nnoremap ZA <Cmd>qa!<CR>
 nnoremap gus ~
 
 " make cw work like dw
-nmap cw caw
+nmap cw dwi
 
 " text object for parameter
 onoremap i, <Cmd>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
@@ -35,10 +35,6 @@ vnoremap aa a>
 
 " map gb to reselect previous yank text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Make <C-e> and <C-y> move faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
 
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@
@@ -124,14 +120,6 @@ inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 \   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Scroll floating window up and down
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<C-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 " vimwiki
 map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto

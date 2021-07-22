@@ -117,7 +117,7 @@ return require('packer').startup({function(use)
   use 'haya14busa/incsearch-fuzzy.vim'
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' -- highlight for f & t
-  use 'yuttie/comfortable-motion.vim' -- physically plausible motion
+  use 'karb94/neoscroll.nvim' -- smooth scrolling
 
   -- ===
   -- === Comment & Surround & Parenthsis
@@ -228,7 +228,7 @@ return require('packer').startup({function(use)
   -- ===
   use 'tpope/vim-capslock'
   use 'AndrewRadev/switch.vim'
-  use { 'Konfekt/FastFold', ft = 'python' }
+  use 'Konfekt/FastFold'
   use {
     'mbbill/undotree', cmd = 'UndotreeToggle',
     config = function() require('xx.undotree') end

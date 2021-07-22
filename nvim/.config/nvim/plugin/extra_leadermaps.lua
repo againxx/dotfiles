@@ -7,31 +7,31 @@ local query_syntax_stack = function()
   end
 end
 
--- local tab_open_term = function(cmd)
---   let command_name = a:0 > 0 ? a:1 : $SHELL
---   let shell_buffer = filter(range(1, bufnr('$')),
---   \   "getbufvar(v:val, '&buftype') ==# 'terminal' && bufname(v:val) =~# '" . command_name . "'")
---   if empty(shell_buffer)
---     tabnew
---     let g:shell_tab_num = tabpagenr()
---     if a:0 > 0
---       execute 'terminal' command_name
---     else
---       terminal
---     endif
---     let g:shell_channel_id = &channel
---     set nobuflisted
---     startinsert
---   else
---     execute g:shell_tab_num . 'tabnext'
---     if command_name ==# 'lazygit'
---       call chansend(g:shell_channel_id, "\<CR>")
---     endif
---     if command_name !=# $SHELL
---       startinsert
---     endif
---   endif
--- endfunction
+local tab_open_term = function(cmd)
+  local cmd_name = cmd or os.getenv('SHELL')
+  local cur_bufs = vim.api.nvim_list_bufs()
+  local shell_buf = vim.tbl_filter(function(buf)
+    return vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal'
+      and vim.api.nvim_buf_get_name(buf):find(cmd_name)
+  end, cur_bufs)
+  if #shell_buf == 0 then
+    vim.cmd('tabnew')
+    vim.g.shell_tab_num = vim.api.nvim_get_current_tabpage()
+    if cmd then
+      vim.cmd('terminal ' .. cmd_name)
+    else
+      vim.cmd('terminal')
+    end
+    vim.g.shell_channel_id = vim.bo.channel
+    vim.bo.buflisted = false
+    vim.cmd('startinsert')
+  else
+    vim.cmd(vim.g.shell_tab_num .. 'tabnext')
+    if cmd then
+      vim.cmd('startinsert')
+    end
+  end
+end
 
 local success, wk = pcall(require, 'which-key')
 if not success then
@@ -57,12 +57,8 @@ wk.register({
   s = {
     h = { vim.fn.SyntaxAttr, 'Syntax highlighting group' },
     H = { query_syntax_stack, 'Syntax highlighting stack' },
-    t = { "<cmd>TSHighlightCapturesUnderCursor<cr>", 'TreeSitter highlighting under cursor' },
-  }
+    t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
+  },
+  ['<C-t>'] = { function() tab_open_term('vit') end, 'Open vit in new tab' },
+  x = { function() tab_open_term() end, 'Open terminal in new tab' },
 }, { prefix = '<leader>' })
-
--- nnoremap <Leader><C-t> <Cmd>call OpenTerminal('vit')<CR>
-
--- " Terminal
--- nnoremap <Space>x <Cmd>call OpenTerminal()<CR>
-

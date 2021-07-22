@@ -103,18 +103,6 @@ let g:incsearch#auto_nohlsearch = 1
 " Python-syntax
 let g:python_syntax_space_errors = 0
 
-" Sneak
-" let g:sneak#label = 0
-let g:sneak#f_reset = 0
-let g:sneak#t_reset = 0
-let g:sneak#prompt = '省'
-" immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
-" let g:sneak#s_next = 1
-
-" Quick-scope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-let g:qs_lazy_highlight = 1
-
 " Matchup
 let g:matchup_matchparen_nomode = 'i'
 let g:matchup_matchparen_enabled = 0
@@ -140,14 +128,11 @@ let g:table_mode_corner = '|'
 " vim-maximizer
 let g:maximizer_set_default_mapping = 0
 
-" comfortable-motion
-let g:comfortable_motion_scroll_down_key = 'j'
-let g:comfortable_motion_scroll_up_key = 'k'
-let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
-
 " jupytext
 let g:jupytext_fmt = 'py:percent'
+
+" FastFold
+let g:fastfold_minlines = 0
 
 " superman
 cabbrev man <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Man" : "man"<CR>
