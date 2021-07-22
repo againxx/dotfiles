@@ -27,29 +27,32 @@ vim.g.coc_global_extensions = {
   'coc-lua'
 }
 
+local fn = vim.fn
+local api = vim.api
+
 -- functions
 local toggle_error_code = function()
-  if vim.fn['coc#util#get_config']('diagnostic').format == '%message\n[%source]' then
-    vim.fn['coc#config']('diagnostic.format', '%message\n[%source:%code]')
+  if fn['coc#util#get_config']('diagnostic').format == '%message\n[%source]' then
+    fn['coc#config']('diagnostic.format', '%message\n[%source:%code]')
   else
-    vim.fn['coc#config']('diagnostic.format', '%message\n[%source]')
+    fn['coc#config']('diagnostic.format', '%message\n[%source]')
   end
 end
 
 local change_diagnostic_level = function()
-  if vim.fn['coc#util#get_config']('diagnostic').level == 'warning' then
-    vim.fn['coc#config']('diagnostic.level', 'hint')
+  if fn['coc#util#get_config']('diagnostic').level == 'warning' then
+    fn['coc#config']('diagnostic.level', 'hint')
   else
-    vim.fn['coc#config']('diagnostic.level', 'warning')
+    fn['coc#config']('diagnostic.level', 'warning')
   end
-  vim.fn.CocActionAsync('diagnosticRefresh', vim.api.nvim_get_current_buf())
+  fn.CocActionAsync('diagnosticRefresh', api.nvim_get_current_buf())
 end
 
 local toggle_code_lens = function()
-  if vim.fn['coc#util#get_config']('codeLens').enable > 0 then
-    vim.fn['coc#config']('codeLens.enable', 0)
+  if fn['coc#util#get_config']('codeLens').enable > 0 then
+    fn['coc#config']('codeLens.enable', 0)
   else
-    vim.fn['coc#config']('codeLens.enable', 1)
+    fn['coc#config']('codeLens.enable', 1)
   end
   if vim.bo.filetype == 'rust' then
     vim.cmd('CocCommand rust-analyzer.toggleInlayHints')
@@ -57,10 +60,10 @@ local toggle_code_lens = function()
 end
 
 local toggle_git_blame = function()
-  if vim.fn['coc#util#get_config']('git').addGBlameToVirtualText > 0 then
-    vim.fn['coc#config']('git.addGBlameToVirtualText', 0)
+  if fn['coc#util#get_config']('git').addGBlameToVirtualText > 0 then
+    fn['coc#config']('git.addGBlameToVirtualText', 0)
   else
-    vim.fn['coc#config']('git.addGBlameToVirtualText', 1)
+    fn['coc#config']('git.addGBlameToVirtualText', 1)
   end
 end
 
@@ -74,14 +77,14 @@ local toggle_diagnostic = function()
 end
 
 local get_diagnostic_codes = function()
-  local coc_diagnostics = vim.fn.CocAction('diagnosticList')
-  local current_line = vim.api.nvim_get_current_line()
-  local current_file_path = vim.fn.expand('%:p')
+  local coc_diagnostics = fn.CocAction('diagnosticList')
+  local current_line = api.nvim_get_current_line()
+  local current_file_path = fn.expand('%:p')
   local codes = {}
   for _, diagnostic in ipairs(coc_diagnostics) do
     if diagnostic.file == current_file_path and current_line == diagnostic.lnum
-      and diagnostic.location.range.start.character < vim.fn.col('.')
-      and vim.fn.col('.') <= diagnostic.location.range['end'].character then
+      and diagnostic.location.range.start.character < fn.col('.')
+      and fn.col('.') <= diagnostic.location.range['end'].character then
       table.insert(codes, diagnostic.code)
     end
   end
@@ -90,22 +93,9 @@ end
 
 local yank_diagnostic_codes = function()
   local codes = table.concat(get_diagnostic_codes(), ' ')
-  vim.fn.setreg('@', codes)
-  vim.fn.setreg('+', codes)
+  fn.setreg('@', codes)
+  fn.setreg('+', codes)
 end
-
--- Introduce function text object
--- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-vim.cmd([[
-  xmap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap if <Plug>(coc-funcobj-i)
-  omap af <Plug>(coc-funcobj-a)
-  xmap ic <Plug>(coc-classobj-i)
-  xmap ac <Plug>(coc-classobj-a)
-  omap ic <Plug>(coc-classobj-i)
-  omap ac <Plug>(coc-classobj-a)
-]])
 
 local success, wk = pcall(require, 'which-key')
 if not success then
@@ -173,3 +163,19 @@ wk.register({
     s = { '<cmd>CocCommand cSpell.toggleEnableSpellChecker<cr>', 'Toggle spell checker' }
   }
 }, { prefix = '<leader>' })
+
+-- Introduce function & class text object
+-- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+wk.register({
+  ['if'] = { '<Plug>(coc-funcobj-i)', 'inner function' },
+  af = { '<Plug>(coc-funcobj-a)', 'a function (with function signature)' },
+  ic = { '<Plug>(coc-classobj-i)', 'inner class' },
+  ac = { '<Plug>(coc-classobj-a)', 'a class (with class name)' },
+}, { mode = 'x' })
+
+wk.register({
+  ['if'] = { '<Plug>(coc-funcobj-i)', 'inner function' },
+  af = { '<Plug>(coc-funcobj-a)', 'a function (with function signature)' },
+  ic = { '<Plug>(coc-classobj-i)', 'inner class' },
+  ac = { '<Plug>(coc-classobj-a)', 'a class (with class name)' },
+}, { mode = 'o' })
