@@ -48,7 +48,7 @@ return require('packer').startup({function(use)
   use {
     'folke/which-key.nvim',
     config = function()
-      require("which-key").setup {
+      require('which-key').setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
@@ -152,7 +152,7 @@ return require('packer').startup({function(use)
       { 'junegunn/fzf', ft = 'vimwiki' },
       { 'junegunn/fzf.vim', ft = 'vimwiki' },
     },
-    config = function() require'fzf' end
+    config = function() require('xx.fzf') end
   }
 
   -- ===
@@ -199,7 +199,7 @@ return require('packer').startup({function(use)
   use { 'Konfekt/FastFold', ft = 'python' }
   use {
     'mbbill/undotree', cmd = 'UndotreeToggle',
-    config = function() require'undotree' end
+    config = function() require('xx.undotree') end
   }
   use 'lambdalisue/suda.vim'
   use 'lukas-reineke/indent-blankline.nvim'

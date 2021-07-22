@@ -1,9 +1,27 @@
+vim.g.vimspector_sign_priority = {
+  vimspectorBP = 40,
+  vimspectorBPCond = 40,
+  vimspectorBPDisabled = 40,
+  vimspectorPC = 999,
+  vimspectorPCBP = 999,
+}
+vim.cmd[[
+  sign define vimspectorBP     text=\ ● texthl=VimspectorBP
+  sign define vimspectorBPCond text=\ ◐ texthl=VimspectorBPCond
+  sign define vimspectorPC     text=\  texthl=VimspectorPC linehl=CursorLine
+  sign define vimspectorPCBP   text=●▶  texthl=VimspectorPCBP linehl=CursorLine
+]]
+
 local goto_and_maximize = function(win_id)
   vim.fn.win_gotoid(win_id)
   vim.api.nvim_command('MaximizerToggle!')
 end
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
 wk.register({
   name = "+debugger/diagnostic",
   d = { '<cmd>call vimspector#Launch()<cr>', 'Start' },
@@ -23,17 +41,3 @@ wk.register({
   i = { '<Plug>VimspectorToggleConditionalBreakpoint', 'Toggle conditional breakpoint' },
   [';'] = { '<Plug>VimspectorToggleBreakpoint', 'Toggle breakpoint' },
 }, { prefix = '<leader>d' })
-
-vim.g.vimspector_sign_priority = {
-  vimspectorBP = 40,
-  vimspectorBPCond = 40,
-  vimspectorBPDisabled = 40,
-  vimspectorPC = 999,
-  vimspectorPCBP = 999,
-}
-vim.cmd[[
-  sign define vimspectorBP     text=\ ● texthl=VimspectorBP
-  sign define vimspectorBPCond text=\ ◐ texthl=VimspectorBPCond
-  sign define vimspectorPC     text=\  texthl=VimspectorPC linehl=CursorLine
-  sign define vimspectorPCBP   text=●▶  texthl=VimspectorPCBP linehl=CursorLine
-]]

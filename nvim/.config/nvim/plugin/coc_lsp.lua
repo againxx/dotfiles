@@ -98,7 +98,23 @@ local yank_diagnostic_codes = function()
   vim.fn.setreg('+', codes)
 end
 
-local wk = require('which-key')
+-- Introduce function text object
+-- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+vim.cmd([[
+  xmap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap if <Plug>(coc-funcobj-i)
+  omap af <Plug>(coc-funcobj-a)
+  xmap ic <Plug>(coc-classobj-i)
+  xmap ac <Plug>(coc-classobj-a)
+  omap ic <Plug>(coc-classobj-i)
+  omap ac <Plug>(coc-classobj-a)
+]])
+
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
 
 -- GoTo code navigation.
 wk.register({
@@ -161,16 +177,3 @@ wk.register({
     s = { '<cmd>CocCommand cSpell.toggleEnableSpellChecker<cr>', 'Toggle spell checker' }
   }
 }, { prefix = '<leader>' })
-
--- Introduce function text object
--- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-vim.cmd([[
-  xmap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap if <Plug>(coc-funcobj-i)
-  omap af <Plug>(coc-funcobj-a)
-  xmap ic <Plug>(coc-classobj-i)
-  xmap ac <Plug>(coc-classobj-a)
-  omap ic <Plug>(coc-classobj-i)
-  omap ac <Plug>(coc-classobj-a)
-]])

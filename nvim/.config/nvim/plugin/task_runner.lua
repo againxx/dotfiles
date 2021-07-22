@@ -21,7 +21,11 @@ local change_build_profile = function()
   vim.cmd [[echohl MoreMsg | echo 'g:asynctasks_profile' | echohl None]]
 end
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
 wk.register({
   r = {
     name = '+refactor/run-tasks',
@@ -31,7 +35,7 @@ wk.register({
     p = { '<cmd>AsyncTask project-run<cr>', 'Run whole file' },
     i = { '<cmd>AsyncTask project-init<cr>', 'Initialize project' },
     c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
-    l = { require('telescope_config').asynctasks, 'List available tasks' },
+    l = { require('xx.telescope').asynctasks, 'List available tasks' },
   },
   cp = { change_build_profile, 'Change build profile' }
 }, { prefix = '<leader>' })

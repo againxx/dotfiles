@@ -1,6 +1,6 @@
 vim.g.coc_explorer_global_presets = {
   vimrc = {
-    ['root-uri'] = '~/dotfiles/vim/vimrc',
+    ['root-uri'] = '~/.config/nvim',
     sources = {{ name = 'file', expand = true }}
   },
   dotfiles = {
@@ -33,7 +33,10 @@ local open_coc_explorer = function(preset)
   end
 end
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
 
 wk.register({
   e = {
@@ -41,18 +44,18 @@ wk.register({
     s = { '<cmd>UltiSnipsEdit!<cr>', 'Edit snippets' },
     r = { '<cmd>AsyncTaskEdit<cr>', 'Edit local tasks' },
     R = { '<cmd>AsyncTaskEdit!<cr>', 'Edit global tasks' },
-    t = { require('telescope_config').edit_tmuxp, 'Edit tmuxp configs' },
+    t = { require('xx.telescope').edit_tmuxp, 'Edit tmuxp configs' },
     T = { function() open_coc_explorer('tmuxp') end, 'Explore tmuxp config folder' },
     c = { function() open_coc_explorer(vim.fn.expand('%:p:h')) end, 'Explore current folder' },
     C = { '<cmd>CocLocalConfig<cr>', 'Edit coc local config' },
     m = { ":<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-f><left>", 'Edit macro / register' },
     e = { function() open_coc_explorer() end, 'Explore current git repo' },
-    p = { require('telescope_config').edit_vim_plugins, 'Edit nvim plugin files' },
-    v = { require('telescope_config').edit_vimrc, 'Edit nvim config' },
+    p = { require('xx.telescope').edit_vim_plugins, 'Edit nvim plugin files' },
+    v = { require('xx.telescope').edit_vimrc, 'Edit nvim config' },
     V = { function() open_coc_explorer('vimrc') end, 'Explore nvim config folder' },
-    d = { require('telescope_config').edit_dotfiles, 'Edit dotfiles' },
+    d = { require('xx.telescope').edit_dotfiles, 'Edit dotfiles' },
     D = { function() open_coc_explorer('dotfiles') end, 'Explore dotfile folder' },
-    w = { require('telescope_config').edit_dictionaries, 'Edit cSpell dictionaries' },
+    w = { require('xx.telescope').edit_dictionaries, 'Edit cSpell dictionaries' },
     W = { function() open_coc_explorer('dictionaries') end, 'Explore cSpell dictionary folder' },
   },
   ra = { '<cmd>RnvimrToggle<cr>', 'Ranger' }

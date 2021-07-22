@@ -35,7 +35,7 @@ nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
 nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
 nmap <buffer> <Leader>wD <Plug>VimwikiDeleteFile
 nmap <buffer> <Leader>w<Leader>d <Plug>VimwikiDiaryGenerateLinks
-nnoremap <buffer> <Leader>tg  <Cmd>lua require('telescope_config').tags()<CR>
+nnoremap <buffer> <Leader>tg  <Cmd>lua require('xx.telescope').tags()<CR>
 nnoremap <buffer> <Leader>ta  <Cmd>TaskWikiAnnotate<CR>
 nnoremap <buffer> <Leader>tp  <Cmd>TaskWikiChooseProject<CR>
 nnoremap <buffer> <Leader>tt  <Cmd>TaskWikiChooseTag<CR>

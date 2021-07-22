@@ -1,6 +1,5 @@
 local fn = vim.fn
 local g = vim.g
-local wk = require('which-key')
 
 g['test#python#runner'] = 'pytest'
 g.test_project_root_pattern = { '.vim', '.git' }
@@ -15,6 +14,11 @@ local test_root_dir_exec = function(cmd)
     end
   end
   vim.cmd(cmd)
+end
+
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
 end
 
 wk.register({

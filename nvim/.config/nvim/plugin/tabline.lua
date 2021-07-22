@@ -27,7 +27,11 @@ local close_qf_first = function ()
   end
 end
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
 wk.register({
   ['[b'] = { '<cmd>BufferGoto 1<cr>', 'Go to first buffer' },
   [']b'] = { '<cmd>BufferLast<cr>', 'Go to last buffer' },

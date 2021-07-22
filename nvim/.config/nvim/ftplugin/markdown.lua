@@ -1,4 +1,4 @@
-require('markdown')
+require('xx.markdown')
 
 vim.b.coc_pairs_disabled = { '<' }
 vim.fn['markdown_vimwiki#SetCommonConfigs']()
@@ -17,7 +17,11 @@ local toggle_left_equation = function()
   vim.g.mkdp_preview_options = options
 end
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
 wk.register({
   ['<leader>cL'] = { toggle_left_equation, 'Toggle left equation' },
   ['<leader>op'] = { '<cmd>MarkdownPreview<cr>', 'Open markdown preview' },

@@ -33,7 +33,10 @@ end
 --   endif
 -- endfunction
 
-local wk = require('which-key')
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
 
 wk.register({
   q = {

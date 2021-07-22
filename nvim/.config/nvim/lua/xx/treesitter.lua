@@ -1,3 +1,7 @@
+if not pcall(require, 'treesitter') then
+  return
+end
+
 vim.opt.indentexpr = 'nvim_treesitter#indent()'
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
