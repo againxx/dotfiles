@@ -1,39 +1,27 @@
-setlocal foldlevel=1
-setlocal nowrap
-let b:coc_pairs_disabled = ['[', '<']
-" Use vimwiki's folding method instead vim-markdown's
-let g:vim_markdown_folding_disabled = 1
 if !exists('b:key_delay')
   let b:key_delay = 20
 endif
 
 call markdown_vimwiki#SetCommonConfigs()
 
-lua require('plenary.filetype').add_file('extra_filetypes')
-
 augroup vimwiki_special
   autocmd!
-  autocmd User vim-which-key call which_key#register('gl', 'g:which_wikilist_lower_map')
-  autocmd User vim-which-key call which_key#register('gL', 'g:which_wikilist_upper_map')
   " autocmd User visual_multi_start call s:VMStart()
   autocmd User visual_multi_exit  call s:VMExit()
 augroup END
 
-if has('nvim')
-  nmap <buffer> <M-i> <Plug>VimwikiNextLink
-  nmap <buffer> <M-o> <Plug>VimwikiPrevLink
-  silent! nunmap <buffer> <Tab>
-  silent! nunmap <buffer> <S-Tab>
-endif
-
+nmap <buffer> <M-i> <Plug>VimwikiNextLink
+nmap <buffer> <M-o> <Plug>VimwikiPrevLink
+silent! nunmap <buffer> <Tab>
+silent! nunmap <buffer> <S-Tab>
 " unmap automatic list adding
 silent! nunmap <buffer> o
 silent! nunmap <buffer> O
+
 nnoremap <buffer> gl? <Cmd>WhichKey 'gl'<CR>
 nnoremap <buffer> gL? <Cmd>WhichKey 'gL'<CR>
 nmap <buffer> glt <Plug>VimwikiRemoveSingleCB
 nmap <buffer> gLt <Plug>VimwikiRemoveCBInList
-nmap <buffer> <Leader>wD <Plug>VimwikiDeleteFile
 nmap <buffer> <Leader>w<Leader>d <Plug>VimwikiDiaryGenerateLinks
 nnoremap <buffer> <Leader>tg  <Cmd>lua require('xx.telescope').tags()<CR>
 nnoremap <buffer> <Leader>ta  <Cmd>TaskWikiAnnotate<CR>
@@ -99,7 +87,7 @@ if expand('%:e') ==# 'wiki'
   nmap <buffer> gZ <Plug>ZettelReplaceFileWithLink
 
   if executable('xdotool')
-    nnoremap <buffer> <Leader>bb :<C-u>call <SID>ControlChromePage('ctrl+r')<CR>
+    nnoremap <buffer> <Leader>bl :<C-u>call <SID>ControlChromePage('ctrl+r')<CR>
     nnoremap <buffer> <Leader>bj :<C-u>call <SID>ControlChromePage('Down', v:count1)<CR>
     nnoremap <buffer> <Leader>bk :<C-u>call <SID>ControlChromePage('Up', v:count1)<CR>
     nnoremap <buffer> <Leader>bd :<C-u>call <SID>ControlChromePage('Page_Down', v:count1)<CR>

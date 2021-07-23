@@ -42,22 +42,6 @@ let g:which_leader_map.t = {
 
 let g:which_leader_map.w = {
 \   'name': '+wiki',
-\   's':    'select-and-open-wiki-index',
-\   'r':    'rename-wiki-file',
-\   'D':    'delete-wiki-file',
-\   'g':    'generate-tag-links',
-\   'h':    'convert-to-html',
-\   'hh':   'browse-html',
-\   'b':    'search-back-links',
-\   'B':    'generate-back-links',
-\   'f':    'open-wiki-file',
-\   'a':    'new-wiki-file',
-\   'i':    'insert-note',
-\   't': {
-\     'name': '+tag',
-\     't':    'search-tag-under-current-cursor',
-\     's':    'search-tags',
-\   },
 \   '\': {
 \     'name': '+diary',
 \     'w':    'today-diary',

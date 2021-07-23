@@ -62,6 +62,8 @@ end
 local toggle_git_blame = function()
   if fn['coc#util#get_config']('git').addGBlameToVirtualText then
     fn['coc#config']('git.addGBlameToVirtualText', false)
+    local ns_id = vim.api.nvim_get_namespaces()['coc-git-virtual']
+    vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
   else
     fn['coc#config']('git.addGBlameToVirtualText', true)
   end

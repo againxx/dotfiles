@@ -7,14 +7,10 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua'},
+  ensure_installed = { 'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua' },
   highlight = {
     enable = true,
     disable = {'python'},
-    custom_captures = {
-      -- Highlight the error capture group with the "CocWarningSign" highlight group.
-      ["error"] = "CocWarningSign",
-    },
   },
   indent = {
     enable = true,
@@ -62,7 +58,6 @@ require('nvim-treesitter.configs').setup {
       goto_next_start = {
         [']f'] = '@function.outer',
         [']]'] = '@class.outer',
-        [']h'] = '@include'
       },
       goto_next_end = {
         [']F'] = '@function.outer',
@@ -71,7 +66,6 @@ require('nvim-treesitter.configs').setup {
       goto_previous_start = {
         ['[f'] = '@function.outer',
         ['[['] = '@class.outer',
-        ['[h'] = '@include'
       },
       goto_previous_end = {
         ['[F'] = '@function.outer',

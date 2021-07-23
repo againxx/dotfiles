@@ -34,7 +34,21 @@ return require('packer').startup({function(use)
   -- === Colorscheme & Icons
   -- ===
   use 'againxx/ayu-vim'
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = function()
+      require'nvim-web-devicons'.setup {
+        override = {
+          wiki = {
+            icon = 'ﴬ',
+            color = '#F07178',
+            name = 'Vimwiki'
+          },
+        },
+        default = true;
+      }
+    end
+  }
 
   -- ===
   -- === Statusline

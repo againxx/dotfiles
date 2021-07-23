@@ -183,9 +183,6 @@ inoremap <silent><expr> <C-space> coc#refresh()
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 \   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" vimwiki
-map <Plug>Disable_VimwikiGoto <Plug>VimwikiGoto
-
 " ===
 " === Table-mode
 " ===

@@ -9,4 +9,5 @@ wk.register({
   n = { '<cmd>VimwikiIndex 2<cr>', 'Open notes index' },
   d = { '<Plug>VimwikiDiaryIndex', 'Open diary index' },
   T = { '<Plug>VimwikiTabIndex', 'Open default index in new tab' },
+  s = 'Select and open wiki index',
 }, { prefix = '<leader>w' })
