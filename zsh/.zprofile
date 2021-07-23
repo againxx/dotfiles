@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 
-if [ -d "$HOME/.vim/plugged/vim-superman/bin" ]; then
-    export PATH="$HOME/.vim/plugged/vim-superman/bin:$PATH"
+if [ -d "$HOME/.local/share/nvim/site/pack/packer/start/vim-superman/bin" ]; then
+    export PATH="$HOME/.local/share/nvim/site/pack/packer/start/vim-superman/bin:$PATH"
 fi
 
 export EDITOR=nvim
