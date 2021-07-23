@@ -32,7 +32,7 @@ wk.register({
   },
   p = { require('xx.telescope').grep_prompt, 'Grep string with prompt' },
   s = {
-    name = '+symbol/session/source/syntax',
+    name = '+symbol/session/source/show',
     s = { require('xx.telescope').document_symbols, 'Document symbols' },
     a = { require('xx.telescope').workspace_symbols, 'Workspace symbols' },
     w = { '<cmd>CocCommand session.save<cr>', 'Save session' },

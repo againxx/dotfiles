@@ -26,10 +26,6 @@ let b:switch_custom_definitions = [
 \   }
 \ ]
 
-map <buffer> [f [m
-map <buffer> ]f ]m
-map <buffer> [F [M
-map <buffer> ]F ]M
 nnoremap <buffer> <Space><Space> 0/TODO<CR>:nohlsearch<CR>"_c4l
 nnoremap <buffer> [h
 \   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>

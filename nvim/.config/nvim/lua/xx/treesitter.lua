@@ -45,12 +45,56 @@ require('nvim-treesitter.configs').setup {
     },
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-  }
+  },
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>rj"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>rk"] = "@parameter.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        [']f'] = '@function.outer',
+        [']]'] = '@class.outer',
+        [']h'] = '@include'
+      },
+      goto_next_end = {
+        [']F'] = '@function.outer',
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[f'] = '@function.outer',
+        ['[['] = '@class.outer',
+        ['[h'] = '@include'
+      },
+      goto_previous_end = {
+        ['[F'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
+    },
+  },
 }
 
--- Disable highlight for bracket
--- require('nvim-treesitter.highlight')
--- local hlmap = vim.treesitter.highlighter.hl_map
--- hlmap.error = nil
--- hlmap["punctuation.delimiter"] = "Delimiter"
--- hlmap["punctuation.bracket"] = nil
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
+wk.register({
+  ['[f'] = 'Previous function start',
+  ['[F'] = 'Previous function end',
+  [']f'] = 'Next function start',
+  [']F'] = 'Next function end',
+  ['[['] = 'Previous class start',
+  ['[]'] = 'Previous class end',
+  [']]'] = 'Next class start',
+  [']['] = 'Next class end',
+  ['<leader>rj'] = 'Swap with next parameter',
+  ['<leader>rk'] = 'Swap with previous parameter'
+})

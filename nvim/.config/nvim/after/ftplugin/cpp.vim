@@ -1,4 +1,3 @@
-setlocal foldmethod=syntax
 set commentstring=//\ %s
 let b:switch_custom_definitions = [
 \   {
@@ -18,10 +17,6 @@ nnoremap <buffer> [h
 \   {:execute "keepjumps normal! ?^\\(#include\\<bar>#define\\)\r"<CR>:nohlsearch<CR>
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
-map <buffer> [[ ?{<CR>w99[{
-map <buffer> ][ /}<CR>b99]}
-map <buffer> ]] j0[[%/{<CR>
-map <buffer> [] k$][%?}<CR>
 
 function! s:CatkinInit() abort
   setlocal colorcolumn=121

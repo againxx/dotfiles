@@ -6,18 +6,6 @@ scriptencoding utf-8
 
 let g:which_leader_map = {}
 
-let g:which_leader_map.V = {
-\   'name': '+view',
-\   'a':    'view-ascii-value',
-\   's':    'view-code-statistic',
-\ }
-
-let g:which_leader_map.n = {
-\   'name': '+new',
-\   't':    'new-tab',
-\   'x':    'new-figlet-symbol',
-\ }
-
 let g:which_leader_map.t = {
 \   't':     'task-choose-tag',
 \   'p':     'task-choose-project',
@@ -54,12 +42,8 @@ let g:which_leader_map.t = {
 
 let g:which_leader_map.w = {
 \   'name': '+wiki',
-\   'w':    'default-wiki-index',
-\   'T':    'default-wiki-index-in-new-tab',
 \   's':    'select-and-open-wiki-index',
 \   'r':    'rename-wiki-file',
-\   'n':    'notes-wiki-index',
-\   'd':    'diary-index',
 \   'D':    'delete-wiki-file',
 \   'g':    'generate-tag-links',
 \   'h':    'convert-to-html',
@@ -121,55 +105,9 @@ let g:which_wikilist_upper_map['*'] = 'change_list_*'
 let g:which_wikilist_upper_map['-'] = 'change_list_-'
 let g:which_wikilist_upper_map['1'] = 'change_list_num'
 
-nnoremap <Leader>Va ga
-nnoremap <Leader>VA ga
-vnoremap <Leader>Va y:call <SID>EchoFormatsAndChar(@0)<CR>
-vnoremap <Leader>VA y:call <SID>EchoFormatsAndChar(@0)<CR>
-nnoremap <Leader>Vs <Cmd>terminal tokei<CR>
-nnoremap <Leader>VS <Cmd>terminal tokei<CR>
-
-" ===
-" === New
-" ===
-nnoremap <Leader>nt :tabnew %<CR>
-nnoremap <Leader>nx :read !figlet<Space>
-
-" ===
-" === Vimwiki
-" ===
-nnoremap <Leader>ww :<C-u>VimwikiIndex<CR>:cd %:p:h<CR>:CocList files<CR>
-nmap <Leader>wT <Plug>VimwikiTabIndex
-nnoremap <Leader>wn :<C-u>VimwikiIndex 2<CR>
-nmap <Leader>wd <Plug>VimwikiDiaryIndex
-nnoremap <Leader>wg :<C-u>VimwikiGenerateTagLinks<CR>
-nnoremap <Leader>wtt :<C-u>execute 'VimwikiSearchTags '.expand('<cword>')<Bar>CocList -A --normal locationlist<CR>
-nnoremap <Leader>wts :<C-u>VimwikiSearchTags<Space>
-nnoremap <Leader>wb :<C-u>VimwikiBacklinks<CR>:lclose<CR>:CocList -A --normal locationlist<CR>
-nnoremap <Leader>wB :<C-u>ZettelBackLinks<CR>
-nnoremap <Leader>wa :<C-u>ZettelNew<Space>
-nnoremap <Leader>wi :<C-u>ZettelInsertNote<CR>
-
 " ===
 " === Table-mode
 " ===
 let g:table_mode_map_prefix = '<LocalLeader>t'
 let g:table_mode_tableize_d_map = '<LocalLeader>ta'
 nnoremap <LocalLeader>tm <Cmd>TableModeToggle<CR>
-
-" echo different formats and the corresponding char for a given number
-function! s:EchoFormatsAndChar(num) abort
-  let l:input_num = a:num
-  let l:hex_reg = '\v^(\\x|0x|\\u|u\+)'
-  if l:input_num =~? '\v^\d+$' " decimal
-    let l:output_num = '0x' . printf('%x', l:input_num)
-  else " hexdecimal
-    if l:input_num =~? l:hex_reg
-      let l:input_num = '0x' . substitute(l:input_num, l:hex_reg, '', 'g')
-    else
-      let l:input_num = '0x' . l:input_num
-    endif
-    let l:output_num = printf('%d', l:input_num)
-  endif
-  let @" = nr2char(l:output_num)
-  echo '<' . l:input_num . '> ' . l:output_num . ' ' . @"
-endfunction

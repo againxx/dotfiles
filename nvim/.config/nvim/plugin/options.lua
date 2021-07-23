@@ -8,7 +8,7 @@ opt.ignorecase = true -- Do case insensitive matching
 opt.smartcase = true -- Do smart case matching
 opt.hlsearch = true -- Highlight all search matches
 opt.wildmenu = true
-opt.wildmode = { 'list', 'longest', 'full' }
+opt.wildmode = { 'longest', 'full' }
 -- Ignore compiled files
 opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
 opt.autoread = true
@@ -49,6 +49,8 @@ opt.helplang = 'en'
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 opt.colorcolumn = '99999'
 opt.inccommand = 'nosplit'
+opt.foldlevel = 1
+opt.foldnestmax = 5
 -- FastFold overwrites foldmethod to manual, in order to ensure saved
 -- sessions do no save the default fold method to manual
 opt.sessionoptions:remove('folds')

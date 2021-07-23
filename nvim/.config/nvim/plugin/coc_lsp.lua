@@ -60,10 +60,10 @@ local toggle_code_lens = function()
 end
 
 local toggle_git_blame = function()
-  if fn['coc#util#get_config']('git').addGBlameToVirtualText > 0 then
-    fn['coc#config']('git.addGBlameToVirtualText', 0)
+  if fn['coc#util#get_config']('git').addGBlameToVirtualText then
+    fn['coc#config']('git.addGBlameToVirtualText', false)
   else
-    fn['coc#config']('git.addGBlameToVirtualText', 1)
+    fn['coc#config']('git.addGBlameToVirtualText', true)
   end
 end
 
@@ -97,6 +97,14 @@ local yank_diagnostic_codes = function()
   fn.setreg('+', codes)
 end
 
+local show_documentation = function()
+  if vim.tbl_contains({ 'vim', 'help' }, vim.bo.filetype) then
+    vim.cmd('h ' .. vim.fn.expand('<cword>'))
+  else
+    vim.fn.CocAction('doHover')
+  end
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
@@ -113,12 +121,13 @@ wk.register({
   qq = { '<Plug>(coc-format-selected)j', 'Format current line' },
 }, { prefix = 'g' })
 
--- navigate diagnostics
+-- navigate diagnostics & show documentation
 wk.register({
   ['[e'] = { '<Plug>(coc-diagnostic-prev-error)', 'Go to previous error' },
   [']e'] = { '<Plug>(coc-diagnostic-next-error)', 'Go to next error' },
   ['[w'] = { '<Plug>(coc-diagnostic-prev)', 'Go to previous diagnostic' },
   [']w'] = { '<Plug>(coc-diagnostic-next)', 'Go to next diagnostic' },
+  K = { show_documentation, 'Preview documentation or open help page' }
 })
 
 wk.register({

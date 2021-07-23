@@ -100,6 +100,7 @@ return require('packer').startup({function(use)
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
   }
   use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'p00f/nvim-ts-rainbow'
   use 'pboettch/vim-cmake-syntax'
   use 'vim-scripts/SyntaxAttr.vim'
@@ -114,7 +115,6 @@ return require('packer').startup({function(use)
   -- === Search & Move
   -- ===
   use 'haya14busa/incsearch.vim'
-  use 'haya14busa/incsearch-fuzzy.vim'
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' -- highlight for f & t
   use 'karb94/neoscroll.nvim' -- smooth scrolling

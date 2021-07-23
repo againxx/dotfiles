@@ -61,25 +61,90 @@ nnoremap ]<Space> <Cmd>call <SID>AddEmptyLines(v:count1)<CR>
 xnoremap < <gv
 xnoremap > >gv
 
-" Temporary disable <Up> & <Down>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-map <F1> <nop>
-imap <F1> <nop>
 " Avoid join lines when begin visual line mode
 xnoremap <expr> J line(".") == line("'<") ? "j" : "J"
 
 " Up and Down are more intelligent in command line history navigation
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
+" And use <C-j> and <C-k> for wildmenu navigation just like normal completion
+cnoremap <C-j> <C-n>
+cnoremap <C-k> <C-p>
 
 " Quickfix navigation
-nnoremap [q <Cmd>cprevious<CR>
-nnoremap ]q <Cmd>cnext<CR>
-nnoremap [Q <Cmd>cfirst<CR>
-nnoremap ]Q <Cmd>clast<CR>
+nnoremap [q <Cmd>cfirst<CR>
+nnoremap ]q <Cmd>clast<CR>
+
+" Make <C-j> and <C-k> move faster, in vim these two keys are used for window
+" navigation
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+xnoremap <C-j> 5j
+xnoremap <C-k> 5k
+
+" Enhanced <C-l>, in vim this key is used for window navigation
+nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
+
+" Fast normal mode
+noremap <M-n> :normal<Space>
+
+" Fast substitute
+nnoremap <M-s> :%s//g<Left><Left>
+xnoremap <M-s> :s//g<Left><Left>
+
+" exit terminal
+tnoremap <C-o> <C-\><C-n>
+" tnoremap <M-[> <C-\><C-n>
+" tnoremap <M-[> <Esc>
+" tnoremap <C-v><Esc> <Esc>
+
+" ===
+" === Window Navigate
+" ===
+tnoremap <M-h> <C-\><C-n><C-w>h
+tnoremap <M-j> <C-\><C-n><C-w>j
+tnoremap <M-k> <C-\><C-n><C-w>k
+tnoremap <M-l> <C-\><C-n><C-w>l
+let g:tmux_navigator_no_mappings = 1
+nnoremap <M-h> <Cmd>TmuxNavigateLeft<CR>
+nnoremap <M-j> <Cmd>TmuxNavigateDown<CR>
+nnoremap <M-k> <Cmd>TmuxNavigateUp<CR>
+nnoremap <M-l> <Cmd>TmuxNavigateRight<CR>
+nnoremap <M-p> <Cmd>TmuxNavigatePrevious<CR>
+
+" ===
+" === Command-line Cursor Movement
+" ===
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
+cnoremap <M-k> <S-Left>
+cnoremap <M-j> <S-Right>
+
+" ===
+" === Window Resize
+" ===
+nnoremap <M-=> <C-w>+
+nnoremap <M--> <C-w>-
+nnoremap <M-[> <C-w><
+nnoremap <M-]> <C-w>>
+nnoremap <M-z> <Cmd>MaximizerToggle!<CR>
+vnoremap <M-z> <Cmd>MaximizerToggle!<CR>gv
+inoremap <M-z> <Cmd>MaximizerToggle!<CR>
+
+nnoremap <M-9> <Cmd>cprevious<CR>
+nnoremap <M-0> <Cmd>cnext<CR>
+
+" ===
+" === Window Split
+" ===
+nnoremap <C-w>l <Cmd>rightbelow vnew +set\ nobuflisted<CR>
+nnoremap <C-w>h <Cmd>leftabove vnew +set\ nobuflisted<CR>
+nnoremap <C-w>j <Cmd>rightbelow new +set\ nobuflisted<CR>
+nnoremap <C-w>k <Cmd>leftabove new +set\ nobuflisted<CR>
+nnoremap <C-w><C-l> <Cmd>rightbelow vnew +set\ nobuflisted<CR>
+nnoremap <C-w><C-h> <Cmd>leftabove vnew +set\ nobuflisted<CR>
+nnoremap <C-w><C-j> <Cmd>rightbelow new +set\ nobuflisted<CR>
+nnoremap <C-w><C-k> <Cmd>leftabove new +set\ nobuflisted<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -104,9 +169,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-nmap y/ <Plug>(incsearch-fuzzy-/)
-nmap y? <Plug>(incsearch-fuzzy-?)
-nmap yg/ <Plug>(incsearch-fuzzy-stay)
 
 " Use <C-j> and <C-k> to navigate the completion list:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -132,21 +194,9 @@ let g:table_mode_motion_right_map = ']t'
 let g:table_mode_motion_up_map = '[T'
 let g:table_mode_motion_down_map = ']T'
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :<C-u>call <SID>ShowDocumentation()<CR>
-
-function! s:ShowDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 function! s:ExpandUltisnipsOrUseCocCompletion() abort
   call UltiSnips#ExpandSnippet()
   if g:ulti_expand_res > 0
-    echom 'here1'
     pclose
     return ''
   " Use `complete_info` if your (Neo)Vim version supports it.
@@ -154,7 +204,6 @@ function! s:ExpandUltisnipsOrUseCocCompletion() abort
     \  pumvisible()
     return "\<C-y>"
   else
-    echom 'here'
     return "\<C-g>u\<Tab>"
   endif
 endfunction

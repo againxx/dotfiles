@@ -33,6 +33,29 @@ local tab_open_term = function(cmd)
   end
 end
 
+-- echo different formats and the corresponding char for a given number
+local echo_formats_and_char = function()
+  local sel = table.concat(require('xx.utils').fetch_selection('v'), '')
+  local hex_regex = vim.regex [[\v\c^(\\x|0x|\\u|u\+)]]
+  local dec_regex = vim.regex [[\v^\d+$]]
+  local output
+  if dec_regex:match_str(sel) then
+    output = '0x' .. string.format('%x', sel)
+  else -- hexdecimal
+    local m_beg, m_end = hex_regex:match_str(sel)
+    if m_beg then
+      sel = '0x' .. sel:sub(m_end + 1)
+      print(sel)
+    else
+      sel = '0x' .. sel
+    end
+    output = string.format('%d', sel)
+  end
+  local symbol = vim.fn.nr2char(output)
+  vim.fn.setreg('"', symbol)
+  print('<' .. sel .. '> ' .. output .. ' ' .. symbol)
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
@@ -53,12 +76,26 @@ wk.register({
     d = { '<cmd>lcd %:p:h<cr>', 'Change window directory' },
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
   },
-  yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
   s = {
     h = { vim.fn.SyntaxAttr, 'Syntax highlighting group' },
     H = { query_syntax_stack, 'Syntax highlighting stack' },
     t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
+    T = { '<cmd>terminal tokei<cr>', 'Tokei code statistic' },
+    f = { 'ga', 'Show different formats of character' },
+  },
+  n = {
+    name = '+new',
+    t = { '<cmd>tabnew %<cr>', 'New tabpage' },
+    x = { ':read !figlet<space>', 'Insert new figlet symbol' },
   },
   ['<C-t>'] = { function() tab_open_term('vit') end, 'Open vit in new tab' },
   x = { function() tab_open_term() end, 'Open terminal in new tab' },
+  yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
 }, { prefix = '<leader>' })
+
+wk.register({
+  s = {
+    name = '+show',
+    f = { echo_formats_and_char, 'Show different formats of character' }
+  }
+}, { mode = 'x', prefix = '<leader>' })

@@ -11,8 +11,18 @@ require('telescope').setup {
       i = {
         ['<C-j>'] = 'move_selection_next',
         ['<C-k>'] = 'move_selection_previous',
+        ['<C-f>'] = 'preview_scrolling_down',
+        ['<C-b>'] = 'preview_scrolling_up',
+        ["<C-u>"] = false,
+        ["<C-d>"] = false,
         ['<Esc>'] = 'close',
         ['<C-o>'] = { '<Cmd>stopinsert<CR>', type = 'command' }
+      },
+      n = {
+        ['<C-f>'] = 'preview_scrolling_down',
+        ['<C-b>'] = 'preview_scrolling_up',
+        ["<C-u>"] = false,
+        ["<C-d>"] = false,
       }
     },
     layout_config = {
@@ -214,23 +224,7 @@ function M.grep_prompt()
 end
 
 function M.grep_selected()
-  local _, srow, scol, _ = unpack(vim.fn.getpos("'<"))
-  local _, erow, ecol, _ = unpack(vim.fn.getpos("'>"))
-  if srow > erow then
-    srow, erow = erow, srow
-    scol, ecol = ecol, scol
-  end
-  if srow == erow and scol > ecol then
-    scol, ecol = ecol, scol
-  end
-  local lines = vim.api.nvim_buf_get_lines(0, srow - 1, erow, false)
-  local n_lines = erow - srow + 1
-  lines[1] = string.sub(lines[1], scol)
-  if n_lines == 1 then
-    lines[1] = string.sub(lines[1], 1, ecol - scol + 1)
-  else
-    lines[n_lines] = string.sub(lines[n_lines], 1, ecol)
-  end
+  local lines = require('xx.utils').fetch_selection('n')
   require('telescope.builtin').grep_string({search = table.concat(lines, '')})
 end
 

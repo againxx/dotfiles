@@ -60,11 +60,12 @@ local ayu_mirage = {
   }
 }
 
+local hide_when_narrow = function() return vim.fn.winwidth(0) > 120 end
+
 local coc_git = function()
   local git_branch = vim.g.coc_git_status or ''
   local git_diff = vim.b.coc_git_status or ''
-  local git_blame = vim.fn.winwidth(0) > 120 and vim.b.coc_git_blame or ''
-  return string.gsub(git_branch .. git_diff .. git_blame, '%s$', '')
+  return string.gsub(git_branch .. git_diff, '%s$', '')
 end
 
 local read_only = function()
@@ -78,10 +79,23 @@ end
 
 local coc_status = function()
   local status = vim.g.coc_status
-  if status and string.len(status) > 0 then
+  if status and #status > 0 then
     return ' ' .. status
   else
     return ''
+  end
+end
+
+local treesitter_status = function()
+  local status = vim.fn['nvim_treesitter#statusline'] {
+    indicator_size = 100,
+    type_patterns = { 'class', 'function', 'method' },
+  }
+  if status and status ~= vim.NIL and #status > 0 then
+    if vim.bo.filetype == 'cpp' then
+      status = status:gsub('%w+::', '')
+    end
+    return ' ' .. status
   end
 end
 
@@ -110,6 +124,10 @@ require('lualine').setup {
       },
       read_only,
       coc_status,
+      {
+        treesitter_status,
+        condition = hide_when_narrow,
+      }
     },
     lualine_x = { 'filetype' },
     lualine_y = {
