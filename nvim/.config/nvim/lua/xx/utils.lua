@@ -27,4 +27,10 @@ function M.fetch_selection(mode)
   return lines
 end
 
+function M.set_indent(num)
+  vim.opt_local.tabstop = num
+  vim.opt_local.shiftwidth = num
+  vim.opt_local.softtabstop = num
+end
+
 return M

@@ -18,15 +18,14 @@ nnoremap <buffer> [h
 nnoremap <buffer> ]h
 \   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
 
-function! s:CatkinInit() abort
-  setlocal colorcolumn=121
-  setlocal tabstop=2
-  setlocal shiftwidth=2
-  setlocal softtabstop=2
-  let b:ultisnips_cpp_style = 'ros'
-endfunction
-
-call catkin#DetectPackage(function('s:CatkinInit'))
+lua << EOF
+require('xx.catkin').detect_package(function()
+  vim.opt_local.colorcolumn = '121'
+  require('xx.utils').set_indent(2)
+  vim.b.ultisnips_cpp_style = 'ros'
+end)
+require('xx.catkin').detect_ws_root()
+EOF
 
 if !exists('b:ros_package_path')
   command! -buffer -nargs=0 A execute 'CocCommand clangd.switchSourceHeader'

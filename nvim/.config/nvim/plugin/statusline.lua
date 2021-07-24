@@ -20,42 +20,36 @@ local ayu_mirage = {
     a = { bg = colors.green, fg = colors.black, gui = 'bold' },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.transparent, fg = colors.lightgray },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.green, fg = colors.black },
   },
   insert = {
     a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.blue, fg = colors.black },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.transparent, fg = colors.orange },
   },
   visual = {
     a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.yellow, fg = colors.black },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.transparent, fg = colors.orange },
   },
   replace = {
     a = { bg = colors.red, fg = colors.black, gui = 'bold' },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.black, fg = colors.white },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.red, fg = colors.black },
   },
   command = {
     a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.magenta, fg = colors.black },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.transparent, fg = colors.orange },
   },
   inactive = {
     a = { bg = colors.transparent, fg = colors.lightgray },
     b = { bg = colors.transparent, fg = colors.lightgray },
     c = { bg = colors.darkgray, fg = colors.lightgray },
-    x = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.transparent, fg = colors.lightgray },
   }
 }
@@ -99,6 +93,16 @@ local treesitter_status = function()
   end
 end
 
+local ros_package = function()
+  local package_name_with_symbol = ''
+  if vim.b.ros_package_name then
+    package_name_with_symbol =  'ﮧ ' .. vim.b.ros_package_name
+  elseif vim.b.catkin_package_name then
+    package_name_with_symbol = 'ﲎ ' .. vim.b.catkin_package_name
+  end
+  return package_name_with_symbol
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -129,7 +133,13 @@ require('lualine').setup {
         condition = hide_when_narrow,
       }
     },
-    lualine_x = { 'filetype' },
+    lualine_x = {
+      {
+        ros_package,
+        condition = hide_when_narrow
+      },
+      'filetype',
+    },
     lualine_y = {
       {
         'diagnostics',

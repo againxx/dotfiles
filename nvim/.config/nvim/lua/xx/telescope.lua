@@ -2,7 +2,9 @@ if not pcall(require, 'telescope') then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require('telescope.actions')
+local themes = require('telescope.themes')
+
 require('telescope').setup {
   defaults = {
     prompt_prefix = ' ',
@@ -66,9 +68,7 @@ require('telescope').setup {
 
 require('telescope').load_extension('coc')
 require('telescope').load_extension('fzy_native')
-
-local themes = require('telescope.themes')
-local actions = require('telescope.actions')
+require('telescope').load_extension('frecency')
 
 local M = {}
 function M.edit_vimrc()
@@ -90,7 +90,6 @@ end
 function M.edit_vim_plugins()
   require('telescope.builtin').find_files {
     cwd = vim.fn.stdpath('data')..'/site/pack/packer/',
-    hidden = true,
     prompt_title = 'Vim Plugins',
     layout_strategy = 'horizontal',
     layout_config = {
@@ -256,6 +255,26 @@ function M.ultisnips()
       width = 0.5,
     },
   }
+end
+
+function M.ros_core_packages()
+  local Path = require('plenary.path')
+  local scan = require('plenary.scandir')
+  local setup_file = scan.scan_dir('/opt', { depth = 3, search_pattern = '.*/setup.zsh$' })
+  if #setup_file > 0 then
+    local package_path = Path:new(setup_file[1]):parent() .. '/share'
+    require('telescope').extensions.ros.packages {
+      cwd = package_path
+    }
+  else
+    print('ROS root directory not found!')
+  end
+end
+
+function M.ros_workspace_packages()
+  pcall(require('telescope').extensions.ros.packages, {
+    cwd = vim.b.catkin_workspace or '.'
+  })
 end
 
 return M

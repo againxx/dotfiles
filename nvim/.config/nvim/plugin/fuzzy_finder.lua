@@ -14,6 +14,8 @@ wk.register({
     o = { require('xx.telescope').oldfiles, 'Recent files' },
     e = { require('xx.telescope').file_browser, 'File browser' },
     m = { require('xx.telescope').man_pages, 'Man pages' },
+    r = { require('xx.telescope').ros_workspace_packages, 'Worksapce ros packages' },
+    R = { require('xx.telescope').ros_core_packages, 'Core ros packages' },
     ['/'] = { require('xx.telescope').grep_last_search, 'Grep last search' },
   },
   l = {
