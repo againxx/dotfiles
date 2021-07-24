@@ -1,5 +1,6 @@
 nnoremap <buffer><silent> [[ :<C-u> call <SID>FindLessIndentionLine(v:false)<CR>
 nnoremap <buffer><silent> [[ :<C-u> call <SID>FindLessIndentionLine(v:true)<CR>
+nmap <buffer> <Space>/ <Plug>(incsearch-forward)^\s\+\zs
 
 function! s:FindLessIndentionLine(backward) abort
   let num_space = matchstrpos(getline('.'), '^\s\+')[-1]

@@ -35,7 +35,7 @@ end
 
 -- echo different formats and the corresponding char for a given number
 local echo_formats_and_char = function()
-  local sel = table.concat(require('xx.utils').fetch_selection('v'), '')
+  local sel = table.concat(require('xx.utils').fetch_selection('v'))
   local hex_regex = vim.regex [[\v\c^(\\x|0x|\\u|u\+)]]
   local dec_regex = vim.regex [[\v^\d+$]]
   local output

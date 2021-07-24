@@ -2,6 +2,7 @@ if not pcall(require, 'telescope') then
   return
 end
 
+local actions = require "telescope.actions"
 require('telescope').setup {
   defaults = {
     prompt_prefix = ' ',
@@ -13,6 +14,10 @@ require('telescope').setup {
         ['<C-k>'] = 'move_selection_previous',
         ['<C-f>'] = 'preview_scrolling_down',
         ['<C-b>'] = 'preview_scrolling_up',
+        ["<C-n>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<C-p>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-l>"] = actions.toggle_selection,
+        ["<Tab>"] = actions.select_default + actions.center,
         ["<C-u>"] = false,
         ["<C-d>"] = false,
         ['<Esc>'] = 'close',
@@ -21,6 +26,9 @@ require('telescope').setup {
       n = {
         ['<C-f>'] = 'preview_scrolling_down',
         ['<C-b>'] = 'preview_scrolling_up',
+        ["<C-n>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<C-p>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<Tab>"] = actions.select_default + actions.center,
         ["<C-u>"] = false,
         ["<C-d>"] = false,
       }
@@ -225,7 +233,7 @@ end
 
 function M.grep_selected()
   local lines = require('xx.utils').fetch_selection('n')
-  require('telescope.builtin').grep_string({search = table.concat(lines, '')})
+  require('telescope.builtin').grep_string({search = table.concat(lines)})
 end
 
 function M.grep_last_search(opts)

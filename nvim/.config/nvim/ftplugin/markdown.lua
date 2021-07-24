@@ -1,7 +1,7 @@
-require('xx.markdown')
+require('note.markdown')
+require('note.markdown_vimwiki')
 
 vim.b.coc_pairs_disabled = { '<' }
-vim.fn['markdown_vimwiki#SetCommonConfigs']()
 
 local toggle_left_equation = function()
   local options = vim.g.mkdp_preview_options

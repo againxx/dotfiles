@@ -1,2 +1,2 @@
-vim.cmd[[nunmap <leader>wt]]
-vim.cmd[[nunmap <leader>wi]]
+vim.cmd[[silent! nunmap <leader>wt]]
+vim.cmd[[silent! nunmap <leader>wi]]

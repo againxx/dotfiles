@@ -1,5 +1,5 @@
 # fzf-tab
-zstyle ':fzf-tab:complete:*' fzf-bindings 'ctrl-l:accept' 'tab:toggle+down' 'btab:toggle+up'
+zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:accept' 'ctrl-n:toggle+down' 'ctrl-p:toggle+up' 'ctrl-l:toggle'
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always --icons $realpath'
 zstyle ':completion:*' format '[%d]'

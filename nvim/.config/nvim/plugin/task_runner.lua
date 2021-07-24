@@ -32,7 +32,7 @@ wk.register({
     r = { '<cmd>cclose<bar>AsyncTask file-run<cr>', 'Run current file' },
     b = { '<cmd>AsyncTask project-build<cr>', 'Build whole project' },
     B = { '<cmd>AsyncTask file-build<cr>', 'Build current file' },
-    p = { '<cmd>AsyncTask project-run<cr>', 'Run whole file' },
+    p = { '<cmd>AsyncTask project-run<cr>', 'Run whole project' },
     i = { '<cmd>AsyncTask project-init<cr>', 'Initialize project' },
     c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
   },

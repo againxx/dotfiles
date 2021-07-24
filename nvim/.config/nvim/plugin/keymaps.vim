@@ -18,11 +18,6 @@ nnoremap ZA <Cmd>qa!<CR>
 " map gus to ~
 nnoremap gus ~
 
-" make cw work like dw
-nmap cw dwi
-
-" text object for parameter
-onoremap i, <Cmd>execute "normal! ?[,(]\rwv/[,)]\rh"<CR>
 " alias r to ], a to >, same as surround.vim
 onoremap ir i]
 onoremap ar a]
@@ -105,7 +100,6 @@ tnoremap <M-h> <C-\><C-n><C-w>h
 tnoremap <M-j> <C-\><C-n><C-w>j
 tnoremap <M-k> <C-\><C-n><C-w>k
 tnoremap <M-l> <C-\><C-n><C-w>l
-let g:tmux_navigator_no_mappings = 1
 nnoremap <M-h> <Cmd>TmuxNavigateLeft<CR>
 nnoremap <M-j> <Cmd>TmuxNavigateDown<CR>
 nnoremap <M-k> <Cmd>TmuxNavigateUp<CR>
@@ -182,14 +176,6 @@ inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 \   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" ===
-" === Table-mode
-" ===
-let g:table_mode_motion_left_map = '[t'
-let g:table_mode_motion_right_map = ']t'
-let g:table_mode_motion_up_map = '[T'
-let g:table_mode_motion_down_map = ']T'
 
 function! s:ExpandUltisnipsOrUseCocCompletion() abort
   call UltiSnips#ExpandSnippet()
