@@ -118,9 +118,9 @@ function _G._ExpandUltisnipsOrUseCocCompletion()
     cmd('pclose')
     return ''
   elseif fn.complete_info().selected ~= -1 or fn.pumvisible() > 0 then
-    return api.nvim_replace_termcodes('<C-y>', true, true, true)
+    return api.nvim_replace_termcodes('<C-y>', true, false, true)
   else
-    return api.nvim_replace_termcodes('<C-g>u<Tab>', true, true, true)
+    return api.nvim_replace_termcodes('<C-g>u<Tab>', true, false, true)
   end
 end
 

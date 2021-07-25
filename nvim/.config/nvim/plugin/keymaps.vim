@@ -41,13 +41,6 @@ nnoremap <C-c><C-x> <C-c>
 nmap <C-c><C-l> <Plug>SlimeLineSend
 nmap <C-c>l <Plug>SlimeLineSend
 
-" Use [a and ]a in visual mode to move selection up and down
-xnoremap [a :<C-u>call <SID>MoveSelectedLines(-v:count1)<CR>
-xnoremap ]a :<C-u>call <SID>MoveSelectedLines(v:count1)<CR>
-" Move one line in normal mode
-nnoremap [a <Cmd>execute 'move -1-'.v:count1<CR>==
-nnoremap ]a <Cmd>execute 'move +'.v:count1<CR>==
-
 " Add empty line
 nnoremap [<Space> <Cmd>call <SID>AddEmptyLines(-v:count1)<CR>
 nnoremap ]<Space> <Cmd>call <SID>AddEmptyLines(v:count1)<CR>
@@ -65,10 +58,6 @@ cnoremap <C-p> <Up>
 " And use <C-j> and <C-k> for wildmenu navigation just like normal completion
 cnoremap <C-j> <C-n>
 cnoremap <C-k> <C-p>
-
-" Quickfix navigation
-nnoremap [q <Cmd>cfirst<CR>
-nnoremap ]q <Cmd>clast<CR>
 
 " Make <C-j> and <C-k> move faster, in vim these two keys are used for window
 " navigation
@@ -141,12 +130,6 @@ nnoremap <C-w><C-h> <Cmd>leftabove vsplit<CR>
 nnoremap <C-w><C-j> <Cmd>rightbelow split<CR>
 nnoremap <C-w><C-k> <Cmd>leftabove split<CR>
 
-" Vim-easy-align
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " ===
 " === Incsearch
 " ===
@@ -179,21 +162,4 @@ function! s:AddEmptyLines(count) abort
     put =repeat(nr2char(10), a:count)
   endif
   call cursor(cursor_pos)
-endfunction
-
-function! s:MoveSelectedLines(count) abort
-  if a:count == -1
-    execute "'<,'>move '<-2"
-  elseif a:count == 1
-    execute "'<,'>move '>+"
-  elseif a:count < -1
-    execute "normal! gv\<Esc>"
-    let move_dist = line('.') - line("'<") + a:count
-    execute "'<,'>move '<" . move_dist
-  else
-    execute "normal! gv\<Esc>"
-    let move_dist = line("'>") - line('.') + a:count
-    execute "'<,'>move '>+" . move_dist
-  endif
-  normal! gv=gv
 endfunction
