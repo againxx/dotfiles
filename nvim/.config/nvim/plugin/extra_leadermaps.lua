@@ -56,6 +56,15 @@ local echo_formats_and_char = function()
   print('<' .. sel .. '> ' .. output .. ' ' .. symbol)
 end
 
+local execute_line = function()
+  local line = vim.api.nvim_get_current_line()
+  if vim.bo.filetype == 'lua' then
+    vim.cmd('lua ' .. line)
+  elseif vim.bo.filetype == 'vim' then
+    vim.cmd(line)
+  end
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
@@ -82,6 +91,8 @@ wk.register({
     t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
     T = { '<cmd>terminal tokei<cr>', 'Tokei code statistic' },
     f = { 'ga', 'Show different formats of character' },
+    w = { '<cmd>CocCommand session.save<cr>', 'Save session' },
+    r = { '<cmd>CocCommand session.load<cr>', 'Load session' },
   },
   n = {
     name = '+new',
@@ -89,7 +100,13 @@ wk.register({
     x = { ':read !figlet<space>', 'Insert new figlet symbol' },
   },
   ['<C-t>'] = { function() tab_open_term('vit') end, 'Open vit in new tab' },
-  x = { function() tab_open_term() end, 'Open terminal in new tab' },
+  x = {
+    name = '+execute/source',
+    t = { function() tab_open_term() end, 'Open terminal in new tab' },
+    v = { '<cmd>source $MYVIMRC<Bar>nohlsearch<cr>', 'Source VIMRC' },
+    c = { '<cmd>write<bar>source %<cr>', 'Source current file' },
+    l = { execute_line, 'Execute current line as (Vim/Lua)' },
+  },
   yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
 }, { prefix = '<leader>' })
 

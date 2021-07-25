@@ -84,8 +84,8 @@ nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax 
 noremap <M-n> :normal<Space>
 
 " Fast substitute
-nnoremap <M-s> :%s//g<Left><Left>
-xnoremap <M-s> :s//g<Left><Left>
+nnoremap <M-s> :%s/
+xnoremap <M-s> :s/
 
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
@@ -131,14 +131,14 @@ nnoremap <M-0> <Cmd>cnext<CR>
 " ===
 " === Window Split
 " ===
-nnoremap <C-w>l <Cmd>rightbelow vnew +set\ nobuflisted<CR>
-nnoremap <C-w>h <Cmd>leftabove vnew +set\ nobuflisted<CR>
-nnoremap <C-w>j <Cmd>rightbelow new +set\ nobuflisted<CR>
-nnoremap <C-w>k <Cmd>leftabove new +set\ nobuflisted<CR>
-nnoremap <C-w><C-l> <Cmd>rightbelow vnew +set\ nobuflisted<CR>
-nnoremap <C-w><C-h> <Cmd>leftabove vnew +set\ nobuflisted<CR>
-nnoremap <C-w><C-j> <Cmd>rightbelow new +set\ nobuflisted<CR>
-nnoremap <C-w><C-k> <Cmd>leftabove new +set\ nobuflisted<CR>
+nnoremap <C-w>l <Cmd>rightbelow vsplit<CR>
+nnoremap <C-w>h <Cmd>leftabove vsplit<CR>
+nnoremap <C-w>j <Cmd>rightbelow split<CR>
+nnoremap <C-w>k <Cmd>leftabove split<CR>
+nnoremap <C-w><C-l> <Cmd>rightbelow vsplit<CR>
+nnoremap <C-w><C-h> <Cmd>leftabove vsplit<CR>
+nnoremap <C-w><C-j> <Cmd>rightbelow split<CR>
+nnoremap <C-w><C-k> <Cmd>leftabove split<CR>
 
 " Vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
