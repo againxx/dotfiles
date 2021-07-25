@@ -23,6 +23,8 @@ gui:
   mouseEvents: true
   skipUnstageLineWarning: false
   skipStashWarning: true
+  showFileTree: true
+  showCommandLog: false
 git:
   paging:
     colorArg: always
