@@ -43,6 +43,15 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
   },
   textobjects = {
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["i,"] = "@param",
+      }
+    },
     swap = {
       enable = true,
       swap_next = {
@@ -58,6 +67,7 @@ require('nvim-treesitter.configs').setup {
       goto_next_start = {
         [']f'] = '@function.outer',
         [']]'] = '@class.outer',
+        [']h'] = '@include',
       },
       goto_next_end = {
         [']F'] = '@function.outer',
@@ -66,6 +76,7 @@ require('nvim-treesitter.configs').setup {
       goto_previous_start = {
         ['[f'] = '@function.outer',
         ['[['] = '@class.outer',
+        ['[h'] = '@include',
       },
       goto_previous_end = {
         ['[F'] = '@function.outer',
@@ -85,6 +96,8 @@ wk.register({
   ['[F'] = 'Previous function end',
   [']f'] = 'Next function start',
   [']F'] = 'Next function end',
+  ['[h'] = 'Previous include/import statement',
+  [']h'] = 'Next include/import statement',
   ['[['] = 'Previous class start',
   ['[]'] = 'Previous class end',
   [']]'] = 'Next class start',
@@ -92,3 +105,11 @@ wk.register({
   ['<leader>rj'] = 'Swap with next parameter',
   ['<leader>rk'] = 'Swap with previous parameter'
 })
+
+wk.register({
+  ['i,'] = 'inner parameter',
+}, { mode = 'x'} )
+
+wk.register({
+  ['i,'] = 'inner parameter',
+}, { mode = 'o'} )
