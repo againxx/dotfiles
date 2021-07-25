@@ -3,6 +3,10 @@ require('note.markdown_vimwiki')
 
 vim.b.coc_pairs_disabled = { '<' }
 
+-- disable mapping for ge
+vim.api.nvim_buf_del_keymap(0, 'n', 'ge')
+vim.api.nvim_buf_del_keymap(0, 'v', 'ge')
+
 local toggle_left_equation = function()
   local options = vim.g.mkdp_preview_options
   if options.katex and options.katex.fleqn then

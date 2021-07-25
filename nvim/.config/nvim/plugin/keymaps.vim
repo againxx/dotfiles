@@ -78,7 +78,7 @@ xnoremap <C-j> 5j
 xnoremap <C-k> 5k
 
 " Enhanced <C-l>, in vim this key is used for window navigation
-nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR><C-l>
+nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR>:pclose<CR><C-l>
 
 " Fast normal mode
 noremap <M-n> :normal<Space>
@@ -89,9 +89,6 @@ xnoremap <M-s> :s/
 
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
-" tnoremap <M-[> <C-\><C-n>
-" tnoremap <M-[> <Esc>
-" tnoremap <C-v><Esc> <Esc>
 
 " ===
 " === Window Navigate
@@ -117,10 +114,14 @@ cnoremap <M-j> <S-Right>
 " ===
 " === Window Resize
 " ===
-nnoremap <M-=> <C-w>+
-nnoremap <M--> <C-w>-
-nnoremap <M-[> <C-w><
-nnoremap <M-]> <C-w>>
+nnoremap <M-=> 3<C-w>+
+nnoremap <M--> 3<C-w>-
+nnoremap <M-[> 3<C-w><
+nnoremap <M-]> 3<C-w>>
+nnoremap <M-+> <C-w>+
+nnoremap <M-_> <C-w>-
+nnoremap <M-{> <C-w><
+nnoremap <M-}> <C-w>>
 nnoremap <M-z> <Cmd>MaximizerToggle!<CR>
 vnoremap <M-z> <Cmd>MaximizerToggle!<CR>gv
 inoremap <M-z> <Cmd>MaximizerToggle!<CR>
@@ -146,11 +147,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Vim-markdown
-" disable mapping for ge
-map <Plug>Disable_Markdown_EditUrlUnderCursor <Plug>Markdown_EditUrlUnderCursor
-map <Plug>Disable_Markdown_MoveToCurHeader <Plug>Markdown_MoveToCurHeader
-
 " ===
 " === Incsearch
 " ===
@@ -168,28 +164,11 @@ map g# <Plug>(incsearch-nohl-g#)
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Use <Tab> to expand snippet or confirm completion
-inoremap <silent> <Tab> <C-r>=<SID>ExpandUltisnipsOrUseCocCompletion()<CR>
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 \   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! s:ExpandUltisnipsOrUseCocCompletion() abort
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res > 0
-    pclose
-    return ''
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  elseif (has('patch8.1.1068') && complete_info()['selected'] != '-1') ||
-    \  pumvisible()
-    return "\<C-y>"
-  else
-    return "\<C-g>u\<Tab>"
-  endif
-endfunction
 
 function! s:AddEmptyLines(count) abort
   let cursor_pos = getcurpos()[1:]

@@ -1,4 +1,4 @@
-local opt = vim.opt 
+local opt = vim.opt
 
 opt.hidden = true -- Allow buffer switch without saving
 opt.lazyredraw = true
@@ -49,6 +49,7 @@ opt.helplang = 'en'
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 opt.colorcolumn = '99999'
 opt.inccommand = 'nosplit'
+opt.undofile = true
 opt.foldlevel = 1
 opt.foldnestmax = 5
 -- FastFold overwrites foldmethod to manual, in order to ensure saved

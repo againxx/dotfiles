@@ -63,6 +63,8 @@ vim.g.jupytext_fmt = 'py:percent'
 
 -- FastFold
 vim.g.fastfold_minlines = 0
+vim.g.fastfold_minlines = 0
+vim.g.fastfold_fold_movement_commands = { ']z', '[z' }
 
 -- Firenvim settings
 vim.g.firenvim_config = {

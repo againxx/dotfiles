@@ -14,7 +14,7 @@ local tab_open_term = function(cmd)
     return vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal'
       and vim.api.nvim_buf_get_name(buf):find(cmd_name)
   end, cur_bufs)
-  if #shell_buf == 0 then
+  if vim.tbl_isempty(shell_buf) then
     vim.cmd('tabnew')
     vim.g.shell_tab_num = vim.api.nvim_get_current_tabpage()
     if cmd then

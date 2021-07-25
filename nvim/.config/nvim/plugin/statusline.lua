@@ -103,6 +103,24 @@ local ros_package = function()
   return package_name_with_symbol
 end
 
+local coc_explorer = {
+  sections = {
+    lualine_b = {
+      function() return ' Explorer' end,
+    }
+  },
+  filetypes = { 'coc-explorer' }
+}
+
+local undotree = {
+  sections = {
+    lualine_b = {
+      function() return ' Undotree' end,
+    }
+  },
+  filetypes = { 'undotree' }
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -181,5 +199,5 @@ require('lualine').setup {
     }
   },
   tabline = {},
-  extensions = { 'quickfix' }
+  extensions = { 'quickfix', coc_explorer, undotree }
 }

@@ -29,6 +29,7 @@ vim.g.coc_global_extensions = {
 
 local fn = vim.fn
 local api = vim.api
+local cmd = vim.cmd
 
 -- functions
 local toggle_error_code = function()
@@ -55,15 +56,15 @@ local toggle_code_lens = function()
     fn['coc#config']('codeLens.enable', 1)
   end
   if vim.bo.filetype == 'rust' then
-    vim.cmd('CocCommand rust-analyzer.toggleInlayHints')
+    cmd('CocCommand rust-analyzer.toggleInlayHints')
   end
 end
 
 local toggle_git_blame = function()
   if fn['coc#util#get_config']('git').addGBlameToVirtualText then
     fn['coc#config']('git.addGBlameToVirtualText', false)
-    local ns_id = vim.api.nvim_get_namespaces()['coc-git-virtual']
-    vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+    local ns_id = api.nvim_get_namespaces()['coc-git-virtual']
+    api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
   else
     fn['coc#config']('git.addGBlameToVirtualText', true)
   end
@@ -75,7 +76,7 @@ local toggle_diagnostic = function()
   else
     vim.b.coc_diagnostic_disable = 1
   end
-  vim.cmd('doautocmd BufEnter')
+  cmd('doautocmd BufEnter')
 end
 
 local get_diagnostic_codes = function()
@@ -100,12 +101,31 @@ local yank_diagnostic_codes = function()
 end
 
 local show_documentation = function()
-  if vim.tbl_contains({ 'vim', 'help' }, vim.bo.filetype) then
-    vim.cmd('h ' .. vim.fn.expand('<cword>'))
+  if vim.tbl_contains({ 'vim', 'help', 'lua' }, vim.bo.filetype) then
+    if vim.bo.filetype == 'lua' and not fn.expand('<cWORD>'):match('vim%.') then
+      fn.CocAction('doHover')
+    else
+      cmd('h ' .. fn.expand('<cword>'))
+    end
   else
-    vim.fn.CocAction('doHover')
+    fn.CocAction('doHover')
   end
 end
+
+function _G._ExpandUltisnipsOrUseCocCompletion()
+  fn['UltiSnips#ExpandSnippet']()
+  if vim.g.ulti_expand_res > 0 then
+    cmd('pclose')
+    return ''
+  elseif fn.complete_info().selected ~= -1 or fn.pumvisible() > 0 then
+    return api.nvim_replace_termcodes('<C-y>', true, true, true)
+  else
+    return api.nvim_replace_termcodes('<C-g>u<Tab>', true, true, true)
+  end
+end
+
+-- Use <Tab> to expand snippet or confirm completion
+api.nvim_set_keymap('i', '<Tab>', '<C-r>=v:lua._ExpandUltisnipsOrUseCocCompletion()<cr>', { noremap = true, silent = true })
 
 local success, wk = pcall(require, 'which-key')
 if not success then

@@ -1,7 +1,6 @@
-vim.cmd[[
-  silent! nunmap <buffer> <leader>wd
-  silent! nunmap <buffer> <Tab>
-  silent! nunmap <buffer> <S-Tab>
-  silent! nunmap <buffer> o
-  silent! nunmap <buffer> O
-]] -- unmap automatic list adding
+vim.api.nvim_buf_del_keymap(0, 'n', '<leader>wd')
+vim.api.nvim_buf_del_keymap(0, 'n', '<tab>')
+vim.api.nvim_buf_del_keymap(0, 'n', '<s-tab>')
+-- unmap automatic list adding
+vim.api.nvim_buf_del_keymap(0, 'n', 'o')
+vim.api.nvim_buf_del_keymap(0, 'n', 'O')
