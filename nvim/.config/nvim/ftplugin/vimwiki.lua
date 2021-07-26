@@ -37,7 +37,7 @@ wk.register({
   B = { '<cmd>ZettelBackLinks<cr>', 'Generate back links' },
   a = { ':<c-u>ZettelNew ', 'Add new wiki file' },
   i = { '<cmd>ZettelInsertNote<cr>', 'Insert note' },
-  f = { '<cmd>ZettelOpen', 'Fuzzy find wiki file' },
+  f = { '<cmd>ZettelOpen<cr>', 'Fuzzy find wiki file' },
   D = { '<Plug>VimwikiDeleteFile', 'Delete current wiki file' },
   r = 'Rename current wiki file',
   h = 'Convert to html',

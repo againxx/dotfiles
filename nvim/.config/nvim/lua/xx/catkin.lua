@@ -35,7 +35,6 @@ function M.detect_ws_root()
 end
 
 function M.detect_package(post_hook)
-  post_hook = post_hook or function() print('dumb func') end
   if not vim.b.catkin_package_name then
     if vim.b.ros_package_name then
       vim.defer_fn(post_hook, 500)
@@ -47,6 +46,7 @@ function M.detect_package(post_hook)
         Job:new({
           command = 'catkin',
           args = { 'list', '-u', '--this' },
+          cwd = vim.fn.expand('%:p:h'),
           on_stdout = function(err, result)
             if not err then
               vim.b.catkin_package_name = result

@@ -112,7 +112,7 @@ local show_documentation = function()
   end
 end
 
-function _G._ExpandUltisnipsOrUseCocCompletion()
+function _G.UltisnipsExpandOrUseCocCompletion()
   fn['UltiSnips#ExpandSnippet']()
   if vim.g.ulti_expand_res > 0 then
     cmd('pclose')
@@ -125,7 +125,7 @@ function _G._ExpandUltisnipsOrUseCocCompletion()
 end
 
 -- Use <Tab> to expand snippet or confirm completion
-api.nvim_set_keymap('i', '<Tab>', '<C-r>=v:lua._ExpandUltisnipsOrUseCocCompletion()<cr>', { noremap = true, silent = true })
+api.nvim_set_keymap('i', '<Tab>', '<C-r>=v:lua.UltisnipsExpandOrUseCocCompletion()<cr>', { noremap = true, silent = true })
 
 local success, wk = pcall(require, 'which-key')
 if not success then

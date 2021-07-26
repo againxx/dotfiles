@@ -13,11 +13,6 @@ let b:switch_custom_definitions = [
 \ ]
 call coc#config('diagnostic.format', "%message\n[%source:%code]")
 
-nnoremap <buffer> [h
-\   {:execute "keepjumps normal! ?^\\(#include\\<bar>#define\\)\r"<CR>:nohlsearch<CR>
-nnoremap <buffer> ]h
-\   }:execute "keepjumps normal! /^#include\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
-
 lua << EOF
 require('xx.catkin').detect_package(function()
   vim.opt_local.colorcolumn = '121'

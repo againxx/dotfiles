@@ -94,8 +94,9 @@ function! OnUIEnter(event) abort
     if g:colors_name ==# 'ayu'
       hi Normal guibg=#1F2430
     endif
-    set guifont=InconsolataLGC\ Nerd\ Font:h20
+    set guifont=FiraCode\ Nerd\ Font\ Mono:h20
     set showtabline=0
+    set laststatus=0
     hi Pmenu      guibg=NONE
     hi PmenuSbar  guibg=NONE
     hi PmenuThumb guibg=NONE
