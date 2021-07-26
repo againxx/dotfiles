@@ -49,7 +49,8 @@ require('nvim-treesitter.configs').setup {
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ["i,"] = "@param",
+        ["i,"] = "@param.inner",
+        ["a,"] = "@param.outer",
       }
     },
     swap = {
@@ -108,8 +109,10 @@ wk.register({
 
 wk.register({
   ['i,'] = 'inner parameter',
+  ['a,'] = 'a parameter with type',
 }, { mode = 'x'} )
 
 wk.register({
   ['i,'] = 'inner parameter',
+  ['a,'] = 'a parameter with type',
 }, { mode = 'o'} )

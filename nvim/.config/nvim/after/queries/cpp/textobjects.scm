@@ -1,4 +1,4 @@
 (parameter_declaration
-    (identifier) @param)
+    (identifier) @param.inner) @param.outer
 
 [(preproc_include) (preproc_def)] @include
