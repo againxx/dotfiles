@@ -4,35 +4,35 @@ return require('packer').startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- ===
-  -- === LSP
-  -- ===
+  ---
+  --- LSP
+  ---
   use { 'neoclide/coc.nvim', branch = 'release' }
 
-  -- ===
-  -- === Debugger
-  -- ===
+  ---
+  --- Debugger
+  ---
   use 'puremourning/vimspector'
 
-  -- ===
-  -- === Test
-  -- ===
+  ---
+  --- Test
+  ---
   use 'janko/vim-test'
 
-  -- ===
-  -- === Git
-  -- ===
+  ---
+  --- Git
+  ---
   use 'tpope/vim-fugitive'
   use 'kdheepak/lazygit.nvim'
 
-  -- ===
-  -- === Filesystem
-  -- ===
+  ---
+  --- Filesystem
+  ---
   use 'kevinhwang91/rnvimr'
 
-  -- ===
-  -- === Colorscheme & Icons
-  -- ===
+  ---
+  --- Colorscheme & Icons
+  ---
   use 'againxx/ayu-vim'
   use {
     'kyazdani42/nvim-web-devicons',
@@ -50,20 +50,20 @@ return require('packer').startup({function(use)
     end
   }
 
-  -- ===
-  -- === Statusline
-  -- ===
+  ---
+  --- Statusline
+  ---
   use 'hoob3rt/lualine.nvim'
   use 'romgrk/barbar.nvim'
 
-  -- ===
-  -- === Start Screen
-  -- ===
+  ---
+  --- Start Screen
+  ---
   use 'glepnir/dashboard-nvim'
 
-  -- ===
-  -- === Window & Buffer & Keybindings
-  -- ===
+  ---
+  --- Window & Buffer & Keybindings
+  ---
   use {
     'folke/which-key.nvim',
     config = function()
@@ -75,9 +75,9 @@ return require('packer').startup({function(use)
     end
   }
 
-  -- ===
-  -- === Fuzzy Finder
-  -- ===
+  ---
+  --- Fuzzy Finder
+  ---
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
@@ -93,9 +93,9 @@ return require('packer').startup({function(use)
     requires = 'tami5/sql.nvim',
   }
 
-  -- ===
-  -- === Highlighting
-  -- ===
+  ---
+  --- Highlighting
+  ---
   use {
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
   }
@@ -111,49 +111,49 @@ return require('packer').startup({function(use)
   use 'norcalli/nvim-terminal.lua' -- highlight terminal escape sequences
   use 'kevinoid/vim-jsonc'
 
-  -- ===
-  -- === Search & Move
-  -- ===
+  ---
+  --- Search & Move
+  ---
   use 'haya14busa/incsearch.vim'
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' -- highlight for f & t
   use 'karb94/neoscroll.nvim' -- smooth scrolling
 
-  -- ===
-  -- === Comment & Surround & Parenthsis
-  -- ===
+  ---
+  --- Comment & Surround & Parenthsis
+  ---
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat' -- repeat plugin map with '.', work with vim-surround
   use 'tpope/vim-commentary'
   use 'luochen1990/rainbow'
   use 'andymass/vim-matchup'
 
-  -- ===
-  -- === Snippets
-  -- ===
+  ---
+  --- Snippets
+  ---
   use 'SirVer/ultisnips'
   use 'againxx/vim-snippets'
 
-  -- ===
-  -- === Python
-  -- ===
+  ---
+  --- Python
+  ---
   use 'michaeljsmith/vim-indent-object'
   use 'Vimjas/vim-python-pep8-indent'
   use 'goerz/jupytext.vim'
 
-  -- ===
-  -- === Cpp
-  -- ===
+  ---
+  --- Cpp
+  ---
   use 'skywind3000/vim-cppman'
 
-  -- ===
-  -- === Assembly
-  -- ===
+  ---
+  --- Assembly
+  ---
   use 'Shirk/vim-gas'
 
-  -- ===
-  -- === Markdown
-  -- ===
+  ---
+  --- Markdown
+  ---
   -- this plugin is needed by vim-markdown and can be used to align text
   use { 'godlygeek/tabular', ft = 'markdown' }
   use 'plasticboy/vim-markdown'
@@ -165,9 +165,9 @@ return require('packer').startup({function(use)
     'dhruvasagar/vim-table-mode', cmd = {'TableModeToggle', 'TableModeEnable'}
   }
 
-  -- ===
-  -- === Wiki
-  -- ===
+  ---
+  --- Wiki
+  ---
   use { 'vimwiki/vimwiki', branch = 'dev' }
   use 'tools-life/taskwiki'
   use {
@@ -180,15 +180,15 @@ return require('packer').startup({function(use)
     config = function() require('xx.fzf') end
   }
 
-  -- ===
-  -- === Task system
-  -- ===
+  ---
+  --- Task system
+  ---
   use 'skywind3000/asynctasks.vim'
   use 'skywind3000/asyncrun.vim'
 
-  -- ===
-  -- === Tmux Integration
-  -- ===
+  ---
+  --- Tmux Integration
+  ---
   use {
     'edkolev/tmuxline.vim', cmd = {'Tmuxline', 'TmuxlineSnapshot'}
   }
@@ -196,36 +196,36 @@ return require('packer').startup({function(use)
   use 'jpalardy/vim-slime'
   use 'wellle/tmux-complete.vim'
 
-  -- ===
-  -- === Curosr & Alignment
-  -- ===
+  ---
+  --- Curosr & Alignment
+  ---
   use 'mg979/vim-visual-multi'
   use 'junegunn/vim-easy-align'
 
-  -- ===
-  -- === Documentation
-  -- ===
+  ---
+  --- Documentation
+  ---
   -- Read Unix man pages in vim
   use 'jez/vim-superman'
   use 'HiPhish/info.vim'
 
-  -- ===
-  -- === Custom Text Objects
-  -- ===
+  ---
+  --- Custom Text Objects
+  ---
   use 'kana/vim-textobj-user'
   -- use 'againxx/vim-textobj-underscore'
   use 'Julian/vim-textobj-variable-segment'
 
-  -- ===
-  -- === ROS
-  -- ===
+  ---
+  --- ROS
+  ---
   if os.getenv('ROS_ROOT') then
     use'taketwo/vim-ros'
   end
 
-  -- ===
-  -- === Utility
-  -- ===
+  ---
+  --- Utility
+  ---
   use 'tpope/vim-capslock'
   use 'AndrewRadev/switch.vim'
   use 'Konfekt/FastFold'
@@ -243,9 +243,9 @@ return require('packer').startup({function(use)
   -- embed neovim in browser input box
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
-  -- ===
-  -- === Training Vim
-  -- ===
+  ---
+  --- Training Vim
+  ---
   use { 'ThePrimeagen/vim-be-good', cmd = 'VimBeGood' }
 
 end,

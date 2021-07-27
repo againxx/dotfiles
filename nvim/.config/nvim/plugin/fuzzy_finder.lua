@@ -9,7 +9,7 @@ wk.register({
     name = '+find/file',
     f = { require('telescope.builtin').find_files, 'Files in current folder' },
     g = { require('telescope.builtin').git_files, 'Git files' },
-    b = { require('telescope.builtin').buffers, 'Buffers' },
+    b = { require('xx.telescope').buffers, 'Buffers' },
     h = { require('telescope.builtin').help_tags, 'Helps' },
     o = { require('xx.telescope').oldfiles, 'Recent files' },
     e = { require('xx.telescope').file_browser, 'File browser' },
@@ -32,7 +32,8 @@ wk.register({
     u = { '<cmd>UndotreeToggle<cr>', 'Undo tree' },
     ['/'] = { require('telescope.builtin').search_history, 'Search history' },
   },
-  p = { require('xx.telescope').grep_prompt, 'Grep string with prompt' },
+  p = { require('xx.telescope').grep_cursor_word, 'Grep word under cursor' },
+  P = { require('xx.telescope').grep_prompt, 'Grep string with prompt' },
   s = {
     name = '+symbol/session/show',
     s = { require('xx.telescope').document_symbols, 'Document symbols' },

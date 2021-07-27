@@ -141,6 +141,15 @@ function M.oldfiles()
   }
 end
 
+function M.buffers()
+  require('telescope.builtin').buffers {
+    path_display = function(_, path)
+      local tail = require("telescope.utils").path_tail(path)
+      return string.format("%s", tail)
+    end,
+  }
+end
+
 function M.file_browser()
   require('telescope.builtin').file_browser {
     sorting_strategy = 'ascending',
@@ -227,6 +236,15 @@ function M.grep_prompt()
       shorten = 1,
     },
     search = vim.fn.input "Grep String > ",
+  }
+end
+
+function M.grep_cursor_word()
+  require('telescope.builtin').grep_string {
+    path_display = {
+      shorten = 1,
+    },
+    search = vim.fn.expand('<cword>'),
   }
 end
 

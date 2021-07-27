@@ -48,7 +48,7 @@ opt.helplang = 'en'
 -- Workaround for ghost highlight for blankline
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 opt.colorcolumn = '99999'
-opt.inccommand = 'nosplit'
+opt.inccommand = 'split'
 opt.undofile = true
 opt.foldlevel = 1
 opt.foldnestmax = 5
