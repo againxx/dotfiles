@@ -171,7 +171,7 @@ return require('packer').startup({function(use)
   use { 'vimwiki/vimwiki', branch = 'dev' }
   use 'tools-life/taskwiki'
   use {
-    'againxx/vim-zettel',
+    'michal-h21/vim-zettel',
     ft = 'vimwiki',
     requires = {
       { 'junegunn/fzf', ft = 'vimwiki' },
