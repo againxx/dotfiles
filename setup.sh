@@ -23,11 +23,11 @@ stow --target="$HOME" python/
 stow --target="$HOME" lazygit/
 stow --target="$HOME" taskwarrior/
 stow --target="$HOME" alacritty/
+stow --target="$HOME" kitty/
 stow --target="$HOME" gtk/
 stow --target="$HOME" tldr/
 stow --target="$HOME" ranger/
 
-ln -sf "$dotfiles_dir/kitty" ~/.config/
 ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
