@@ -5,18 +5,6 @@
 nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
 xnoremap Y "+y
-" map yp to paste from system clipboard
-nnoremap yp "+p
-nnoremap yP "+P
-
-" map z; to toggle fold
-nnoremap z; za
-
-" map ZA to :qa
-nnoremap ZA <Cmd>qa!<CR>
-
-" map gus to ~
-nnoremap gus ~
 
 " alias r to ], a to >, same as surround.vim
 onoremap ir i]
@@ -40,10 +28,6 @@ nnoremap <C-c> <nop>
 nnoremap <C-c><C-x> <C-c>
 nmap <C-c><C-l> <Plug>SlimeLineSend
 nmap <C-c>l <Plug>SlimeLineSend
-
-" Add empty line
-nnoremap [<Space> <Cmd>call <SID>AddEmptyLines(-v:count1)<CR>
-nnoremap ]<Space> <Cmd>call <SID>AddEmptyLines(v:count1)<CR>
 
 " Continuous indent
 xnoremap < <gv
@@ -152,14 +136,3 @@ inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
 \   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! s:AddEmptyLines(count) abort
-  let cursor_pos = getcurpos()[1:]
-  if a:count < 0
-    put! =repeat(nr2char(10), -a:count)
-    let cursor_pos[0] -= a:count
-  else
-    put =repeat(nr2char(10), a:count)
-  endif
-  call cursor(cursor_pos)
-endfunction

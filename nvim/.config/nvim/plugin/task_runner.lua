@@ -29,7 +29,7 @@ end
 wk.register({
   r = {
     name = '+refactor/run-tasks',
-    r = { '<cmd>cclose<bar>AsyncTask file-run<cr>', 'Run current file' },
+    r = { '<cmd>cclose<bar>write %<bar>AsyncTask file-run<cr>', 'Run current file' },
     b = { '<cmd>AsyncTask project-build<cr>', 'Build whole project' },
     B = { '<cmd>AsyncTask file-build<cr>', 'Build current file' },
     p = { '<cmd>AsyncTask project-run<cr>', 'Run whole project' },

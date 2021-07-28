@@ -7,6 +7,7 @@ opt.showmatch = true -- Show matching brackets
 opt.ignorecase = true -- Do case insensitive matching
 opt.smartcase = true -- Do smart case matching
 opt.hlsearch = true -- Highlight all search matches
+opt.pumblend = 15
 opt.wildmenu = true
 opt.wildmode = { 'longest', 'full' }
 -- Ignore compiled files

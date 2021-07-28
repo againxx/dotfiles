@@ -77,5 +77,9 @@ vim.g.firenvim_config = {
       takeover = 'never',
       priority = 1
     },
+    ['localhost:[0-9]+/lab'] = {
+      takeover = 'never',
+      priority = 1
+    },
   }
 }

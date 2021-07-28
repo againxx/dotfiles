@@ -54,18 +54,41 @@ local ayu_mirage = {
   }
 }
 
-local hide_when_narrow = function() return vim.fn.winwidth(0) > 120 end
+local symbols = {
+  read_only = '',
+  lsp_status = ' ',
+  treesitter_status = ' ',
+  explorer = ' ',
+  undotree = ' ',
+  mode = ' ',
+  ruler = '',
+  err = os.getenv('KITTY_WINDOW_ID') and '理' or 'ﲅ ',
+  warn = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﲍ ',
+  info = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﳃ ',
+  ros_package = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﮧ ',
+  catkin_package = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﲎ ',
+}
 
-local coc_git = function()
-  local git_branch = vim.g.coc_git_status or ''
-  local git_diff = vim.b.coc_git_status or ''
-  return string.gsub(git_branch .. git_diff, '%s$', '')
+local hide_when_narrow = function(width)
+  return function()
+    return vim.fn.winwidth(0) > width
+  end
+end
+
+local git_branch = function()
+  local branch = vim.g.coc_git_status or ''
+  return string.gsub(branch, '%s$', '')
+end
+
+local git_diff = function()
+  local diff = vim.b.coc_git_status or ''
+  return string.gsub(diff, '^%s', '')
 end
 
 local read_only = function()
   local blacklist = { 'help', 'coc-explorer' }
   if vim.bo.readonly and not vim.tbl_contains(blacklist, vim.bo.filetype) then
-    return ''
+    return symbols.read_only
   else
     return ''
   end
@@ -74,7 +97,7 @@ end
 local coc_status = function()
   local status = vim.g.coc_status
   if status and #status > 0 then
-    return ' ' .. status
+    return symbols.lsp_status .. status
   else
     return ''
   end
@@ -89,16 +112,16 @@ local treesitter_status = function()
     if vim.bo.filetype == 'cpp' then
       status = status:gsub('%w+::', '')
     end
-    return ' ' .. status
+    return symbols.treesitter_status .. status:sub(-100 * vim.fn.winwidth(0) / vim.go.columns)
   end
 end
 
 local ros_package = function()
   local package_name_with_symbol = ''
   if vim.b.ros_package_name then
-    package_name_with_symbol =  'ﮧ ' .. vim.b.ros_package_name
+    package_name_with_symbol =  symbols.ros_package .. vim.b.ros_package_name
   elseif vim.b.catkin_package_name then
-    package_name_with_symbol = 'ﲎ ' .. vim.b.catkin_package_name
+    package_name_with_symbol = symbols.catkin_package .. vim.b.catkin_package_name
   end
   return package_name_with_symbol
 end
@@ -106,7 +129,7 @@ end
 local coc_explorer = {
   sections = {
     lualine_b = {
-      function() return ' Explorer' end,
+      function() return symbols.explorer .. 'Explorer' end,
     }
   },
   filetypes = { 'coc-explorer' }
@@ -115,7 +138,7 @@ local coc_explorer = {
 local undotree = {
   sections = {
     lualine_b = {
-      function() return ' Undotree' end,
+      function() return symbols.undotree .. 'Undotree' end,
     }
   },
   filetypes = { 'undotree' }
@@ -133,11 +156,21 @@ require('lualine').setup {
     lualine_a = {
       {
         'mode',
-        icon = ' ',
+        icon = symbols.mode,
         format = function(mode) return string.sub(mode, 1, 1) end
       }
     },
-    lualine_b = { coc_git },
+    lualine_b = {
+      {
+        git_branch,
+        right_padding = 0,
+      },
+      {
+        git_diff,
+        padding = 0,
+        condition = hide_when_narrow(140)
+      }
+    },
     lualine_c = {
       {
         'filename',
@@ -148,13 +181,13 @@ require('lualine').setup {
       coc_status,
       {
         treesitter_status,
-        condition = hide_when_narrow,
+        condition = hide_when_narrow(120),
       }
     },
     lualine_x = {
       {
         ros_package,
-        condition = hide_when_narrow
+        condition = hide_when_narrow(140)
       },
       'filetype',
     },
@@ -166,14 +199,14 @@ require('lualine').setup {
         color_error = colors.red,
         color_warn = colors.yellow,
         color_info = colors.cyan,
-        symbols = { error = 'ﲅ ', warn = 'ﲍ ', info = 'ﳃ ' }
+        symbols = { error = symbols.err, warn = symbols.warn, info = symbols.info }
       },
       'progress',
     },
     lualine_z = {
       {
         'location',
-        icon = '',
+        icon = symbols.ruler,
         format = function(location) return string.gsub(location, ':', '') end
       }
     }
@@ -193,7 +226,7 @@ require('lualine').setup {
     lualine_z = {
       {
         'location',
-        icon = '',
+        icon = symbols.ruler,
         format = function(location) return string.gsub(location, ':', '') end
       }
     }

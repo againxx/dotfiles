@@ -65,6 +65,17 @@ local execute_line = function()
   end
 end
 
+local change_dir = function()
+  local current_dir = vim.fn.expand('%:p:h')
+  for _, dir in ipairs(vim.g.WorkspaceFolders) do
+    if current_dir:find(dir, 1, true) then
+      vim.cmd('lcd ' .. dir)
+      return
+    end
+  end
+  vim.cmd('lcd ' .. current_dir)
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
@@ -82,7 +93,8 @@ wk.register({
   },
   c = {
     name = '+change/command',
-    d = { '<cmd>lcd %:p:h<cr>', 'Change window directory' },
+    d = { change_dir, 'Change window directory' },
+    D = { "<cmd>lcd expand('%:p:h')<cr>", 'Change window directory to current directory' },
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
   },
   s = {

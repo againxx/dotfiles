@@ -40,10 +40,17 @@ augroup visual_multi_special
   autocmd User visual_multi_exit  call s:VMExit()
 augroup END
 
+" augroup ros_special
+"   autocmd!
+"   autocmd BufRead,BufNewFile *
+"   autocmd User visual_multi_exit  call s:VMExit()
+" augroup END
+
 augroup other_filetypes
   autocmd!
   autocmd FileType asm,gitcommit setlocal nolist
   autocmd FileType asm setlocal filetype=gas
+  autocmd FileType qf setlocal nobuflisted
 augroup END
 
 augroup ui_special

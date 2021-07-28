@@ -1,5 +1,4 @@
 local success, wk = pcall(require, 'which-key')
-success = success and pcall(require, 'telescope.builtin')
 if not success then
   return
 end

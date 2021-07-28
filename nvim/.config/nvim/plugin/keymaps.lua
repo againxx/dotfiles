@@ -28,18 +28,42 @@ local move_selected_lines = function(count)
   vim.api.nvim_feedkeys(crow .. 'ggo' .. diff + crow .. 'gg=gv', 'n', false)
 end
 
+local add_empty_line = function(count)
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  local new_lines = {}
+  for _ = 1, math.abs(count) do
+    table.insert(new_lines, '')
+  end
+  if count < 0 then
+    vim.api.nvim_put(new_lines, 'l', false, false)
+    cursor_pos[1] = cursor_pos[1] - count
+  else
+    vim.api.nvim_put(new_lines, 'l', true, false)
+  end
+  vim.api.nvim_win_set_cursor(0, cursor_pos)
+end
+
 wk.register({
   ga = { '<Plug>(EasyAlign)', 'EasyAlign by motion' },
   gc = 'Comment by motion',
   gC = 'Toggle capslock',
   gb = 'Reselect previous yanked text',
+  gus = { '~', 'Switch case' },
+  yp = { '"+p', 'Paste system clipboard after cursor' },
+  yP = { '"+P', 'Paste system clipboard before cursor' },
+  ZA = { '<cmd>qa!<cr>', 'Quit all' },
   ['g*'] = 'Forward incsearch word (stayed cursor)',
   ['g#'] = 'Backward incsearch word (stayed cursor)',
   ['g/'] = 'Forward incsearch (stayed cursor)',
+  ['z;'] = { 'za', 'Toggle fold under cursor' },
   ['[q'] = { '<cmd>cfirst<cr>', 'Go to first quickfix term' },
   [']q'] = { '<cmd>clast<cr>', 'Go to last quickfix term' },
   ['[a'] = { "<cmd>execute 'move -1-'.v:count1<cr>==", 'Move current line up' },
   [']a'] = { "<cmd>execute 'move +'.v:count1<cr>==", 'Move current line down' },
+  ['[yp'] = { 'O<c-r>+<esc>', 'Paste system clipboard in new line above' },
+  [']yp'] = { "o<c-r>+<esc>", 'Paste system clipboard in new line below' },
+  ['[<space>'] = { function() add_empty_line(-vim.v.count1) end, 'Add empty line above' },
+  [']<space>'] = { function() add_empty_line(vim.v.count1) end, 'Add empty line below' },
 })
 
 wk.register({

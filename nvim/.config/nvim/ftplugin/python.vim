@@ -27,10 +27,6 @@ let b:switch_custom_definitions = [
 \ ]
 
 nnoremap <buffer> <Space><Space> 0/TODO<CR>:nohlsearch<CR>"_c4l
-nnoremap <buffer> [h
-\   {:execute "keepjumps normal! ?^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>
-nnoremap <buffer> ]h
-\   }:execute "keepjumps normal! /^\\(import\\<bar>from\\)\r"<CR>:nohlsearch<CR>:keepjumps normal }k<CR>
 
 if g:colors_name ==# 'ayu'
   hi pythonSelf          gui=italic guifg=#B695E0 guibg=NONE
