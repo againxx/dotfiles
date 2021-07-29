@@ -18,10 +18,10 @@ wk.register({
     d = { '<Plug>(coc-git-chunkinfo)', 'Chunk diff' },
     -- show commit contains current position
     c = { '<Plug>(coc-git-commit)', 'Current line commits' },
-    C = { require('telescope.builtin').git_commits, 'All commits' },
-    ['<C-c>'] = { require('xx.telescope').git_bcommits, 'Current buffer commits' },
-    b = { require('telescope.builtin').git_branches, 'Branches' },
-    s = { require('telescope.builtin').git_status, 'Status' },
+    C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", 'All commits' },
+    ['<C-c>'] = { "require('xx.telescope').git_bcommits()<cr>", 'Current buffer commits' },
+    b = { "<cmd>lua require('xx.telescope').git_branches()<cr>", 'Branches' },
+    s = { "<cmd>lua require('xx.telescope').git_status()<cr>", 'Status' },
   },
   ['<C-g>'] = { "<cmd>LazyGit<cr>", 'Lazygit' }
 }, { prefix = '<leader>' })

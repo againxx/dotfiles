@@ -19,5 +19,5 @@ if not success then
 end
 
 wk.register({
-  ['<leader>ls'] = { require('xx.telescope').ultisnips, 'List available snippets' },
+  ['<leader>ls'] = { "<cmd>lua require('xx.telescope').ultisnips()<cr>", 'List available snippets' },
 })

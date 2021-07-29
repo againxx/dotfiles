@@ -2,15 +2,13 @@ local fn = vim.fn
 local g = vim.g
 
 g['test#python#runner'] = 'pytest'
-g.test_project_root_pattern = { '.vim', '.git' }
+g.test_project_root_patterns = { '.vim', '.git' }
 
 local test_root_dir_exec = function(cmd)
-  if g.test_project_root_pattern then
-    for _, pattern in pairs(g.test_project_root_pattern) do
-      local root_dir = fn.finddir(pattern, '.;' .. os.getenv('HOME'))
-      if fn.empty(root_dir) > 0 then
-        g['test#project_root'] = fn.fnamemodify(root_dir, ':h')
-      end
+  if g.test_project_root_patterns then
+    local root_dir = require('xx.utils').find_bottom_up_project_root_dir(g.test_project_root_patterns)
+    if root_dir then
+      g['test#project_root'] = root_dir
     end
   end
   vim.cmd(cmd)

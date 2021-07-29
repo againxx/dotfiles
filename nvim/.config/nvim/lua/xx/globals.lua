@@ -3,11 +3,7 @@ P = function(v)
   return v
 end
 
-if pcall(require, "plenary") then
-  RELOAD = require("plenary.reload").reload_module
-
-  R = function(name)
-    RELOAD(name)
-    return require(name)
-  end
+R = function(name)
+  require("plenary.reload").reload_module(name)
+  return require(name)
 end

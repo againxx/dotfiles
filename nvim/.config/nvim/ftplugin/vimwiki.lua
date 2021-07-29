@@ -61,7 +61,7 @@ wk.register({
 }, { prefix = '<leader>w', buffer = vim.api.nvim_get_current_buf() })
 
 wk.register({
-  sa = { require('xx.telescope').tags, 'Fuzzy find tags' },
+  sa = { "<cmd>lua require('xx.telescope').tags()<cr>", 'Fuzzy find tags' },
   t = {
     name = '+taskwiki',
     a = 'Annotate',

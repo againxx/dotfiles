@@ -66,14 +66,13 @@ local execute_line = function()
 end
 
 local change_dir = function()
-  local current_dir = vim.fn.expand('%:p:h')
-  for _, dir in ipairs(vim.g.WorkspaceFolders) do
-    if current_dir:find(dir, 1, true) then
-      vim.cmd('lcd ' .. dir)
-      return
-    end
+  local root_patterns = { '.vim', '.git' }
+  local root_dir = require('xx.utils').find_bottom_up_project_root_dir(root_patterns)
+  if root_dir then
+    vim.cmd('lcd ' .. root_dir)
+    return
   end
-  vim.cmd('lcd ' .. current_dir)
+  vim.cmd('lcd ' .. vim.fn.expand('%:p:h'))
 end
 
 local success, wk = pcall(require, 'which-key')

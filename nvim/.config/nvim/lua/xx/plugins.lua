@@ -219,12 +219,12 @@ return require('packer').startup({function(use)
   ---
   --- ROS
   ---
-  if os.getenv('ROS_ROOT') then
-    use {
-      'taketwo/vim-ros',
-      cond = function() return not os.getenv('CONDA_PREFIX') end
-    }
-  end
+  -- if os.getenv('ROS_ROOT') then
+  --   use {
+  --     'taketwo/vim-ros',
+  --     cond = function() return not os.getenv('CONDA_PREFIX') end
+  --   }
+  -- end
 
   ---
   --- Utility

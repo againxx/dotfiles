@@ -33,4 +33,15 @@ function M.set_indent(num)
   vim.opt_local.softtabstop = num
 end
 
+function M.find_bottom_up_project_root_dir(root_patterns)
+  local root_dir = ""
+  for _, pattern in ipairs(root_patterns) do
+    local find_result = vim.fn.finddir(pattern, '.;' .. (#root_dir > 0 and root_dir or os.getenv('HOME')))
+    if #find_result > 0 then
+      root_dir = vim.fn.fnamemodify(find_result, ':h')
+    end
+  end
+  return #root_dir > 0 and root_dir or nil
+end
+
 return M

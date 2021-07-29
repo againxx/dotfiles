@@ -22,5 +22,4 @@ vim.g.loaded_perl_provider = 0 -- disable perl support
 vim.g.loaded_ruby_provider = 0 -- disable ruby support
 
 require('xx.treesitter')
-require('xx.telescope')
 require('xx.globals')

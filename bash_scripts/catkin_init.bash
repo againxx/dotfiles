@@ -10,7 +10,7 @@ set -o pipefail
 package_names=()
 build_type=debug
 all_packages=0
-while [ $# -ge 1 ]; do
+while [[ $# -ge 1 ]]; do
     case "$1" in
         --debug )
             build_type=debug;;
@@ -22,22 +22,25 @@ while [ $# -ge 1 ]; do
             all_packages=-1;;
         [!-][!-]* )
             package_names+=("$1");;
-            * )
+        * )
             echo "Invalid arguments! $1";;
     esac
     shift
 done
 
-current_path=$(pwd)
-while [[ $current_path != "/" ]]; do
-    if [[  $current_path =~ .*ws$ && -d "$current_path/src" ]]; then
-        catkin_ws_dir=$current_path
-        break
-    fi
-    current_path=$(dirname "$current_path")
-done
+catkin_ws_dir=$(catkin locate 2> /dev/null)
+if [[ -z "$catkin_ws_dir" ]]; then
+    current_path=$(pwd)
+    while [[ $current_path != "/" ]]; do
+        if [[  $current_path =~ .*ws$ && -d "$current_path/src" ]]; then
+            catkin_ws_dir=$current_path
+            break
+        fi
+        current_path=$(dirname "$current_path")
+    done
+fi
 
-if [ -z "$catkin_ws_dir" ]; then
+if [[ -z "$catkin_ws_dir" ]]; then
     echo "catkin worksapce not found!" >&2
     exit 1
 fi

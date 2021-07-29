@@ -112,7 +112,7 @@ local treesitter_status = function()
     if vim.bo.filetype == 'cpp' then
       status = status:gsub('%w+::', '')
     end
-    return symbols.treesitter_status .. status:sub(-100 * vim.fn.winwidth(0) / vim.go.columns)
+    return '%<' .. symbols.treesitter_status .. status
   end
 end
 

@@ -3,7 +3,6 @@ if not pcall(require, 'telescope') then
 end
 
 local actions = require('telescope.actions')
-local themes = require('telescope.themes')
 
 require('telescope').setup {
   defaults = {
@@ -69,6 +68,13 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 
 local M = {}
+
+setmetatable(M, {
+  __index = function(_, k)
+    return require('telescope.builtin')[k]
+  end
+})
+
 function M.edit_vimrc()
   require('telescope.builtin').find_files {
     cwd = '~/.config/nvim',
@@ -109,7 +115,7 @@ function M.edit_dotfiles()
 end
 
 function M.edit_dictionaries()
-  local opts = themes.get_dropdown {
+  local opts = require('telescope.themes').get_dropdown {
     cwd = '~/dotfiles/vim/cSpell_dictionaries',
     prompt_title = 'Dictionaries',
     layout_config = {
@@ -178,7 +184,7 @@ function M.jumplist()
 end
 
 function M.current_buffer_fuzzy_find(current_word)
-  local opts = themes.get_ivy {
+  local opts = require('telescope.themes').get_ivy {
     attach_mappings = function (_, map)
       map('i', '<C-l>', function ()
         vim.fn.feedkeys(current_word, 'n')
@@ -261,6 +267,10 @@ function M.grep_last_search(opts)
   opts.search = register
 
   require('telescope.builtin').grep_string(opts)
+end
+
+function M.live_grep()
+  require('telescope').extensions.fzf_writer.staged_grep()
 end
 
 function M.ultisnips()

@@ -37,5 +37,5 @@ wk.register({
     c = { '<cmd>AsyncTask project-clean<cr>', 'Clean project' },
   },
   cp = { change_build_profile, 'Change build profile' },
-  lr = { require('xx.telescope').asynctasks, 'List available tasks' },
+  lr = { "<cmd>lua require('xx.telescope').asynctasks<cr>", 'List available tasks' },
 }, { prefix = '<leader>' })
