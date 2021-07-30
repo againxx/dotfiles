@@ -25,6 +25,6 @@ vim.defer_fn(function()
   require('xx.catkin').detect_ws_root()
 end, 500)
 
-if vim.b.ros_package_path then
+if not vim.b.ros_package_path then
   vim.cmd [[command! -buffer -nargs=0 A execute 'CocCommand clangd.switchSourceHeader']]
 end
