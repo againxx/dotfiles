@@ -52,6 +52,15 @@ augroup other_filetypes
   autocmd FileType asm setlocal filetype=gas
   autocmd FileType qf setlocal nobuflisted
   autocmd FileType rnvimr tnoremap <buffer><silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+
+augroup END
+
+augroup ros_filetype_detect
+  autocmd!
+  autocmd BufRead,BufNewFile *.launch set filetype=roslaunch
+  autocmd BufRead,BufNewFile *.action set filetype=rosaction
+  autocmd BufRead,BufNewFile *.msg    set filetype=rosmsg
+  autocmd BufRead,BufNewFile *.srv    set filetype=rossrv
 augroup END
 
 augroup ui_special

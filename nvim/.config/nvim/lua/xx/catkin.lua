@@ -1,21 +1,3 @@
--- function! s:PackageCallback(job_id, data, event) abort dict
---     if a:event ==# 'stdout'
---         let b:catkin_package_name = a:data[0]
---     elseif a:event ==# 'exit'
---         if !empty(b:catkin_package_name)
---             call self.on_exit_func()
---             let b:catkin_initialized = 1
---         else
---             let b:catkin_initialized = -1
---         endif
---     endif
--- endfunction
-
--- let s:callbacks = {
--- \ 'on_stdout': function('s:PackageCallback'),
--- \ 'on_exit': function('s:PackageCallback')
--- \ }
-
 local Job = require('plenary.job')
 
 M = {}
@@ -37,7 +19,7 @@ end
 function M.detect_package(post_hook)
   if not vim.b.catkin_package_name then
     if vim.b.ros_package_name then
-      vim.defer_fn(post_hook, 500)
+      vim.schedule_wrap(post_hook)
       vim.b.catkin_package_name = vim.b.ros_package_name
       return
     else
@@ -54,7 +36,7 @@ function M.detect_package(post_hook)
           end,
           on_exit = function(_, code)
             if code == 0 and vim.b.catkin_package_name and #vim.b.catkin_package_name > 0 then
-              vim.defer_fn(post_hook, 500)
+              vim.schedule_wrap(post_hook)
             end
           end
         }):start()

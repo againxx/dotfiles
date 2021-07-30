@@ -161,10 +161,7 @@ require('lualine').setup {
       }
     },
     lualine_b = {
-      {
-        git_branch,
-        right_padding = 0,
-      },
+      git_branch,
       {
         git_diff,
         padding = 0,
