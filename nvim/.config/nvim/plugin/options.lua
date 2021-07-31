@@ -7,7 +7,6 @@ opt.showmatch = true -- Show matching brackets
 opt.ignorecase = true -- Do case insensitive matching
 opt.smartcase = true -- Do smart case matching
 opt.hlsearch = true -- Highlight all search matches
-opt.pumblend = 15
 opt.wildmenu = true
 opt.wildmode = { 'longest', 'full' }
 -- Ignore compiled files
@@ -56,6 +55,10 @@ opt.foldnestmax = 5
 -- FastFold overwrites foldmethod to manual, in order to ensure saved
 -- sessions do no save the default fold method to manual
 opt.sessionoptions:remove('folds')
+
+if not os.getenv('KITTY_WINDOW_ID') then
+  opt.pumblend = 15
+end
 
 vim.g.sh_no_error = 1 -- Disable some error highlights for shell script
 vim.g.is_bash = 1 --- Set bash as default shell script language
