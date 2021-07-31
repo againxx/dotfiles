@@ -82,7 +82,7 @@
     "git.signPriority": 1,
     "git.branchCharacter": "",
     "git.changedDecorator": "✹ ",
-    "git.stagedDecorator": "● ",
+    "git.stagedDecorator": "❀ ",
     "git.untrackedDecorator": " ",
     "git.showCommitInFloating": true,
     "yank.list.maxsize": 50,
