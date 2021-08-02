@@ -31,54 +31,6 @@ local fn = vim.fn
 local api = vim.api
 local cmd = vim.cmd
 
--- functions
-local toggle_error_code = function()
-  if fn['coc#util#get_config']('diagnostic').format == '%message\n[%source]' then
-    fn['coc#config']('diagnostic.format', '%message\n[%source:%code]')
-  else
-    fn['coc#config']('diagnostic.format', '%message\n[%source]')
-  end
-end
-
-local change_diagnostic_level = function()
-  if fn['coc#util#get_config']('diagnostic').level == 'warning' then
-    fn['coc#config']('diagnostic.level', 'hint')
-  else
-    fn['coc#config']('diagnostic.level', 'warning')
-  end
-  fn.CocActionAsync('diagnosticRefresh', api.nvim_get_current_buf())
-end
-
-local toggle_code_lens = function()
-  if fn['coc#util#get_config']('codeLens').enable > 0 then
-    fn['coc#config']('codeLens.enable', 0)
-  else
-    fn['coc#config']('codeLens.enable', 1)
-  end
-  if vim.bo.filetype == 'rust' then
-    cmd('CocCommand rust-analyzer.toggleInlayHints')
-  end
-end
-
-local toggle_git_blame = function()
-  if fn['coc#util#get_config']('git').addGBlameToVirtualText then
-    fn['coc#config']('git.addGBlameToVirtualText', false)
-    local ns_id = api.nvim_get_namespaces()['coc-git-virtual']
-    api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
-  else
-    fn['coc#config']('git.addGBlameToVirtualText', true)
-  end
-end
-
-local toggle_diagnostic = function()
-  if vim.b.coc_diagnostic_disable and vim.b.coc_diagnostic_disable > 0 then
-    vim.b.coc_diagnostic_disable = 0
-  else
-    vim.b.coc_diagnostic_disable = 1
-  end
-  cmd('doautocmd BufEnter')
-end
-
 local get_diagnostic_codes = function()
   local coc_diagnostics = fn.CocAction('diagnosticList')
   local current_line = api.nvim_get_current_line()
@@ -134,11 +86,11 @@ end
 
 -- GoTo code navigation.
 wk.register({
-  d = { '<cmd>Telescope coc definitions<cr>', 'Go to definitions' },
-  l = { '<cmd>Telescope coc declarations<cr>', 'Go to declarations' },
-  L = { '<cmd>Telescope coc implementations<cr>', 'Go to implementations' },
-  r = { '<cmd>Telescope coc references<cr>', 'Go to references' },
-  y = { '<cmd>Telescope coc type_definitions<cr>', 'Go to type definitions' },
+  d = { "<cmd>lua require('xx.telescope').coc.definitions()<cr>", 'Go to definitions' },
+  l = { "<cmd>lua require('xx.telescope').coc.declarations()<cr>", 'Go to declarations' },
+  L = { "<cmd>lua require('xx.telescope').coc.implementations()<cr>", 'Go to implementations' },
+  r = { "<cmd>lua require('xx.telescope').coc.references{}<cr>", 'Go to references' },
+  y = { "<cmd>lua require('xx.telescope').coc.type_definitions({})<cr>", 'Go to type definitions' },
   q = { '<Plug>(coc-format-selected)', 'Format by motion' },
   qq = { '<Plug>(coc-format-selected)j', 'Format current line' },
 }, { prefix = 'g' })
@@ -153,8 +105,8 @@ wk.register({
 })
 
 wk.register({
-  g = { '<cmd>Telescope coc diagnostics<cr>', 'Current buffer diagnostics' },
-  G = { '<cmd>Telescope coc workspace_diagnostics<cr>', 'Workspace diagnostics' },
+  g = { "<cmd>lua require('xx.telescope').coc.diagnostics()<cr>", 'Current buffer diagnostics' },
+  G = { "<cmd>lua require('xx.telescope').coc.workspace_diagnostics()<cr>", 'Workspace diagnostics' },
 }, { prefix = '<leader>d' })
 
 wk.register({
@@ -185,11 +137,11 @@ wk.register({
   },
   c = {
     name = '+change/command',
-    a = { change_diagnostic_level, 'Change diagnostic level' },
-    l = { toggle_code_lens, 'Toggle code lens' },
-    b = { toggle_git_blame, 'Toggle git blame' },
-    D = { toggle_diagnostic, 'Toggle diagnostic' },
-    C = { toggle_error_code, 'Toggle error code' },
+    a = { "<cmd>lua require('xx.toggles').change_diagnostic_level()<cr>", 'Change diagnostic level' },
+    l = { "<cmd>lua require('xx.toggles').toggle_code_lens()<cr>", 'Toggle code lens' },
+    b = { "<cmd>lua require('xx.toggles').toggle_git_blame()<cr>", 'Toggle git blame' },
+    D = { "<cmd>lua require('xx.toggles').toggle_diagnostic()<cr>", 'Toggle diagnostic' },
+    C = { "<cmd>lua require('xx.toggles').toggle_error_code()<cr>", 'Toggle error code' },
     g = { '<cmd>CocCommand git.toggleGutters<cr>', 'Toggle gutters' },
     s = { '<cmd>CocCommand cSpell.toggleEnableSpellChecker<cr>', 'Toggle spell checker' }
   }

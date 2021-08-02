@@ -99,8 +99,8 @@ nnoremap <M-z> <Cmd>MaximizerToggle!<CR>
 vnoremap <M-z> <Cmd>MaximizerToggle!<CR>gv
 inoremap <M-z> <Cmd>MaximizerToggle!<CR>
 
-nnoremap <M-9> <Cmd>cprevious<CR>
-nnoremap <M-0> <Cmd>cnext<CR>
+nnoremap <M-9> <Cmd>QPrev<CR>
+nnoremap <M-0> <Cmd>QNext<CR>
 
 " ===
 " === Window Split

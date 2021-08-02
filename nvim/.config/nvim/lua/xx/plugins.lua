@@ -217,6 +217,18 @@ return require('packer').startup({function(use)
   use 'Julian/vim-textobj-variable-segment'
 
   ---
+  --- QuickFix
+  ---
+  use {
+    'stevearc/qf_helper.nvim',
+    config = function() require('qf_helper').setup() end
+  }
+  use {
+    'tpope/vim-scriptease',
+    cmd = { 'PP', 'Scriptnames', 'Messages', 'Verbose' }
+  }
+
+  ---
   --- ROS
   ---
   -- if os.getenv('ROS_ROOT') then
@@ -231,10 +243,6 @@ return require('packer').startup({function(use)
   ---
   use 'tpope/vim-abolish'
   use 'tpope/vim-capslock'
-  use {
-    'tpope/vim-scriptease',
-    cmd = { 'PP', 'Scriptnames', 'Messages', 'Verbose' }
-  }
   use 'AndrewRadev/switch.vim'
   use 'Konfekt/FastFold'
   use {

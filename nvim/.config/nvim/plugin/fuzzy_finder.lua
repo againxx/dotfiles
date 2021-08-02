@@ -19,8 +19,10 @@ wk.register({
   },
   l = {
     name = '+list',
-    l = { "<cmd>lua require('xx.telescope').loclist()<cr>", 'Open location list' },
-    c = { "<cmd>lua require('xx.telescope').quickfix()<cr>", 'Open quickfix' },
+    l = { '<cmd>LLToggle!<cr>', 'Toggle location list' },
+    c = { '<cmd>QFToggle!<cr>', 'Toggle quickfix' },
+    L = { "<cmd>lua require('xx.telescope').loclist()<cr>", 'Fuzzy find location list' },
+    C = { "<cmd>lua require('xx.telescope').quickfix()<cr>", 'Fuzzy find quickfix' },
   },
   o = {
     name = '+open/history',
@@ -35,11 +37,11 @@ wk.register({
   P = { "<cmd>lua require('xx.telescope').grep_prompt()<cr>", 'Grep string with prompt' },
   s = {
     name = '+symbol/session/show',
-    s = { "<cmd>lua require('xx.telescope').document_symbols()<cr>", 'Document symbols' },
-    a = { "<cmd>lua require('xx.telescope').workspace_symbols()<cr>", 'Workspace symbols' },
+    s = { "<cmd>lua require('xx.telescope').coc.document_symbols()<cr>", 'Document symbols' },
+    a = { "<cmd>lua require('xx.telescope').coc..workspace_symbols()<cr>", 'Workspace symbols' },
   },
   c = {
-    c = { '<cmd>Telescope coc commands<cr>', 'Coc commands' },
+    c = { "<cmd>lua require('xx.telescope').coc.commands()<cr>", 'Coc commands' },
     v = { "<cmd>lua require('xx.telescope').commands()<cr>", 'Vim commands' },
   },
 }, { prefix = '<leader>' })

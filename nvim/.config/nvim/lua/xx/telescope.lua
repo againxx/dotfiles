@@ -67,7 +67,7 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzy_native')
 
-local M = {}
+local M = { coc = {} }
 
 local symbol_type_highlight = {
   ["Class"] = "Structure",
@@ -87,6 +87,12 @@ local symbol_type_highlight = {
 setmetatable(M, {
   __index = function(_, k)
     return require('telescope.builtin')[k]
+  end
+})
+
+setmetatable(M.coc, {
+  __index = function(_, k)
+    return require('telescope').extensions.coc[k]
   end
 })
 
@@ -231,7 +237,7 @@ function M.tags()
   }
 end
 
-function M.document_symbols()
+function M.coc.document_symbols()
   require('telescope').extensions.coc.document_symbols {
     layout_strategy = 'vertical',
     layout_config = {
@@ -243,7 +249,7 @@ function M.document_symbols()
   }
 end
 
-function M.workspace_symbols()
+function M.coc.workspace_symbols()
   require('telescope').extensions.coc.workspace_symbols {
     layout_strategy = 'vertical',
     layout_config = {
