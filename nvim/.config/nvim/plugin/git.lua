@@ -19,7 +19,7 @@ wk.register({
     -- show commit contains current position
     c = { '<Plug>(coc-git-commit)', 'Current line commits' },
     C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", 'All commits' },
-    ['<C-c>'] = { "require('xx.telescope').git_bcommits()<cr>", 'Current buffer commits' },
+    ['<C-c>'] = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", 'Current buffer commits' },
     b = { "<cmd>lua require('xx.telescope').git_branches()<cr>", 'Branches' },
     s = { "<cmd>lua require('xx.telescope').git_status()<cr>", 'Status' },
   },

@@ -229,7 +229,12 @@ return require('packer').startup({function(use)
   ---
   --- Utility
   ---
+  use 'tpope/vim-abolish'
   use 'tpope/vim-capslock'
+  use {
+    'tpope/vim-scriptease',
+    cmd = { 'PP', 'Scriptnames', 'Messages', 'Verbose' }
+  }
   use 'AndrewRadev/switch.vim'
   use 'Konfekt/FastFold'
   use {
@@ -241,7 +246,6 @@ return require('packer').startup({function(use)
   use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki'} }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
   use 'jeffkreeftmeijer/vim-numbertoggle'
-  use 'tpope/vim-abolish'
   use 'danro/rename.vim'
   -- embed neovim in browser input box
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }

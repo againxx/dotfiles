@@ -77,12 +77,12 @@ end
 
 local git_branch = function()
   local branch = vim.g.coc_git_status or ''
-  return string.gsub(branch, '%s$', '')
+  return vim.trim(branch)
 end
 
 local git_diff = function()
   local diff = vim.b.coc_git_status or ''
-  return string.gsub(diff, '^%s', '')
+  return vim.trim(diff)
 end
 
 local read_only = function()
@@ -164,7 +164,7 @@ require('lualine').setup {
       git_branch,
       {
         git_diff,
-        padding = 0,
+        left_padding = 0,
         condition = hide_when_narrow(140)
       }
     },
