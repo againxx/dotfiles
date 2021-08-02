@@ -53,3 +53,4 @@ asarray
 unsqueeze
 mkline
 pyright
+reprlib

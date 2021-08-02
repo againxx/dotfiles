@@ -69,6 +69,21 @@ require('telescope').load_extension('fzy_native')
 
 local M = {}
 
+local symbol_type_highlight = {
+  ["Class"] = "Structure",
+  ["Constant"] = "Constant",
+  ["Field"] = "Field",
+  ["Function"] = "Function",
+  ["Method"] = "Function",
+  ["Property"] = "Operator",
+  ["Struct"] = "Structure",
+  ["Variable"] = "Identifier",
+  ["Namespace"] = "Namespace",
+  ["Constructor"] = "Constructor",
+  ["Enum"] = "Parameter",
+  ["EnumMember"] = "Field",
+}
+
 setmetatable(M, {
   __index = function(_, k)
     return require('telescope.builtin')[k]
@@ -222,6 +237,9 @@ function M.document_symbols()
     layout_config = {
       preview_height = 0.70,
     },
+    symbol_width = 50,
+    symbol_type_width = 15,
+    symbol_highlights = symbol_type_highlight,
   }
 end
 
@@ -231,6 +249,9 @@ function M.workspace_symbols()
     layout_config = {
       preview_height = 0.70,
     },
+    symbol_width = 50,
+    symbol_type_width = 15,
+    symbol_highlights = symbol_type_highlight,
   }
 end
 
