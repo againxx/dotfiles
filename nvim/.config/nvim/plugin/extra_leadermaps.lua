@@ -119,6 +119,7 @@ wk.register({
     l = { execute_line, 'Execute current line as (Vim/Lua)' },
   },
   yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
+  yl = { "<cmd>let @+=(expand('%:t') . ':' . nvim_win_get_cursor(0)[0])<cr>", 'Yank file path and line' },
 }, { prefix = '<leader>' })
 
 wk.register({

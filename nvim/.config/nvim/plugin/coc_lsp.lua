@@ -86,7 +86,7 @@ end
 
 -- GoTo code navigation.
 wk.register({
-  d = { "<cmd>lua require('xx.telescope').coc.definitions()<cr>", 'Go to definitions' },
+  d = { "<cmd>lua require('xx.telescope').coc.definitions({})<cr>", 'Go to definitions' },
   l = { "<cmd>lua require('xx.telescope').coc.declarations()<cr>", 'Go to declarations' },
   L = { "<cmd>lua require('xx.telescope').coc.implementations()<cr>", 'Go to implementations' },
   r = { "<cmd>lua require('xx.telescope').coc.references{}<cr>", 'Go to references' },
