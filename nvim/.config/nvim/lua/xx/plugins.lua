@@ -12,7 +12,11 @@ return require('packer').startup({function(use)
   ---
   --- Debugger
   ---
-  use 'puremourning/vimspector'
+  -- use 'puremourning/vimspector'
+  use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-dap-python'
+  use { "rcarriga/nvim-dap-ui", requires = { 'mfussenegger/nvim-dap' } }
+  use { 'theHamsta/nvim-dap-virtual-text',  module = 'xx.dap' }
 
   ---
   --- Test
@@ -36,6 +40,7 @@ return require('packer').startup({function(use)
   ---
   --- Colorscheme & Icons
   ---
+  use 'tjdevries/colorbuddy.nvim'
   use 'againxx/ayu-vim'
   use {
     'kyazdani42/nvim-web-devicons',

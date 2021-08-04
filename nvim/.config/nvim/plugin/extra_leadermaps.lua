@@ -93,7 +93,7 @@ wk.register({
   c = {
     name = '+change/command',
     d = { change_dir, 'Change window directory' },
-    D = { "<cmd>lcd expand('%:p:h')<cr>", 'Change window directory to current directory' },
+    D = { "<cmd>execute 'lcd '.expand('%:p:h')<cr>", 'Change window directory to current directory' },
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
   },
   s = {

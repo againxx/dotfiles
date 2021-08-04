@@ -15,3 +15,4 @@ highlight! link jsonKeyword     Function
 let g:VM_Extend_hl = 'VMExtend'
 let g:VM_Cursor_hl = 'VMCursor'
 let g:VM_Mono_hl = 'VMMono'
+" lua require('colorbuddy').colorscheme('xx.ayu', false, { disable_defaults = true })

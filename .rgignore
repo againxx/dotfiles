@@ -3,3 +3,11 @@
 
 # clangd
 .cache/
+
+# catkin
+build/
+devel/
+logs/
+*.bag
+.catkin_tools
+stubs/

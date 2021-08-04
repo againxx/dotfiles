@@ -10,7 +10,6 @@ augroup common
   autocmd CmdLineEnter : set nosmartcase
   autocmd CmdLineLeave : set smartcase
   autocmd VimResized * :wincmd =
-  autocmd TabClosed * call s:DeleteFinishedTerminalBuffers()
   " fix vim script user command syntax highlighting
   " (should be unnecessary when https://github.com/vim/vim/issues/6587 is fixed)
   autocmd Syntax vim syn match vimUsrCmd '^\s*\zs\u\%(\w*\)\@>(\@!'
@@ -67,18 +66,6 @@ augroup ui_special
   autocmd!
   autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
 augroup END
-
-function! s:DeleteFinishedTerminalBuffers() abort
-  let term_buffers = filter(range(1, bufnr('$')), "getbufvar(v:val, '&buftype') ==# 'terminal'")
-  for term_buffer in term_buffers
-    let is_running = has('terminal') ? term_getstatus(term_buffer) =~# 'running' :
-    \   has('nvim') ? jobwait([getbufvar(term_buffer, '&channel')], 0)[0] == -1 :
-    \   0
-    if !is_running
-      silent execute term_buffer.'bdelete!'
-    endif
-  endfor
-endfunction
 
 function! s:VMStart() abort
   nmap <buffer> <C-j> <Plug>(VM-Add-Cursor-Down)

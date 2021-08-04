@@ -57,6 +57,7 @@ require('telescope').setup {
         ['nvim']    = os.getenv('HOME') .. '/.config/nvim',
         ['scanbot'] = os.getenv('HOME') .. '/Projects/scanbot',
         ['co_scan'] = os.getenv('HOME') .. '/Projects/sem_co_scan_ws',
+        ['voxblox'] = os.getenv('HOME') .. '/Projects/voxblox_plusplus_ws',
         ['habitat'] = os.getenv('HOME') .. '/Programming_Learning/habitat_learning',
         ['note']    = os.getenv('HOME') .. '/Documents/Notes',
         ['wiki']    = os.getenv('HOME') .. '/Documents/Vimwiki/wiki',
@@ -155,6 +156,18 @@ function M.edit_tmuxp()
       preview_width = 0.65,
       height = 20,
     },
+  }
+end
+
+function M.projects()
+  require('telescope.builtin').find_files {
+    cwd = '~/Projects',
+    find_command = { 'rg', '--files', '--hidden', '--ignore-file', os.getenv('HOME') .. '/dotfiles/.rgignore' },
+    hidden = true,
+    path_display = {
+      shorten = 2,
+    },
+    prompt_title = 'Project Files',
   }
 end
 
@@ -328,6 +341,16 @@ function M.ros_workspace_packages()
   pcall(require('telescope').extensions.ros.packages, {
     cwd = vim.b.catkin_workspace or '.'
   })
+end
+
+function M.find_ros_executables()
+  local opts = require('telescope.themes').get_dropdown {
+    cwd = vim.b.catkin_workspace,
+    layout_config = {
+      height = 10,
+    },
+  }
+  require('telescope').extensions.catkin.executables(opts)
 end
 
 return M

@@ -14,9 +14,9 @@ local Path = require('plenary.path')
 local conf = require('telescope.config').values
 
 local staged_finder = function(opts)
-  local wikinumber = vim.fn['vimwiki#vars#get_bufferlocal']('wiki_nr')
-  local results = vim.fn['vimwiki#base#get_wikilinks'](wikinumber, 1, '')
-  results = vim.tbl_filter(function(v) return v:sub(1, 1) == '/' end, results)
+  opts.wiki_nr = opts.wiki_nr or vim.fn['vimwiki#vars#get_bufferlocal']('wiki_nr')
+  opts.wiki_root = opts.wiki_root or vim.fn['vimwiki#vars#get_wikilocal']('path')
+  opts.wiki_ext = opts.wiki_ext or vim.fn['vimwiki#vars#get_wikilocal']('ext')
 
   local gen_from_wiki_name = function(opts)
     local displayer = entry_display.create {
@@ -29,9 +29,9 @@ local staged_finder = function(opts)
     local make_display = function(entry)
       local title = vim.fn['zettel#vimwiki#get_title'](entry.filename)
       if title == '' then
-        local wikiname = vim.fn.fnamemodify(entry.filename, ":t:r")
+        local wiki_name = vim.fn.fnamemodify(entry.filename, ":t:r")
         -- use the Zettel filename as title if it is empty
-        title = wikiname
+        title = wiki_name
       end
       return displayer {
         title,
@@ -39,31 +39,73 @@ local staged_finder = function(opts)
     end
 
     return function(wiki_name)
-      local wiki_root = vim.fn['vimwiki#vars#get_wikilocal']('path')
-      local wiki_ext = vim.fn['vimwiki#vars#get_wikilocal']('ext')
       return {
         ordinal = wiki_name,
         -- Path to package.xml for file preview
         -- path = Path:new(wiki_root .. wiki_name:sub(2) .. wiki_ext):absolute(),
         value = wiki_name:sub(2),
-        -- Path to the package root
-        filename = Path:new(wiki_root .. wiki_name:sub(2) .. wiki_ext):absolute(),
+        -- Path to wiki file
+        filename = Path:new(opts.wiki_root .. wiki_name:sub(2) .. opts.wiki_ext):absolute(),
         -- pkg_type = type,
         display = make_display
       }
     end
   end
-  return finders.new_table { results = results, entry_maker = gen_from_wiki_name(opts) }
+
+  local gen_from_wiki_anchor = function(opts)
+    local displayer = entry_display.create {
+      separator = "▏",
+      items = {
+        { width = 30 },
+        { remaining = true },
+      },
+    }
+
+    local make_display = function(entry)
+      return displayer {
+        opts.wiki_name,
+        entry.value
+      }
+    end
+
+    return function(anchor)
+      return {
+        ordinal = anchor,
+        -- Path to package.xml for file preview
+        -- path = Path:new(wiki_root .. wiki_name:sub(2) .. wiki_ext):absolute(),
+        value = anchor,
+        -- Path to wiki file
+        -- filename = Path:new(opts.wiki_root .. wiki_name:sub(2) .. opts.wiki_ext):absolute(),
+        -- pkg_type = type,
+        display = make_display
+      }
+    end
+  end
+
+  if not opts.anchor then
+    local results = vim.fn['vimwiki#base#get_wikilinks'](opts.wikinumber, 1, '')
+    results = vim.tbl_filter(function(v) return v:sub(1, 1) == '/' end, results)
+    return finders.new_table { results = results, entry_maker = gen_from_wiki_name(opts) }
+  else
+    local link_infos = vim.fn['vimwiki#base#resolve_link'](opts.wiki_name .. '#', opts.wiki_full_path)
+    local wiki_file = link_infos.filename
+    local syntax = vim.fn['vimwiki#vars#get_wikilocal']('syntax', link_infos.index)
+    P(syntax)
+    local anchors = vim.fn['vimwiki#base#get_anchors'](wiki_file, syntax)
+    P(anchors)
+    return finders.new_table { results = anchors, entry_maker = gen_from_wiki_anchor(opts) }
+  end
+
 end
 
-local zettel_open = function(opts)
+local zettel_insert_link = function(opts)
   opts = opts or {}
   pickers.new (opts, {
     prompt_title = 'Open zettel notes',
     finder = staged_finder(opts),
     sorter = sorters.get_generic_fuzzy_sorter(),
     previewer = conf.file_previewer(opts),
-    attach_mappings = function(prompt_bufnr)
+    attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
         local selection = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
@@ -79,6 +121,18 @@ local zettel_open = function(opts)
           end)
         end
       end)
+
+      local list_anchors = function()
+        opts.anchor = true
+        opts.wiki_name = action_state.get_selected_entry().value
+        opts.wiki_full_path = action_state.get_selected_entry().filename
+        local current_picker = action_state.get_current_picker(prompt_bufnr)
+        current_picker.previewer = false
+        current_picker:refresh(staged_finder(opts), { reset_prompt = true })
+      end
+
+      map("i", "<C-l>", list_anchors)
+      map("n", "<C-l>", list_anchors)
       return true
     end,
   }):find()
@@ -86,6 +140,6 @@ end
 
 return telescope.register_extension {
   exports = {
-    zettel_open = zettel_open,
+    zettel_insert_link = zettel_insert_link,
   }
 }

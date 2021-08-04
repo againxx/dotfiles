@@ -44,4 +44,16 @@ function M.find_bottom_up_project_root_dir(root_patterns)
   return #root_dir > 0 and root_dir or nil
 end
 
+function M.delete_finished_terminal_buffers()
+  local current_buffers = vim.api.nvim_list_bufs()
+  local term_buffers = vim.tbl_filter(function(bufnr) return vim.api.nvim_buf_get_option(bufnr, 'buftype') == 'terminal' end,
+    current_buffers)
+  for _, term_buffer in ipairs(term_buffers) do
+    local is_running = vim.fn.jobwait({vim.api.nvim_buf_get_option(term_buffer, 'channel')}, 0)[0] == -1
+    if not is_running then
+      vim.api.nvim_buf_delete(term_buffer, {force = true})
+    end
+  end
+end
+
 return M
