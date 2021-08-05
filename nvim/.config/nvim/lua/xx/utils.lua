@@ -34,14 +34,21 @@ function M.set_indent(num)
 end
 
 function M.find_bottom_up_project_root_dir(root_patterns)
-  local root_dir = ""
+  local root_dirs = {}
   for _, pattern in ipairs(root_patterns) do
-    local find_result = vim.fn.finddir(pattern, '.;' .. (#root_dir > 0 and root_dir or os.getenv('HOME')))
+    local find_result = vim.fn.finddir(pattern, '.;' .. os.getenv('HOME'))
     if #find_result > 0 then
-      root_dir = vim.fn.fnamemodify(find_result, ':h')
+      local root_dir = vim.fn.fnamemodify(find_result, ':p:h')
+      if vim.fn.isdirectory(find_result) > 0 then
+        -- :h modifier will only remove last / for directory, not the directory itself
+        -- so we need use another :h
+        root_dir = vim.fn.fnamemodify(root_dir, ':h')
+      end
+      table.insert(root_dirs, root_dir)
     end
   end
-  return #root_dir > 0 and root_dir or nil
+  table.sort(root_dirs, function(d1, d2) return #d1 > #d2 end)
+  return #root_dirs > 0 and root_dirs[1] or nil
 end
 
 function M.delete_finished_terminal_buffers()
