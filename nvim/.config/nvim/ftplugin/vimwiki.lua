@@ -12,7 +12,7 @@ vim.g.zettel_fzf_options = { '--exact', '--tiebreak=end', '--preview-window=up:6
 vim.g.taskwiki_disable_concealcursor = true
 vim.g.taskwiki_data_location = '~/Documents/tasks'
 
-require('note.markdown_vimwiki')
+R('note.markdown_vimwiki')
 require('plenary.filetype').add_file('extra_filetypes')
 
 vim.cmd[[

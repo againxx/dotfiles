@@ -1,3 +1,4 @@
+vim.fn.setenv('ZDOTDIR', os.getenv('HOME') .. '/.config/zsh-st')
 -- Rainbow
 vim.g.rainbow_active = true -- set to 0 if you want to enable it later via :RainbowToggle
 -- Disable it for CMake files, since it breaks cmake syntax highlighting
