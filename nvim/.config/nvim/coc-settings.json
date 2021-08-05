@@ -63,7 +63,11 @@
         "vimwiki",
         "dashboard"
     ],
-    "pairs.disableLanguages": ["TelescopePrompt"],
+    "pairs.disableLanguages": [
+        "TelescopePrompt"
+    ],
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
     "snippets.priority": 100,
     "snippets.snipmate.enable": false,
     "snippets.ultisnips.enable": false,
@@ -169,17 +173,12 @@
         "asciidoc",
         "c",
         "cpp",
-        "csharp",
         "css",
         "git-commit",
-        "go",
         "handlebars",
-        "haskell",
         "html",
-        "jade",
         "java",
         "javascript",
-        "javascriptreact",
         "json",
         "jsonc",
         "latex",
@@ -187,17 +186,12 @@
         "markdown",
         "vimwiki.markdown",
         "vimwiki",
-        "php",
         "plaintext",
         "python",
-        "pug",
         "restructuredtext",
         "rust",
-        "scala",
-        "scss",
         "text",
         "typescript",
-        "typescriptreact",
         "yaml",
         "yml"
     ],
@@ -349,16 +343,11 @@
             }
         }
     },
-    "diagnostic-languageserver.trace.server": "verbose",
-    "diagnostic-languageserver.debug": true,
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
         "cpp": [
             "cpplint",
             "cppcheck"
-        ],
-        "python": [
-            "pylint"
         ],
         "vim": "vint",
         "vimwiki": [
