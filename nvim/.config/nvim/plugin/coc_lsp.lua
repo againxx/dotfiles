@@ -162,3 +162,5 @@ wk.register({
   ic = { '<Plug>(coc-classobj-i)', 'inner class' },
   ac = { '<Plug>(coc-classobj-a)', 'a class (with class name)' },
 }, { mode = 'o' })
+
+vim.cmd [[command! -buffer -nargs=0 Rename execute 'CocCommand workspace.renameCurrentFile']]

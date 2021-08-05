@@ -262,7 +262,6 @@ return require('packer').startup({function(use)
   use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki'} }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
   use 'jeffkreeftmeijer/vim-numbertoggle'
-  use 'danro/rename.vim'
   -- embed neovim in browser input box
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
