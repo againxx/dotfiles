@@ -29,8 +29,7 @@ local make_displayer = function(opts)
   return function(line)
     local pkgname, filename = string.match(line, '.*devel/.private/(.*)/lib/.*/([^/]+)$')
     return {
-      ordinal = pkgname,
-      value = line,
+      ordinal = filename,
       filename = filename,
       display = make_display
     }
