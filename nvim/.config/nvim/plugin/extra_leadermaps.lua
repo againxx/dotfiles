@@ -84,7 +84,6 @@ wk.register({
   q = {
     name = '+quit/close',
     b = { '<cmd>silent! bdelete!<cr>', 'Close buffer' },
-    w = { '<cmd>silent! bwipeout!<cr>', 'Wipeout buffer' },
     t = { '<cmd>tabclose<cr>', 'Close tab' },
     d = { '<cmd>let b:coc_diagnostic_disable = 1<Bar>edit<cr>', 'Close diagnostic' },
     c = { '<cmd>cclose<cr>', 'Close quickfix' },
