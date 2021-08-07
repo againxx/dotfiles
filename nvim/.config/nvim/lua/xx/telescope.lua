@@ -54,13 +54,13 @@ require('telescope').setup {
         "*.cache/*"
       },
       workspaces = {
-        ['nvim']    = os.getenv('HOME') .. '/.config/nvim',
-        ['scanbot'] = os.getenv('HOME') .. '/Projects/scanbot',
-        ['co_scan'] = os.getenv('HOME') .. '/Projects/sem_co_scan_ws',
-        ['voxblox'] = os.getenv('HOME') .. '/Projects/voxblox_plusplus_ws',
-        ['habitat'] = os.getenv('HOME') .. '/Programming_Learning/habitat_learning',
-        ['note']    = os.getenv('HOME') .. '/Documents/Notes',
-        ['wiki']    = os.getenv('HOME') .. '/Documents/Vimwiki/wiki',
+        ['nvim']    = vim.env.HOME .. '/.config/nvim',
+        ['scanbot'] = vim.env.HOME .. '/Projects/scanbot',
+        ['co_scan'] = vim.env.HOME .. '/Projects/sem_co_scan_ws',
+        ['voxblox'] = vim.env.HOME .. '/Projects/voxblox_plusplus_ws',
+        ['habitat'] = vim.env.HOME .. '/Programming_Learning/habitat_learning',
+        ['note']    = vim.env.HOME .. '/Documents/Notes',
+        ['wiki']    = vim.env.HOME .. '/Documents/Vimwiki/wiki',
       }
     }
   }
@@ -162,7 +162,7 @@ end
 function M.projects()
   require('telescope.builtin').find_files {
     cwd = '~/Projects',
-    find_command = { 'rg', '--files', '--hidden', '--ignore-file', os.getenv('HOME') .. '/dotfiles/.rgignore' },
+    find_command = { 'rg', '--files', '--hidden', '--ignore-file', vim.env.HOME .. '/dotfiles/.rgignore' },
     hidden = true,
     path_display = {
       shorten = 2,

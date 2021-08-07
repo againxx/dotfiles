@@ -62,11 +62,11 @@ local symbols = {
   undotree = ' ',
   mode = ' ',
   ruler = '',
-  err = os.getenv('KITTY_WINDOW_ID') and '理' or 'ﲅ ',
-  warn = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﲍ ',
-  info = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﳃ ',
-  ros_package = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﮧ ',
-  catkin_package = os.getenv('KITTY_WINDOW_ID') and ' ' or 'ﲎ ',
+  err = vim.env.KITTY_WINDOW_ID and '理' or 'ﲅ ',
+  warn = vim.env.KITTY_WINDOW_ID and ' ' or 'ﲍ ',
+  info = vim.env.KITTY_WINDOW_ID and ' ' or 'ﳃ ',
+  ros_package = vim.env.KITTY_WINDOW_ID and ' ' or 'ﮧ ',
+  catkin_package = vim.env.KITTY_WINDOW_ID and ' ' or 'ﲎ ',
 }
 
 local hide_when_narrow = function(width)

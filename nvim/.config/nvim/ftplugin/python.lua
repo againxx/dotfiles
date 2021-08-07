@@ -9,14 +9,14 @@ vim.fn['coc#config']('diagnostic-languageserver.linters', {
       '--no-error-summary',
       '--show-column-numbers',
       '--follow-imports=silent',
-      '--cache-dir=' .. os.getenv('HOME') .. '/.cache/mypy',
+      '--cache-dir=' .. vim.env.HOME .. '/.cache/mypy',
       '%file'
     }
   }
 })
 -- dynamically set python.condaPath
-if os.getenv('CONDA_PREFIX') then
-  vim.fn['coc#config']('python.condaPath', os.getenv('CONDA_PREFIX') .. '/bin/python')
+if vim.env.CONDA_PREFIX then
+  vim.fn['coc#config']('python.condaPath', vim.env.CONDA_PREFIX .. '/bin/python')
 end
 
 local switch_definitions = [[

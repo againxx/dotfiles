@@ -36,7 +36,7 @@ end
 function M.find_bottom_up_project_root_dir(root_patterns)
   local root_dirs = {}
   for _, pattern in ipairs(root_patterns) do
-    local find_result = vim.fn.finddir(pattern, '.;' .. os.getenv('HOME'))
+    local find_result = vim.fn.finddir(pattern, '.;' .. vim.env.HOME)
     if #find_result > 0 then
       local root_dir = vim.fn.fnamemodify(find_result, ':p:h')
       if vim.fn.isdirectory(find_result) > 0 then

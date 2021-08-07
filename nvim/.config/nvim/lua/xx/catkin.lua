@@ -3,10 +3,12 @@ local Job = require('plenary.job')
 M = {}
 
 function M.detect_ws_root()
-  if not vim.b.catkin_workspace and vim.fn.executable('catkin') > 0 then
+  local file_dir = vim.fn.expand('%:p:h')
+  if not vim.b.catkin_workspace and vim.fn.executable('catkin') > 0 and vim.fn.isdirectory(file_dir) > 0 then
     Job:new({
       command = 'catkin',
       args = { 'locate' },
+      cwd = file_dir,
       on_stdout = function(err, result)
         if not err then
           vim.b.catkin_workspace = result
@@ -23,12 +25,12 @@ function M.detect_package(post_hook)
       vim.b.catkin_package_name = vim.b.ros_package_name
       return
     else
-      local file_dir = vim.fn.expand('%:h')
-      if vim.fn.executable('catkin') > 0 and vim.fn.isdirectory(file_dir) then
+      local file_dir = vim.fn.expand('%:p:h')
+      if vim.fn.executable('catkin') > 0 and vim.fn.isdirectory(file_dir) > 0 then
         Job:new({
           command = 'catkin',
           args = { 'list', '-u', '--this' },
-          cwd = vim.fn.expand('%:p:h'),
+          cwd = file_dir,
           on_stdout = function(err, result)
             if not err then
               vim.b.catkin_package_name = result

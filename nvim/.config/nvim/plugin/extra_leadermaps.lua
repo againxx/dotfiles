@@ -8,7 +8,7 @@ local query_syntax_stack = function()
 end
 
 local tab_open_term = function(cmd)
-  local cmd_name = cmd or os.getenv('SHELL')
+  local cmd_name = cmd or vim.env.SHELL
   local cur_bufs = vim.api.nvim_list_bufs()
   local shell_buf = vim.tbl_filter(function(buf)
     return vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal'

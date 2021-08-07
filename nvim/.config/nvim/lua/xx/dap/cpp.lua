@@ -2,7 +2,7 @@ local dap = require('dap')
 
 dap.adapters.cppdbg = {
   type = 'executable',
-  command = os.getenv('HOME') .. '/Manually_Installed/cpptools-linux/extension/debugAdapters/OpenDebugAD7',
+  command = vim.env.HOME .. '/Manually_Installed/cpptools-linux/extension/debugAdapters/OpenDebugAD7',
 }
 
 dap.configurations.cpp = {
@@ -15,6 +15,7 @@ dap.configurations.cpp = {
         local default = vim.b.dap_last_executable or vim.fn.getcwd() .. '/'
         vim.b.dap_last_executable = vim.fn.input('Path to executable: ', default, 'file')
       end
+      assert(vim.b.dap_last_executable, "Please provide valid executable file")
       return vim.b.dap_last_executable
     end,
     MIMode = 'gdb',

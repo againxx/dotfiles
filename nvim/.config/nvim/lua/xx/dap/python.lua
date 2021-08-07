@@ -1,5 +1,5 @@
 local python_path = '~/.virtualenvs/debugpy/bin/python'
-local conda_prefix = os.getenv('CONDA_PREFIX')
+local conda_prefix = vim.env.CONDA_PREFIX
 if conda_prefix then
   python_path = conda_prefix .. '/bin/python'
 end

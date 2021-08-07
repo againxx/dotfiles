@@ -56,7 +56,7 @@ opt.foldnestmax = 5
 -- sessions do no save the default fold method to manual
 opt.sessionoptions:remove('folds')
 
-if not os.getenv('KITTY_WINDOW_ID') then
+if not vim.env.KITTY_WINDOW_ID then
   opt.pumblend = 15
 end
 
