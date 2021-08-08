@@ -48,7 +48,7 @@ wk.register({
   ['[b'] = { '<cmd>BufferGoto 1<cr>', 'Go to first buffer' },
   [']b'] = { '<cmd>BufferLast<cr>', 'Go to last buffer' },
   ['<leader>qq'] = { close_qf_first, 'Only close buffer' },
-  ['<leader>qw'] = { '<cmd>BufferWipeout<cr>', 'Wipeout buffer' },
+  ['<leader>qw'] = { '<cmd>BufferWipeout!<cr>', 'Wipeout buffer' },
   ['<leader>qa'] = { close_all_but_current_or_pinned, 'Close all buffer but current/pinned' },
   ['<leader>b'] = {
     name = '+buffer',

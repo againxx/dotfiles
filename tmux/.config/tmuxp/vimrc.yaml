@@ -2,6 +2,6 @@ session_name: Other
 windows:
     - window_name: vimrc
       focus: true
-      start_directory: '~/dotfiles/vim/'
+      start_directory: '~/.config/nvim/'
       panes:
           - null

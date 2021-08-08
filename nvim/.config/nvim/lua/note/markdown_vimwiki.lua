@@ -79,7 +79,7 @@ wk.register({
     c = { '``<Space><++><C-o>F`', 'Emphasis' },
     t = { '-<Space>[<Space>]<Space>', 'Check list' },
     T = { '*<Space>[<Space>]<Space>', 'Task list' },
-    n = { '<Esc>A<Space>\\<CR>', 'New line in math block' },
+    n = { [[<Esc>A<Space>\\<CR>]], 'New line in math block' },
     q = { '<Esc>/[)}\\]]<CR>:nohlsearch<CR>a', 'Go out of )}]' },
     [';'] = { ';', 'Literal ;' },
     -- when packer first load TableMode the TableModeEnable command does not have effect,

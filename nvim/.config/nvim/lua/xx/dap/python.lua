@@ -3,8 +3,16 @@ local conda_prefix = vim.env.CONDA_PREFIX
 if conda_prefix then
   python_path = conda_prefix .. '/bin/python'
 end
+
+
 require('dap-python').setup(python_path)
 require('dap-python').test_runner = 'pytest'
+
+local dap = require('dap')
+for i = 1, #dap.configurations.python do
+  dap.configurations.python[i] = vim.tbl_extend('force',
+    dap.configurations.python[i], { justMyCode = false })
+end
 
 require("dapui").setup({
   sidebar = {

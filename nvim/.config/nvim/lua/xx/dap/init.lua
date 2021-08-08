@@ -25,16 +25,21 @@ dap.listeners.after['event_initialized']['xx.mappings'] = function()
   end
   api.nvim_set_keymap(
     'n', 'K', "<cmd>lua require('dapui').eval()<cr>", { silent = true })
+  api.nvim_set_keymap(
+    'v', 'K', "<cmd>lua require('dapui').eval()<cr>", { silent = true })
 end
 
 local close_post_hook = function()
-  api.nvim_set_keymap(
-    keymap_restore.mode,
-    keymap_restore.lhs,
-    keymap_restore.rhs,
-    { noremap = keymap_restore.noremap == 1, silent = keymap_restore.silent == 1 }
-  )
-  keymap_restore = nil
+  if keymap_restore then
+    api.nvim_set_keymap(
+      keymap_restore.mode,
+      keymap_restore.lhs,
+      keymap_restore.rhs,
+      { noremap = keymap_restore.noremap == 1, silent = keymap_restore.silent == 1 }
+    )
+    keymap_restore = nil
+    api.nvim_del_keymap('v', 'K')
+  end
   dap.repl.close()
   require('xx.utils').delete_finished_terminal_buffers()
   require('nvim-dap-virtual-text.virtual_text').clear_virtual_text()

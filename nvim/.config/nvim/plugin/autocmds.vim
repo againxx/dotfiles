@@ -50,6 +50,7 @@ augroup other_filetypes
   autocmd FileType asm,gitcommit setlocal nolist
   autocmd FileType asm setlocal filetype=gas
   autocmd FileType qf setlocal nobuflisted
+  autocmd FileType qf setlocal nolist
   autocmd FileType rnvimr tnoremap <buffer><silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
 
 augroup END
