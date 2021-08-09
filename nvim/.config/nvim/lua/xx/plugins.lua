@@ -53,6 +53,11 @@ return require('packer').startup({function(use)
             color = '#F07178',
             name = 'Vimwiki'
           },
+          pyi = {
+            icon = '',
+            color = '#77A8D9',
+            name = 'Pyi'
+          },
         },
         default = true;
       }
