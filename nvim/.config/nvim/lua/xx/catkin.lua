@@ -21,7 +21,7 @@ end
 function M.detect_package(post_hook)
   if not vim.b.catkin_package_name then
     if vim.b.ros_package_name then
-      vim.schedule_wrap(post_hook)()
+      vim.schedule(post_hook)
       vim.b.catkin_package_name = vim.b.ros_package_name
       return
     else
@@ -38,7 +38,7 @@ function M.detect_package(post_hook)
           end,
           on_exit = function(_, code)
             if code == 0 and vim.b.catkin_package_name and #vim.b.catkin_package_name > 0 then
-              vim.schedule_wrap(post_hook)()
+              vim.schedule(post_hook)
             end
           end
         }):start()

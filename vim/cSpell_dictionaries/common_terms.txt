@@ -36,3 +36,7 @@ significand
 versor
 noto
 voxel
+octree
+kinect
+rgbd
+clangd

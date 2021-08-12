@@ -7,7 +7,7 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua' },
+  ensure_installed = { 'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua', 'cuda' },
   highlight = {
     enable = true,
     disable = {'python'},

@@ -27,3 +27,6 @@ pimpl
 vtable
 jthread
 simd
+lvalue
+rvalue
+nvcc

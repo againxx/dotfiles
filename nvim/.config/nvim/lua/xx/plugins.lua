@@ -58,6 +58,11 @@ return require('packer').startup({function(use)
             color = '#77A8D9',
             name = 'Pyi'
           },
+          cu = {
+            icon = '',
+            color = '#854CC7',
+            name = 'Cuda'
+          }
         },
         default = true;
       }
