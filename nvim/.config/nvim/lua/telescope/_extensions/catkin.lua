@@ -14,15 +14,15 @@ local make_displayer = function(opts)
   local displayer = entry_display.create {
     separator = " ",
     items = {
-      { width = 16 },
+      { width = 20 },
       { remaining = true },
     },
   }
 
   local make_display = function(entry)
     return displayer {
-      { entry.ordinal, "TelescopeResultsSpecialComment" },
-      entry.filename
+      { entry.pkgname, "TelescopeResultsSpecialComment" },
+      entry.ordinal
       }
   end
 
@@ -30,7 +30,7 @@ local make_displayer = function(opts)
     local pkgname, filename = string.match(line, '.*devel/.private/(.*)/lib/.*/([^/]+)$')
     return {
       ordinal = filename,
-      filename = filename,
+      pkgname = pkgname,
       display = make_display
     }
   end

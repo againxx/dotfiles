@@ -16,9 +16,10 @@ local change_build_profile = function()
   for i, v in ipairs(profiles) do
     if v == vim.g.asynctasks_profile then
       vim.g.asynctasks_profile = i + 1 <= #profiles and profiles[i + 1] or profiles[1]
+      break
     end
   end
-  vim.cmd [[echohl MoreMsg | echo 'g:asynctasks_profile' | echohl None]]
+  vim.cmd [[echohl MoreMsg | echo g:asynctasks_profile | echohl None]]
 end
 
 local success, wk = pcall(require, 'which-key')
