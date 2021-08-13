@@ -55,6 +55,7 @@ opt.foldnestmax = 5
 -- FastFold overwrites foldmethod to manual, in order to ensure saved
 -- sessions do no save the default fold method to manual
 opt.sessionoptions:remove('folds')
+opt.sessionoptions:append('globals')
 
 if not vim.env.KITTY_WINDOW_ID then
   opt.pumblend = 15
