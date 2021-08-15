@@ -89,8 +89,8 @@ cnoremap <M-j> <S-Right>
 " ===
 nnoremap <M-=> 3<C-w>+
 nnoremap <M--> 3<C-w>-
-nnoremap <M-[> 3<C-w><
-nnoremap <M-]> 3<C-w>>
+nnoremap <M-[> 5<C-w><
+nnoremap <M-]> 5<C-w>>
 nnoremap <M-+> <C-w>+
 nnoremap <M-_> <C-w>-
 nnoremap <M-{> <C-w><

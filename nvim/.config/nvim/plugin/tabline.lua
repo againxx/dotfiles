@@ -14,6 +14,7 @@ vim.cmd [[
 vim.g.bufferline = {
   closable = false,
   maximum_padding = 1,
+  maximum_length = 40,
   icon_separator_active = '▊'
 }
 
