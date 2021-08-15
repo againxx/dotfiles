@@ -88,6 +88,7 @@ wk.register({
     d = { '<cmd>let b:coc_diagnostic_disable = 1<Bar>edit<cr>', 'Close diagnostic' },
     c = { '<cmd>cclose<cr>', 'Close quickfix' },
     l = { '<cmd>lclose<cr>', 'Close location list' },
+    h = { '<cmd>helpclose<cr>', 'Close help window' },
   },
   c = {
     name = '+change/command',

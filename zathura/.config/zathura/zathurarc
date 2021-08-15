@@ -1,4 +1,7 @@
-set statusbar-bg "#272D38"
-set statusbar-fg "#D9D7CE"
+set statusbar-bg "#232834"
+set statusbar-fg "#CBCCC6"
 map , zoom out
 map . zoom in
+map d scroll half-down
+map u scroll half-up
+map <C-d> toggle_page_mode
