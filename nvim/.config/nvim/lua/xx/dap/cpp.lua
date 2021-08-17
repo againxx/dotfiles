@@ -15,7 +15,7 @@ dap.configurations.cpp = {
         local default = vim.b.dap_last_executable or vim.fn.getcwd() .. '/'
         vim.b.dap_last_executable = vim.fn.input('Path to executable: ', default, 'file')
       end
-      assert(vim.b.dap_last_executable, "Please provide valid executable file")
+      assert(vim.fn.executable(vim.b.dap_last_executable) > 0, "Please provide valid executable file")
       return vim.b.dap_last_executable
     end,
     MIMode = 'gdb',
@@ -75,4 +75,4 @@ end
 
 wk.register({
   f = { "<cmd>lua require('xx.telescope').find_ros_executables()<cr>", 'Continue' },
-}, { prefix = '<leader>d', buffer = vim.api.nvim_get_current_buf() })
+}, { prefix = '<leader>d' })

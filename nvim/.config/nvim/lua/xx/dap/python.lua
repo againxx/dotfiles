@@ -46,6 +46,6 @@ require("dapui").setup({
 local wk = require('which-key')
 
 wk.register({
-  f = { "<cmd>lua require('dap-python').test_method()<cr>", 'Test method' },
+  n = { "<cmd>lua require('dap-python').test_method()<cr>", 'Test method' },
   s = { "<cmd>lua require('dap-python').test_class()<cr>", 'Test class' },
-}, { prefix = '<leader>d', buffer = vim.api.nvim_get_current_buf() })
+}, { prefix = '<leader>d' })
