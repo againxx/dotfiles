@@ -45,4 +45,4 @@
     file-decoration-style = magenta ul ol
     hunk-header-decoration-style = ul
 [credential]
-	helper = cache
+	helper = store
