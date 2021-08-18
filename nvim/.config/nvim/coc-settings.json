@@ -216,7 +216,9 @@
         "--clang-tidy",
         "--header-insertion=never"
     ],
-    "clangd.fallbackFlags": ["--cuda-gpu-arch=sm_61"],
+    "clangd.fallbackFlags": [
+        "--cuda-gpu-arch=sm_61"
+    ],
     "jedi.completion.disableSnippets": true,
     "diagnostic-languageserver.mergeConfig": true,
     "diagnostic-languageserver.linters": {
