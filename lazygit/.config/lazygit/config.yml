@@ -95,8 +95,8 @@ keybinding:
     scrollDownMain: '<pgdown>' # main panel scrool down
     scrollUpMain-alt1: 'K' # main panel scrool up
     scrollDownMain-alt1: 'J' # main panel scrool down
-    scrollUpMain-alt2: '<c-u>' # main panel scrool up
-    scrollDownMain-alt2: '<c-d>' # main panel scrool down
+    scrollUpMain-alt2: '<c-b>' # main panel scrool up
+    scrollDownMain-alt2: '<c-f>' # main panel scrool down
     executeCustomCommand: ':'
     createRebaseOptionsMenu: 'm'
     pushFiles: 'P'

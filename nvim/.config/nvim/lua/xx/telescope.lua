@@ -173,6 +173,7 @@ end
 
 function M.oldfiles()
   require('telescope').extensions.frecency.frecency {
+    layout_strategy = 'vertical',
     path_display = {
       shorten = 2,
     },
