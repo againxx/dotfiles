@@ -49,7 +49,7 @@ return require('packer').startup({function(use)
       require'nvim-web-devicons'.setup {
         override = {
           wiki = {
-            icon = 'ﴬ',
+            icon = '',
             color = '#F07178',
             name = 'Vimwiki'
           },
