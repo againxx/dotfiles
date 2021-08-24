@@ -40,3 +40,4 @@ octree
 kinect
 rgbd
 clangd
+odometry
