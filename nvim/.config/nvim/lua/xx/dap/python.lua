@@ -37,8 +37,8 @@ require("dapui").setup({
     position = "bottom", -- Can be "bottom" or "top"
   },
   floating = {
-    max_height = nil, -- These can be integers or a float between 0 and 1.
-    max_width = nil, -- Floats will be treated as percentage of your screen.
+    max_height = 0.6, -- These can be integers or a float between 0 and 1.
+    max_width = 0.6, -- Floats will be treated as percentage of your screen.
   },
   windows = { indent = 1 },
 })

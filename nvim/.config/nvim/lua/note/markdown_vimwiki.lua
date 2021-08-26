@@ -72,9 +72,9 @@ end
 
 wk.register({
   [';'] = {
-    w = { '<Esc>/<++><CR>:nohlsearch<CR>"_c4l', 'Go to next word' },
-    e = { '<Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l', 'Go to end' },
-    o = { '<Esc>/<Space><++><CR>:nohlsearch<CR>"_c5l<CR>', 'Go to new line' },
+    w = { '<Esc>/<++><CR>:nohlsearch<CR>"_cf>', 'Go to next word' },
+    e = { '<Esc>/<Space>\\?<++><CR>:nohlsearch<CR>"_cf>', 'Go to end' },
+    o = { '<Esc>/<Space>\\?<++><CR>:nohlsearch<CR>"_cf><CR>', 'Go to new line' },
     m = { '$$<++><C-o>F$', 'Inline math' },
     c = { '``<Space><++><C-o>F`', 'Emphasis' },
     t = { '-<Space>[<Space>]<Space>', 'Check list' },

@@ -5,9 +5,9 @@
     pager = delta
     excludesfile = ~/.gitignore_global
 [http]
-    proxy = socks5://127.0.0.1:1080
+    proxy = http://127.0.0.1:2340
 [https]
-    proxy = socks5://127.0.0.1:1080
+    proxy = http://127.0.0.1:2340
 [init]
 	defaultBranch = main
 # define command which will be used when "nvim" is set as a merge tool
