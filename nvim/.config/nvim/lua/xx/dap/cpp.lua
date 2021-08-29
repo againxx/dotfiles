@@ -11,11 +11,17 @@ dap.configurations.cpp = {
     type = "cppdbg",
     request = "launch",
     program = function()
-      if not (vim.b.catkin_workspace and vim.b.dap_last_executable) then
-        local default = vim.b.dap_last_executable or vim.fn.getcwd() .. '/'
+      local has_last_executable = false
+      if vim.b.dap_last_executable
+        and #vim.b.dap_last_executable > 0
+        and vim.fn.executable(vim.b.dap_last_executable) > 0 then
+        has_last_executable = true
+      end
+      if not (vim.b.catkin_workspace and has_last_executable) then
+        local default = has_last_executable and vim.b.dap_last_executable or vim.fn.getcwd() .. '/'
         vim.b.dap_last_executable = vim.fn.input('Path to executable: ', default, 'file')
       end
-      assert(vim.fn.executable(vim.b.dap_last_executable) > 0, "Please provide valid executable file")
+      assert(#vim.b.dap_last_executable > 0 and vim.fn.executable(vim.b.dap_last_executable) > 0, "Please provide valid executable file")
       return vim.b.dap_last_executable
     end,
     MIMode = 'gdb',

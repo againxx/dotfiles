@@ -37,7 +37,9 @@ if not success then
 end
 
 wk.register({
-  ['<space><space>'] = { '0/TODO<cr><cmd>nohlsearch<cr>"_c4l', 'Replace next TODO' }
+  ['<space><space>'] = { '0/TODO<cr><cmd>nohlsearch<cr>"_c4l', 'Replace next TODO' },
+  ['[i'] = { '?def __init__<cr><cmd>nohlsearch<cr>', 'Goto previous __init__' },
+  [']i'] = { '/def __init__<cr><cmd>nohlsearch<cr>', 'Goto next __init__' },
 }, { buffer = vim.api.nvim_get_current_buf() })
 
 if vim.g.colors_name == 'ayu' then

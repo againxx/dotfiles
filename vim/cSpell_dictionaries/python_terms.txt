@@ -46,6 +46,7 @@ randn
 rfind
 repr
 vstack
+hstack
 xlabel
 ylabel
 zlabel
