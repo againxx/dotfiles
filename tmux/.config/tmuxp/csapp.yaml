@@ -2,6 +2,6 @@ session_name: Learning
 windows:
     - window_name: csapp
       focus: true
-      start_directory: '~/Programming_Learning/csapp/'
+      start_directory: '~/Programming_Learning/csapp-lab-practice/'
       panes:
           - null
