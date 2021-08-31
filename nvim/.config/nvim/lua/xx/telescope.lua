@@ -205,7 +205,8 @@ end
 
 function M.man_pages()
     require('telescope.builtin').man_pages {
-        layout_strategy = 'vertical'
+        layout_strategy = 'vertical',
+        sections = { 'ALL' }
     }
 end
 
