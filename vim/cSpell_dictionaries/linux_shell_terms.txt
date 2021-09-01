@@ -6,3 +6,4 @@ pushd
 systemctl
 journalctl
 tmuxp
+pgid
