@@ -21,7 +21,7 @@ wk.register({
 wk.register({
   b = { '****<space><++><esc>F*hi', 'Bold' },
   d = { '~~~~<space><++><esc>F~hi', 'Delete' },
-  i = { '**<space><++><esc>F*i', 'Italic' },
+  i = { '__<space><++><esc>F_i', 'Italic' },
   C = { '```<cr>```<esc>ka', 'Code' },
   p = { '![](<++>)<space><++><esc>F[a', 'Picture' },
   a = { '[](<++>)<space><++><esc>F[a', 'Link' },
