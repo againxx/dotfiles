@@ -32,6 +32,7 @@ vim.g.vimwiki_folding = 'expr'
 vim.g.vimwiki_table_auto_fmt = 0
 vim.g.vimwiki_hl_headers = 1
 vim.g.vimwiki_markdown_link_ext =1
+vim.g.taskwiki_suppress_mappings = true
 
 local success, wk = pcall(require, 'which-key')
 if not success then

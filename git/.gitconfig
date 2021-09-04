@@ -9,7 +9,7 @@
 [https]
     proxy = http://127.0.0.1:2340
 [init]
-	defaultBranch = main
+    defaultBranch = main
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvimdiff"]
     cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
@@ -45,6 +45,6 @@
     file-decoration-style = magenta ul ol
     hunk-header-decoration-style = ul
 [credential]
-	helper = store
+    helper = store
 [push]
-	recurseSubmodules = check
+    recurseSubmodules = check
