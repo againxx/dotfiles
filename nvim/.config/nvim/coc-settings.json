@@ -346,6 +346,15 @@
             }
         }
     },
+    "diagnostic-languageserver.formatters": {
+        "stylua": {
+            "command": "stylua",
+            "args": [
+                "-"
+            ],
+            "rootPatterns": [".stylua.toml", "stylua.toml"]
+        }
+    },
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck",
         "cpp": [
@@ -365,6 +374,9 @@
             "write-good",
             "languagetool"
         ]
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        "lua": "stylua"
     },
     "json.schemas": [
         {
