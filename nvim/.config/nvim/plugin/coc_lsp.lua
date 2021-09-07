@@ -23,7 +23,7 @@ vim.g.coc_global_extensions = {
   'coc-tsserver',
   'coc-html',
   'coc-diagnostic',
-  'coc-rls',
+  'coc-rust-analyzer',
   'coc-lua'
 }
 
