@@ -54,7 +54,7 @@ xnoremap <C-k> 5k
 nnoremap <C-l> :nohlsearch<CR>:<C-r>=has('diff')?'diffupdate':''<CR><CR>:syntax sync fromstart<CR>:pclose<CR><C-l>
 
 " Fast normal mode
-noremap <M-n> :normal<Space>
+noremap <M-n> :normal!<Space>
 
 " Fast substitute
 nnoremap <M-s> :%s/
