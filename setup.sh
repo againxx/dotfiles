@@ -9,7 +9,10 @@ fi
 
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/zsh
+mkdir -p ~/.config/zsh-st
 mkdir -p ~/Documents/tasks
+mkdir -p ~/.config/lazygit
+mkdir -p ~/.local/bin
 
 ln -sf "$dotfiles_dir/.bashrc" ~/
 ln -sf "$dotfiles_dir/.inputrc" ~/
