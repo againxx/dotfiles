@@ -15,7 +15,7 @@ wk.register({
   h = { "<cmd>lua require('dapui').eval()<cr>", 'Evaluate expression' },
   c = { "<cmd>lua require('xx.dap').run_to_cursor()<cr>", 'Run to cursor' },
   R = { "<cmd>lua require('xx.dap').restart()<cr>", 'Restart' },
-  r = { "<cmd>lua require('xx.dap').repl.open()<cr>", 'Open repl' },
+  r = { "<cmd>lua require('xx.dap').repl.toggle()<cr>", 'Open repl' },
   i = { "<cmd>lua require('xx.dap').toggle_breakpoint(vim.fn.input('Breakpoint condigtion: '))<cr>", 'Toggle conditional breakpoint' },
   u = { "<cmd>lua require('dapui').toggle()<cr>", 'Toggle ui' },
   t = { "<cmd>lua require('dapui').toggle('tray')<cr>", 'Toggle tray ui' },

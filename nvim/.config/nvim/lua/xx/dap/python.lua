@@ -33,7 +33,7 @@ require("dapui").setup({
   tray = {
     open_on_start = false,
     elements = { 'scopes' },
-    height = 15,
+    size = 15,
     position = "bottom", -- Can be "bottom" or "top"
   },
   floating = {
