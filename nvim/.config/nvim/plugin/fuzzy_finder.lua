@@ -13,7 +13,7 @@ wk.register({
     o = { "<cmd>lua require('xx.telescope').oldfiles()<cr>", 'Recent files' },
     e = { "<cmd>lua require('xx.telescope').file_browser()<cr>", 'File browser' },
     m = { "<cmd>lua require('xx.telescope').man_pages()<cr>", 'Man pages' },
-    p = { "<cmd>lua require('xx.telescope').projects()<cr>", 'Man pages' },
+    p = { "<cmd>lua require('xx.telescope').projects()<cr>", 'Project files' },
     r = { "<cmd>lua require('xx.telescope').ros_workspace_packages()<cr>", 'Worksapce ros packages' },
     R = { "<cmd>lua require('xx.telescope').ros_core_packages()<cr>", 'Core ros packages' },
     ['/'] = { "<cmd>lua require('xx.telescope').grep_last_search()<cr>", 'Grep last search' },
