@@ -43,4 +43,8 @@ return {
       brights = {"#686868", "#f28779", "#bae67e", "#ffd580", "#73d0ff", "#d4bfff", "#95e6cb", "#fafafa"},
   },
   disable_default_key_bindings = true,
+  keys = {
+    { key="v", mods="CTRL|SHIFT", action=wezterm.action{ PasteFrom="Clipboard" } },
+    { key="c", mods="CTRL|SHIFT", action=wezterm.action{ CopyTo="Clipboard" } },
+  }
 }
