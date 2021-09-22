@@ -58,7 +58,7 @@ require('dapui').setup({
       { id = 'breakpoints', size = 0.33 },
       { id = 'watches', size = 0.33 },
     },
-    width = 40,
+    size = 40,
     position = 'left', -- Can be "left" or "right"
   },
   tray = {
