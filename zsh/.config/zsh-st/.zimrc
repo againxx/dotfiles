@@ -17,6 +17,7 @@ zmodule archive
 zmodule termtitle
 
 # Theme
+zmodule prompt-pwd
 zmodule gitster
 
 # Additional completion definitions for Zsh.
