@@ -21,12 +21,21 @@ return {
   font_size = 10.0,
   window_background_opacity = 0.9,
   enable_tab_bar = false,
-  force_reverse_video_cursor = true,
   colors = {
       -- The default text color
       foreground = "#cbccc6",
       -- The default background color
       background = "#1f2430",
+
+      -- Overrides the cell background color when the current cell is occupied by the
+      -- cursor and the cursor style is set to Block
+      cursor_bg = "#ffee99",
+      -- Overrides the text color when the current cell is occupied by the cursor
+      cursor_fg = "#191e2a",
+      -- Specifies the border color of the cursor when the cursor style is set to Block,
+      -- of the color of the vertical or horizontal bar when the cursor style is set to
+      -- Bar or Underline.
+      cursor_border = "#ffee99",
 
       -- the foreground color of selected text
       selection_fg = "#191e2a",
