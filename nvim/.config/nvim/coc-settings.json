@@ -208,7 +208,7 @@
         "youdao",
         "haici"
     ],
-    "leetcode.language": "cpp",
+    "leetcode.language": "rust",
     "clangd.semanticHighlighting": false,
     "clangd.arguments": [
         "--completion-style=detailed",

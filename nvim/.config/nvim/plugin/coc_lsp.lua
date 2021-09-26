@@ -24,7 +24,8 @@ vim.g.coc_global_extensions = {
   'coc-html',
   'coc-diagnostic',
   'coc-rust-analyzer',
-  'coc-lua'
+  'coc-lua',
+  'coc-leetcode',
 }
 
 local fn = vim.fn
