@@ -5,7 +5,7 @@ dap.adapters.cppdbg = {
   command = vim.env.HOME .. '/Manually_Installed/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7',
 }
 
-dap.configurations.cpp = {
+dap.configurations.rust = {
   {
     name = "Launch (GDB)",
     type = "cppdbg",
@@ -73,12 +73,3 @@ require('dapui').setup({
   },
   windows = { indent = 1 },
 })
-
-local success, wk = pcall(require, 'which-key')
-if not success then
-  return
-end
-
-wk.register({
-  f = { "<cmd>lua require('xx.telescope').find_ros_executables()<cr>", 'Continue' },
-}, { prefix = '<leader>d' })
