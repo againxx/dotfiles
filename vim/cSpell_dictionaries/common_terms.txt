@@ -6,6 +6,7 @@ ccls
 clangd
 cppcheck
 cuda
+cudnn
 yapf
 conda
 envs
