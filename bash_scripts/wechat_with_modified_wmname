@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+/usr/bin/wechat-uos $1 &
+
+sleep 10
+until xdotool search --name "微信" set_window --classname "WeChat" --class "WeChat" %@; do
+    sleep 1
+done
