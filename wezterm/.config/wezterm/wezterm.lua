@@ -21,6 +21,7 @@ return {
   font_size = 10.0,
   window_background_opacity = 0.9,
   enable_tab_bar = false,
+  use_ime = true,
   colors = {
       -- The default text color
       foreground = "#cbccc6",

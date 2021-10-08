@@ -3,6 +3,7 @@
 *.pyo
 *cpython*.so
 .coverage
+*.egg
 
 # cmake
 compile_commands.json
