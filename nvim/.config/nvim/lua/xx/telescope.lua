@@ -311,9 +311,9 @@ function M.grep_last_search(opts)
   require('telescope.builtin').grep_string(opts)
 end
 
-function M.live_grep()
-  require('telescope').extensions.fzf_writer.staged_grep()
-end
+-- function M.live_grep()
+--   require('telescope').extensions.fzf_writer.staged_grep()
+-- end
 
 function M.ultisnips()
   require('telescope').extensions.ultisnips.ultisnips {
