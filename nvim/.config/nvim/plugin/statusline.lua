@@ -157,7 +157,7 @@ require('lualine').setup {
       {
         'mode',
         icon = symbols.mode,
-        format = function(mode) return string.sub(mode, 1, 1) end
+        fmt = function(mode) return string.sub(mode, 1, 1) end
       }
     },
     lualine_b = {
@@ -204,7 +204,7 @@ require('lualine').setup {
       {
         'location',
         icon = symbols.ruler,
-        format = function(location) return string.gsub(location, ':', '') end
+        fmt = function(location) return string.gsub(location, ':', '') end
       }
     }
   },
@@ -224,7 +224,7 @@ require('lualine').setup {
       {
         'location',
         icon = symbols.ruler,
-        format = function(location) return string.gsub(location, ':', '') end
+        fmt = function(location) return string.gsub(location, ':', '') end
       }
     }
   },
