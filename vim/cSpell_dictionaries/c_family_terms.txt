@@ -30,3 +30,4 @@ simd
 lvalue
 rvalue
 nvcc
+stoul
