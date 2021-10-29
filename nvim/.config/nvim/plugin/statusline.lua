@@ -1,47 +1,47 @@
 local colors = {
-  black        = '#1F2430',
-  white        = '#CBCCC6',
-  red          = '#F28779',
-  green        = '#BAE67E',
-  blue         = '#73D0FF',
-  orange       = '#F29E74',
-  yellow       = '#FFD580',
-  magenta      = '#D4BFFF',
-  darkmagenta  = '#A37ACC',
-  cyan         = '#95E6CB',
-  gray         = '#33415E',
-  darkgray     = '#232834',
-  lightgray    = '#5C6773',
-  inactivegray = '#707A8C',
-  transparent  = 'NONE',
+  black = "#1F2430",
+  white = "#CBCCC6",
+  red = "#F28779",
+  green = "#BAE67E",
+  blue = "#73D0FF",
+  orange = "#F29E74",
+  yellow = "#FFD580",
+  magenta = "#D4BFFF",
+  darkmagenta = "#A37ACC",
+  cyan = "#95E6CB",
+  gray = "#33415E",
+  darkgray = "#232834",
+  lightgray = "#5C6773",
+  inactivegray = "#707A8C",
+  transparent = "NONE",
 }
 local ayu_mirage = {
   normal = {
-    a = { bg = colors.green, fg = colors.black, gui = 'bold' },
+    a = { bg = colors.green, fg = colors.black, gui = "bold" },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.transparent, fg = colors.lightgray },
     z = { bg = colors.green, fg = colors.black },
   },
   insert = {
-    a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
+    a = { bg = colors.transparent, fg = colors.orange, gui = "bold" },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.blue, fg = colors.black },
     z = { bg = colors.transparent, fg = colors.orange },
   },
   visual = {
-    a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
+    a = { bg = colors.transparent, fg = colors.orange, gui = "bold" },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.yellow, fg = colors.black },
     z = { bg = colors.transparent, fg = colors.orange },
   },
   replace = {
-    a = { bg = colors.red, fg = colors.black, gui = 'bold' },
+    a = { bg = colors.red, fg = colors.black, gui = "bold" },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.black, fg = colors.white },
     z = { bg = colors.red, fg = colors.black },
   },
   command = {
-    a = { bg = colors.transparent, fg = colors.orange, gui = 'bold' },
+    a = { bg = colors.transparent, fg = colors.orange, gui = "bold" },
     b = { bg = colors.darkgray, fg = colors.darkmagenta },
     c = { bg = colors.magenta, fg = colors.black },
     z = { bg = colors.transparent, fg = colors.orange },
@@ -51,22 +51,22 @@ local ayu_mirage = {
     b = { bg = colors.transparent, fg = colors.lightgray },
     c = { bg = colors.darkgray, fg = colors.lightgray },
     z = { bg = colors.transparent, fg = colors.lightgray },
-  }
+  },
 }
 
 local symbols = {
-  read_only = '',
-  lsp_status = ' ',
-  treesitter_status = ' ',
-  explorer = ' ',
-  undotree = ' ',
-  mode = ' ',
-  ruler = '',
-  err = vim.env.KITTY_WINDOW_ID and '理' or 'ﲅ ',
-  warn = vim.env.KITTY_WINDOW_ID and ' ' or 'ﲍ ',
-  info = vim.env.KITTY_WINDOW_ID and ' ' or 'ﳃ ',
-  ros_package = vim.env.KITTY_WINDOW_ID and ' ' or 'ﮧ ',
-  catkin_package = vim.env.KITTY_WINDOW_ID and ' ' or 'ﲎ ',
+  read_only = "",
+  lsp_status = " ",
+  treesitter_status = " ",
+  explorer = " ",
+  undotree = " ",
+  mode = " ",
+  ruler = "",
+  err = vim.env.KITTY_WINDOW_ID and "理" or "ﲅ ",
+  warn = vim.env.KITTY_WINDOW_ID and " " or "ﲍ ",
+  info = vim.env.KITTY_WINDOW_ID and " " or "ﳃ ",
+  ros_package = vim.env.KITTY_WINDOW_ID and " " or "ﮧ ",
+  catkin_package = vim.env.KITTY_WINDOW_ID and " " or "ﲎ ",
 }
 
 local hide_when_narrow = function(width)
@@ -76,21 +76,21 @@ local hide_when_narrow = function(width)
 end
 
 local git_branch = function()
-  local branch = vim.g.coc_git_status or ''
+  local branch = vim.g.coc_git_status or ""
   return vim.trim(branch)
 end
 
 local git_diff = function()
-  local diff = vim.b.coc_git_status or ''
+  local diff = vim.b.coc_git_status or ""
   return vim.trim(diff)
 end
 
 local read_only = function()
-  local blacklist = { 'help', 'coc-explorer' }
+  local blacklist = { "help", "coc-explorer" }
   if vim.bo.readonly and not vim.tbl_contains(blacklist, vim.bo.filetype) then
     return symbols.read_only
   else
-    return ''
+    return ""
   end
 end
 
@@ -99,27 +99,27 @@ local coc_status = function()
   if status and #status > 0 then
     return symbols.lsp_status .. status
   else
-    return ''
+    return ""
   end
 end
 
 local treesitter_status = function()
-  local status = vim.fn['nvim_treesitter#statusline'] {
+  local status = vim.fn["nvim_treesitter#statusline"] {
     indicator_size = 100,
-    type_patterns = { 'class', 'function', 'method' },
+    type_patterns = { "class", "function", "method" },
   }
   if status and status ~= vim.NIL and #status > 0 then
-    if vim.bo.filetype == 'cpp' then
-      status = status:gsub('%w+::', '')
+    if vim.bo.filetype == "cpp" then
+      status = status:gsub("%w+::", "")
     end
-    return '%<' .. symbols.treesitter_status .. status
+    return "%<" .. symbols.treesitter_status .. status
   end
 end
 
 local ros_package = function()
-  local package_name_with_symbol = ''
+  local package_name_with_symbol = ""
   if vim.b.ros_package_name then
-    package_name_with_symbol =  symbols.ros_package .. vim.b.ros_package_name
+    package_name_with_symbol = symbols.ros_package .. vim.b.ros_package_name
   elseif vim.b.catkin_package_name then
     package_name_with_symbol = symbols.catkin_package .. vim.b.catkin_package_name
   end
@@ -129,48 +129,54 @@ end
 local coc_explorer = {
   sections = {
     lualine_b = {
-      function() return symbols.explorer .. 'Explorer' end,
-    }
+      function()
+        return symbols.explorer .. "Explorer"
+      end,
+    },
   },
-  filetypes = { 'coc-explorer' }
+  filetypes = { "coc-explorer" },
 }
 
 local undotree = {
   sections = {
     lualine_b = {
-      function() return symbols.undotree .. 'Undotree' end,
-    }
+      function()
+        return symbols.undotree .. "Undotree"
+      end,
+    },
   },
-  filetypes = { 'undotree' }
+  filetypes = { "undotree" },
 }
 
-require('lualine').setup {
+require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = ayu_mirage,
-    component_separators = {'', ''},
-    section_separators = {'', ''},
-    disabled_filetypes = {}
+    component_separators = { "", "" },
+    section_separators = { "", "" },
+    disabled_filetypes = {},
   },
   sections = {
     lualine_a = {
       {
-        'mode',
+        "mode",
         icon = symbols.mode,
-        fmt = function(mode) return string.sub(mode, 1, 1) end
-      }
+        fmt = function(mode)
+          return string.sub(mode, 1, 1)
+        end,
+      },
     },
     lualine_b = {
       git_branch,
       {
         git_diff,
         left_padding = 0,
-        condition = hide_when_narrow(140)
-      }
+        condition = hide_when_narrow(140),
+      },
     },
     lualine_c = {
       {
-        'filename',
+        "filename",
         file_status = false,
         path = 1,
       },
@@ -179,39 +185,43 @@ require('lualine').setup {
       {
         treesitter_status,
         condition = hide_when_narrow(120),
-      }
+      },
     },
     lualine_x = {
       {
         ros_package,
-        condition = hide_when_narrow(140)
+        condition = hide_when_narrow(140),
       },
-      'filetype',
+      "filetype",
     },
     lualine_y = {
       {
-        'diagnostics',
-        sources = { 'coc' },
-        sections = { 'error', 'warn', 'info' },
-        color_error = colors.red,
-        color_warn = colors.yellow,
-        color_info = colors.cyan,
-        symbols = { error = symbols.err, warn = symbols.warn, info = symbols.info }
+        "diagnostics",
+        sources = { "coc" },
+        sections = { "error", "warn", "info" },
+        diagnostics_color = {
+          error = { fg = colors.red },
+          warn = { fg = colors.yellow },
+          info = { fg = colors.cyan },
+        },
+        symbols = { error = symbols.err, warn = symbols.warn, info = symbols.info },
       },
-      'progress',
+      "progress",
     },
     lualine_z = {
       {
-        'location',
+        "location",
         icon = symbols.ruler,
-        fmt = function(location) return string.gsub(location, ':', '') end
-      }
-    }
+        fmt = function(location)
+          return string.gsub(location, ":", "")
+        end,
+      },
+    },
   },
   inactive_sections = {
     lualine_a = {
       {
-        'filename',
+        "filename",
         file_status = false,
       },
       read_only,
@@ -222,12 +232,14 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {
       {
-        'location',
+        "location",
         icon = symbols.ruler,
-        fmt = function(location) return string.gsub(location, ':', '') end
-      }
-    }
+        fmt = function(location)
+          return string.gsub(location, ":", "")
+        end,
+      },
+    },
   },
   tabline = {},
-  extensions = { 'quickfix', coc_explorer, undotree }
+  extensions = { "quickfix", coc_explorer, undotree },
 }
