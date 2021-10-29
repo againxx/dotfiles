@@ -51,4 +51,18 @@ function M.close()
   vim.defer_fn(close_post_hook, 1000)
 end
 
+function M.set_debug_args()
+  local ft = vim.bo.filetype
+  local dap_args = "dap_" .. ft .. "_args"
+  local default = vim.g[dap_args] and table.concat(vim.g[dap_args], " ") or ""
+  vim.g[dap_args] = vim.split(vim.fn.input("Program arguments: ", default, "file"), " ")
+  for i = 1, #dap.configurations[ft] do
+    dap.configurations[ft][i] = vim.tbl_extend(
+      "force",
+      dap.configurations[ft][i],
+      { args = vim.g[dap_args] }
+    )
+  end
+end
+
 return M

@@ -41,24 +41,11 @@ require("dapui").setup {
   windows = { indent = 1 },
 }
 
-local set_debug_args = function()
-  local default = vim.g.dap_python_args and table.concat(vim.g.dap_python_args, " ") or ""
-  vim.g.dap_python_args = vim.split(vim.fn.input("Program arguments: ", default, "file"), " ")
-  for i = 1, #dap.configurations.python do
-    dap.configurations.python[i] = vim.tbl_extend(
-      "force",
-      dap.configurations.python[i],
-      { args = vim.g.dap_python_args }
-    )
-  end
-end
-
 local wk = require "which-key"
 
 wk.register({
   n = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },
   s = { "<cmd>lua require('dap-python').test_class()<cr>", "Test class" },
-  a = { set_debug_args, "Set debug arguments" },
 }, {
   prefix = "<leader>d",
 })
