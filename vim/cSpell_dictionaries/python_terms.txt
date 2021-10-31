@@ -57,3 +57,5 @@ pyright
 reprlib
 vmin
 vmax
+pyclass
+pymodule

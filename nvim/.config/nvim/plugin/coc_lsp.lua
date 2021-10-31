@@ -124,7 +124,10 @@ wk.register({
 }, { mode = 'x' })
 
 wk.register({
-  oS = { '<cmd>CocList --normal sources<cr>', 'Coc sources' },
+  o = {
+    S = { '<cmd>CocList --normal sources<cr>', 'Coc sources' },
+    t = { '<cmd>CocOutline<cr>', 'Outline tree' },
+  },
   T = { '<Plug>(coc-translator-p)', 'Translate' },
   y = {
     name = '+yank',

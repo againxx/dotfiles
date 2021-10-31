@@ -66,6 +66,10 @@
     "pairs.disableLanguages": [
         "TelescopePrompt"
     ],
+    "outline.splitCommand": "botright 45vs",
+    "tree.closedIcon": "",
+    "tree.openedIcon": "",
+    "tree.key.close": "q",
     "python.formatting.provider": "black",
     "python.linting.pylintEnabled": true,
     "snippets.priority": 100,
