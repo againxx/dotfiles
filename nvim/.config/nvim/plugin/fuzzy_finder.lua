@@ -39,7 +39,7 @@ wk.register({
   s = {
     name = '+symbol/session/show',
     s = { "<cmd>lua require('xx.telescope').coc.document_symbols()<cr>", 'Document symbols' },
-    a = { "<cmd>lua require('xx.telescope').coc..workspace_symbols()<cr>", 'Workspace symbols' },
+    a = { "<cmd>lua require('xx.telescope').coc.workspace_symbols()<cr>", 'Workspace symbols' },
   },
   c = {
     c = { "<cmd>lua require('xx.telescope').coc.commands()<cr>", 'Coc commands' },

@@ -1,5 +1,3 @@
-vim.g.dap_virtual_text = true
-
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
