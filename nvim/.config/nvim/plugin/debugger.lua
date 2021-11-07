@@ -20,5 +20,6 @@ wk.register({
   e = { "<cmd>lua require('dapui').toggle('sidebar')<cr>", 'Toggle sidebar ui' },
   b = { "<cmd>lua require('xx.dap').list_breakpoints()<cr>", 'List all breakpoints' },
   a = { "<cmd>lua require('xx.dap').set_debug_args()<cr>", "Set debug arguments" },
+  v = { "<cmd>DapVirtualTextToggle<cr>", "Toggle virtual text" },
   [';'] = { "<cmd>lua require('xx.dap').toggle_breakpoint()<cr>", 'Toggle breakpoint' },
 }, { prefix = '<leader>d' })

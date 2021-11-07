@@ -114,6 +114,7 @@ local treesitter_status = function()
     end
     return "%<" .. symbols.treesitter_status .. status
   end
+  return ""
 end
 
 local ros_package = function()
