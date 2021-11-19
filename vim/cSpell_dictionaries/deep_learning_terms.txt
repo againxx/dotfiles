@@ -17,3 +17,5 @@ ICLR
 Minkowski
 DDPPO
 deconvolutional
+DDPG
+SAC

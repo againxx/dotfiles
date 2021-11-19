@@ -134,8 +134,14 @@ return require('packer').startup({function(use)
   --- Search & Move
   ---
   use 'haya14busa/incsearch.vim'
-  use 'justinmk/vim-sneak'
-  use 'unblevable/quick-scope' -- highlight for f & t
+  use {
+    'ggandor/lightspeed.nvim',
+    config = function() require('lightspeed').setup{
+      -- f/t
+      -- instant_repeat_fwd_key = ';',
+      -- instant_repeat_bwd_key = ',',
+    } end
+  }
   use 'karb94/neoscroll.nvim' -- smooth scrolling
 
   ---
@@ -187,7 +193,7 @@ return require('packer').startup({function(use)
   ---
   --- Wiki
   ---
-  use { 'vimwiki/vimwiki', branch = 'dev' }
+  use { 'againxx/vimwiki-1', branch = 'dev' }
   use 'tools-life/taskwiki'
   use {
     'michal-h21/vim-zettel',

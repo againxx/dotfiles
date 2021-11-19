@@ -59,3 +59,4 @@ vmin
 vmax
 pyclass
 pymodule
+noqa
