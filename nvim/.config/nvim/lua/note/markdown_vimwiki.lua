@@ -92,6 +92,7 @@ wk.register({
 }, { mode = 'i', buffer = vim.api.nvim_get_current_buf() })
 
 wk.register({
+  K = { '<Plug>(coc-translator-p)', 'Translate' },
   ['<space><space>'] = { '/<++><cr>:nohlsearch<cr>"_c4l', 'Go to next anchor' },
   ['[t'] = 'Go to left table cell',
   [']t'] = 'Go to right table cell',
