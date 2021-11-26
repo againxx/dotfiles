@@ -52,7 +52,7 @@
     "diagnostic.format": "%message\n[%source]",
     "codeLens.separator": "",
     "rust-analyzer.inlayHints.typeHintsSeparator": " ",
-    "signature.maxWindowHeight": 10,
+    "rust-analyzer.checkOnSave.command": "clippy",
     "signature.preferShownAbove": false,
     "list.source.files.args": [
         "--hidden",
@@ -223,7 +223,6 @@
     "clangd.fallbackFlags": [
         "--cuda-gpu-arch=sm_61"
     ],
-    "jedi.completion.disableSnippets": true,
     "diagnostic-languageserver.mergeConfig": true,
     "diagnostic-languageserver.linters": {
         "cppcheck": {

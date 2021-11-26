@@ -39,7 +39,7 @@ vim.g.python_syntax_space_errors = false
 
 -- Matchup
 vim.g.matchup_matchparen_nomode = 'i'
-vim.g.matchup_matchparen_enabled = false
+vim.g.matchup_matchparen_enabled = true
 vim.g.matchup_motion_enabled = false
 
 -- Vim-tmux-navigator

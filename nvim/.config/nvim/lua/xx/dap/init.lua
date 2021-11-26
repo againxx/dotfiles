@@ -25,8 +25,8 @@ dap.listeners.after["event_initialized"]["xx.mappings"] = function()
       break
     end
   end
-  api.nvim_set_keymap("n", "K", "<cmd>lua require('dapui').eval()<cr>", { silent = true })
-  api.nvim_set_keymap("v", "K", "<cmd>lua require('dapui').eval()<cr>", { silent = true })
+  api.nvim_set_keymap("n", "K", "<cmd>lua require('dap.ui.widgets').hover()<cr>", { silent = true })
+  api.nvim_set_keymap("v", "K", "<cmd>lua require('dapui').hover()<cr>", { silent = true })
 end
 
 local close_post_hook = function()
