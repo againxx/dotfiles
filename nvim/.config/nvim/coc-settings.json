@@ -9,9 +9,7 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    "coc.source.omni.filetypes": [
-        "VimspectorPrompt"
-    ],
+    "coc.source.omni.filetypes": [],
     "session.directory": "~/.cache/vim/session",
     "suggest.noselect": false,
     "suggest.maxCompleteItemCount": 50,
@@ -64,7 +62,8 @@
         "dashboard"
     ],
     "pairs.disableLanguages": [
-        "TelescopePrompt"
+        "TelescopePrompt",
+        "dap-repl"
     ],
     "outline.splitCommand": "botright 45vs",
     "tree.closedIcon": "",

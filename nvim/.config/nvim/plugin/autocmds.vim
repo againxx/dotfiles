@@ -52,7 +52,7 @@ augroup other_filetypes
   autocmd FileType qf setlocal nobuflisted
   autocmd FileType qf setlocal nolist
   autocmd FileType rnvimr tnoremap <buffer><silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
-  autocmd FileType TelescopePrompt setlocal nowrap
+  autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
 augroup END
 
 augroup ros_filetype_detect

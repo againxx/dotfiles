@@ -9,6 +9,7 @@ opt.smartcase = true -- Do smart case matching
 opt.hlsearch = true -- Highlight all search matches
 opt.wildmenu = true
 opt.wildmode = { 'longest', 'full' }
+opt.completeopt = { 'menu', 'preview', 'noinsert' }
 -- Ignore compiled files
 opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
 opt.autoread = true

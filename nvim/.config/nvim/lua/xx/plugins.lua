@@ -240,6 +240,7 @@ return require('packer').startup({function(use)
   use 'kana/vim-textobj-user'
   -- use 'againxx/vim-textobj-underscore'
   use 'Julian/vim-textobj-variable-segment'
+  use 'wellle/targets.vim'
 
   ---
   --- QuickFix
