@@ -136,7 +136,13 @@ return require('packer').startup({function(use)
   use 'haya14busa/incsearch.vim'
   use {
     'ggandor/lightspeed.nvim',
-    config = function() require('lightspeed').setup{
+    config = function() require('lightspeed').setup {
+      safe_labels = {"f", "n", "u", "t", "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z", "Q"},
+      labels = {"f", "n", "j", "k", "l", "o",
+        "i", "w", "e", "h", "g", "u", "t",
+        "r", "m", "v", "c", "a", ".", "z",
+        "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z",
+      }
       -- f/t
       -- instant_repeat_fwd_key = ';',
       -- instant_repeat_bwd_key = ',',
@@ -189,6 +195,11 @@ return require('packer').startup({function(use)
   use {
     'dhruvasagar/vim-table-mode', cmd = {'TableModeToggle', 'TableModeEnable'}
   }
+
+  ---
+  --- Latex
+  ---
+  use 'lervag/vimtex'
 
   ---
   --- Wiki
