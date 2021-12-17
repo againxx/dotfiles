@@ -159,6 +159,7 @@
         "markdown": [],
         "vimwiki.markdown": [],
         "vimwiki": [],
+        "tex": [],
         "text": [],
         "vim": [
             "^\\s*\\\""
@@ -196,7 +197,8 @@
         "text",
         "typescript",
         "yaml",
-        "yml"
+        "yml",
+        "tex"
     ],
     "cSpell.dictionaries": [
         "commonTerms",
