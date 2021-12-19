@@ -59,7 +59,7 @@ local symbols = {
   lsp_status = " ",
   treesitter_status = " ",
   explorer = " ",
-  undotree = " ",
+  tree = " ",
   mode = " ",
   ruler = "",
   err = vim.env.KITTY_WINDOW_ID and "理" or "ﲅ ",
@@ -142,11 +142,22 @@ local undotree = {
   sections = {
     lualine_b = {
       function()
-        return symbols.undotree .. "Undotree"
+        return symbols.tree .. "Undotree"
       end,
     },
   },
   filetypes = { "undotree" },
+}
+
+local coctree = {
+  sections = {
+    lualine_b = {
+      function()
+        return symbols.tree .. "Coctree"
+      end,
+    },
+  },
+  filetypes = { "coctree" },
 }
 
 require("lualine").setup {
