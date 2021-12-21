@@ -288,7 +288,7 @@ return require('packer').startup({function(use)
   }
   use 'lambdalisue/suda.vim'
   use 'lukas-reineke/indent-blankline.nvim'
-  use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki'} }
+  use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki', 'tex'} }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
   use 'jeffkreeftmeijer/vim-numbertoggle'
   -- embed neovim in browser input box
