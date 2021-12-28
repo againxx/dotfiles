@@ -21,6 +21,12 @@ return {
   font_size = 10.0,
   window_background_opacity = 0.9,
   enable_tab_bar = false,
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+  },
   use_ime = true,
   colors = {
       -- The default text color
@@ -56,5 +62,8 @@ return {
   keys = {
     { key="v", mods="CTRL|SHIFT", action=wezterm.action{ PasteFrom="Clipboard" } },
     { key="c", mods="CTRL|SHIFT", action=wezterm.action{ CopyTo="Clipboard" } },
+    { key="+", mods="CTRL", action="IncreaseFontSize" },
+    { key="_", mods="CTRL", action="DecreaseFontSize" },
+    { key=")", mods="CTRL", action="ResetFontSize" },
   }
 }
