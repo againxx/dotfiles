@@ -66,7 +66,7 @@ require('telescope').setup {
   }
 }
 
-require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
 
 local M = { coc = {} }
 
@@ -190,7 +190,7 @@ function M.buffers()
 end
 
 function M.file_browser()
-  require('telescope.builtin').file_browser {
+  require('telescope').extensions.file_browser.file_browser {
     sorting_strategy = 'ascending',
     layout_config = {
       prompt_position = 'top',
@@ -353,6 +353,13 @@ function M.find_ros_executables()
     },
   }
   require('telescope').extensions.catkin.executables(opts)
+end
+
+function M.list_z_dirs()
+  -- current not work, seem that z.lua is not initialzed in nvim
+  require('telescope').extensions.z.list {
+    cmd = { vim.o.shell, '-c', 'j -l' }
+  }
 end
 
 return M

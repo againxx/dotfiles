@@ -16,6 +16,7 @@ wk.register({
     p = { "<cmd>lua require('xx.telescope').projects()<cr>", 'Project files' },
     r = { "<cmd>lua require('xx.telescope').ros_workspace_packages()<cr>", 'Worksapce ros packages' },
     R = { "<cmd>lua require('xx.telescope').ros_core_packages()<cr>", 'Core ros packages' },
+    d = { "<cmd>lua require('xx.telescope').list_z_dirs()<cr>", 'Directories of z.lua' },
     ['/'] = { "<cmd>lua require('xx.telescope').grep_last_search()<cr>", 'Grep last search' },
   },
   l = {

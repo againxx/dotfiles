@@ -26,6 +26,7 @@ vim.g.coc_global_extensions = {
   'coc-rust-analyzer',
   'coc-lua',
   'coc-leetcode',
+  'coc-docker',
 }
 
 local fn = vim.fn

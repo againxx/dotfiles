@@ -102,10 +102,12 @@ return require('packer').startup({function(use)
     requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
   }
   use 'fannheyward/telescope-coc.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
   use 'fhill2/telescope-ultisnips.nvim'
+  use 'nvim-telescope/telescope-z.nvim'
+  use 'nvim-telescope/telescope-file-browser.nvim'
   use 'againxx/telescope-ros.nvim'
   use {
     "nvim-telescope/telescope-frecency.nvim",
