@@ -64,10 +64,6 @@ vim.g.table_mode_corner = '|'
 vim.g.table_mode_map_prefix = '<localleader>t'
 vim.g.table_mode_tableize_d_map = '<localleader>ta'
 
--- Use w/b to move over chinese ci
-vim.api.nvim_buf_set_keymap(0, 'n', 'w', '<Plug>(coc-ci-w)', { silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', 'b', '<Plug>(coc-ci-b)', { silent = true })
-
 local success, wk = pcall(require, 'which-key')
 if not success then
   return

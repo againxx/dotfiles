@@ -12,6 +12,7 @@ highlight! link CocHintHighlight NONE
 highlight! link shCommandSub    Constant
 highlight! link IncSearchCursor IncSearch
 highlight! link jsonKeyword     Function
+highlight link markdownError NONE
 let g:VM_Extend_hl = 'VMExtend'
 let g:VM_Cursor_hl = 'VMCursor'
 let g:VM_Mono_hl = 'VMMono'

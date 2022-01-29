@@ -18,11 +18,7 @@ require("plenary.filetype").add_file "extra_filetypes"
 vim.cmd [[
   augroup vimwiki_special
     autocmd!
-    autocmd User visual_multi_start nunmap <buffer> w
-    autocmd User visual_multi_start nunmap <buffer> b
     autocmd User visual_multi_exit imap <buffer> <c-d> <Plug>VimwikiDecreaseLvlSingleItem
-    autocmd User visual_multi_exit nmap <silent><buffer> w <Plug>(coc-ci-w)
-    autocmd User visual_multi_exit nmap <silent><buffer> b <Plug>(coc-ci-b)
   augroup END
 ]]
 

@@ -5,9 +5,19 @@ return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
 
   ---
-  --- LSP
+  --- LSP & Autocompletion
   ---
-  use { 'neoclide/coc.nvim', branch = 'release' }
+  -- use { 'neoclide/coc.nvim, branch = 'release' }
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/nvim-cmp'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
+  use 'onsails/lspkind-nvim'
 
   ---
   --- Debugger
@@ -28,6 +38,7 @@ return require('packer').startup({function(use)
   --- Git
   ---
   use 'tpope/vim-fugitive'
+  use 'lewis6991/gitsigns.nvim'
   use {
     'kdheepak/lazygit.nvim',
     cmd = 'LazyGit'
@@ -36,6 +47,13 @@ return require('packer').startup({function(use)
   ---
   --- Filesystem
   ---
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- for file icon
+      },
+      config = function() require'nvim-tree'.setup {} end
+  }
   use 'kevinhwang91/rnvimr'
 
   ---
@@ -67,6 +85,10 @@ return require('packer').startup({function(use)
         default = true;
       }
     end
+  }
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function() require('colorizer').setup() end
   }
 
   ---
@@ -101,7 +123,7 @@ return require('packer').startup({function(use)
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
   }
-  use 'fannheyward/telescope-coc.nvim'
+  -- use 'fannheyward/telescope-coc.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
@@ -135,7 +157,7 @@ return require('packer').startup({function(use)
   ---
   --- Search & Move
   ---
-  use 'haya14busa/incsearch.vim'
+  use 'romainl/vim-cool' -- disables search highlighting automatically
   use {
     'ggandor/lightspeed.nvim',
     config = function() require('lightspeed').setup {
@@ -284,6 +306,10 @@ return require('packer').startup({function(use)
   use 'tpope/vim-capslock'
   use 'AndrewRadev/switch.vim'
   use 'Konfekt/FastFold'
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs').setup() end
+  }
   use {
     'mbbill/undotree', cmd = 'UndotreeToggle',
     config = function() require('xx.undotree') end

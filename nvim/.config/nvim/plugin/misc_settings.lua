@@ -28,12 +28,6 @@ vim.g.slime_python_ipython = 1
 -- tmuxline
 vim.g.tmuxline_preset = 'nightly_fox'
 
--- incsearch
-vim.g['incsearch#auto_nohlsearch']= true
--- let g:incsearch#separate_highlight = 1
--- use very magic mode as default
--- let g:incsearch#magic = '\v'
-
 -- Python-syntax
 vim.g.python_syntax_space_errors = false
 

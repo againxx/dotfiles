@@ -39,9 +39,6 @@ xnoremap <expr> J line(".") == line("'<") ? "j" : "J"
 " Up and Down are more intelligent in command line history navigation
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
-" And use <C-j> and <C-k> for wildmenu navigation just like normal completion
-cnoremap <C-j> <C-n>
-cnoremap <C-k> <C-p>
 
 " Make <C-j> and <C-k> move faster, in vim these two keys are used for window
 " navigation
@@ -114,25 +111,10 @@ nnoremap <C-w><C-h> <Cmd>leftabove vsplit<CR>
 nnoremap <C-w><C-j> <Cmd>rightbelow split<CR>
 nnoremap <C-w><C-k> <Cmd>leftabove split<CR>
 
-" ===
-" === Incsearch
-" ===
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
 " Use <C-j> and <C-k> to navigate the completion list:
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-space> coc#refresh()
 " Improve enter inside bracket `<> {} [] ()` by add new empty line below and place cursor to it.
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-\   : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+" \   : \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

@@ -13,6 +13,7 @@ augroup common
   " fix vim script user command syntax highlighting
   " (should be unnecessary when https://github.com/vim/vim/issues/6587 is fixed)
   autocmd Syntax vim syn match vimUsrCmd '^\s*\zs\u\%(\w*\)\@>(\@!'
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
 
 augroup coc_special
@@ -20,13 +21,13 @@ augroup coc_special
   " Close the preview window (not completion window, this is why pumvisible() == 0) when completion is done
   autocmd CompleteDone * if pumvisible() == 0 | silent! pclose | endif
   " Highlight the symbol and its references when holding the cursor.
-  autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# 'cocactions'
-  \   | call CocActionAsync('highlight') | endif
-  autocmd CursorHoldI * silent if coc#float#has_float() == 0 && CocHasProvider('signature') | call CocActionAsync('showSignatureHelp') | endif
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# 'cocactions'
+  " \   | call CocActionAsync('highlight') | endif
+  " autocmd CursorHoldI * silent if coc#float#has_float() == 0 && CocHasProvider('signature') | call CocActionAsync('showSignatureHelp') | endif
+  " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " Automatically close coc-explorer if it is the last window
-  autocmd BufEnter *coc-explorer* if winnr('$') == 1 | q | endif
-  autocmd BufHidden *coc-explorer* lua require'bufferline.state'.set_offset(0)
+  " autocmd BufEnter *coc-explorer* if winnr('$') == 1 | q | endif
+  " autocmd BufHidden *coc-explorer* lua require'bufferline.state'.set_offset(0)
   autocmd CmdwinEnter * let b:coc_suggest_disable = 1
   autocmd BufReadPost * if &readonly | let b:coc_diagnostic_disable = 1 | endif
   " Show the nearest function in statusline automatically by vista

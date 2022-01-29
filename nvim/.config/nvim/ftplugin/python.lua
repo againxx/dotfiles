@@ -1,23 +1,23 @@
 vim.opt_local.foldlevel = 1
 vim.opt_local.colorcolumn = '101'
 
-vim.fn['coc#config']('snippets.loadFromExtensions', 0)
-vim.fn['coc#config']('diagnostic-languageserver.linters', {
-  mypy = {
-    args = {
-      '--no-color-output',
-      '--no-error-summary',
-      '--show-column-numbers',
-      '--follow-imports=silent',
-      '--cache-dir=' .. vim.env.HOME .. '/.cache/mypy',
-      '%file'
-    }
-  }
-})
+-- vim.fn['coc#config']('snippets.loadFromExtensions', 0)
+-- vim.fn['coc#config']('diagnostic-languageserver.linters', {
+--   mypy = {
+--     args = {
+--       '--no-color-output',
+--       '--no-error-summary',
+--       '--show-column-numbers',
+--       '--follow-imports=silent',
+--       '--cache-dir=' .. vim.env.HOME .. '/.cache/mypy',
+--       '%file'
+--     }
+--   }
+-- })
 -- dynamically set python.condaPath
-if vim.env.CONDA_PREFIX then
-  vim.fn['coc#config']('python.condaPath', vim.env.CONDA_PREFIX .. '/bin/python')
-end
+-- if vim.env.CONDA_PREFIX then
+--   vim.fn['coc#config']('python.condaPath', vim.env.CONDA_PREFIX .. '/bin/python')
+-- end
 
 local switch_definitions = [[
   let b:switch_custom_definitions = [

@@ -19,5 +19,5 @@ end
 wk.register({
   ['[['] = { find_less_indent_line(true), 'Previous less indent line' },
   [']]'] = { find_less_indent_line(false), 'Next less indent line' },
-  ['<space>/'] = { [[<Plug>(incsearch-forward)^\s\+\zs]], 'Forward search option' },
+  ['<space>/'] = { [[/^\s\+\zs]], 'Forward search option' },
 }, { buffer = vim.api.nvim_get_current_buf() })

@@ -14,7 +14,8 @@ local switch_definitions = [==[
   ]
 ]==]
 vim.cmd(switch_definitions:gsub('\n', ''))
-vim.fn['coc#config']('diagnostic.format', '%message\n[%source:%code]')
+-- vim.fn['coc#config']('diagnostic.format', '%message\n[%source:%code]')
+
 
 vim.defer_fn(function()
   require('xx.catkin').detect_package(function()
