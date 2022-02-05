@@ -16,22 +16,12 @@ augroup common
   autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
 
-augroup coc_special
+augroup lsp_special
   autocmd!
-  " Close the preview window (not completion window, this is why pumvisible() == 0) when completion is done
-  autocmd CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-  " Highlight the symbol and its references when holding the cursor.
-  " autocmd CursorHold * silent if pumvisible() == 0 && &filetype !=# 'cocactions'
-  " \   | call CocActionAsync('highlight') | endif
-  " autocmd CursorHoldI * silent if coc#float#has_float() == 0 && CocHasProvider('signature') | call CocActionAsync('showSignatureHelp') | endif
-  " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  " Automatically close coc-explorer if it is the last window
-  " autocmd BufEnter *coc-explorer* if winnr('$') == 1 | q | endif
-  " autocmd BufHidden *coc-explorer* lua require'bufferline.state'.set_offset(0)
-  autocmd CmdwinEnter * let b:coc_suggest_disable = 1
-  autocmd BufReadPost * if &readonly | let b:coc_diagnostic_disable = 1 | endif
-  " Show the nearest function in statusline automatically by vista
-  autocmd User CocNvimInit call vista#RunForNearestMethodOrFunction()
+  autocmd CursorHold *
+  \   lua if not (vim.b.lsp_floating_preview and
+  \     vim.api.nvim_win_is_valid(vim.b.lsp_floating_preview))
+  \   then vim.diagnostic.open_float({scope = "cursor"}) end
 augroup END
 
 augroup visual_multi_special
@@ -68,6 +58,31 @@ augroup ui_special
   autocmd!
   autocmd UIEnter * call OnUIEnter(deepcopy(v:event)) " Used by firenvim
 augroup END
+
+augroup defx_file_explorer
+  autocmd!
+  autocmd VimEnter * ++once silent! autocmd! FileExplorer
+  autocmd VimEnter * ++once if isdirectory(expand('<amatch>')) |
+        \ bwipeout! | execute "DefxIcon" expand('<amatch>') |
+        \ endif |
+        \ execute(printf("autocmd defx_file_explorer BufEnter * %s",
+        \ "call s:enter_dir_with_defx(expand('<amatch>'), expand('<abuf>'))"))
+augroup END
+
+function! s:enter_dir_with_defx(path, bufnr) abort
+  if bufnr(a:path) == a:bufnr && isdirectory(a:path) && !&diff
+    " git submodule opened by `:Git difftool -y` for vim-fugitive is treated as directory,
+    " but vim-fugitive couldn't set &diff before BufEnter event, let us check it later:)
+    call timer_start(0, {-> call('s:defer_check_dir', [a:path, a:bufnr])})
+  endif
+endfunction
+
+function! s:defer_check_dir(path, bufnr) abort
+  if isdirectory(a:path) && !&diff && a:bufnr == nvim_get_current_buf()
+    BufferWipeout!
+    execute "DefxIcon" a:path
+  end
+endfunction
 
 function! s:VMStart() abort
   nmap <buffer> <C-j> <Plug>(VM-Add-Cursor-Down)

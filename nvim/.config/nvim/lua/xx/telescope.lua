@@ -68,7 +68,20 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
-local M = { coc = {} }
+require("neoclip").setup {
+  enable_persistant_history = true,
+  default_registers = { '"', '+', '*' },
+  keys = {
+    telescope = {
+      i = {
+        paste = '<c-n>',
+        paste_behind = '<c-p>',
+      }
+    }
+  }
+}
+
+local M = {}
 
 local symbol_type_highlight = {
   ["Class"] = "Structure",
@@ -88,12 +101,6 @@ local symbol_type_highlight = {
 setmetatable(M, {
   __index = function(_, k)
     return require('telescope.builtin')[k]
-  end
-})
-
-setmetatable(M.coc, {
-  __index = function(_, k)
-    return require('telescope').extensions.coc[k]
   end
 })
 
@@ -252,8 +259,8 @@ function M.tags()
   }
 end
 
-function M.coc.document_symbols()
-  require('telescope').extensions.coc.document_symbols {
+function M.document_symbols()
+  require('telescope.builtin').lsp_document_symbols {
     layout_strategy = 'vertical',
     layout_config = {
       preview_height = 0.70,
@@ -264,8 +271,8 @@ function M.coc.document_symbols()
   }
 end
 
-function M.coc.workspace_symbols()
-  require('telescope').extensions.coc.workspace_symbols {
+function M.workspace_symbols()
+  require('telescope.builtin').lsp_workspace_symbols {
     layout_strategy = 'vertical',
     layout_config = {
       preview_height = 0.70,
@@ -360,6 +367,10 @@ function M.list_z_dirs()
   require('telescope').extensions.z.list {
     cmd = { vim.o.shell, '-c', 'j -l' }
   }
+end
+
+function M.neoclip_yank()
+  require('telescope').extensions.neoclip.default()
 end
 
 return M

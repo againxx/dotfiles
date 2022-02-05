@@ -1,50 +1,81 @@
-if vim.fn.executable('nvr') > 0 then
-  vim.fn.setenv('GIT_EDITOR', "nvr -cc vsplit --remote-wait +'set bufhidden=wipe'")
+if vim.fn.executable "nvr" > 0 then
+  vim.fn.setenv("GIT_EDITOR", "nvr -cc vsplit --remote-wait +'set bufhidden=wipe'")
 end
 
-local gs_success, gitsigns = pcall(require, 'gitsigns')
+local gs_success, gitsigns = pcall(require, "gitsigns")
 if not gs_success then
   return
 end
 
 gitsigns.setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '▎', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '░', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '▒', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+    change = { hl = "GitSignsChange", text = "░", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    delete = { hl = "GitSignsDelete", text = "▁", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    topdelete = { hl = "GitSignsDelete", text = "▔", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    changedelete = { hl = "GitSignsChangeDelete", text = "▒", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
   },
 }
 
-
-local wk_success, wk = pcall(require, 'which-key')
+local wk_success, wk = pcall(require, "which-key")
 if not wk_success then
   return
 end
 
 wk.register({
   g = {
-    name = '+git',
-    a = { gitsigns.stage_hunk, 'Stage hunk' },
-    u = { '<cmd>CocCommand git.chunkUndo<cr>', 'Undo chunk' },
-    z = { '<cmd>CocCommand git.foldUnchanged<cr>', 'Fold unchanged' },
-    r = { '<cmd>Git restore --staged %<Bar>CocCommand git.refresh<cr>', 'Restore current file' },
+    name = "+git",
+    a = { gitsigns.stage_hunk, "Stage hunk" },
+    u = { gitsigns.undo_stage_hunk, "Undo stage hunk" },
+    r = { gitsigns.reset_hunk, "Reset hunk" },
+    R = { gitsigns.reset_buffer, "Reset current buffer" },
     -- show chunk diff at current position
-    d = { gitsigns.preview_hunk, 'Hunk diff' },
-    D = { gitsigns.diffthis, 'Diff current file' },
+    d = { gitsigns.preview_hunk, "Hunk diff" },
+    D = { gitsigns.diffthis, "Diff current file" },
+    x = { gitsigns.toggle_deleted, "Toggle deleted" },
     -- show commit contains current position
-    c = { '<Plug>(coc-git-commit)', 'Current line commits' },
-    C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", 'All commits' },
-    ['<C-c>'] = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", 'Current buffer commits' },
-    b = { "<cmd>lua require('xx.telescope').git_branches()<cr>", 'Branches' },
-    s = { "<cmd>lua require('xx.telescope').git_status()<cr>", 'Status' },
+    c = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", "Current buffer commits" },
+    C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", "All commits" },
+    b = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
+    B = {
+      function()
+        gitsigns.blame_line { full = true }
+      end,
+      "Git blame for current hunk",
+    },
+    s = { "<cmd>lua require('xx.telescope').git_status()<cr>", "Status" },
   },
-  ['<C-g>'] = { "<cmd>LazyGit<cr>", 'Lazygit' }
-}, { prefix = '<leader>' })
+  c = {
+    name = "+change/command",
+    b = { gitsigns.toggle_current_line_blame, "Toggle git blame for current line" },
+  },
+  ["<C-g>"] = { "<cmd>LazyGit<cr>", "Lazygit" },
+}, { prefix = "<leader>" })
+
+wk.register({
+  ih = { "<cmd>Gitsigns select_hunk<cr>", "inner git hunk" },
+}, { mode = "x" })
 
 -- navigate chunks of current buffer
-wk.register({
-    ['[g'] = { '<cmd>Gitsigns prev_hunk<cr>', 'Go to previous git hunk' },
-    [']g'] = { '<cmd>Gitsigns next_hunk<cr>', 'Go to next git hunk' },
-})
+wk.register {
+  ["[c"] = {
+    function()
+      if vim.o.diff then
+        vim.cmd "normal! [c"
+      else
+        vim.cmd "Gitsigns prev_hunk"
+      end
+    end,
+    "Go to previous git hunk",
+  },
+  ["]c"] = {
+    function()
+      if vim.o.diff then
+        vim.cmd "normal! ]c"
+      else
+        vim.cmd "Gitsigns next_hunk"
+      end
+    end,
+    "Go to next git hunk",
+  },
+}

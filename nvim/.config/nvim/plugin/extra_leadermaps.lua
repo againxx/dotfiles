@@ -120,11 +120,13 @@ wk.register({
   },
   yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
   yl = { "<cmd>let @+=(expand('%:t') . ':' . nvim_win_get_cursor(0)[0])<cr>", 'Yank file path and line' },
+  T = { '<Plug>TranslateW', 'Translate' },
 }, { prefix = '<leader>' })
 
 wk.register({
   s = {
     name = '+show',
     f = { echo_formats_and_char, 'Show different formats of character' }
-  }
+  },
+  T = { '<Plug>TranslateWV', 'Translate' },
 }, { mode = 'x', prefix = '<leader>' })

@@ -2,6 +2,22 @@ vim.g.vimtex_quickfix_mode = 0
 
 vim.api.nvim_buf_set_keymap(0, '', 'K', '<Plug>(vimtex-doc-package)', { noremap = false })
 
+require('cmp').setup.buffer {
+  formatting = {
+    format = function(entry, vim_item)
+        vim_item.menu = ({
+          omni = (vim.inspect(vim_item.menu):gsub('%"', ""):gsub("cmd: default", "tex")),
+          buffer = "[buf]",
+          })[entry.source.name]
+        return vim_item
+      end,
+  },
+  sources = {
+    { name = 'omni' },
+    { name = 'buffer' },
+  },
+}
+
 local success, wk = pcall(require, "which-key")
 if not success then
   return

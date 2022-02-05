@@ -56,7 +56,8 @@ local ayu_mirage = {
 
 local symbols = {
   read_only = "",
-  lsp_status = " ",
+  lsp_status = "  ",
+  git_branch = " ",
   treesitter_status = " ",
   explorer = " ",
   tree = " ",
@@ -69,6 +70,8 @@ local symbols = {
   catkin_package = vim.env.KITTY_WINDOW_ID and " " or "ﲎ ",
 }
 
+local lsp_progress = require('lsp-status').status_progress
+
 local hide_when_narrow = function(width)
   return function()
     return vim.fn.winwidth(0) > width
@@ -76,17 +79,17 @@ local hide_when_narrow = function(width)
 end
 
 local git_branch = function()
-  local branch = vim.g.coc_git_status or ""
+  local branch = vim.b.gitsigns_head and symbols.git_branch .. vim.b.gitsigns_head or ""
   return vim.trim(branch)
 end
 
 local git_diff = function()
-  local diff = vim.b.coc_git_status or ""
+  local diff = vim.b.gitsigns_status or ""
   return vim.trim(diff)
 end
 
 local read_only = function()
-  local blacklist = { "help", "coc-explorer" }
+  local blacklist = { "help", "defx" }
   if vim.bo.readonly and not vim.tbl_contains(blacklist, vim.bo.filetype) then
     return symbols.read_only
   else
@@ -94,8 +97,8 @@ local read_only = function()
   end
 end
 
-local coc_status = function()
-  local status = vim.g.coc_status
+local lsp_status = function()
+  local status = lsp_progress()
   if status and #status > 0 then
     return symbols.lsp_status .. status
   else
@@ -127,7 +130,7 @@ local ros_package = function()
   return package_name_with_symbol
 end
 
-local coc_explorer = {
+local defx_explorer = {
   sections = {
     lualine_b = {
       function()
@@ -135,7 +138,7 @@ local coc_explorer = {
       end,
     },
   },
-  filetypes = { "coc-explorer" },
+  filetypes = { "defx" },
 }
 
 local undotree = {
@@ -147,17 +150,6 @@ local undotree = {
     },
   },
   filetypes = { "undotree" },
-}
-
-local coctree = {
-  sections = {
-    lualine_b = {
-      function()
-        return symbols.tree .. "Coctree"
-      end,
-    },
-  },
-  filetypes = { "coctree" },
 }
 
 require("lualine").setup {
@@ -182,7 +174,7 @@ require("lualine").setup {
       git_branch,
       {
         git_diff,
-        left_padding = 0,
+        padding = { left = 0 },
         condition = hide_when_narrow(140),
       },
     },
@@ -193,7 +185,7 @@ require("lualine").setup {
         path = 1,
       },
       read_only,
-      coc_status,
+      lsp_status,
       {
         treesitter_status,
         condition = hide_when_narrow(120),
@@ -209,7 +201,7 @@ require("lualine").setup {
     lualine_y = {
       {
         "diagnostics",
-        sources = { "coc" },
+        sources = { "nvim_diagnostic" },
         sections = { "error", "warn", "info" },
         diagnostics_color = {
           error = { fg = colors.red },
@@ -253,5 +245,5 @@ require("lualine").setup {
     },
   },
   tabline = {},
-  extensions = { "quickfix", coc_explorer, undotree },
+  extensions = { "quickfix", defx_explorer, undotree },
 }

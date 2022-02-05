@@ -10,14 +10,23 @@ return require('packer').startup({function(use)
   -- use { 'neoclide/coc.nvim, branch = 'release' }
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use 'nvim-lua/lsp-status.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-omni'
+  use 'f3fora/cmp-spell'
+  use 'andersevenrud/cmp-tmux'
   use 'hrsh7th/nvim-cmp'
   use 'quangnguyen30192/cmp-nvim-ultisnips'
   use 'onsails/lspkind-nvim'
+  use 'ray-x/lsp_signature.nvim'
+  use {
+    'simrat39/symbols-outline.nvim',
+    cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen' },
+  }
 
   ---
   --- Debugger
@@ -47,12 +56,17 @@ return require('packer').startup({function(use)
   ---
   --- Filesystem
   ---
+  -- use {
+  --     'kyazdani42/nvim-tree.lua',
+  --     requires = {
+  --       'kyazdani42/nvim-web-devicons', -- for file icon
+  --     },
+  --     config = function() require'nvim-tree'.setup {} end
+  -- }
   use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- for file icon
-      },
-      config = function() require'nvim-tree'.setup {} end
+    'Shougo/defx.nvim',
+    requires = { 'kristijanhusak/defx-icons' },
+    run = ':UpdateRemotePlugins'
   }
   use 'kevinhwang91/rnvimr'
 
@@ -105,6 +119,7 @@ return require('packer').startup({function(use)
   ---
   --- Window & Buffer & Keybindings
   ---
+  use 't9md/vim-choosewin'
   use {
     'folke/which-key.nvim',
     config = function()
@@ -133,7 +148,7 @@ return require('packer').startup({function(use)
   use 'againxx/telescope-ros.nvim'
   use {
     "nvim-telescope/telescope-frecency.nvim",
-    requires = 'tami5/sql.nvim',
+    requires = 'tami5/sqlite.lua',
   }
 
   ---
@@ -153,6 +168,7 @@ return require('packer').startup({function(use)
   use 'PeterRincker/vim-searchlight' -- highlight current search match
   use 'norcalli/nvim-terminal.lua' -- highlight terminal escape sequences
   use 'kevinoid/vim-jsonc'
+  use 'RRethy/vim-illuminate' -- highlight other use of the current word
 
   ---
   --- Search & Move
@@ -200,6 +216,11 @@ return require('packer').startup({function(use)
   --- Cpp
   ---
   use 'skywind3000/vim-cppman'
+
+  ---
+  --- Rust
+  ---
+  use 'simrat39/rust-tools.nvim'
 
   ---
   --- Assembly
@@ -321,6 +342,14 @@ return require('packer').startup({function(use)
   use 'jeffkreeftmeijer/vim-numbertoggle'
   -- embed neovim in browser input box
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+  use 'voldikss/vim-translator'
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      { 'tami5/sqlite.lua', module = 'sqlite' },
+      { 'nvim-telescope/telescope.nvim' },
+    },
+  }
 
   ---
   --- Training Vim

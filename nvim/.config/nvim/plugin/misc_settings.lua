@@ -62,6 +62,9 @@ vim.g.fastfold_minlines = 0
 vim.g.fastfold_savehook = false
 vim.g.fastfold_fold_movement_commands = { ']z', '[z' }
 
+-- vim-translator
+vim.g.translator_default_engines = { 'bing' }
+
 -- Firenvim settings
 vim.g.firenvim_config = {
   localSettings = {
@@ -79,3 +82,6 @@ vim.g.firenvim_config = {
     },
   }
 }
+
+-- choosewin
+vim.g.choosewin_tabline_replace = false -- don't replace tabline

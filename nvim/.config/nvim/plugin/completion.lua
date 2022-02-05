@@ -46,14 +46,26 @@ cmp.setup {
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     -- Use <c-space> to trigger completion.
     ['<C-space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'ultisnips' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'buffer' },
-    { name = 'ultisnips' },
+    {
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
+    { name = 'tmux' }
   },
   formatting = {
       format = lspkind.cmp_format({
@@ -69,7 +81,8 @@ cmp.setup {
       })
   },
   documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    winhighlight = 'NormalFloat:CmpDocNormal',
   },
   experimental = {
     native_menu = false,
