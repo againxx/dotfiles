@@ -373,4 +373,24 @@ function M.neoclip_yank()
   require('telescope').extensions.neoclip.default()
 end
 
+function M.lsp_code_actions()
+  local opts = require('telescope.themes').get_dropdown {
+    layout_config = {
+      height = 10,
+      width = 0.7,
+    },
+  }
+  require('telescope.builtin').lsp_code_actions(opts)
+end
+
+function M.lsp_range_code_actions()
+  local opts = require('telescope.themes').get_dropdown {
+    layout_config = {
+      height = 10,
+      width = 0.7,
+    },
+  }
+  require('telescope.builtin').lsp_range_code_actions(opts)
+end
+
 return M

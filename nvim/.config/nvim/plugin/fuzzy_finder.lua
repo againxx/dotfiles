@@ -38,7 +38,7 @@ wk.register({
   p = { "<cmd>lua require('xx.telescope').grep_cursor_word()<cr>", 'Grep word under cursor' },
   P = { "<cmd>lua require('xx.telescope').grep_prompt()<cr>", 'Grep string with prompt' },
   s = {
-    name = '+symbol/session/show',
+    name = '+symbol/session/show/search',
     s = { "<cmd>lua require('xx.telescope').document_symbols()<cr>", 'Document symbols' },
     a = { "<cmd>lua require('xx.telescope').workspace_symbols()<cr>", 'Workspace symbols' },
   },

@@ -93,7 +93,10 @@ cmp.setup {
 -- Use buffer source for `/`
 cmp.setup.cmdline('/', {
   sources = {
-    { name = 'buffer', max_item_count = 20 }
+    { name = 'buffer' }
+  },
+  view = {
+    entries = { name = 'wildmenu' }
   }
 })
 

@@ -1,9 +1,15 @@
 local conditional_scroll = function(lines, ...)
-  -- if vim.fn['coc#float#has_scroll']() > 0 then
-  --   vim.fn['coc#float#scroll'](lines > 0 and 1 or 0)
-  -- else
-  require('neoscroll').scroll(lines, ...)
-  -- end
+  local hover = require "lspsaga.hover"
+  local finder = require "lspsaga.provider"
+  local direction = lines > 0 and 1 or -1
+
+  if hover.has_saga_hover() then
+    hover.scroll_in_hover(direction)
+  elseif finder.has_saga_def_preview() then
+    finder.scroll_in_def_preview(direction)
+  else
+    require('neoscroll').scroll(lines, ...)
+  end
 end
 
 return conditional_scroll

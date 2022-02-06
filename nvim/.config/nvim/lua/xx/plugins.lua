@@ -23,6 +23,7 @@ return require('packer').startup({function(use)
   use 'quangnguyen30192/cmp-nvim-ultisnips'
   use 'onsails/lspkind-nvim'
   use 'ray-x/lsp_signature.nvim'
+  use 'tami5/lspsaga.nvim'
   use {
     'simrat39/symbols-outline.nvim',
     cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen' },
@@ -189,6 +190,7 @@ return require('packer').startup({function(use)
     } end
   }
   use 'karb94/neoscroll.nvim' -- smooth scrolling
+  use 'windwp/nvim-spectre' -- global search panel supporting regex
 
   ---
   --- Comment & Surround & Parenthsis

@@ -102,8 +102,8 @@ wk.register({
     t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
     T = { '<cmd>terminal tokei<cr>', 'Tokei code statistic' },
     f = { 'ga', 'Show different formats of character' },
-    w = { '<cmd>CocCommand session.save<cr>', 'Save session' },
-    r = { '<cmd>CocCommand session.load<cr>', 'Load session' },
+    w = { "<cmd>lua require('spectre').open_visual({select_word = true})", 'Search and replace current word' },
+    p = { "<cmd>lua require('spectre').open_file_search()", 'Search and replace in current file' },
   },
   n = {
     name = '+new',
@@ -121,6 +121,7 @@ wk.register({
   yp = { "<cmd>let @+=expand('%:p')<cr>", 'Yank file path' },
   yl = { "<cmd>let @+=(expand('%:t') . ':' . nvim_win_get_cursor(0)[0])<cr>", 'Yank file path and line' },
   T = { '<Plug>TranslateW', 'Translate' },
+  S = { "<cmd>lua require('spectre').open()<cr>", 'Search and replace'}
 }, { prefix = '<leader>' })
 
 wk.register({
@@ -129,4 +130,5 @@ wk.register({
     f = { echo_formats_and_char, 'Show different formats of character' }
   },
   T = { '<Plug>TranslateWV', 'Translate' },
+  S = { "<cmd>lua require('spectre').open_visual()<cr>", 'Search and replace' },
 }, { mode = 'x', prefix = '<leader>' })

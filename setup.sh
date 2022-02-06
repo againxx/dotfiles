@@ -99,7 +99,7 @@ elif [[ -x "$(command -v pacman)" ]]; then
     pacman_pack[tokei]=tokei
     pacman_pack[atool]=atool
     pacman_pack[xclip]=xclip
-    pacman_pack[btm]=bottom-bin
+    pacman_pack[btm]=bottom
 
     for exec_name in "${!pacman_pack[@]}"; do
         if command -v $exec_name &> /dev/null; then

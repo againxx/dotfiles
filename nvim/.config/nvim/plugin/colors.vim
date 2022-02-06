@@ -11,8 +11,6 @@ highlight Searchlight         guifg=#FFEE99 guibg=#A37ACC
 highlight! link shCommandSub     Constant
 highlight! link IncSearchCursor  IncSearch
 highlight! link jsonKeyword      Function
-highlight! link Translator       CmpDocNormal
-highlight! link TranslatorBorder CmpDocBorder
 highlight link markdownError NONE
 highlight DefxCursorHiddenCursor gui=reverse blend=100
 let g:VM_Extend_hl = 'VMExtend'

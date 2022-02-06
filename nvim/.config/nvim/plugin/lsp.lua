@@ -14,15 +14,66 @@ local lsp_status = require "lsp-status"
 lsp_status.config {}
 lsp_status.register_progress()
 
+local saga = require "lspsaga"
+saga.init_lsp_saga {
+  use_saga_diagnostic_sign = false,
+  code_action_icon = " ",
+  code_action_prompt = {
+    virtual_text = false,
+  },
+}
+
+function vim.lsp.modified_formatexpr()
+  local timeout_ms = 1000
+
+  if vim.tbl_contains({'i', 'R', 'ic', 'ix'}, vim.fn.mode()) then
+    -- `formatexpr` is also called when exceeding `textwidth` in insert mode
+    -- fall back to internal formatting
+    return 1
+  end
+
+  local start_line = vim.v.lnum
+  local end_line = start_line + vim.v.count - 1
+
+  if start_line > 0 and end_line > 0 then
+    local params = {
+      textDocument = vim.lsp.util.make_text_document_params();
+      range = {
+        start = { line = start_line - 1; character = 0; };
+        ["end"] = { line = end_line - 1; character = 0; };
+      };
+    };
+    params.options = vim.lsp.util.make_formatting_params().options
+    local client_results = vim.lsp.buf_request_sync(0, "textDocument/rangeFormatting", params, timeout_ms)
+
+    -- Apply the text edits from one and only one of the clients.
+    for _, response in pairs(client_results) do
+      if response.result then
+        if vim.bo.filetype == "cpp" then
+          -- clangd use "utf-8" for range formatting
+          -- even if we set it to "utf-16"
+          vim.lsp.util.apply_text_edits(response.result, 0, "utf-8")
+        else
+          vim.lsp.util.apply_text_edits(response.result, 0)
+        end
+        return 0
+      end
+    end
+  end
+end
+
 local show_documentation = function()
   if vim.tbl_contains({ "vim", "lua" }, vim.bo.filetype) then
     if vim.bo.filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
-      vim.lsp.buf.hover()
+      require('lspsaga.hover').render_hover_doc()
     else
       vim.cmd(string.format("h %s", vim.fn.expand "<cword>"))
     end
-  else
+  elseif vim.bo.filetype == "rust" then
+    -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
+  else
+    require('lspsaga.hover').render_hover_doc()
   end
 end
 
@@ -34,7 +85,7 @@ local on_attach_default = function(client, bufnr)
   require("lsp_signature").on_attach()
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
   end
 
   keymap.set("n", "K", show_documentation, vim.tbl_extend("force", opts, { buffer = bufnr }))
@@ -47,7 +98,8 @@ local on_attach_default = function(client, bufnr)
   -- GoTo code navigation.
   wk.register({
     d = { "<cmd>lua require('xx.telescope').lsp_definitions()<cr>", "Go to definitions" },
-    D = { "<cmd>lua vim.lsp.buf.delcaration()<cr>", "Go to definitions" },
+    D = { "<cmd>lua vim.lsp.buf.delcaration()<cr>", "Go to delcarations" },
+    h = { "<cmd>Lspsaga preview_definition<cr>", "Preview definitions" },
     l = { "<cmd>lua require('xx.telescope').lsp_implementations()<cr>", "Go to implementations" },
     r = { "<cmd>lua require('xx.telescope').lsp_references()<cr>", "Go to references" },
     y = { "<cmd>lua require('xx.telescope').lsp_type_definitions()<cr>", "Go to type definitions" },
@@ -55,7 +107,7 @@ local on_attach_default = function(client, bufnr)
 
   wk.register({
     r = {
-      n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename symbol" },
+      n = { "<cmd>Lspsaga rename<cr>", "Rename symbol" },
       f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format the whole file" },
     },
     d = {
@@ -63,7 +115,15 @@ local on_attach_default = function(client, bufnr)
       G = { "<cmd>lua require('xx.telescope').diagnostics()<cr>", "Workspace diagnostics" },
     },
     os = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
+    a = {
+      name = '+action',
+      a = { "<cmd>Lspsaga code_action<cr>", "Action under cursor" },
+    }
   }, { prefix = "<leader>", buffer = vim.api.nvim_get_current_buf() })
+
+  wk.register({
+    a = { ":<C-u>Lspsaga range_code_action<cr>", 'Action for selected' },
+  }, { mode = 'x', prefix = '<leader>' })
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -111,7 +171,21 @@ local setup_server = function(server_name, config)
   local server_available, server = lsp_installer_servers.get_server(server_name)
   if server_available then
     server:on_ready(function()
-      server:setup(config)
+      if server.name == "rust_analyzer" then
+        -- initialize the LSP via rust-tools instead
+        require("rust-tools").setup {
+          tools = {
+            inlay_hints = {
+              other_hints_prefix = " ",
+              highlight = "LspRustTypeHint",
+            },
+          },
+          server = vim.tbl_deep_extend("force", server:get_default_options(), config),
+        }
+        server:attach_buffers()
+      else
+        server:setup(config)
+      end
     end)
     if not server:is_installed() then
       server:install()
