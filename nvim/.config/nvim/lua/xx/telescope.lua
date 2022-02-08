@@ -62,11 +62,17 @@ require('telescope').setup {
         ['note']    = vim.env.HOME .. '/Documents/Notes',
         ['wiki']    = vim.env.HOME .. '/Documents/Vimwiki/wiki',
       }
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
     }
   }
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('ui-select')
 
 require("neoclip").setup {
   enable_persistant_history = true,

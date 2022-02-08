@@ -15,31 +15,32 @@ dap.defaults.fallback.terminal_win_cmd = "belowright 10new"
 -- require("nvim-dap-virtual-text").setup()
 require("xx.dap." .. vim.bo.filetype)
 
-local keymap_restore
+local keymap_restore = {}
 dap.listeners.after["event_initialized"]["xx.mappings"] = function()
-  local keymaps = api.nvim_get_keymap "n"
-  for _, keymap in pairs(keymaps) do
-    if keymap.lhs == "K" then
-      keymap_restore = keymap
-      api.nvim_del_keymap("n", "K")
-      break
+  for _, buf in pairs(api.nvim_list_bufs()) do
+    local keymaps = api.nvim_buf_get_keymap(buf, "n")
+    for _, keymap in ipairs(keymaps) do
+      if keymap.lhs == "K" then
+        table.insert(keymap_restore, keymap)
+        api.nvim_buf_del_keymap(buf, "n", "K")
+      end
     end
   end
-  api.nvim_set_keymap("n", "K", "<cmd>lua require('dapui').eval()<cr>", { silent = true })
-  api.nvim_set_keymap("v", "K", "<cmd>lua require('dapui').eval()<cr>", { silent = true })
+  vim.keymap.set({"n", "v"}, "K", require('dapui').eval, { silent = true })
 end
 
 local close_post_hook = function()
-  if keymap_restore then
-    api.nvim_set_keymap(
-      keymap_restore.mode,
-      keymap_restore.lhs,
-      keymap_restore.rhs,
-      { noremap = keymap_restore.noremap == 1, silent = keymap_restore.silent == 1 }
+  for _, keymap in ipairs(keymap_restore) do
+    api.nvim_buf_set_keymap(
+      keymap.buffer,
+      keymap.mode,
+      keymap.lhs,
+      keymap.rhs,
+      { noremap = keymap.noremap == 1, silent = keymap_restore.silent == 1 }
     )
-    keymap_restore = nil
-    api.nvim_del_keymap("v", "K")
   end
+  vim.keymap.del({"n", "v"}, "K")
+  keymap_restore = {}
   dap.repl.close()
   require("xx.utils").delete_finished_terminal_buffers()
   require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()

@@ -147,6 +147,7 @@ return require('packer').startup({function(use)
   use 'nvim-telescope/telescope-z.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'againxx/telescope-ros.nvim'
+  use 'nvim-telescope/telescope-ui-select.nvim'
   use {
     "nvim-telescope/telescope-frecency.nvim",
     requires = 'tami5/sqlite.lua',

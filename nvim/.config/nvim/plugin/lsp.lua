@@ -26,7 +26,7 @@ saga.init_lsp_saga {
 function vim.lsp.modified_formatexpr()
   local timeout_ms = 1000
 
-  if vim.tbl_contains({'i', 'R', 'ic', 'ix'}, vim.fn.mode()) then
+  if vim.tbl_contains({ "i", "R", "ic", "ix" }, vim.fn.mode()) then
     -- `formatexpr` is also called when exceeding `textwidth` in insert mode
     -- fall back to internal formatting
     return 1
@@ -37,12 +37,12 @@ function vim.lsp.modified_formatexpr()
 
   if start_line > 0 and end_line > 0 then
     local params = {
-      textDocument = vim.lsp.util.make_text_document_params();
+      textDocument = vim.lsp.util.make_text_document_params(),
       range = {
-        start = { line = start_line - 1; character = 0; };
-        ["end"] = { line = end_line - 1; character = 0; };
-      };
-    };
+        start = { line = start_line - 1, character = 0 },
+        ["end"] = { line = end_line - 1, character = 0 },
+      },
+    }
     params.options = vim.lsp.util.make_formatting_params().options
     local client_results = vim.lsp.buf_request_sync(0, "textDocument/rangeFormatting", params, timeout_ms)
 
@@ -52,7 +52,7 @@ function vim.lsp.modified_formatexpr()
         if vim.bo.filetype == "cpp" then
           -- clangd use "utf-8" for range formatting
           -- even if we set it to "utf-16"
-          vim.lsp.util.apply_text_edits(response.result, 0, "utf-8")
+          vim.lsp.util.apply_text_edits(response.result, 0, "utf-16")
         else
           vim.lsp.util.apply_text_edits(response.result, 0)
         end
@@ -65,7 +65,7 @@ end
 local show_documentation = function()
   if vim.tbl_contains({ "vim", "lua" }, vim.bo.filetype) then
     if vim.bo.filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
-      require('lspsaga.hover').render_hover_doc()
+      require("lspsaga.hover").render_hover_doc()
     else
       vim.cmd(string.format("h %s", vim.fn.expand "<cword>"))
     end
@@ -73,7 +73,7 @@ local show_documentation = function()
     -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
   else
-    require('lspsaga.hover').render_hover_doc()
+    require("lspsaga.hover").render_hover_doc()
   end
 end
 
@@ -82,7 +82,7 @@ end
 local on_attach_default = function(client, bufnr)
   lsp_status.on_attach(client)
   require("illuminate").on_attach(client)
-  require("lsp_signature").on_attach()
+  -- require("lsp_signature").on_attach()
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
@@ -116,14 +116,14 @@ local on_attach_default = function(client, bufnr)
     },
     os = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
     a = {
-      name = '+action',
+      name = "+action",
       a = { "<cmd>Lspsaga code_action<cr>", "Action under cursor" },
-    }
+    },
   }, { prefix = "<leader>", buffer = vim.api.nvim_get_current_buf() })
 
   wk.register({
-    a = { ":<C-u>Lspsaga range_code_action<cr>", 'Action for selected' },
-  }, { mode = 'x', prefix = '<leader>' })
+    a = { ":<C-u>Lspsaga range_code_action<cr>", "Action for selected" },
+  }, { mode = "x", prefix = "<leader>" })
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -172,13 +172,23 @@ local setup_server = function(server_name, config)
   if server_available then
     server:on_ready(function()
       if server.name == "rust_analyzer" then
+        local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.6.10/"
+        local codelldb_path = extension_path .. "adapter/codelldb"
+        local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
         -- initialize the LSP via rust-tools instead
         require("rust-tools").setup {
           tools = {
+            runnables = {
+              telescope = true,
+            },
             inlay_hints = {
+              parameter_hints_prefix = " ",
               other_hints_prefix = " ",
               highlight = "LspRustTypeHint",
             },
+          },
+          dap = {
+            adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
           },
           server = vim.tbl_deep_extend("force", server:get_default_options(), config),
         }
@@ -199,5 +209,5 @@ end
 
 vim.g.symbols_outline = {
   width = 35,
-  preview_bg_highlight = 'NormalFloat',
+  preview_bg_highlight = "NormalFloat",
 }
