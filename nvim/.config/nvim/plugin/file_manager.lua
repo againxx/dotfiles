@@ -54,7 +54,6 @@ end
 wk.register({
   e = {
     name = '+edit/explorer',
-    s = { '<cmd>UltiSnipsEdit!<cr>', 'Edit snippets' },
     r = { '<cmd>AsyncTaskEdit<cr>', 'Edit local tasks' },
     R = { '<cmd>AsyncTaskEdit!<cr>', 'Edit global tasks' },
     t = { "<cmd>lua require('xx.telescope').edit_tmuxp()<cr>", 'Edit tmuxp configs' },

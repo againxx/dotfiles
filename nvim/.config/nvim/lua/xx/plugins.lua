@@ -20,7 +20,7 @@ return require('packer').startup({function(use)
   use 'f3fora/cmp-spell'
   use 'andersevenrud/cmp-tmux'
   use 'hrsh7th/nvim-cmp'
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
+  -- use 'quangnguyen30192/cmp-nvim-ultisnips'
   use 'saadparwaiz1/cmp_luasnip'
   use 'onsails/lspkind-nvim'
   use 'ray-x/lsp_signature.nvim'
@@ -122,7 +122,9 @@ return require('packer').startup({function(use)
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     module = "persistence",
     config = function()
-      require("persistence").setup()
+      require("persistence").setup {
+        dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"),
+      }
     end,
   })
 
@@ -152,7 +154,7 @@ return require('packer').startup({function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
-  use 'fhill2/telescope-ultisnips.nvim'
+  -- use 'fhill2/telescope-ultisnips.nvim'
   use 'nvim-telescope/telescope-z.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'againxx/telescope-ros.nvim'
@@ -214,7 +216,7 @@ return require('packer').startup({function(use)
   ---
   --- Snippets
   ---
-  use 'SirVer/ultisnips'
+  -- use 'SirVer/ultisnips'
   use 'L3MON4D3/LuaSnip'
   use 'againxx/vim-snippets'
 
