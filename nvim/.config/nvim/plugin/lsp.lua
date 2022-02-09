@@ -20,6 +20,7 @@ saga.init_lsp_saga {
   code_action_icon = " ",
   code_action_prompt = {
     virtual_text = false,
+    sign_priority = 10,
   },
 }
 
@@ -172,7 +173,7 @@ local setup_server = function(server_name, config)
   if server_available then
     server:on_ready(function()
       if server.name == "rust_analyzer" then
-        local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.6.10/"
+        local extension_path = vim.env.HOME .. "/Manually_Installed/codelldb-x86_64-linux/extension/"
         local codelldb_path = extension_path .. "adapter/codelldb"
         local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
         -- initialize the LSP via rust-tools instead

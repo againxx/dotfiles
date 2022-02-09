@@ -21,6 +21,7 @@ return require('packer').startup({function(use)
   use 'andersevenrud/cmp-tmux'
   use 'hrsh7th/nvim-cmp'
   use 'quangnguyen30192/cmp-nvim-ultisnips'
+  use 'saadparwaiz1/cmp_luasnip'
   use 'onsails/lspkind-nvim'
   use 'ray-x/lsp_signature.nvim'
   use 'tami5/lspsaga.nvim'
@@ -113,9 +114,17 @@ return require('packer').startup({function(use)
   use 'romgrk/barbar.nvim'
 
   ---
-  --- Start Screen
+  --- Start Screen & Session
   ---
   use 'glepnir/dashboard-nvim'
+  use({
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    module = "persistence",
+    config = function()
+      require("persistence").setup()
+    end,
+  })
 
   ---
   --- Window & Buffer & Keybindings
@@ -206,6 +215,7 @@ return require('packer').startup({function(use)
   --- Snippets
   ---
   use 'SirVer/ultisnips'
+  use 'L3MON4D3/LuaSnip'
   use 'againxx/vim-snippets'
 
   ---

@@ -25,6 +25,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 opt.splitright = true -- Prefer windows splitting to the right
+opt.fillchars = { vert = '▒' } -- ░▒▮
 
 -- Use the symbols for tab and trailing spaces
 opt.list = true

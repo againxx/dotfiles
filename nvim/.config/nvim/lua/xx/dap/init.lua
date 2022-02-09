@@ -31,15 +31,14 @@ end
 
 local close_post_hook = function()
   for _, keymap in ipairs(keymap_restore) do
-    api.nvim_buf_set_keymap(
-      keymap.buffer,
+    vim.keymap.set(
       keymap.mode,
       keymap.lhs,
-      keymap.rhs,
-      { noremap = keymap.noremap == 1, silent = keymap_restore.silent == 1 }
+      keymap.rhs or keymap.callback,
+      { noremap = keymap.noremap == 1, silent = keymap_restore.silent == 1, buffer = keymap.buffer }
     )
   end
-  vim.keymap.del({"n", "v"}, "K")
+  vim.F.npcall(vim.keymap.del, {"n", "v"}, "K")
   keymap_restore = {}
   dap.repl.close()
   require("xx.utils").delete_finished_terminal_buffers()

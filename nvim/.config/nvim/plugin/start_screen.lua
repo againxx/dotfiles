@@ -23,8 +23,8 @@ vim.g.dashboard_custom_section = {
     command = "lua require('xx.telescope').live_grep()"
   },
   ['4_last_session'] = {
-    description = { ' Recently saved sessions                 SPC s r' },
-    command = 'CocCommand session.load'
+    description = { ' Recently saved session                  SPC s l' },
+    command = 'lua require("persistence").load({ last = true })'
   },
   ['5_dotfiles'] = {
     description = { ' Persional dotfiles                      SPC e d' },

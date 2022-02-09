@@ -10,24 +10,26 @@ lspkind.init({
 })
 
 local cmp = require('cmp')
+local luasnip = require("luasnip")
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn['UltiSnips#Anon'](args.body)
+      -- vim.fn['UltiSnips#Anon'](args.body)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   mapping = {
     ['<Tab>'] = cmp.mapping(function(fallback)
-        vim.fn['UltiSnips#ExpandSnippet']()
-      if vim.g.ulti_expand_res > 0 then
+      -- vim.fn['UltiSnips#ExpandSnippet']()
+      if luasnip.expand() then
         cmp.close()
       elseif cmp.visible() then
         cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
       else
         fallback()
       end
-    end),
+    end, {'i', 's'}),
     ['<C-j>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -54,7 +56,8 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' },
+    -- { name = 'ultisnips' },
+    { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
     {
@@ -76,7 +79,9 @@ cmp.setup {
           nvim_lsp = "[lsp]",
           nvim_lua = "[api]",
           path = "[path]",
-          ultisnips = "[snip]",
+          -- ultisnips = "[snip]",
+          luasnip = "[snip]",
+          tmux = "[tmux]",
         },
       })
   },

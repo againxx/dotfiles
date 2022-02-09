@@ -104,6 +104,8 @@ wk.register({
     f = { 'ga', 'Show different formats of character' },
     w = { "<cmd>lua require('spectre').open_visual({select_word = true})", 'Search and replace current word' },
     p = { "<cmd>lua require('spectre').open_file_search()", 'Search and replace in current file' },
+    l = { "<cmd>lua require('persistence').load({ last = true })<cr>", 'Restore last session' },
+    c = { "<cmd>lua require('persistence').load()<cr>", 'Restore session for current directory' },
   },
   n = {
     name = '+new',

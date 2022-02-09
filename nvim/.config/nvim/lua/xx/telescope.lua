@@ -75,7 +75,7 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 
 require("neoclip").setup {
-  enable_persistant_history = true,
+  enable_persistent_history = true,
   default_registers = { '"', '+', '*' },
   keys = {
     telescope = {
@@ -132,7 +132,7 @@ function M.edit_vim_plugins()
     prompt_title = 'Vim Plugins',
     layout_strategy = 'horizontal',
     layout_config = {
-      height = 30,
+      height = 50,
       preview_width = 0.65,
     },
   }

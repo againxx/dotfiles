@@ -31,13 +31,6 @@ if not vim.b.ros_package_path then
   vim.cmd [[command! -buffer -nargs=0 A execute 'CocCommand clangd.switchSourceHeader']]
 end
 
--- add < into autopairs
-local Rule = require('nvim-autopairs.rule')
-local npairs = require('nvim-autopairs')
-local cond = require('nvim-autopairs.conds')
-
-npairs.add_rule(Rule("<", ">", "cpp"):with_move(cond.done()))
-
 -- remove redundant angle brackets when completing header files
 local cmp = require('cmp')
 cmp.event:on('confirm_done', function()
