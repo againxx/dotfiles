@@ -21,7 +21,7 @@ vim.defer_fn(function()
   require('xx.catkin').detect_package(function()
     vim.opt_local.colorcolumn = '121'
     require('xx.utils').set_indent(2)
-    vim.b.luasnips_cpp_style = 'ros'
+    vim.b.luasnip_cpp_style = 'ros'
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ri', '<cmd>AsyncTask catkin-init<cr>', { noremap = true, silent = true })
   end)
   require('xx.catkin').detect_ws_root()

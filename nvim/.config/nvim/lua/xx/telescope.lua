@@ -328,8 +328,8 @@ end
 --   require('telescope').extensions.fzf_writer.staged_grep()
 -- end
 
-function M.ultisnips()
-  require('telescope').extensions.ultisnips.ultisnips {
+function M.luasnip()
+  require('telescope').extensions.luasnip.luasnip {
     layout_strategy = 'vertical',
     layout_config = {
       height = 0.6,

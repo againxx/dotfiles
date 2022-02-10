@@ -3,8 +3,9 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
-local c = ls.choice_node
+local fmta = require("luasnip.extras.fmt").fmta
 local conds = require("luasnip.extras.expand_conditions")
+local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
 
 ls.filetype_extend("cpp", {"c"})
 
@@ -73,7 +74,7 @@ local snippets = {
   }),
   s("cout", {
     t("std::cout << "),
-    f(function(_, snip) return snip.env.SELECT_DEDENT or {} end, {}),
+    f(function(_, snip) return snip.env.SELECT_DEDENT end, {}),
     i(1),
     t(" << "),
     i(2, [['\n';]]),
@@ -83,6 +84,16 @@ local snippets = {
     i(0),
     t([[ << '\n';]]),
   }),
+  s("tmain",
+    fmta([=[
+    int main(int argc, char* argv[])<>
+    	::testing::InitGoogleTest(&argc, argv);
+    	return RUN_ALL_TESTS();
+    }
+    ]=], {
+      f(get_left_curly_brace_style, {}),
+    })
+  ),
 }
 
 return snippets

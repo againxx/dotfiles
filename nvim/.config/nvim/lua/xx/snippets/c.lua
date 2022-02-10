@@ -4,45 +4,28 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
+local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+local rep = require("luasnip.extras").rep
+local l = require("luasnip.extras").lambda
+local dl = require("luasnip.extras").dynamic_lambda
 local conds = require "luasnip.extras.expand_conditions"
 local show_line_begin = require("xx.snippets.utils").show_line_begin
-
-local get_left_curly_brace_style = function()
-  local style = vim.b.luasnips_cpp_style
-  if style == nil then
-    style = vim.g.luasnips_cpp_style or "google"
-  end
-  if style == "google" then
-    return { " {" }
-  else
-    return { "", "{" }
-  end
-end
-
-local get_right_curly_brace_style = function(_, _, str_after_brace)
-  local style = vim.b.luasnips_cpp_style
-  if style == nil then
-    style = vim.g.luasnips_cpp_style or "google"
-  end
-  if style == "google" then
-    return "} " .. str_after_brace .. " {"
-  else
-    return { "}", str_after_brace, "{" }
-  end
-end
+local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
+local get_right_curly_brace_style = require("xx.snippets.utils").get_right_curly_brace_style
 
 local branch_block_with_choice = function(branch_type)
   return c(1, {
-    fmt(
+    fmta(
       [[
-      {} ({}){}
-      	{}{}
-      }}
+      <> (<>)<>
+      	<><>
+      }
       ]],
       {
         t(branch_type),
-        i(1, "/* condition */"),
+        r(1, "condition", i(nil, "/* condition */")),
         f(get_left_curly_brace_style, {}),
         f(function(_, snip)
           return snip.parent.env.SELECT_DEDENT
@@ -57,7 +40,7 @@ local branch_block_with_choice = function(branch_type)
       ]],
       {
         t(branch_type),
-        i(1, "/* condition */"),
+        r(1, "condition"),
         f(function(_, snip)
           return snip.parent.env.SELECT_DEDENT
         end, {}),
@@ -74,11 +57,11 @@ local snippets = {
   s(
     "else",
     c(1, {
-      fmt(
+      fmta(
         [[
-      else{}
-      	{}{}
-      }}
+      else<>
+      	<><>
+      }
       ]],
         {
           f(get_left_curly_brace_style, {}),
@@ -104,13 +87,13 @@ local snippets = {
   ),
   s(
     "ife",
-    fmt(
+    fmta(
       [[
-      if ({}){}
-      	{}{}
-      {}
-      	{}{}
-      }}
+      if (<>)<>
+      	<><>
+      <>
+      	<><>
+      }
       ]],
       {
         i(1, "/* condition */"),
@@ -135,6 +118,37 @@ local snippets = {
       return show_line_begin(line_to_cursor, "incio") and vim.bo.filetype == "c"
     end,
   }),
+  s("main",
+    fmta([[
+    int main(<>)<>
+    	<><>
+    	return 0;
+    }
+    ]], {
+      c(2, {t(""), t("int argc, char* argv[]")}),
+      f(get_left_curly_brace_style, {}),
+      f(function(_, snip)
+        return snip.env.SELECT_DEDENT
+      end, {}),
+      i(1),
+    })
+  ),
+  s("guard",
+    fmt([[
+    #ifndef {}
+    #define {}
+
+    {}{}
+
+    #endif  // {}
+    ]], {
+      dl(1, l.TM_FILENAME_BASE:gsub("[^A-Za-z0-9]+", "_"):upper(), {}),
+      rep(1),
+      f(function(_, snip) return snip.env.SELECT_DEDENT end, {}),
+      i(0),
+      rep(1),
+    })
+  ),
 }
 
 return snippets

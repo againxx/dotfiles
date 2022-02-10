@@ -29,7 +29,7 @@ opt.fillchars = { vert = '▒' } -- ░▒▮
 
 -- Use the symbols for tab and trailing spaces
 opt.list = true
-opt.listchars = { tab = '▸ ', trail = '▫' }
+opt.listchars = { tab = ' ', trail = '▫' }
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.

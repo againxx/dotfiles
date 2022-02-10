@@ -155,9 +155,22 @@ return require('packer').startup({function(use)
   use 'nvim-telescope/telescope-fzf-writer.nvim'
   use 'GustavoKatel/telescope-asynctasks.nvim'
   -- use 'fhill2/telescope-ultisnips.nvim'
-  use 'nvim-telescope/telescope-z.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'againxx/telescope-ros.nvim'
+  use {
+      "benfowler/telescope-luasnip.nvim",
+      module = "telescope._extensions.luasnip",
+  }
+  use {
+    'nvim-telescope/telescope-z.nvim',
+    module = 'telescope._extensions.z',
+  }
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    module = 'telescope._extensions.file_browser',
+  }
+  use {
+    'againxx/telescope-ros.nvim',
+    module = 'telescope._extensions.ros',
+  }
   use 'nvim-telescope/telescope-ui-select.nvim'
   use {
     "nvim-telescope/telescope-frecency.nvim",
@@ -350,7 +363,7 @@ return require('packer').startup({function(use)
     'mbbill/undotree', cmd = 'UndotreeToggle',
     config = function() require('xx.undotree') end
   }
-  use 'lambdalisue/suda.vim'
+  use {'lambdalisue/suda.vim', cmd = { 'SudaWrite', 'SudaRead'} }
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki', 'tex'} }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
@@ -360,6 +373,7 @@ return require('packer').startup({function(use)
   use 'voldikss/vim-translator'
   use {
     "AckslD/nvim-neoclip.lua",
+    module = 'neoclip',
     requires = {
       { 'tami5/sqlite.lua', module = 'sqlite' },
       { 'nvim-telescope/telescope.nvim' },

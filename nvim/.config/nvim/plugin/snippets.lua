@@ -22,12 +22,21 @@ vim.g.ultisnips_cpp_style = "google"
 -- end
 
 local luasnip = require "luasnip"
+local types = require("luasnip.util.types")
 
 luasnip.config.set_config {
   history = true,
   updateevents = "TextChanged,TextChangedI",
+  delete_check_events = "TextChanged",
   store_selection_keys = "<Tab>",
   enable_autosnippets = true,
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = {{ " choice node", "Todo" }}
+      }
+    }
+  }
 }
 
 vim.keymap.set(
@@ -87,6 +96,6 @@ if not success then
 end
 
 wk.register {
-  ["<leader>ls"] = { "<cmd>lua require('xx.telescope').ultisnips()<cr>", "List available snippets" },
+  ["<leader>ls"] = { "<cmd>lua require('xx.telescope').luasnip()<cr>", "List available snippets" },
   ["<leader>es"] = { "<cmd>LuaSnipEdit<cr>", "Edit snippets" },
 }
