@@ -24,7 +24,7 @@ return require('packer').startup({function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'onsails/lspkind-nvim'
   use 'ray-x/lsp_signature.nvim'
-  use 'tami5/lspsaga.nvim'
+  use 'againxx/lspsaga.nvim'
   use {
     'simrat39/symbols-outline.nvim',
     cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen' },
@@ -204,11 +204,6 @@ return require('packer').startup({function(use)
     'ggandor/lightspeed.nvim',
     config = function() require('lightspeed').setup {
       safe_labels = {"f", "n", "u", "t", "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z", "Q"},
-      labels = {"f", "n", "j", "k", "l", "o",
-        "i", "w", "e", "h", "g", "u", "t",
-        "r", "m", "v", "c", "a", ".", "z",
-        "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z",
-      }
       -- f/t
       -- instant_repeat_fwd_key = ';',
       -- instant_repeat_bwd_key = ',',
@@ -364,6 +359,7 @@ return require('packer').startup({function(use)
     config = function() require('xx.undotree') end
   }
   use {'lambdalisue/suda.vim', cmd = { 'SudaWrite', 'SudaRead'} }
+  use 'tpope/vim-eunuch' -- Delete, Move, Mkdir, Rename, Chmod, etc.
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'rlue/vim-barbaric', ft = {'markdown', 'vimwiki', 'tex'} }
   use { 'szw/vim-maximizer', cmd = 'MaximizerToggle' }
