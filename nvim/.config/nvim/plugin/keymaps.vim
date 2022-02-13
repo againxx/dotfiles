@@ -1,8 +1,6 @@
 " ===
 " === Yank & Paste
 " ===
-" map Y to yank from the cursor to the end of line
-nnoremap Y y$
 " map Y to yank to system clipboard in visual mode
 xnoremap Y "+y
 
