@@ -13,9 +13,10 @@ dap.configurations.lua = {
       return '127.0.0.1'
     end,
     port = function()
-      local val = tonumber(vim.fn.input('Port: '))
-      assert(val, "Please provide a port number")
-      return val
+      local value = tonumber(vim.fn.input('Port: '))
+      if value ~= "" then
+        return value
+      end
     end,
   }
 }

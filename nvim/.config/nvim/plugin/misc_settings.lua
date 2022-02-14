@@ -85,3 +85,6 @@ vim.g.firenvim_config = {
 
 -- choosewin
 vim.g.choosewin_tabline_replace = false -- don't replace tabline
+
+-- vim-illuminate
+vim.g.Illuminate_ftblacklist = { 'defx' }
