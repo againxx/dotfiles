@@ -45,16 +45,16 @@ end
 
 wk.register({
   ga = { '<Plug>(EasyAlign)', 'EasyAlign by motion' },
-  gc = 'Comment by motion',
+  gc = 'Linewise comment by motion',
   gC = 'Toggle capslock',
-  gb = 'Reselect previous yanked text',
+  gb = 'Blockwise comment by motion',
   gus = { '~', 'Switch case' },
   yp = { '"+p', 'Paste system clipboard after cursor' },
   yP = { '"+P', 'Paste system clipboard before cursor' },
   ZA = { '<cmd>qa!<cr>', 'Quit all' },
-  ['g*'] = 'Forward incsearch word (stayed cursor)',
-  ['g#'] = 'Backward incsearch word (stayed cursor)',
-  ['g/'] = 'Forward incsearch (stayed cursor)',
+  ['g['] = 'reselect previously pasted text',
+  ['g*'] = 'Forward search word (without word boundary)',
+  ['g#'] = 'Backward search word (without word boundary)',
   ['z;'] = { 'za', 'Toggle fold under cursor' },
   ['[q'] = { '<cmd>cfirst<cr>', 'Go to first quickfix term' },
   [']q'] = { '<cmd>clast<cr>', 'Go to last quickfix term' },
@@ -68,7 +68,8 @@ wk.register({
 
 wk.register({
   ga = { '<Plug>(EasyAlign)', 'EasyAlign for selected' },
-  gc = 'Comment selected',
+  gc = 'Comment selected using linewise comment',
+  gb = 'Comment selected using blockwise comment',
   ['[a'] = { function() move_selected_lines(-vim.v.count1) end, 'Move selected line up' },
   [']a'] = { function() move_selected_lines(vim.v.count1) end, 'Move selected line down' },
 }, { mode = 'x' })

@@ -217,7 +217,13 @@ return require('packer').startup({function(use)
   ---
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat' -- repeat plugin map with '.', work with vim-surround
-  use 'tpope/vim-commentary'
+  -- use 'tpope/vim-commentary'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
   use 'luochen1990/rainbow'
   use 'andymass/vim-matchup'
 

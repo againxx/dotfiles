@@ -1,4 +1,3 @@
-vim.opt.commentstring = '// %s'
 local switch_definitions = [==[
   let b:switch_custom_definitions = [
     {

@@ -14,8 +14,8 @@ vnoremap ar a]
 vnoremap ia i>
 vnoremap aa a>
 
-" map gb to reselect previous yank text
-nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+" map g[ to reselect previous yank text
+nnoremap <expr> g[ '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@

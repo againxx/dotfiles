@@ -14,6 +14,7 @@ highlight! link jsonKeyword      Function
 " these two highlights will disturb in the hover or documentation floating window
 highlight link markdownError NONE
 highlight link htmlTagError NONE
+highlight link TranslatorBorder DapUIFloatBorder
 
 highlight DefxCursorHiddenCursor gui=reverse blend=100
 let g:VM_Extend_hl = 'VMExtend'

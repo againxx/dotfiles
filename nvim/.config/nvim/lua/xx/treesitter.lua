@@ -49,6 +49,10 @@ require('nvim-treesitter.configs').setup {
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+        ["if"] = "@function.inner",
+        ["af"] = "@function.outer",
+        ["ic"] = "@class.inner",
+        ["ac"] = "@class.outer",
         ["i,"] = "@param.inner",
         ["a,"] = "@param.outer",
       }
@@ -108,11 +112,19 @@ wk.register({
 })
 
 wk.register({
+  ['if'] = 'inner function',
+  ['af'] = 'a function (with signature)',
+  ['ic'] = 'inner class',
+  ['ac'] = 'a class (with class keyword)',
   ['i,'] = 'inner parameter',
   ['a,'] = 'a parameter with type',
 }, { mode = 'x'} )
 
 wk.register({
+  ['if'] = 'inner function',
+  ['af'] = 'a function (with signature)',
+  ['ic'] = 'inner class',
+  ['ac'] = 'a class (with class keyword)',
   ['i,'] = 'inner parameter',
   ['a,'] = 'a parameter with type',
 }, { mode = 'o'} )
