@@ -9,6 +9,7 @@ local r = ls.restore_node
 local fmta = require("luasnip.extras.fmt").fmta
 local conds = require("luasnip.extras.expand_conditions")
 local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
+local VISUAL = require("xx.snippets.utils").VISUAL
 
 ls.filetype_extend("cpp", {"c"})
 
@@ -47,7 +48,7 @@ local snippets = {
   ),
   s("cout", {
     t("std::cout << "),
-    f(function(_, snip) return snip.env.SELECT_DEDENT end, {}),
+    VISUAL(),
     i(1),
     t(" << "),
     i(2, [['\n';]]),

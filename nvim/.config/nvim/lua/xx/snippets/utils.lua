@@ -1,3 +1,7 @@
+local ls = require "luasnip"
+local s = ls.snippet
+local f = ls.function_node
+
 M = {}
 
 function M.show_line_begin(line_to_cursor, trigger)
@@ -29,5 +33,18 @@ function M.get_right_curly_brace_style(_, _, str_after_brace)
   end
 end
 
+function M.math_s(...)
+  local in_mathzone = function() return vim.fn["vimtex#syntax#in_mathzone"]() == 1 end
+  local params = {...}
+  table.insert(params, {
+    condition = in_mathzone,
+    show_condition = in_mathzone,
+  })
+  return s(unpack(params))
+end
+
+function M.VISUAL()
+  return f(function(_, snip) return snip.env.SELECT_DEDENT end, {})
+end
 
 return M

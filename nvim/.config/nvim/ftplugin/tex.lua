@@ -14,6 +14,7 @@ require('cmp').setup.buffer {
   },
   sources = {
     { name = 'omni' },
+    { name = "luasnip" },
     { name = 'buffer' },
   },
 }
@@ -60,3 +61,8 @@ wk.register({
   prefix = "-l",
   buffer = vim.api.nvim_get_current_buf(),
 })
+
+local Rule = require('nvim-autopairs.rule')
+local npairs = require('nvim-autopairs')
+
+npairs.add_rule(Rule("$","$","tex"))

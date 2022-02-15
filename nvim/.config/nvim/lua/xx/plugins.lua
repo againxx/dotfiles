@@ -387,6 +387,12 @@ return require('packer').startup({function(use)
   ---
   use { 'ThePrimeagen/vim-be-good', cmd = 'VimBeGood' }
 
+  ---
+  --- Docs
+  ---
+  use 'milisims/nvim-luaref' -- add help reference for lua
+  use 'nanotee/luv-vimdocs'  -- add help reference for luv
+
 end,
 config = {
   profile = {

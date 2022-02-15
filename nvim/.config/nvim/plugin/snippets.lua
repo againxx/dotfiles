@@ -67,6 +67,20 @@ function _G.snippets_clear()
       return t[k]
     end,
   })
+
+  for m, _ in pairs(luasnip.autosnippets) do
+    package.loaded["xx.snippets.auto." .. m] = nil
+  end
+  luasnip.autosnippets = setmetatable({}, {
+    __index = function(t, k)
+      local ok, m = pcall(require, "xx.snippets.auto." .. k)
+      if not ok and not string.match(m, "^module.*not found:") then
+        error(m)
+      end
+      t[k] = ok and m or {}
+      return t[k]
+    end,
+  })
 end
 
 _G.snippets_clear()
