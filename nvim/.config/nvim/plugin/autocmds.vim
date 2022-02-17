@@ -44,6 +44,7 @@ augroup other_filetypes
   autocmd FileType qf setlocal nolist
   autocmd FileType NeogitPopup setlocal nolist
   autocmd FileType NeogitStatus setlocal nolist
+  autocmd FileType NeogitCommitMessage setlocal nolist
   autocmd FileType rnvimr tnoremap <buffer><silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
   autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
 augroup END

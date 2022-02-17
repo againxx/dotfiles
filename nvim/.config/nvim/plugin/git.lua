@@ -13,7 +13,12 @@ gitsigns.setup {
     change = { hl = "GitSignsChange", text = "░", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
     delete = { hl = "GitSignsDelete", text = "▁", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
     topdelete = { hl = "GitSignsDelete", text = "▔", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = { hl = "GitSignsChangeDelete", text = "▒", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    changedelete = {
+      hl = "GitSignsChangeDelete",
+      text = "▒",
+      numhl = "GitSignsChangeNr",
+      linehl = "GitSignsChangeLn",
+    },
   },
 }
 
@@ -87,8 +92,11 @@ if not neogit_success then
 end
 neogit.setup {
   disable_context_highlighting = true,
+  signs = {
+    section = { "", "" },
+    item = { "", "" },
+  },
   integrations = {
     diffview = true,
-  }
+  },
 }
-
