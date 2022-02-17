@@ -2,15 +2,20 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true, expr = true, buffer = vim.api.nvim_get_current_buf() }
 
 if vim.g.defx_open_in_vertical_split then
-  keymap.set('n', 'l', "defx#do_action('open', 'choose')", opts)
+  -- automatically quit when use choose
+  keymap.set('n', 'l', [=[
+      defx#is_directory() ? defx#do_action('open_directory') : defx#do_action('multi', [['open', 'choose'], 'quit'])
+    ]=], opts)
+  keymap.set('n', '<cr>', "defx#do_action('drop')", opts)
 else
   keymap.set('n', 'l', "defx#do_action('open')", opts)
+  keymap.set('n', '<cr>', "defx#do_action('open')", opts)
 end
-keymap.set('n', '<cr>', "defx#do_action('open')", opts)
 keymap.set('n', 'yy', "defx#do_action('copy')", opts)
 keymap.set('n', 'dd', "defx#do_action('move')", opts)
 keymap.set('n', 'p', "defx#do_action('paste')", opts)
 keymap.set('n', '<c-v>', "defx#do_action('open', 'vsplit)", opts)
+keymap.set('n', '<c-x>', "defx#do_action('open', 'split)", opts)
 keymap.set('n', 'P', "defx#do_action('preview')", opts)
 keymap.set('n', 'o', "defx#do_action('open_tree', 'toggle')", opts)
 keymap.set('n', 'O', "defx#do_action('open_tree', ['toggle', 'recursive'])", opts)
@@ -31,7 +36,7 @@ keymap.set('n', 'j', "line('.') == line('$') ? 'gg' : 'j'", opts)
 keymap.set('n', 'k', "line('.') == 1 ? 'G' : 'k'", opts)
 keymap.set('n', '<c-h>', "defx#do_action('toggle_ignored_files')", opts)
 keymap.set('n', '<c-g>', "defx#do_action('print')", opts)
-keymap.set('n', '<m-l>', "defx#do_action('redraw')", opts)
+keymap.set('n', 'R', "defx#do_action('redraw')", opts)
 keymap.set('n', ';', "defx#do_action('repeat')", opts)
 keymap.set('n', '!', "defx#do_action('execute_command')", opts)
 keymap.set('n', 'cd', "defx#do_action('change_vim_cwd')", opts)

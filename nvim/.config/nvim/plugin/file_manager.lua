@@ -68,6 +68,7 @@ wk.register({
     D = { function() open_defx_explorer('dotfiles') end, 'Explore dotfile folder' },
     w = { "<cmd>lua require('xx.telescope').edit_dictionaries()<cr>", 'Edit cSpell dictionaries' },
     W = { function() open_defx_explorer('dictionaries') end, 'Explore cSpell dictionary folder' },
+    h = { "<cmd>edit %:h<cr>", "Edit current file's directory" },
   },
   ra = { '<cmd>RnvimrToggle<cr>', 'Ranger' }
 }, { prefix = '<leader>' })

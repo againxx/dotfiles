@@ -43,7 +43,8 @@ wk.register({
       end,
       "Git blame for current hunk",
     },
-    s = { "<cmd>lua require('xx.telescope').git_status()<cr>", "Status" },
+    -- s = { "<cmd>lua require('xx.telescope').git_status()<cr>", "Status" },
+    s = { "<cmd>Neogit<cr>", "Status" },
   },
   c = {
     name = "+change/command",
@@ -79,3 +80,15 @@ wk.register {
     "Go to next git hunk",
   },
 }
+
+local neogit_success, neogit = pcall(require, "neogit")
+if not neogit_success then
+  return
+end
+neogit.setup {
+  disable_context_highlighting = true,
+  integrations = {
+    diffview = true,
+  }
+}
+

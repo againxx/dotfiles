@@ -27,7 +27,7 @@ vim.defer_fn(function()
 end, 500)
 
 if not vim.b.ros_package_path then
-  vim.cmd [[command! -buffer -nargs=0 A execute 'CocCommand clangd.switchSourceHeader']]
+  vim.cmd [[command! -buffer -nargs=0 A execute 'ClangdSwitchSourceHeader']]
 end
 
 -- remove redundant angle brackets when completing header files

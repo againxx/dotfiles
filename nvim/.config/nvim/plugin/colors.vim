@@ -7,6 +7,7 @@ colorscheme ayu
 highlight QuickScopePrimary   guifg=#86B300 gui=underline,bold,italic
 highlight QuickScopeSecondary guifg=#399EE6 gui=underline,bold,italic
 highlight Searchlight         guifg=#FFEE99 guibg=#A37ACC
+highlight LspInlayHint        guifg=#7f709f guibg=NONE
 " vim.g.VM_highlight_matches = ''
 highlight! link shCommandSub     Constant
 highlight! link IncSearchCursor  IncSearch

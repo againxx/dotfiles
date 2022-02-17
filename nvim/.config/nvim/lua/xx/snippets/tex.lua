@@ -14,6 +14,12 @@ local snippets = {
     VISUAL(),
     i(1),
   })),
+  math_s("lrr", fmta([[
+  \lbrack <><> \rbrack
+  ]], {
+    VISUAL(),
+    i(1),
+  })),
   math_s({trig = "mbb", wordTrig = false}, {
     t("\\mathbb{"),
     i(1),

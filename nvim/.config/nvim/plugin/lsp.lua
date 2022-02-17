@@ -70,7 +70,7 @@ local show_documentation = function()
     else
       vim.cmd(string.format("h %s", vim.fn.expand "<cword>"))
     end
-  elseif vim.bo.filetype == "rust" then
+  elseif vim.tbl_contains({ "rust", "cpp" }, vim.bo.filetype) then
     -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
   else
@@ -185,7 +185,7 @@ local setup_server = function(server_name, config)
             inlay_hints = {
               parameter_hints_prefix = " ",
               other_hints_prefix = " ",
-              highlight = "LspRustTypeHint",
+              highlight = "LspInlayHint",
             },
           },
           dap = {
@@ -194,6 +194,17 @@ local setup_server = function(server_name, config)
           server = vim.tbl_deep_extend("force", server:get_default_options(), config),
         }
         server:attach_buffers()
+      elseif server.name == "clangd" then
+        require("clangd_extensions").setup {
+          extensions = {
+            inlay_hints = {
+              parameter_hints_prefix = " ",
+              other_hints_prefix = " ",
+              highlight = "LspInlayHint",
+            },
+          },
+          server = vim.tbl_deep_extend("force", server:get_default_options(), config),
+        }
       else
         server:setup(config)
       end

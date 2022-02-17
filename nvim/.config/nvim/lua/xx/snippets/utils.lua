@@ -36,10 +36,16 @@ end
 function M.math_s(...)
   local in_mathzone = function() return vim.fn["vimtex#syntax#in_mathzone"]() == 1 end
   local params = {...}
-  table.insert(params, {
-    condition = in_mathzone,
-    show_condition = in_mathzone,
-  })
+  -- normally we only need to customize condition
+  if params[#params].condition then
+    local original_condition = params[#params].condition
+    params[#params].condition = function(...) return in_mathzone() and original_condition(...) end
+  else
+    table.insert(params, {
+      condition = in_mathzone,
+      show_condition = in_mathzone,
+    })
+  end
   return s(unpack(params))
 end
 
