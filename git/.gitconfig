@@ -12,7 +12,8 @@
     defaultBranch = main
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvimdiff"]
-    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+    cmd = nvim -f -c \"MergetoolStart\" \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
 # set "nvim" as tool for merging
 [merge]
     tool = nvimdiff

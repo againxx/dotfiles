@@ -58,6 +58,8 @@ local symbols = {
   read_only = "",
   lsp_status = "  ",
   git_branch = " ",
+  git_merge = " ",
+  normal_diff = " ",
   treesitter_status = " ",
   explorer = " ",
   tree = " ",
@@ -79,7 +81,13 @@ local hide_when_narrow = function(width)
 end
 
 local git_branch = function()
-  local branch = vim.b.gitsigns_head and symbols.git_branch .. vim.b.gitsigns_head or ""
+  local symbol = symbols.git_branch
+  if vim.g.mergetool_in_merge_mode == 1 then
+    symbol = symbols.git_merge
+  elseif vim.wo.diff then
+    symbol = symbols.normal_diff
+  end
+  local branch = vim.b.gitsigns_head and symbol .. vim.b.gitsigns_head or ""
   return vim.trim(branch)
 end
 

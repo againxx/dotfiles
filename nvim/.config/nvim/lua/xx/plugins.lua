@@ -53,6 +53,7 @@ return require("packer").startup {
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
     use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
     use "lewis6991/gitsigns.nvim"
+    use "samoshkin/vim-mergetool"
     use { "kdheepak/lazygit.nvim", cmd = "LazyGit" }
 
     ---

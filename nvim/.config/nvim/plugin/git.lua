@@ -22,6 +22,15 @@ gitsigns.setup {
   },
 }
 
+local on_mergetool_set_layout = function(split)
+  if split.layout == 'mr,b' and split.split == 'b' then
+    vim.wo.diff = false
+    vim.cmd("resize 15")
+  end
+end
+
+vim.g.MergetoolSetLayoutCallback = on_mergetool_set_layout
+
 local wk_success, wk = pcall(require, "which-key")
 if not wk_success then
   return
@@ -56,6 +65,11 @@ wk.register({
     b = { gitsigns.toggle_current_line_blame, "Toggle git blame for current line" },
   },
   ["<C-g>"] = { "<cmd>LazyGit<cr>", "Lazygit" },
+  m = {
+    name = "+mergetool",
+    t = { "<Plug>(MergetoolToggle)", "Toggle mergetool" },
+    b = { "<cmd>call mergetool#toggle_layout('mr,b')<cr>", "Toggle base" },
+  }
 }, { prefix = "<leader>" })
 
 wk.register({
@@ -84,6 +98,8 @@ wk.register {
     end,
     "Go to next git hunk",
   },
+  ["[g"] = { "<Plug>(MergetoolDiffExchangeLeft)", "Push hunk to left" },
+  ["]g"] = { "<Plug>(MergetoolDiffExchangeRight)", "Push hunk to right" },
 }
 
 local neogit_success, neogit = pcall(require, "neogit")
@@ -91,7 +107,7 @@ if not neogit_success then
   return
 end
 neogit.setup {
-  disable_context_highlighting = true,
+  disable_context_highlighting = false,
   signs = {
     section = { "", "" },
     item = { "", "" },
