@@ -7,7 +7,7 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua', 'cuda' },
+  ensure_installed = { 'c', 'cpp', 'query', 'java', 'rust', 'python', 'lua', 'cuda', 'javascript' },
   highlight = {
     enable = true,
     disable = {'python'},
@@ -15,6 +15,9 @@ require('nvim-treesitter.configs').setup {
   indent = {
     enable = true,
     disable = {'python'},
+  },
+  matchup = {
+    enable = true,
   },
   playground = {
     enable = true,
