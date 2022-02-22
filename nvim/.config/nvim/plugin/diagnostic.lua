@@ -4,18 +4,6 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.diagnostic.config {
-  virtual_text = false,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    source = true,
-    scope = "cursor",
-    header = "",
-    border = "rounded",
-  },
-}
-
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
