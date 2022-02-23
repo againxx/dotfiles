@@ -82,6 +82,8 @@ cmp.setup {
         -- ultisnips = "[snip]",
         luasnip = "[snip]",
         tmux = "[tmux]",
+        vimwiki_tags = "[tag]",
+        spell = "[spell]",
       },
     },
   },

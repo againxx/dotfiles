@@ -1,5 +1,5 @@
 vim.opt_local.wrap = false
-vim.b.coc_pairs_disabled = { "[", "<" }
+vim.opt_local.spell = true
 -- Use vimwiki's folding method instead vim-markdown's
 vim.g.vim_markdown_folding_disabled = true
 
@@ -14,6 +14,17 @@ vim.g.taskwiki_data_location = "~/Documents/tasks"
 
 R "note.markdown_vimwiki"
 require("plenary.filetype").add_file "extra_filetypes"
+require("xx.cmp.vimwiki_tags")
+
+require('cmp').setup.buffer {
+  sources = {
+    { name = 'vimwiki_tags' },
+    { name = 'spell' },
+    { name = "luasnip" },
+    { name = 'buffer' },
+    { name = "tmux" },
+  },
+}
 
 vim.cmd [[
   augroup vimwiki_special

@@ -25,7 +25,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 opt.splitright = true -- Prefer windows splitting to the right
-opt.fillchars = { vert = '▒' } -- ░▒▮
+opt.fillchars = { vert = '▒', diff = '' } -- ░▒▮╱
 
 -- Use the symbols for tab and trailing spaces
 opt.list = true
@@ -47,6 +47,8 @@ opt.showtabline = 2
 opt.showbreak = '╰─▸ '
 opt.diffopt:append('vertical')
 opt.helplang = 'en'
+opt.spelllang = { 'en_us' }
+opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
 -- Workaround for ghost highlight for blankline
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 opt.colorcolumn = '99999'
