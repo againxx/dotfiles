@@ -5,3 +5,4 @@ __pycache__/
 .zhistory
 .zim/
 packer_compiled.*
+*.add.spl

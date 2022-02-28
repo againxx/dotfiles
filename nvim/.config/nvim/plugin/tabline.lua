@@ -48,6 +48,8 @@ end
 wk.register({
   ['[b'] = { '<cmd>BufferGoto 1<cr>', 'Go to first buffer' },
   [']b'] = { '<cmd>BufferLast<cr>', 'Go to last buffer' },
+  ['[t'] = { '<cmd>tabprevious<cr>', 'Switch to previous tab' },
+  [']t'] = { '<cmd>tabnext<cr>', 'Switch to next tab' },
   ['<leader>qq'] = { close_qf_first, 'Only close buffer' },
   ['<leader>qw'] = { '<cmd>BufferWipeout!<cr>', 'Wipeout buffer' },
   ['<leader>qa'] = { close_all_but_current_or_pinned, 'Close all buffer but current/pinned' },

@@ -18,7 +18,8 @@ return require("packer").startup {
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-omni"
-    use "f3fora/cmp-spell"
+    use "octaltree/cmp-look"
+    use "againxx/cmp-katex"
     use "andersevenrud/cmp-tmux"
     use "hrsh7th/nvim-cmp"
     -- use 'quangnguyen30192/cmp-nvim-ultisnips'
@@ -87,6 +88,11 @@ return require("packer").startup {
               icon = "",
               color = "#F07178",
               name = "Vimwiki",
+            },
+            norg = {
+              icon = "",
+              color = "#B695E0",
+              name = "Norg",
             },
             pyi = {
               icon = "",
@@ -307,6 +313,37 @@ return require("packer").startup {
       config = function()
         require "xx.fzf"
       end,
+    }
+    use {
+      "nvim-neorg/neorg",
+      config = function()
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {},
+            ["core.norg.concealer"] = {},
+            ["core.norg.completion"] = {
+              config = {
+                engine = "nvim-cmp",
+              },
+            },
+            ["core.integrations.telescope"] = {},
+            ["core.norg.manoeuvre"] = {},
+            ["core.keybinds"] = {
+              config = {
+                hook = function(keybinds)
+                  keybinds.remap_key("norg", "n", "<M-j>", "<M-d>")
+                  keybinds.remap_key("norg", "n", "<M-k>", "<M-u>")
+                end,
+              },
+            },
+          },
+        }
+      end,
+      requires = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope.nvim" },
+        { "nvim-neorg/neorg-telescope" },
+      },
     }
 
     ---

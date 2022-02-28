@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 
 local font_with_fallback = function(name, params)
-  local names = {name, "PingFang SC"}
+  local names = {name, "Noto Color Emoji", "PingFang SC"}
   return wezterm.font_with_fallback(names, params)
 end
 

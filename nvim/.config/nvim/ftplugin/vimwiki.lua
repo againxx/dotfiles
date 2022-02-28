@@ -14,15 +14,24 @@ vim.g.taskwiki_data_location = "~/Documents/tasks"
 
 R "note.markdown_vimwiki"
 require("plenary.filetype").add_file "extra_filetypes"
-require("xx.cmp.vimwiki_tags")
+require "xx.cmp.vimwiki_tags"
 
-require('cmp').setup.buffer {
+require("cmp").setup.buffer {
   sources = {
-    { name = 'vimwiki_tags' },
-    { name = 'spell' },
+    { name = "vimwiki_tags" },
+    { name = "katex" },
+    { name = "buffer" },
     { name = "luasnip" },
-    { name = 'buffer' },
     { name = "tmux" },
+    {
+      name = "look",
+      keyword_length = 3,
+      option = {
+        convert_case = true,
+        loud = true,
+        --dict = '/usr/share/dict/words'
+      },
+    },
   },
 }
 

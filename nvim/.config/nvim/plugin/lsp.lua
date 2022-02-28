@@ -83,9 +83,9 @@ end
 local on_attach_default = function(client, bufnr)
   lsp_status.on_attach(client)
   require("illuminate").on_attach(client)
-  require("lsp_signature").on_attach({
-    hint_prefix = "🐯 ",
-  })
+  -- require("lsp_signature").on_attach {
+  --   hint_prefix = "🐯 ",
+  -- }
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
@@ -225,3 +225,51 @@ vim.g.symbols_outline = {
   width = 35,
   preview_bg_highlight = "NormalFloat",
 }
+
+-- https://github.com/tami5/lspsaga.nvim/issues/89
+-- local last_cursor_move
+--
+-- function UpdateCurosrMoveTime()
+--   last_cursor_move = vim.loop.now()
+-- end
+--
+-- function AutoHover()
+--   local hover = require "lspsaga.hover"
+--   vim.loop.new_timer():start(
+--     2000,
+--     0,
+--     vim.schedule_wrap(function()
+--       if not hover.has_saga_hover() and vim.loop.now() - last_cursor_move > 2000 then
+--         hover.render_hover_doc()
+--       end
+--     end)
+--   )
+-- end
+--
+
+-- _G.auto_hover = true
+-- _G.last_cursor_moved = vim.loop.now()
+-- function AutoHover()
+--   -- don't bother if mode isn't normal and auto hover is disabled.
+--   if vim.fn.mode() ~= "n" or not _G.auto_hover then
+--     return
+--   end
+--
+--   local timer = vim.loop.new_timer()
+--   local job = function()
+--     -- if should ignore or mode is no longer normal. ignore
+--     if vim.loop.now() - last_cursor_moved < 3000 or vim.fn.mode() ~= "n" then
+--       return
+--     end
+--     local hover = require "lspsaga.hover"
+--     if not hover.has_saga_hover() then
+--       hover.render_hover_doc()
+--     end
+--   end
+--
+--   -- Start the timer job
+--   timer:start(3000, 0, vim.schedule_wrap(job))
+-- end
+--
+-- vim.cmd "autocmd CursorMoved <buffer> lua last_cursor_moved = vim.loop.now()"
+-- vim.cmd "autocmd CursorHold <buffer> lua AutoHover()"

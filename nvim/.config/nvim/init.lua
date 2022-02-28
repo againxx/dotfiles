@@ -12,7 +12,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = '-'
 
 -- speed up
 vim.g.python3_host_prog  = '/usr/bin/python3'

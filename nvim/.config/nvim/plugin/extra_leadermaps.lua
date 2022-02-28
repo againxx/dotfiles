@@ -97,7 +97,7 @@ wk.register({
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
   },
   s = {
-    h = { vim.fn.SyntaxAttr, 'Syntax highlighting group' },
+    h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", 'Syntax highlighting group' },
     H = { query_syntax_stack, 'Syntax highlighting stack' },
     t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
     T = { '<cmd>terminal tokei<cr>', 'Tokei code statistic' },
