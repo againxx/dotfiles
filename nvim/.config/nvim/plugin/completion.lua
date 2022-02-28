@@ -85,6 +85,7 @@ cmp.setup {
         vimwiki_tags = "[tag]",
         look = "[spell]",
         neorg = "[norg]",
+        katex = "[katex]",
       },
     },
   },
