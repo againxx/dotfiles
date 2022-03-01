@@ -307,7 +307,7 @@ return require("packer").startup {
       "michal-h21/vim-zettel",
       ft = "vimwiki",
       requires = {
-        { "junegunn/fzf", ft = "vimwiki" },
+        { "junegunn/fzf", ft = { "vimwiki", "qf" } },
         { "junegunn/fzf.vim", ft = "vimwiki" },
       },
       config = function()
@@ -387,10 +387,16 @@ return require("packer").startup {
     ---
     --- QuickFix
     ---
+    use {'kevinhwang91/nvim-bqf', ft = 'qf'}
     use {
       "stevearc/qf_helper.nvim",
       config = function()
-        require("qf_helper").setup()
+        require("qf_helper").setup({
+          quickfix = {
+            -- use mappings from nvim-bqf
+            default_bindings = false,
+          }
+        })
       end,
     }
     use {
