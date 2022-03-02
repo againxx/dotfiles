@@ -1,4 +1,5 @@
 local api = vim.api
+local fn = vim.fn
 local keymap = vim.keymap
 
 -- common things
@@ -7,8 +8,8 @@ api.nvim_create_augroup("common", {})
 api.nvim_create_autocmd("BufReadPost", {
   group = "common",
   callback = function()
-    local previous_pos = vim.fn.line [['"]]
-    if previous_pos >= 1 and previous_pos <= vim.fn.line "$" and vim.bo.filetype ~= "commit" then
+    local previous_pos = fn.line [['"]]
+    if previous_pos >= 1 and previous_pos <= fn.line "$" and vim.bo.filetype ~= "commit" then
       vim.cmd 'normal! g`"'
     end
   end,
@@ -128,5 +129,83 @@ api.nvim_create_autocmd("FileType", {
   pattern = "dap-repl",
   callback = function()
     require("dap.ext.autocompl").attach()
+  end,
+})
+
+-- ros filetype detect
+api.nvim_create_augroup("ros_filetype_detect", {})
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = "ros_filetype_detect",
+  pattern = "*.launch",
+  command = "set filetype=roslaunch",
+})
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = "ros_filetype_detect",
+  pattern = "*.action",
+  command = "set filetype=rosaction",
+})
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = "ros_filetype_detect",
+  pattern = "*.msg",
+  command = "set filetype=rosmsg",
+})
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = "ros_filetype_detect",
+  pattern = "*.srv",
+  command = "set filetype=rossrv",
+})
+
+-- defx file explorer, hijack netrw
+api.nvim_create_augroup("defx_file_explorer", {})
+api.nvim_create_autocmd("VimEnter", {
+  group = "defx_file_explorer",
+  callback = function()
+    api.nvim_del_augroup_by_name "FileExplorer"
+    if fn.isdirectory(fn.expand "<amatch>") == 1 then
+      vim.cmd [[
+        bwipeout!
+        execute "DefxIcon" expand('<amatch>')
+      ]]
+    end
+  end,
+  once = true,
+})
+api.nvim_create_autocmd("BufEnter", {
+  group = "defx_file_explorer",
+  callback = function()
+    local bufnr = tonumber(fn.expand "<abuf>")
+    local path = fn.expand "<amatch>"
+    if fn.bufnr(path) == bufnr and fn.isdirectory(path) == 1 and not vim.o.diff then
+      vim.defer_fn(function()
+        if not vim.o.diff and bufnr == api.nvim_get_current_buf() then
+          vim.cmd "BufferWipeout!"
+          vim.cmd("DefxIcon " .. path)
+        end
+      end, 0)
+    end
+  end,
+})
+
+-- Firenvim
+api.nvim_create_augroup("ui_special", {})
+api.nvim_create_autocmd("UIEnter", {
+  group = "ui_special",
+  callback = function()
+    local ui = api.nvim_get_chan_info(vim.v.event.chan)
+    if ui.client and ui.client.name and ui.client.name == "Firenvim" then
+      if vim.g.colors_name == "ayu" then
+        vim.cmd "hi Normal guibg=#1F2430"
+        vim.opt.guifont = "FiraCode Nerd Font Mono:h10"
+        vim.opt.showtabline = 0
+        vim.opt.laststatus = 0
+        vim.cmd "hi Pmenu guibg=NONE"
+        vim.cmd "hi PmenuSbar guibg=NONE"
+        vim.cmd "hi PmenuThumb guibg=NONE"
+        keymap.set("n", "<M-=>", "<cmd>silent! set lines+=5<cr>", { noremap = true })
+        keymap.set("n", "<M-->", "<cmd>silent! set lines-=5<cr>", { noremap = true })
+        keymap.set("n", "<M-,>", "<cmd>silent! set columns-=5<cr>", { noremap = true })
+        keymap.set("n", "<M-.>", "<cmd>silent! set columns+=5<cr>", { noremap = true })
+      end
+    end
   end,
 })
