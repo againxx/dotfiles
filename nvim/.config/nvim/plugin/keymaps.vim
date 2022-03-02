@@ -20,6 +20,9 @@ nnoremap <expr> g[ '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Use <C-q> to repeat last macro
 nnoremap <C-q> @@
 
+" Use <C-h> as <BS> since autopairs will auto delete with <BS>
+imap <C-h> <BS>
+
 " neovim native <C-c> seems to conflict with slime.vim, unbind <C-c> and move
 " it into <C-c><C-x>
 nnoremap <C-c> <nop>

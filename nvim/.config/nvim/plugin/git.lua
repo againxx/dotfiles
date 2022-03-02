@@ -50,8 +50,8 @@ wk.register({
     -- show commit contains current position
     c = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", "Current buffer commits" },
     C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", "All commits" },
-    b = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
-    B = {
+    B = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
+    b = {
       function()
         gitsigns.blame_line { full = true }
       end,

@@ -1,3 +1,54 @@
+augroup common
+  autocmd!
+  " Automatically relocate cursor position
+  autocmd BufReadPost *
+  \   if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \   |   exe "normal! g`\""
+  \   | endif
+  autocmd InsertLeave,WinEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline
+  autocmd CmdLineEnter : set nosmartcase
+  autocmd CmdLineLeave : set smartcase
+  autocmd VimResized * :wincmd =
+  " fix vim script user command syntax highlighting
+  " (should be unnecessary when https://github.com/vim/vim/issues/6587 is fixed)
+  autocmd Syntax vim syn match vimUsrCmd '^\s*\zs\u\%(\w*\)\@>(\@!'
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup END
+
+augroup lsp_special
+  autocmd!
+  autocmd CursorHold *
+  \   lua if not (vim.b.lsp_floating_preview and
+  \     vim.api.nvim_win_is_valid(vim.b.lsp_floating_preview))
+  \   then vim.diagnostic.open_float({scope = "cursor"}) end
+augroup END
+
+augroup visual_multi_special
+  autocmd!
+  autocmd User visual_multi_start call s:VMStart()
+  autocmd User visual_multi_exit  call s:VMExit()
+augroup END
+
+" augroup ros_special
+"   autocmd!
+"   autocmd BufRead,BufNewFile *
+"   autocmd User visual_multi_exit  call s:VMExit()
+" augroup END
+
+augroup other_filetypes
+  autocmd!
+  autocmd FileType asm,gitcommit setlocal nolist
+  autocmd FileType asm setlocal filetype=gas
+  autocmd FileType qf setlocal nobuflisted
+  autocmd FileType qf setlocal nolist
+  autocmd FileType NeogitPopup setlocal nolist
+  autocmd FileType NeogitStatus setlocal nolist
+  autocmd FileType NeogitCommitMessage setlocal nolist | startinsert
+  autocmd FileType rnvimr tnoremap <buffer><silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+  autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
+augroup END
+
 augroup ros_filetype_detect
   autocmd!
   autocmd BufRead,BufNewFile *.launch set filetype=roslaunch
@@ -34,6 +85,22 @@ function! s:defer_check_dir(path, bufnr) abort
     BufferWipeout!
     execute "DefxIcon" a:path
   end
+endfunction
+
+function! s:VMStart() abort
+  nmap <buffer> <C-j> <Plug>(VM-Add-Cursor-Down)
+  nmap <buffer> <C-k> <Plug>(VM-Add-Cursor-Up)
+  nmap <buffer> <C-l> <Plug>(VM-Single-Select-l)
+  nmap <buffer> <C-h> <Plug>(VM-Single-Select-h)
+  execute 'Searchlight!'
+endfunction
+
+function! s:VMExit() abort
+  nunmap <buffer> <C-j>
+  nunmap <buffer> <C-k>
+  nunmap <buffer> <C-h>
+  nunmap <buffer> <C-l>
+  execute 'Searchlight'
 endfunction
 
 function! s:IsFirenvimActive(event) abort
