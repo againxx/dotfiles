@@ -9,7 +9,7 @@ local VISUAL = require("xx.snippets.utils").VISUAL
 local auto_backslash = function(triggers)
   local without_pre_backslash = function(line_to_cursor, matched_trigger)
     return #line_to_cursor == #matched_trigger
-      or line_to_cursor:sub(-#matched_trigger - 1, -#matched_trigger) ~= "\\"
+      or line_to_cursor:sub(-#matched_trigger - 1, -#matched_trigger - 1) ~= "\\"
   end
   local result_snippets = {}
   for _, trig in ipairs(triggers) do
