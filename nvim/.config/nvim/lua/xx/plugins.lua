@@ -320,7 +320,18 @@ return require("packer").startup {
         require("neorg").setup {
           load = {
             ["core.defaults"] = {},
-            ["core.norg.concealer"] = {},
+            ["core.norg.dirman"] = {
+              config = {
+                workspaces = {
+                  wiki = "~/Documents/Vimwiki/neorg",
+                }
+              }
+            },
+            ["core.norg.concealer"] = {
+              config = {
+                icon_preset = "varied",
+              }
+            },
             ["core.norg.completion"] = {
               config = {
                 engine = "nvim-cmp",
