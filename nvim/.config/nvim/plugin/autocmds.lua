@@ -3,10 +3,10 @@ local fn = vim.fn
 local keymap = vim.keymap
 
 -- common things
-api.nvim_create_augroup("common", {})
+local common = api.nvim_create_augroup("common", {})
 -- Automatically relocate cursor position
 api.nvim_create_autocmd("BufReadPost", {
-  group = "common",
+  group = common,
   callback = function()
     local previous_pos = fn.line [['"]]
     if previous_pos >= 1 and previous_pos <= fn.line "$" and vim.bo.filetype ~= "commit" then
@@ -15,38 +15,38 @@ api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  group = "common",
+  group = common,
   command = "set cursorline",
 })
 api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-  group = "common",
+  group = common,
   command = "set nocursorline",
 })
 api.nvim_create_autocmd("CmdLineEnter", {
-  group = "common",
+  group = common,
   pattern = ":",
   command = "set nosmartcase",
 })
 api.nvim_create_autocmd("CmdLineLeave", {
-  group = "common",
+  group = common,
   pattern = ":",
   command = "set smartcase",
 })
 api.nvim_create_autocmd("VimResized", {
-  group = "common",
+  group = common,
   command = ":wincmd =",
 })
 api.nvim_create_autocmd("TextYankPost", {
-  group = "common",
+  group = common,
   callback = function()
     vim.highlight.on_yank { timeout = 300 }
   end,
 })
 
 -- lsp
-api.nvim_create_augroup("lsp_special", {})
+local lsp_special = api.nvim_create_augroup("lsp_special", {})
 api.nvim_create_autocmd("CursorHold", {
-  group = "lsp_special",
+  group = lsp_special,
   callback = function()
     if not (vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview)) then
       vim.diagnostic.open_float { scope = "cursor" }
@@ -56,9 +56,9 @@ api.nvim_create_autocmd("CursorHold", {
 
 -- visual-multi
 local restored_bs_map -- restore <BS> for autopairs
-api.nvim_create_augroup("visual_multi_special", {})
+local visual_multi_speical = api.nvim_create_augroup("visual_multi_special", {})
 api.nvim_create_autocmd("User", {
-  group = "visual_multi_special",
+  group = visual_multi_speical,
   pattern = "visual_multi_start",
   callback = function()
     local bufnr = api.nvim_get_current_buf()
@@ -77,7 +77,7 @@ api.nvim_create_autocmd("User", {
   end,
 })
 api.nvim_create_autocmd("User", {
-  group = "visual_multi_special",
+  group = visual_multi_speical,
   pattern = "visual_multi_exit",
   callback = function()
     local bufnr = api.nvim_get_current_buf()
@@ -96,36 +96,36 @@ api.nvim_create_autocmd("User", {
 })
 
 -- other filetypes
-api.nvim_create_augroup("other_filetypes", {})
+local other_filetypes = api.nvim_create_augroup("other_filetypes", {})
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = { "asm", "gitcommit", "NeogitPopup", "NeogitStatus" },
   command = "setlocal nolist",
 })
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = "qf",
   command = "setlocal nolist | setlocal nobuflisted",
 })
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = "NeogitCommitMessage",
   command = "setlocal nolist | startinsert",
 })
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = "asm",
   command = "setlocal filetype=gas",
 })
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = "rnvimr",
   callback = function()
     keymap.set("t", "<M-i>", "<cmd>RnvimrResize<cr>", { buffer = api.nvim_get_current_buf(), silent = true })
   end,
 })
 api.nvim_create_autocmd("FileType", {
-  group = "other_filetypes",
+  group = other_filetypes,
   pattern = "dap-repl",
   callback = function()
     require("dap.ext.autocompl").attach()
@@ -133,32 +133,32 @@ api.nvim_create_autocmd("FileType", {
 })
 
 -- ros filetype detect
-api.nvim_create_augroup("ros_filetype_detect", {})
+local ros_filetype_detect = api.nvim_create_augroup("ros_filetype_detect", {})
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = "ros_filetype_detect",
+  group = ros_filetype_detect,
   pattern = "*.launch",
   command = "set filetype=roslaunch",
 })
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = "ros_filetype_detect",
+  group = ros_filetype_detect,
   pattern = "*.action",
   command = "set filetype=rosaction",
 })
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = "ros_filetype_detect",
+  group = ros_filetype_detect,
   pattern = "*.msg",
   command = "set filetype=rosmsg",
 })
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = "ros_filetype_detect",
+  group = ros_filetype_detect,
   pattern = "*.srv",
   command = "set filetype=rossrv",
 })
 
 -- defx file explorer, hijack netrw
-api.nvim_create_augroup("defx_file_explorer", {})
+local defx_file_explorer = api.nvim_create_augroup("defx_file_explorer", {})
 api.nvim_create_autocmd("VimEnter", {
-  group = "defx_file_explorer",
+  group = defx_file_explorer,
   callback = function()
     api.nvim_del_augroup_by_name "FileExplorer"
     if fn.isdirectory(fn.expand "<amatch>") == 1 then
@@ -171,7 +171,7 @@ api.nvim_create_autocmd("VimEnter", {
   once = true,
 })
 api.nvim_create_autocmd("BufEnter", {
-  group = "defx_file_explorer",
+  group = defx_file_explorer,
   callback = function()
     local bufnr = tonumber(fn.expand "<abuf>")
     local path = fn.expand "<amatch>"
@@ -187,9 +187,9 @@ api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Firenvim
-api.nvim_create_augroup("ui_special", {})
+local ui_special = api.nvim_create_augroup("ui_special", {})
 api.nvim_create_autocmd("UIEnter", {
-  group = "ui_special",
+  group = ui_special,
   callback = function()
     local ui = api.nvim_get_chan_info(vim.v.event.chan)
     if ui.client and ui.client.name and ui.client.name == "Firenvim" then
