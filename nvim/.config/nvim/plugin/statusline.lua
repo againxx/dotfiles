@@ -167,6 +167,7 @@ require("lualine").setup {
     component_separators = { "", "" },
     section_separators = { "", "" },
     disabled_filetypes = {},
+    globalstatus = true,
   },
   sections = {
     lualine_a = {
