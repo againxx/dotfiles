@@ -142,6 +142,7 @@ local servers = {
   vimls = true,
   efm = require "xx.lsp.efm",
   bashls = true,
+  hls = true,
 }
 
 local setup_server = function(server_name, config)

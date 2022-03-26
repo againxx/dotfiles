@@ -23,3 +23,7 @@ fi
 if [ -f "$HOME/.config/broot/launcher/bash/br" ]; then
     source "$HOME/.config/broot/launcher/bash/br"
 fi
+
+if [ -f "$HOME/.ghcup/env" ]; then
+    source "$HOME/.ghcup/env" # ghcup-env
+fi
