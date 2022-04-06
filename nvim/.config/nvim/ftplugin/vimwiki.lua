@@ -18,10 +18,10 @@ require "xx.cmp.vimwiki_tags"
 
 require("cmp").setup.buffer {
   sources = {
+    { name = "luasnip" },
     { name = "vimwiki_tags" },
     { name = "katex" },
     { name = "buffer" },
-    { name = "luasnip" },
     { name = "tmux" },
     {
       name = "look",
