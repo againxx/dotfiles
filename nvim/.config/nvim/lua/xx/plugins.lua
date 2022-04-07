@@ -26,7 +26,7 @@ return require("packer").startup {
     use "saadparwaiz1/cmp_luasnip"
     use "onsails/lspkind-nvim"
     use "ray-x/lsp_signature.nvim"
-    use "tami5/lspsaga.nvim"
+    use { "againxx/lspsaga.nvim", branch = "fix/hover_markdown_escape" }
     use {
       "simrat39/symbols-outline.nvim",
       cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },

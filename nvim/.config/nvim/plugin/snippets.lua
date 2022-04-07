@@ -1,6 +1,5 @@
 vim.g.ulti_expand_res = 0
-vim.g.ultisnips_python_quoting_style = "double"
-vim.g.ultisnips_python_triple_quoting_style = "double"
+vim.g.luasnips_python_quoting_style = "double" -- double/single
 vim.g.ultisnips_python_style = "sphinx"
 vim.g.ultisnips_cpp_style = "google"
 
