@@ -41,7 +41,8 @@ local auto_backslash = function(triggers)
   for _, trig in ipairs(triggers) do
     table.insert(
       result_snippets,
-      math_s(trig, { t "\\", t(trig) }, {
+      -- default priority 1000, these snippets have lower priority
+      math_s({ trig = trig, priority = 100 }, { t "\\", t(trig) }, {
         condition = without_pre_backslash,
       })
     )
@@ -97,7 +98,7 @@ local auto_snippets = {
       }
     )
   ),
-  math_s({ trig = "([%d%a^_{}\\]+)/", regTrig = true }, { -- symbol frac
+  math_s({ trig = "([%d%a^_{}\\]+)/", regTrig = true, priority = 100 }, { -- symbol frac
     f(function(_, parent)
       return "\\frac{" .. parent.snippet.captures[1] .. "}{"
     end),

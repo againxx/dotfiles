@@ -10,6 +10,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local conds = require "luasnip.extras.expand_conditions"
 local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
+local get_right_curly_brace_style = require("xx.snippets.utils").get_right_curly_brace_style
 local VISUAL = require("xx.snippets.utils").VISUAL
 
 ls.filetype_extend("cpp", { "c" })
@@ -90,6 +91,30 @@ local snippets = {
     ]=],
       {
         f(get_left_curly_brace_style, {}),
+      }
+    )
+  ),
+  s("tp", fmt([[template<typename {}>]], { i(1, "T") })),
+  s(
+    "try",
+    fmta(
+      [[
+  try<>
+  	<><>
+  <> (<>)<>
+    <>
+  }
+  ]],
+      {
+        f(get_left_curly_brace_style, {}),
+        f(function(_, snip)
+          return snip.env.SELECT_DEDENT
+        end, {}),
+        i(1),
+        f(get_right_curly_brace_style, {}, { user_args = { "catch" } }),
+        i(2, "std::runtime_error err"),
+        f(get_left_curly_brace_style, {}),
+        i(0),
       }
     )
   ),
