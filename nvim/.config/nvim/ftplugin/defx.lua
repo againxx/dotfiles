@@ -1,5 +1,6 @@
 local keymap = vim.keymap
-local opts = { noremap = true, silent = true, expr = true, buffer = vim.api.nvim_get_current_buf() }
+local bufnr = vim.api.nvim_get_current_buf()
+local opts = { noremap = true, silent = true, expr = true, buffer = bufnr }
 
 if vim.g.defx_open_in_vertical_split then
   -- automatically quit when use choose
@@ -42,13 +43,33 @@ keymap.set('n', '!', "defx#do_action('execute_command')", opts)
 keymap.set('n', 'cd', "defx#do_action('change_vim_cwd')", opts)
 
 
-if vim.o.guicursor ~= "a:DefxCursorHiddenCursor" then
+if vim.o.guicursor ~= "n:DefxCursorHiddenCursor" then
   _G.DefxSavedCursor = vim.o.guicursor
 end
-vim.o.guicursor = "a:DefxCursorHiddenCursor"
-vim.wo.cursorline = true
-vim.cmd [[
-  autocmd BufEnter <buffer> lua vim.o.guicursor = "a:DefxCursorHiddenCursor"
-  autocmd BufLeave <buffer> lua vim.o.guicursor = _G.DefxSavedCursor
-  autocmd BufHidden <buffer> lua require'bufferline.state'.set_offset(0); vim.g.defx_open_in_vertical_split = false
-]]
+
+local setup_cursor = function()
+  vim.o.guicursor = "n:DefxCursorHiddenCursor"
+  vim.cmd [[hi CursorLine guibg=#4c6482]]
+  vim.wo.cursorline = true
+end
+setup_cursor()
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  buffer = bufnr,
+  callback = setup_cursor,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  buffer = bufnr,
+  callback = function()
+    vim.o.guicursor = _G.DefxSavedCursor
+    vim.cmd [[hi CursorLine guibg=#191e2a]]
+  end
+})
+
+vim.api.nvim_create_autocmd("BufHidden", {
+  buffer = bufnr,
+  callback = function()
+    require'bufferline.state'.set_offset(0); vim.g.defx_open_in_vertical_split = false
+  end
+})

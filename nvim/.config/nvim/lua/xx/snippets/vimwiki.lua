@@ -3,6 +3,8 @@ local s = ls.snippet
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 
+ls.filetype_extend("vimwiki", { "tex" })
+
 local snippets = {
   s(
     "paperread",

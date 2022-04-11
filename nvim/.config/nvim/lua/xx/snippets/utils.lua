@@ -34,7 +34,20 @@ function M.get_right_curly_brace_style(_, _, str_after_brace)
 end
 
 function M.math_s(...)
-  local in_mathzone = function() return vim.fn["vimtex#syntax#in_mathzone"]() == 1 end
+  local in_mathzone = function()
+    if vim.bo.filetype == "tex" then
+      return vim.fn["vimtex#syntax#in_mathzone"]() == 1
+    elseif vim.bo.filetype == "vimwiki" then
+      local cursor_pos = vim.api.nvim_win_get_cursor(0)
+      local groups = vim.fn.synstack(cursor_pos[1], cursor_pos[2])
+      for _, gid in ipairs(groups) do
+        if vim.fn.synIDattr(gid, "name") == "textSnipTEX" then
+          return true
+        end
+      end
+      return false
+    end
+  end
   local params = {...}
   -- normally we only need to customize condition
   if params[#params].condition then

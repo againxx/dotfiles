@@ -296,7 +296,7 @@ return require("packer").startup {
     ---
     --- Latex
     ---
-    use "lervag/vimtex"
+    use { "lervag/vimtex", ft = {"tex", "markdown"} }
 
     ---
     --- Wiki
