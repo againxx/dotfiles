@@ -83,9 +83,9 @@ end
 local on_attach_default = function(client, bufnr)
   lsp_status.on_attach(client)
   require("illuminate").on_attach(client)
-  -- require("lsp_signature").on_attach {
-  --   hint_prefix = "🐯 ",
-  -- }
+  require("lsp_signature").on_attach {
+    hint_prefix = "🐯 ",
+  }
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
@@ -143,6 +143,7 @@ local servers = {
   efm = require "xx.lsp.efm",
   bashls = true,
   hls = true,
+  cmake = true,
 }
 
 local setup_server = function(server_name, config)
