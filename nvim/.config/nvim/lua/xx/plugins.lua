@@ -271,6 +271,11 @@ return require("packer").startup {
     use "simrat39/rust-tools.nvim"
 
     ---
+    --- OpenGL
+    ---
+    use 'tikhomirov/vim-glsl'
+
+    ---
     --- Assembly
     ---
     use "Shirk/vim-gas"
