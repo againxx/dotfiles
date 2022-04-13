@@ -273,7 +273,7 @@ return require("packer").startup {
     ---
     --- OpenGL
     ---
-    use 'tikhomirov/vim-glsl'
+    use "tikhomirov/vim-glsl" -- syntax highlighting for glsl
 
     ---
     --- Assembly
@@ -301,10 +301,10 @@ return require("packer").startup {
     ---
     --- Latex
     ---
-    use { "lervag/vimtex", ft = {"tex", "markdown"} }
+    use { "lervag/vimtex", ft = { "tex", "markdown" } }
 
     ---
-    --- Wiki
+    --- Note taking
     ---
     use { "againxx/vimwiki-1", branch = "dev" }
     use "tools-life/taskwiki"
@@ -329,13 +329,13 @@ return require("packer").startup {
               config = {
                 workspaces = {
                   wiki = "~/Documents/Vimwiki/neorg",
-                }
-              }
+                },
+              },
             },
             ["core.norg.concealer"] = {
               config = {
                 icon_preset = "varied",
-              }
+              },
             },
             ["core.norg.completion"] = {
               config = {
@@ -361,6 +361,7 @@ return require("packer").startup {
         { "nvim-neorg/neorg-telescope" },
       },
     }
+    use "jbyuki/nabla.nvim" -- visualize latex as ascii symbols
 
     ---
     --- Task system
@@ -403,16 +404,16 @@ return require("packer").startup {
     ---
     --- QuickFix
     ---
-    use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+    use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
       "stevearc/qf_helper.nvim",
       config = function()
-        require("qf_helper").setup({
+        require("qf_helper").setup {
           quickfix = {
             -- use mappings from nvim-bqf
             default_bindings = false,
-          }
-        })
+          },
+        }
       end,
     }
     use {
