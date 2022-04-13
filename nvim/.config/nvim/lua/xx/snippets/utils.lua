@@ -62,8 +62,15 @@ function M.math_s(...)
   return s(unpack(params))
 end
 
-function M.VISUAL()
-  return f(function(_, snip) return snip.env.SELECT_DEDENT end, {})
+function M.VISUAL(default)
+  default = default or ""
+  return f(function(_, snip)
+    if #snip.env.SELECT_DEDENT ~= 0 then
+      return snip.env.SELECT_DEDENT
+    else
+      return default
+    end
+  end, {})
 end
 
 return M

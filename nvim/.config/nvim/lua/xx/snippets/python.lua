@@ -5,6 +5,7 @@ local c = ls.choice_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 local conds = require "luasnip.extras.expand_conditions"
+local VISUAL = require("xx.snippets.utils").VISUAL
 
 local show_line_begin = require("xx.snippets.utils").show_line_begin
 
@@ -62,13 +63,7 @@ local snippets = {
       {
         f(get_quoting_style),
         f(get_quoting_style),
-        f(function(_, snip)
-          if #snip.env.SELECT_DEDENT ~= 0 then
-            return snip.env.SELECT_DEDENT
-          else
-            return "main()"
-          end
-        end),
+        VISUAL("main()"),
       }
     )
   ),
