@@ -1,5 +1,5 @@
 local black = {
-  formatCommand = "black --quiet -", formatStdin = true,
+  formatCommand = "black --quiet --stdin-filename ${INPUT} -", formatStdin = true,
 }
 
 local pylint = {
