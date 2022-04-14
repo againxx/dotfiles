@@ -12,7 +12,8 @@ else
   keymap.set('n', 'l', "defx#do_action('open')", opts)
   keymap.set('n', '<cr>', "defx#do_action('open')", opts)
 end
-keymap.set('n', 'yy', "defx#do_action('copy')", opts)
+keymap.set('n', 'yy', "defx#do_action('multi', ['copy', 'redraw'])", opts)
+keymap.set('n', 'yc', "defx#do_action('multi', ['clear_clipboard', 'redraw'])", opts)
 keymap.set('n', 'dd', "defx#do_action('move')", opts)
 keymap.set('n', 'p', "defx#do_action('paste')", opts)
 keymap.set('n', '<c-v>', "defx#do_action('open', 'vsplit)", opts)
