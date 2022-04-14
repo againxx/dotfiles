@@ -1,9 +1,6 @@
-local ls = require "luasnip"
-local s = ls.snippet
-local f = ls.function_node
-local fmt = require("luasnip.extras.fmt").fmt
+---@diagnostic disable:undefined-global
 
-ls.filetype_extend("vimwiki", { "tex" })
+require("luasnip").filetype_extend("vimwiki", { "tex" })
 
 local snippets = {
   s(

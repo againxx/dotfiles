@@ -1,16 +1,4 @@
-local ls = require "luasnip"
-local s = ls.snippet
-local t = ls.text_node
-local i = ls.insert_node
-local f = ls.function_node
-local c = ls.choice_node
-local r = ls.restore_node
-local fmt = require("luasnip.extras.fmt").fmt
-local fmta = require("luasnip.extras.fmt").fmta
-local rep = require("luasnip.extras").rep
-local l = require("luasnip.extras").lambda
-local dl = require("luasnip.extras").dynamic_lambda
-local conds = require "luasnip.extras.expand_conditions"
+---@diagnostic disable:undefined-global
 local show_line_begin = require("xx.snippets.utils").show_line_begin
 local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
 local get_right_curly_brace_style = require("xx.snippets.utils").get_right_curly_brace_style

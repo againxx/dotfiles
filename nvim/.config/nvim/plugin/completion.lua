@@ -29,21 +29,31 @@ cmp.setup {
       else
         fallback()
       end
-    end, { "i", "s", "c" }),
+    end, {
+      "i",
+      "s",
+      "c",
+    }),
     ["<C-j>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
         fallback()
       end
-    end, { "i", "c" }),
+    end, {
+      "i",
+      "c",
+    }),
     ["<C-k>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
         fallback()
       end
-    end, { "i", "c" }),
+    end, {
+      "i",
+      "c",
+    }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     -- Use <c-space> to trigger completion.
@@ -89,9 +99,11 @@ cmp.setup {
       },
     },
   },
-  documentation = {
-    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    winhighlight = "NormalFloat:CmpDocNormal",
+  window = {
+    documentation = {
+      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "NormalFloat:CmpDocNormal",
+    },
   },
   experimental = {
     native_menu = false,
@@ -105,11 +117,11 @@ cmp.setup.cmdline("/", {
     ["<c-n>"] = cmp.mapping(function(fallback)
       cmp.close()
       fallback()
-    end, {"i", "c"}),
+    end, { "i", "c" }),
     ["<c-p>"] = cmp.mapping(function(fallback)
       cmp.close()
       fallback()
-    end, {"i", "c"}),
+    end, { "i", "c" }),
   },
   sources = {
     { name = "buffer" },
@@ -124,11 +136,11 @@ cmp.setup.cmdline(":", {
     ["<c-n>"] = cmp.mapping(function(fallback)
       cmp.close()
       fallback()
-    end, {"i", "c"}),
+    end, { "i", "c" }),
     ["<c-p>"] = cmp.mapping(function(fallback)
       cmp.close()
       fallback()
-    end, {"i", "c"}),
+    end, { "i", "c" }),
   },
   sources = cmp.config.sources({
     { name = "path" },

@@ -1,7 +1,7 @@
-vim.g.ulti_expand_res = 0
-vim.g.luasnips_python_quoting_style = "double" -- double/single
-vim.g.ultisnips_python_style = "sphinx"
-vim.g.ultisnips_cpp_style = "google"
+-- vim.g.ulti_expand_res = 0
+vim.g.luasnip_python_quoting_style = "double" -- double/single
+vim.g.luasnip_python_style = "sphinx"
+vim.g.luasnip_cpp_style = "google"
 
 -- Use <C-l> to expand ultisnips or save visual selected content
 -- vim.g.UltiSnipsExpandTrigger = '<C-l>'
