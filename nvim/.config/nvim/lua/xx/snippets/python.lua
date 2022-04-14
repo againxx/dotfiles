@@ -1,14 +1,9 @@
 ---@diagnostic disable:undefined-global
 local VISUAL = require("xx.snippets.utils").VISUAL
-local show_line_begin = require("xx.snippets.utils").show_line_begin
+local line_begin = require("xx.snippets.utils").line_begin
 
 local import_as = function(trigger, import_str, as_str)
-  return s(trigger, t(string.format("import %s as %s", import_str, as_str)), {
-    condition = conds.line_begin,
-    show_condition = function(line_to_cursor)
-      return show_line_begin(line_to_cursor, trigger)
-    end,
-  })
+  return s(trigger, t(string.format("import %s as %s", import_str, as_str)), line_begin(trigger))
 end
 
 local get_quoting_style = function()
@@ -24,28 +19,17 @@ local snippets = {
   import_as("imppd", "pandas", "pd"),
   import_as("impplt", "matplotlib.pyplot", "plt"),
   import_as("impo3d", "open3d", "o3d"),
+  import_as("impo3c", "open3d.core", "o3c"),
   import_as("imptf", "tensorflow", "tf"),
-  s("imptest", {
-    t "import pytest",
-    {
-      condition = conds.line_begin,
-      show_condition = function(line_to_cursor)
-        return show_line_begin(line_to_cursor, "imptest")
-      end,
-    },
-  }),
+  s("imptest", t "import pytest", line_begin("imptest")),
+  s("fromty", t "from typing import ", line_begin("fromty")),
   s("impto", {
     t "import torch",
     c(1, {
       t "",
       t { "", "from torch import nn" },
     }),
-  }, {
-    condition = conds.line_begin,
-    show_condition = function(line_to_cursor)
-      return show_line_begin(line_to_cursor, "impto")
-    end,
-  }),
+  }, line_begin("impto")),
   s(
     "ifmain",
     fmt(
@@ -96,14 +80,14 @@ local snippets = {
 }
 
 local auto_snippets = {
-  s("npf3", t("np.float32")),
-  s("npf6", t("np.float64")),
-  s("npi3", t("np.int32")),
-  s("npi6", t("np.int64")),
-  s("trf3", t("torch.float32")),
-  s("trf6", t("torch.float64")),
-  s("tri3", t("torch.int32")),
-  s("tri6", t("torch.int64")),
+  s("npf3", t "np.float32"),
+  s("npf6", t "np.float64"),
+  s("npi3", t "np.int32"),
+  s("npi6", t "np.int64"),
+  s("trf3", t "torch.float32"),
+  s("trf6", t "torch.float64"),
+  s("tri3", t "torch.int32"),
+  s("tri6", t "torch.int64"),
 }
 
 return snippets, auto_snippets

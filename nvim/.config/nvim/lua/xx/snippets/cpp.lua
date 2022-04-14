@@ -5,15 +5,10 @@ local VISUAL = require("xx.snippets.utils").VISUAL
 
 require("luasnip").filetype_extend("cpp", { "c" })
 
-local show_line_begin = require("xx.snippets.utils").show_line_begin
+local line_begin = require("xx.snippets.utils").line_begin
 
 local include_std_header = function(trigger, header_file)
-  return s(trigger, t("#include <" .. header_file .. ">"), {
-    condition = conds.line_begin,
-    show_condition = function(line_to_cursor)
-      return show_line_begin(line_to_cursor, trigger)
-    end,
-  })
+  return s(trigger, t("#include <" .. header_file .. ">"), line_begin(trigger))
 end
 
 local add_single_parameter_template = function(trigger, template, default_value)

@@ -1,6 +1,7 @@
 local ls = require "luasnip"
 local s = ls.snippet
 local f = ls.function_node
+local conds = require("luasnip.extras.expand_conditions")
 
 M = {}
 
@@ -47,6 +48,7 @@ function M.math_s(...)
       end
       return false
     end
+    return false
   end
   local params = {...}
   -- normally we only need to customize condition
@@ -71,6 +73,15 @@ function M.VISUAL(default)
       return default
     end
   end, {})
+end
+
+function M.line_begin(trigger)
+  return {
+    condition = conds.line_begin,
+    show_condition = function(line_to_cursor)
+      return require("xx.snippets.utils").show_line_begin(line_to_cursor, trigger)
+    end,
+  }
 end
 
 return M
