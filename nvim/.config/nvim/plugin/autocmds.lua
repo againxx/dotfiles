@@ -48,7 +48,12 @@ local lsp_special = api.nvim_create_augroup("lsp_special", {})
 api.nvim_create_autocmd("CursorHold", {
   group = lsp_special,
   callback = function()
-    if not (vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview)) then
+    if
+      not (
+        vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview)
+        or require("lspsaga.hover").has_saga_hover()
+      )
+    then
       vim.diagnostic.open_float { scope = "cursor" }
     end
   end,
