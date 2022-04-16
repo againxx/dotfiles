@@ -3,6 +3,17 @@ local show_line_begin = require("xx.snippets.utils").show_line_begin
 local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
 local get_right_curly_brace_style = require("xx.snippets.utils").get_right_curly_brace_style
 
+local include_std_header = function(trigger, header_file)
+  return s(trigger, t("#include <" .. header_file .. ">"), {
+    condition = function(line_to_cursor, matched_trigger)
+      return conds.line_begin(line_to_cursor, matched_trigger) and vim.bo.filetype == "c"
+    end,
+    show_condition = function(line_to_cursor)
+      return show_line_begin(line_to_cursor, "incio") and vim.bo.filetype == "c"
+    end,
+  })
+end
+
 local branch_block_with_choice = function(branch_type)
   return c(1, {
     fmta(
@@ -98,13 +109,26 @@ local snippets = {
       }
     )
   ),
-  s("incio", t "#include <stdio.h>", {
-    condition = function(line_to_cursor, matched_trigger)
-      return conds.line_begin(line_to_cursor, matched_trigger) and vim.bo.filetype == "c"
-    end,
-    show_condition = function(line_to_cursor)
-      return show_line_begin(line_to_cursor, "incio") and vim.bo.filetype == "c"
-    end,
+  include_std_header("incio", "stdio.h"),
+  include_std_header("inclib", "stdlib.h"),
+  include_std_header("incuni", "unistd.h"),
+  include_std_header("incstr", "string.h"),
+  include_std_header("inceno", "errno.h"),
+  s({ trig = "^%s*inc(%w+)", regTrig = true, hidden = true }, {
+    t "#include ",
+    c(1, {
+      sn(nil, {
+        t "<",
+        r(1, "header_file", {
+          f(function(_, parent)
+            return parent.snippet.captures[1]
+          end),
+          i(1),
+        }),
+        t ">",
+      }),
+      sn(nil, { t '"', r(1, "header_file"), t '"' }),
+    }),
   }),
   s(
     "main",

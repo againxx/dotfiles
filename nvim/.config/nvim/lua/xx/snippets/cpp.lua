@@ -37,22 +37,6 @@ local snippets = {
   include_std_header("inctest", "gtest/gtest.h"),
   include_std_header("incmock", "gmock/gmock.h"),
   include_std_header("incben", "benchmark/benchmark.h"),
-  s({ trig = "^%s*inc(%w+)", regTrig = true, hidden = true }, {
-    t "#include ",
-    c(1, {
-      sn(nil, {
-        t "<",
-        r(1, "header_file", {
-          f(function(_, parent)
-            return parent.snippet.captures[1]
-          end),
-          i(1),
-        }),
-        t ">",
-      }),
-      sn(nil, { t '"', r(1, "header_file"), t '"' }),
-    }),
-  }),
   s("cout", {
     t "std::cout << ",
     VISUAL(),
