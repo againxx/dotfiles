@@ -20,6 +20,8 @@ vim.g.node_host_prog = '~/.config/yarn/global/node_modules/neovim/bin/cli.js'
 vim.g.loaded_python_provider = 0 -- disable python 2 support
 vim.g.loaded_perl_provider = 0 -- disable perl support
 vim.g.loaded_ruby_provider = 0 -- disable ruby support
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0 -- only use filetype.lua
 
 require('xx.treesitter')
 require('xx.globals')
