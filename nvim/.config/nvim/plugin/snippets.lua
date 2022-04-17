@@ -25,7 +25,7 @@ local types = require("luasnip.util.types")
 
 luasnip.config.set_config {
   history = true,
-  updateevents = "TextChanged,TextChangedI",
+  update_events = "TextChanged,TextChangedI",
   delete_check_events = "TextChanged",
   store_selection_keys = "<Tab>",
   enable_autosnippets = true,
