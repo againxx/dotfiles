@@ -42,3 +42,7 @@ PPO
 TRPO
 gdb
 ptrace
+DSO
+PLT
+struct
+inlined

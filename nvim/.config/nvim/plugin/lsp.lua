@@ -144,6 +144,7 @@ local servers = {
   bashls = true,
   hls = true,
   cmake = true,
+  dockerls = true,
 }
 
 local setup_server = function(server_name, config)

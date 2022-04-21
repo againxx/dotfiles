@@ -47,7 +47,7 @@ opt.showtabline = 2
 opt.showbreak = '╰─▸ '
 opt.diffopt:append('vertical')
 opt.helplang = 'en'
-opt.spelllang = { 'en_us' }
+opt.spelllang = { 'en_us', 'cjk' } -- to suppress warning for Chinese characters
 opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
 -- Workaround for ghost highlight for blankline
 -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
