@@ -42,7 +42,10 @@ local snippets = {
     VISUAL(),
     i(1),
     t " << ",
-    i(2, [['\n';]]),
+    c(2, {
+      t [['\n';]],
+      t "std::endl;",
+    }),
   }),
   s("cerr", {
     t "std::cerr << ",
