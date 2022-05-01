@@ -19,6 +19,7 @@ return require("packer").startup {
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-omni"
     use "octaltree/cmp-look"
+    use "rcarriga/cmp-dap"
     use "againxx/cmp-katex"
     use "andersevenrud/cmp-tmux"
     use "hrsh7th/nvim-cmp"

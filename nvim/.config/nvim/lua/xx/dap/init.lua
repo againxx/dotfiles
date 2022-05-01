@@ -12,7 +12,7 @@ vim.fn.sign_define("DapStopped", { text = "", texthl = "VimspectorPC", linehl
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "VimspectorBPCond", linehl = "", numhl = "" })
 dap.defaults.fallback.terminal_win_cmd = "belowright 10new"
 
--- require("nvim-dap-virtual-text").setup()
+require("nvim-dap-virtual-text").setup()
 require("xx.dap." .. vim.bo.filetype)
 
 local keymap_restore = {}

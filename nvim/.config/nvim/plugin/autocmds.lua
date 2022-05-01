@@ -129,13 +129,13 @@ api.nvim_create_autocmd("FileType", {
     keymap.set("t", "<M-i>", "<cmd>RnvimrResize<cr>", { buffer = api.nvim_get_current_buf(), silent = true })
   end,
 })
-api.nvim_create_autocmd("FileType", {
-  group = other_filetypes,
-  pattern = "dap-repl",
-  callback = function()
-    require("dap.ext.autocompl").attach()
-  end,
-})
+-- api.nvim_create_autocmd("FileType", {
+--   group = other_filetypes,
+--   pattern = "dap-repl",
+--   callback = function()
+--     require("dap.ext.autocompl").attach()
+--   end,
+-- })
 
 -- ros filetype detect
 local ros_filetype_detect = api.nvim_create_augroup("ros_filetype_detect", {})

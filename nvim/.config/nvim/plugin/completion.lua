@@ -13,6 +13,10 @@ local cmp = require "cmp"
 local luasnip = require "luasnip"
 
 cmp.setup {
+  enabled = function ()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+      or require("cmp_dap").is_dap_buffer()
+  end,
   snippet = {
     expand = function(args)
       -- vim.fn['UltiSnips#Anon'](args.body)
@@ -94,6 +98,7 @@ cmp.setup {
         tmux = "[tmux]",
         vimwiki_tags = "[tag]",
         look = "[spell]",
+        zi = "[spell]",
         neorg = "[norg]",
         katex = "[katex]",
       },

@@ -46,3 +46,10 @@ DSO
 PLT
 struct
 inlined
+Cpp
+Haskell
+nullptr
+rvalue
+lvalue
+enum
+Atomics
