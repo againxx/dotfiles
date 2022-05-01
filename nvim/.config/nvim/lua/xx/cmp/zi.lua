@@ -11,22 +11,20 @@ function source:new()
     data_path:mkdir()
   end
   local file_name = "ecdict.csv"
-  local dict_path = data_path:joinpath(file_name)
-  if not dict_path:exists() then
+  obj.dict_path = data_path:joinpath(file_name)
+  if not obj.dict_path:exists() then
     local url = "https://raw.githubusercontent.com/skywind3000/ECDICT/master/ecdict.csv"
     curl.get(url, {
-      output = dict_path:absolute(),
+      output = obj.dict_path:absolute(),
       callback = function(res)
         if res.status ~= 200 then
           vim.notify(string.format("Download ecdict failed: error code %d!", res.status), vim.log.levels.ERROR)
         else
           vim.notify("Successfully download ecdict!", vim.log.levels.INFO)
         end
-        uv.new_thread(source.read_ecdict, obj, dict_path)
       end,
     })
   end
-  uv.new_thread(function() source.read_ecdict(obj, dict_path) end)
   return obj
 end
 
@@ -52,25 +50,34 @@ local convert_case = function(query, candidates)
   return candidates
 end
 
-function source:read_ecdict(path)
-  path:read(function(data)
-    self.ecdict = {}
-    local lines = vim.split(data, "\r*\n")
-    table.remove(lines, 1) -- remove the header
-    for _, line in ipairs(lines) do
-      local items = vim.split(line, ",")
-      self.ecdict[items[1]:lower()] = {
-        phonetic = items[2] or '',
-        definition = items[3] or '',
-        translation = items[4] or '',
-        pos = items[5] or '',
-      }
-    end
-    P(self.ecdict.success)
-  end)
+local read_ecdict = function(dict_path)
+  local path = require("plenary.path"):new(dict_path)
+  local data = path:read()
+  local ecdict = {}
+  local lines = vim.split(data, "\r\n", {plain = true})
+  table.remove(lines, 1) -- remove the header
+  for _, line in ipairs(lines) do
+    local items = vim.split(line, ",", {plain = true})
+    ecdict[items[1]:lower()] = {
+      phonetic = items[2] or '',
+      definition = items[3] or '',
+      translation = items[4] or '',
+      pos = items[5] or '',
+    }
+  end
+  return vim.mpack.encode(ecdict)
 end
 
 function source:complete(request, callback)
+  if not self.ecdict then
+    uv.new_work(read_ecdict, function(data)
+      self.ecdict = vim.mpack.decode(data)
+    end):queue(self.dict_path:absolute())
+    self.ecdict = {}
+  end
+
+  P(self.ecdict.success)
+
   local query = string.sub(request.context.cursor_before_line, request.offset)
   local should_convert_case = request.option.convert_case
   local args
