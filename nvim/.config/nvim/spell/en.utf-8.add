@@ -53,3 +53,7 @@ rvalue
 lvalue
 enum
 Atomics
+python3
+Extern
+const
+namespace
