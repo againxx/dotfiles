@@ -145,6 +145,7 @@ local servers = {
   hls = true,
   cmake = true,
   dockerls = true,
+  ltex = true,
 }
 
 local setup_server = function(server_name, config)
