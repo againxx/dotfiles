@@ -69,14 +69,14 @@ local read_ecdict = function(dict_path)
 end
 
 function source:complete(request, callback)
-  if not self.ecdict then
-    uv.new_work(read_ecdict, function(data)
-      self.ecdict = vim.mpack.decode(data)
-    end):queue(self.dict_path:absolute())
-    self.ecdict = {}
-  end
-
-  P(self.ecdict.success)
+  -- if not self.ecdict then
+  --   uv.new_work(read_ecdict, function(data)
+  --     self.ecdict = vim.mpack.decode(data)
+  --   end):queue(self.dict_path:absolute())
+  --   self.ecdict = {}
+  -- end
+  --
+  -- P(self.ecdict.success)
 
   local query = string.sub(request.context.cursor_before_line, request.offset)
   local should_convert_case = request.option.convert_case

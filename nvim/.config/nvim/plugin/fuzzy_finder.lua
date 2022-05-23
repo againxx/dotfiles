@@ -7,6 +7,7 @@ wk.register({
   f = {
     name = '+find/file',
     f = { "<cmd>lua require('xx.telescope').find_files()<cr>", 'Files in current folder' },
+    F = { "<cmd>lua require('xx.telescope').find_files({hidden=true, no_ignore=true})<cr>", 'Files in current folder (ignore & hidden)' },
     g = { "<cmd>lua require('xx.telescope').git_files()<cr>", 'Git files' },
     b = { "<cmd>lua require('xx.telescope').buffers()<cr>", 'Buffers' },
     h = { "<cmd>lua require('xx.telescope').help_tags()<cr>", 'Helps' },

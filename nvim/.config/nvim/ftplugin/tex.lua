@@ -14,6 +14,14 @@ require('cmp').setup.buffer {
   },
   sources = {
     { name = 'omni' },
+    {
+      name = "look",
+      keyword_length = 2,
+      option = {
+        convert_case = true,
+        loud = true,
+      },
+    },
     { name = "luasnip" },
     { name = 'buffer' },
   },
