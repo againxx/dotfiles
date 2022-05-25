@@ -9,10 +9,12 @@ alias lg="lazygit"
 alias setp='export http_proxy="http://127.0.0.1:2340"; export https_proxy="http://127.0.0.1:2340"'
 alias usetp='unset http_proxy; unset https_proxy'
 alias aptli='apt list --installed --verbose 2> /dev/null | tail --lines +2 | sed -n "/\[.*\]/{s/\/.*//; N; s/\n/^/p}" | column -t -s^ | fzf --multi'
-alias disable-peda='sed -i "s/^source.*peda.py$/# &/" ~/.gdbinit'
-alias enable-peda='sed -i "s/^# \(source.*peda.py\)$/\1/" ~/.gdbinit'
-alias disable-gef='sed -i "s/^source.*gef.py$/# &/" ~/.gdbinit'
-alias enable-gef='sed -i "s/^# \(source.*gef.py\)$/\1/" ~/.gdbinit'
+alias disable-peda='sed -i "s/^source.*peda\.py$/# &/" ~/.gdbinit'
+alias enable-peda='sed -i "s/^# \(source.*peda\.py\)$/\1/" ~/.gdbinit'
+alias disable-gef='sed -i "s/^source.*gef\.py$/# &/" ~/.gdbinit'
+alias enable-gef='sed -i "s/^# \(source.*gef\.py\)$/\1/" ~/.gdbinit'
+alias disable-pwn='sed -i "s/^source.*pwndbg.*gdbinit\.py$/# &/" ~/.gdbinit'
+alias enable-pwn='sed -i "s/^# \(source.*pwndbg.gdbinit\.py\)$/\1/" ~/.gdbinit'
 alias you-get="proxychains4 -q you-get"
 alias jb="j -b"
 alias jbf="j -b -I"
