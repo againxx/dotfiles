@@ -1,6 +1,7 @@
 local Job = require "plenary.job"
 local Path = require "plenary.path"
 local curl = require "plenary.curl"
+local types = require('cmp.types')
 local uv = vim.loop
 local source = {}
 
@@ -25,13 +26,41 @@ function source:new()
       end,
     })
   end
+  obj:read_ecdict()
   return obj
 end
 
-local construct_completion_items = function(candidates)
+local construct_completion_items = function(candidates, ecdict)
   local items = {}
   for _, w in ipairs(candidates) do
-    table.insert(items, { label = w })
+    local doc_str = ""
+    if ecdict[w] then
+      local dict_item = ecdict[w]
+      doc_str = string.format("# %s", w)
+      if dict_item.phonetic:len() > 0 then
+        doc_str = doc_str .. string.format("\n/%s/\n", dict_item.phonetic)
+      end
+      if dict_item.definition:len() > 0 then
+        local defs = vim.split(dict_item.definition, '\\n', {plain = true})
+        doc_str = doc_str .. "\n## English\n"
+        for i, def in ipairs(defs) do
+          doc_str = doc_str .. string.format("%d. %s\n", i, def)
+        end
+      end
+      if dict_item.translation:len() > 0 then
+        local trans = vim.split(dict_item.translation, '\\n', {plain = true})
+        doc_str = doc_str .. string.format("\n## 中文\n", dict_item.translation)
+        for i, tran in ipairs(trans) do
+          doc_str = doc_str .. string.format("%d. %s\n", i, tran)
+        end
+      end
+
+    end
+    table.insert(items, { label = w, documentation = {
+        kind = types.lsp.MarkupKind.Markdown,
+        value = doc_str,
+      }
+    })
   end
   return { items = items, isIncomplete = true }
 end
@@ -50,34 +79,56 @@ local convert_case = function(query, candidates)
   return candidates
 end
 
-local read_ecdict = function(dict_path)
-  local path = require("plenary.path"):new(dict_path)
-  local data = path:read()
-  local ecdict = {}
-  local lines = vim.split(data, "\r\n", {plain = true})
-  table.remove(lines, 1) -- remove the header
-  for _, line in ipairs(lines) do
-    local items = vim.split(line, ",", {plain = true})
-    ecdict[items[1]:lower()] = {
-      phonetic = items[2] or '',
-      definition = items[3] or '',
-      translation = items[4] or '',
-      pos = items[5] or '',
-    }
-  end
-  return vim.mpack.encode(ecdict)
+function source:read_ecdict()
+  self.ecdict = {}
+  self.remained_data = ""
+  self.count = 0
+  local chunk_size = 40960
+  uv.fs_open(self.dict_path:absolute(), "r", tonumber('644', 8), function(err_open, fd)
+    assert(not err_open, err_open)
+
+    local read_cb
+    read_cb = function(err_read, data)
+      assert(not err_read, err_read)
+      data = self.remained_data .. data
+      if #data > 0 then
+        local lines = vim.split(data, "\r\n", {plain = true})
+        if #lines > 1 then
+          self.remained_data = table.remove(lines)
+        else
+          self.remained_data = ""
+        end
+        for _, line in ipairs(lines) do
+          local items = vim.split(line, ",", {plain = true})
+          if #items > 13 then
+            local concated_translation = items[4]
+            for i = 5, #items-9 do
+              concated_translation = concated_translation .. items[i]
+            end
+            items[4] = concated_translation
+            items[5] = items[#items - 8]
+          end
+          items[4] = items[4]:gsub([["(.*)"]], "%1")
+          self.ecdict[items[1]:lower()] = {
+            phonetic = items[2] or '',
+            definition = items[3] or '',
+            translation = items[4] or '',
+            pos = items[5] or '',
+          }
+        end
+        uv.fs_read(fd, chunk_size, nil, read_cb)
+      else
+        uv.fs_close(fd, function(err_close)
+          assert(not err_close, err_close)
+        end)
+      end
+    end
+
+    uv.fs_read(fd, chunk_size, nil, read_cb)
+  end)
 end
 
 function source:complete(request, callback)
-  -- if not self.ecdict then
-  --   uv.new_work(read_ecdict, function(data)
-  --     self.ecdict = vim.mpack.decode(data)
-  --   end):queue(self.dict_path:absolute())
-  --   self.ecdict = {}
-  -- end
-  --
-  -- P(self.ecdict.success)
-
   local query = string.sub(request.context.cursor_before_line, request.offset)
   local should_convert_case = request.option.convert_case
   local args
@@ -100,7 +151,7 @@ function source:complete(request, callback)
         if should_convert_case then
           candidates = convert_case(query, candidates)
         end
-        callback(construct_completion_items(candidates))
+        callback(construct_completion_items(candidates, self.ecdict))
       end,
     })
     :start()
