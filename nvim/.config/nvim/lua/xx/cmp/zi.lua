@@ -101,14 +101,30 @@ function source:read_ecdict()
         for _, line in ipairs(lines) do
           local items = vim.split(line, ",", {plain = true})
           if #items > 13 then
-            local concated_translation = items[4]
-            for i = 5, #items-9 do
-              concated_translation = concated_translation .. items[i]
+            local quoted_strings = {}
+            local new_items = {}
+            for quoted in line:gmatch([["(.-)",]]) do
+              table.insert(quoted_strings, quoted)
             end
-            items[4] = concated_translation
-            items[5] = items[#items - 8]
+
+            local skip_mode = false
+            local quoted_index = 1
+            for _, item in ipairs(items) do
+              if skip_mode and item:match([["$]]) then
+                skip_mode = false
+              elseif item:match([[^"]]) then
+                table.insert(new_items, quoted_strings[quoted_index])
+                quoted_index = quoted_index + 1
+                skip_mode = true
+              else
+                table.insert(new_items, item)
+              end
+              if #new_items >= 5 then
+                items = new_items
+                break
+              end
+            end
           end
-          items[4] = items[4]:gsub([["(.*)"]], "%1")
           self.ecdict[items[1]:lower()] = {
             phonetic = items[2] or '',
             definition = items[3] or '',
