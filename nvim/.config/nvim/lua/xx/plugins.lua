@@ -8,10 +8,9 @@ return require("packer").startup {
     ---
     --- LSP & Autocompletion
     ---
-    -- use { 'neoclide/coc.nvim, branch = 'release' }
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
-    use "nvim-lua/lsp-status.nvim"
+    use "j-hui/fidget.nvim"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -23,7 +22,6 @@ return require("packer").startup {
     use "againxx/cmp-katex"
     use "andersevenrud/cmp-tmux"
     use "hrsh7th/nvim-cmp"
-    -- use 'quangnguyen30192/cmp-nvim-ultisnips'
     use "saadparwaiz1/cmp_luasnip"
     use "onsails/lspkind-nvim"
     use "ray-x/lsp_signature.nvim"
@@ -36,7 +34,6 @@ return require("packer").startup {
     ---
     --- Debugger
     ---
-    -- use 'puremourning/vimspector'
     use "mfussenegger/nvim-dap"
     use "mfussenegger/nvim-dap-python"
     use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap" }
@@ -61,13 +58,13 @@ return require("packer").startup {
     ---
     --- Filesystem
     ---
-    -- use {
-    --     'kyazdani42/nvim-tree.lua',
-    --     requires = {
-    --       'kyazdani42/nvim-web-devicons', -- for file icon
-    --     },
-    --     config = function() require'nvim-tree'.setup {} end
-    -- }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- for file icon
+        },
+        config = function() require'nvim-tree'.setup {} end
+    }
     use {
       "Shougo/defx.nvim",
       requires = { "kristijanhusak/defx-icons" },
@@ -169,11 +166,9 @@ return require("packer").startup {
       "nvim-telescope/telescope.nvim",
       requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     }
-    -- use 'fannheyward/telescope-coc.nvim'
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use "nvim-telescope/telescope-fzf-writer.nvim"
     use "GustavoKatel/telescope-asynctasks.nvim"
-    -- use 'fhill2/telescope-ultisnips.nvim'
     use {
       "benfowler/telescope-luasnip.nvim",
       module = "telescope._extensions.luasnip",
@@ -249,7 +244,6 @@ return require("packer").startup {
     ---
     --- Snippets
     ---
-    -- use 'SirVer/ultisnips'
     use "L3MON4D3/LuaSnip"
     use "againxx/vim-snippets"
 

@@ -10,9 +10,6 @@ local has_lsp, lsp_installer_servers = pcall(require, "nvim-lsp-installer.server
 if not has_lsp then
   return
 end
-local lsp_status = require "lsp-status"
-lsp_status.config {}
-lsp_status.register_progress()
 
 local saga = require "lspsaga"
 saga.init_lsp_saga {
@@ -81,7 +78,6 @@ end
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach_default = function(client, bufnr)
-  lsp_status.on_attach(client)
   require("illuminate").on_attach(client)
   require("lsp_signature").on_attach {
     hint_prefix = "🐯 ",
@@ -130,7 +126,6 @@ local on_attach_default = function(client, bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -228,6 +223,18 @@ end
 vim.g.symbols_outline = {
   width = 35,
   preview_bg_highlight = "NormalFloat",
+}
+
+require"fidget".setup{
+  text = {
+    spinner = "moon"
+  },
+  window = {
+    blend = 0
+  },
+  fmt = {
+    stack_upwards = false,
+  }
 }
 
 -- https://github.com/tami5/lspsaga.nvim/issues/89

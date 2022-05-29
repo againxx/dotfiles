@@ -1,5 +1,4 @@
 eco ayu
 e scr.utf8.curvy=true
 e stack.size=256
-e scr.prompt.vi=true
 e dbg.funcarg=true

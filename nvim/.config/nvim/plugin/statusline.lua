@@ -56,7 +56,6 @@ local ayu_mirage = {
 
 local symbols = {
   read_only = "",
-  lsp_status = "  ",
   git_branch = " ",
   git_merge = " ",
   normal_diff = " ",
@@ -71,8 +70,6 @@ local symbols = {
   ros_package = vim.env.KITTY_WINDOW_ID and " " or "ﮧ ",
   catkin_package = vim.env.KITTY_WINDOW_ID and " " or "ﲎ ",
 }
-
-local lsp_progress = require('lsp-status').status_progress
 
 local hide_when_narrow = function(width)
   return function()
@@ -105,18 +102,9 @@ local read_only = function()
   end
 end
 
-local lsp_status = function()
-  local status = lsp_progress()
-  if status and #status > 0 then
-    return symbols.lsp_status .. status
-  else
-    return ""
-  end
-end
-
 local treesitter_status = function()
   local status = vim.fn["nvim_treesitter#statusline"] {
-    indicator_size = 100,
+    indicator_size = 200,
     type_patterns = { "class", "function", "method" },
   }
   if status and status ~= vim.NIL and #status > 0 then
@@ -194,7 +182,6 @@ require("lualine").setup {
         path = 1,
       },
       read_only,
-      lsp_status,
       {
         treesitter_status,
         condition = hide_when_narrow(120),
