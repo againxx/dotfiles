@@ -40,14 +40,36 @@ local close_all_but_current_or_pinned = function()
   vim.cmd('BufferCloseAllButCurrent')
 end
 
+local goto_buf_in_other_win = function(steps)
+  local state = require('bufferline.state')
+  local index_of = require('bufferline.utils').index_of
+  state.get_updated_buffers()
+  vim.cmd("wincmd p")
+  local previous_win = vim.api.nvim_get_current_win()
+  vim.cmd("wincmd p")
+  local current = vim.api.nvim_win_get_buf(previous_win)
+  local idx = index_of(state.buffers, current)
+
+  if idx == nil then
+    print('Couldn\'t find buffer ' .. current .. ' in the list: ' .. vim.inspect(state.buffers))
+    return
+  else
+    idx = (idx + steps - 1) % #state.buffers + 1
+  end
+
+  vim.api.nvim_win_set_buf(previous_win, state.buffers[idx])
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
 end
 
 wk.register({
-  ['[b'] = { '<cmd>BufferGoto 1<cr>', 'Go to first buffer' },
-  [']b'] = { '<cmd>BufferLast<cr>', 'Go to last buffer' },
+  ['[b'] = { function() goto_buf_in_other_win(-1) end, 'Go to previous buf in other win' },
+  [']b'] = { function() goto_buf_in_other_win(1) end, 'Go to next buf in other win' },
+  ['[B'] = { '<cmd>BufferGoto 1<cr>', 'Go to first buffer' },
+  [']B'] = { '<cmd>BufferGoto -1<cr>', 'Go to last buffer' },
   ['[t'] = { '<cmd>tabprevious<cr>', 'Switch to previous tab' },
   [']t'] = { '<cmd>tabnext<cr>', 'Switch to next tab' },
   ['<leader>qq'] = { close_qf_first, 'Only close buffer' },
