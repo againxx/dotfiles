@@ -15,6 +15,7 @@ local colors = {
   inactivegray = "#707A8C",
   transparent = "NONE",
 }
+
 local ayu_mirage = {
   normal = {
     a = { bg = colors.green, fg = colors.black, gui = "bold" },
@@ -69,6 +70,13 @@ local symbols = {
   info = vim.env.KITTY_WINDOW_ID and " " or "ﳃ ",
   ros_package = vim.env.KITTY_WINDOW_ID and " " or "ﮧ ",
   catkin_package = vim.env.KITTY_WINDOW_ID and " " or "ﲎ ",
+}
+
+local gps = require "nvim-gps"
+gps.setup {
+  icons = {
+    ["function-name"] = " ",
+  },
 }
 
 local hide_when_narrow = function(width)
@@ -172,7 +180,7 @@ require("lualine").setup {
       {
         git_diff,
         padding = { left = 0 },
-        condition = hide_when_narrow(140),
+        cond = hide_when_narrow(140),
       },
     },
     lualine_c = {
@@ -182,15 +190,19 @@ require("lualine").setup {
         path = 1,
       },
       read_only,
+      -- {
+      --   treesitter_status,
+      --   cond = hide_when_narrow(120),
+      -- },
       {
-        treesitter_status,
-        condition = hide_when_narrow(120),
+        gps.get_location,
+        cond = gps.is_available,
       },
     },
     lualine_x = {
       {
         ros_package,
-        condition = hide_when_narrow(140),
+        cond = hide_when_narrow(140),
       },
       "filetype",
     },

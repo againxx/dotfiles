@@ -10,7 +10,6 @@ return require("packer").startup {
     ---
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
-    use "j-hui/fidget.nvim"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -29,6 +28,15 @@ return require("packer").startup {
     use {
       "simrat39/symbols-outline.nvim",
       cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
+    }
+    use "j-hui/fidget.nvim" -- UI for lsp progress
+    use {
+      "filipdutescu/renamer.nvim",
+      branch = "master",
+      requires = { { "nvim-lua/plenary.nvim" } },
+      config = function()
+        require("renamer").setup {}
+      end,
     }
 
     ---
@@ -58,13 +66,13 @@ return require("packer").startup {
     ---
     --- Filesystem
     ---
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-          'kyazdani42/nvim-web-devicons', -- for file icon
-        },
-        config = function() require'nvim-tree'.setup {} end
-    }
+    -- use {
+    --     'kyazdani42/nvim-tree.lua',
+    --     requires = {
+    --       'kyazdani42/nvim-web-devicons', -- for file icon
+    --     },
+    --     config = function() require'nvim-tree'.setup {} end
+    -- }
     use {
       "Shougo/defx.nvim",
       requires = { "kristijanhusak/defx-icons" },
@@ -128,6 +136,10 @@ return require("packer").startup {
         vim.notify = require "notify"
       end,
     }
+    use {
+      "SmiteshP/nvim-gps", -- statusline component that shows current scope
+      requires = "nvim-treesitter/nvim-treesitter",
+    }
 
     ---
     --- Start Screen & Session
@@ -151,11 +163,7 @@ return require("packer").startup {
     use {
       "folke/which-key.nvim",
       config = function()
-        require("which-key").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
+        require("which-key").setup {}
       end,
     }
 
@@ -235,7 +243,7 @@ return require("packer").startup {
     use {
       "numToStr/Comment.nvim",
       config = function()
-        require("Comment").setup()
+        require("Comment").setup {}
       end,
     }
     use "luochen1990/rainbow"
@@ -460,6 +468,12 @@ return require("packer").startup {
       end,
     }
     use "voldikss/vim-translator"
+    use {
+      "chentoast/marks.nvim",
+      config = function()
+        require "marks".setup()
+      end
+  }
     use {
       "AckslD/nvim-neoclip.lua",
       module = "neoclip",
