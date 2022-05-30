@@ -94,8 +94,8 @@ return {
   },
   on_attach_extra = function(client, bufnr)
     if vim.api.nvim_buf_get_option(bufnr, "filetype") == "cpp" then
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
     end
   end
 }
