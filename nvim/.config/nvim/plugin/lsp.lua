@@ -83,9 +83,11 @@ local on_attach_default = function(client, bufnr)
     hint_prefix = "🐯 ",
   }
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
   end
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 
   keymap.set("n", "K", show_documentation, vim.tbl_extend("force", opts, { buffer = bufnr }))
 
@@ -102,12 +104,15 @@ local on_attach_default = function(client, bufnr)
     l = { "<cmd>lua require('xx.telescope').lsp_implementations()<cr>", "Go to implementations" },
     r = { "<cmd>lua require('xx.telescope').lsp_references()<cr>", "Go to references" },
     y = { "<cmd>lua require('xx.telescope').lsp_type_definitions()<cr>", "Go to type definitions" },
-  }, { prefix = "g", buffer = vim.api.nvim_get_current_buf() })
+  }, {
+    prefix = "g",
+    buffer = vim.api.nvim_get_current_buf(),
+  })
 
   wk.register({
     r = {
-      n = { "<cmd>Lspsaga rename<cr>", "Rename symbol" },
-      f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format the whole file" },
+      n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
+      f = { "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", "Format the whole file" },
     },
     d = {
       g = { "<cmd>lua require('xx.telescope').diagnostics{bufnr = 0}<cr>", "Current buffer diagnostics" },
@@ -118,11 +123,18 @@ local on_attach_default = function(client, bufnr)
       name = "+action",
       a = { "<cmd>Lspsaga code_action<cr>", "Action under cursor" },
     },
-  }, { prefix = "<leader>", buffer = vim.api.nvim_get_current_buf() })
+  }, {
+    prefix = "<leader>",
+    buffer = vim.api.nvim_get_current_buf(),
+  })
 
   wk.register({
     a = { ":<C-u>Lspsaga range_code_action<cr>", "Action for selected" },
-  }, { mode = "x", prefix = "<leader>" })
+    n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
+  }, {
+    mode = "x",
+    prefix = "<leader>",
+  })
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -225,16 +237,16 @@ vim.g.symbols_outline = {
   preview_bg_highlight = "NormalFloat",
 }
 
-require"fidget".setup{
+require("fidget").setup {
   text = {
-    spinner = "moon"
+    spinner = "moon",
   },
   window = {
-    blend = 0
+    blend = 0,
   },
   fmt = {
     stack_upwards = false,
-  }
+  },
 }
 
 -- https://github.com/tami5/lspsaga.nvim/issues/89

@@ -104,6 +104,33 @@ cmp.setup {
       },
     },
   },
+  sorting = {
+    comparators = {
+      -- support server side completion scores, such as clangd
+      -- https://clangd.llvm.org/extensions#code-completion-scores
+      function(entry1, entry2)
+        local server_score1 = entry1.completion_item.score
+        local server_score2 = entry2.completion_item.score
+        if server_score1 and server_score2 then
+          local diff = server_score2 * entry2.score - server_score1 * entry1.score
+          if diff < 0 then
+            return true
+          elseif diff > 0 then
+            return false
+          end
+        end
+      end,
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    }
+  },
   window = {
     documentation = {
       -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
