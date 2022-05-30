@@ -14,13 +14,27 @@ api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
 api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   group = common,
-  command = "set cursorline",
+  callback = function()
+    vim.cmd "set cursorline"
+    local active_choice_node = require("luasnip").session.active_choice_node
+    if active_choice_node and active_choice_node.active then
+      active_choice_node.mark:update_opts(active_choice_node.ext_opts.passive)
+    end
+  end,
 })
 api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   group = common,
-  command = "set nocursorline",
+  callback = function()
+    vim.cmd "set nocursorline"
+    local ls = require "luasnip"
+    local active_choice_node = ls.session.active_choice_node
+    if active_choice_node and not ls.exit_out_of_region(active_choice_node) then
+      active_choice_node.mark:update_opts(active_choice_node.ext_opts.active)
+    end
+  end,
 })
 api.nvim_create_autocmd("CmdLineEnter", {
   group = common,
