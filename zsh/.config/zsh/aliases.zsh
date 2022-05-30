@@ -15,6 +15,7 @@ alias disable-gef='sed -i "s/^source.*gef\.py$/# &/" ~/.gdbinit'
 alias enable-gef='sed -i "s/^# \(source.*gef\.py\)$/\1/" ~/.gdbinit'
 alias disable-pwn='sed -i "s/^source.*pwndbg.*gdbinit\.py$/# &/" ~/.gdbinit'
 alias enable-pwn='sed -i "s/^# \(source.*pwndbg.gdbinit\.py\)$/\1/" ~/.gdbinit'
+alias r2help='r2 -q -c "?*~..." -'
 alias you-get="proxychains4 -q you-get"
 alias jb="j -b"
 alias jbf="j -b -I"
