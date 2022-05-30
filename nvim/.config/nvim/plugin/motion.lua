@@ -19,3 +19,6 @@ keymap.set("n", "<C-e>", "<cmd>lua require('neoscroll').scroll(3, false, 80, nil
 -- lightspeed 'cold' repeat
 keymap.set("n", ";", "<Plug>Lightspeed_;_ft", plug_opts)
 keymap.set("n", ",", "<Plug>Lightspeed_,_ft", plug_opts)
+
+keymap.set("n", '<M-">', "<Plug>(Marks-prev)", plug_opts)
+keymap.set("n", "<M-'>", "<Plug>(Marks-next)", plug_opts)
