@@ -97,7 +97,7 @@ cmp.setup {
         luasnip = "[snip]",
         tmux = "[tmux]",
         vimwiki_tags = "[tag]",
-        look = "[spell]",
+        look = "[look]",
         zi = "[spell]",
         neorg = "[norg]",
         katex = "[katex]",

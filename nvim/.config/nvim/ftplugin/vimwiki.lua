@@ -15,6 +15,7 @@ vim.g.taskwiki_data_location = "~/Documents/tasks"
 R "note.markdown_vimwiki"
 require("plenary.filetype").add_file "extra_filetypes"
 require "xx.cmp.vimwiki_tags"
+require "xx.cmp.zi"
 
 require("cmp").setup.buffer {
   sources = {
@@ -24,7 +25,7 @@ require("cmp").setup.buffer {
     { name = "buffer" },
     { name = "tmux" },
     {
-      name = "look",
+      name = "zi",
       keyword_length = 3,
       option = {
         convert_case = true,

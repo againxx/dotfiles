@@ -70,6 +70,14 @@ assemble() {
     ld "${base}".o -o "${base}"
 }
 
-findsyscall() {
+fdsyscall() {
     egrep -i "${1}" /usr/include/x86_64-linux-gnu/asm/unistd_64.h
+}
+
+fdsyscall32() {
+    if [ -e /usr/include/x86_64-linux-gnu/asm/unistd_32.h ]; then
+        egrep -i "${1}" /usr/include/x86_64-linux-gnu/asm/unistd_32.h
+    else
+        echo "You don't have the 32-bit header!"
+    fi
 }

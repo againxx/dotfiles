@@ -26,7 +26,7 @@ function source:new()
       end,
     })
   end
-  obj:read_ecdict()
+  vim.defer_fn(function() obj:read_ecdict() end, 500)
   return obj
 end
 
@@ -83,7 +83,7 @@ function source:read_ecdict()
   self.ecdict = {}
   self.remained_data = ""
   self.count = 0
-  local chunk_size = 40960
+  local chunk_size = 512
   uv.fs_open(self.dict_path:absolute(), "r", tonumber('644', 8), function(err_open, fd)
     assert(not err_open, err_open)
 
