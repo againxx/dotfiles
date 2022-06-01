@@ -110,14 +110,16 @@ function source:read_ecdict()
             local skip_mode = false
             local quoted_index = 1
             for _, item in ipairs(items) do
-              if skip_mode and item:match([["$]]) then
+              if not skip_mode then
+                if item:match([[^"]]) then
+                  table.insert(new_items, quoted_strings[quoted_index])
+                  quoted_index = quoted_index + 1
+                  skip_mode = true
+                else
+                  table.insert(new_items, item)
+                end
+              elseif item:match([["$]]) then
                 skip_mode = false
-              elseif item:match([[^"]]) then
-                table.insert(new_items, quoted_strings[quoted_index])
-                quoted_index = quoted_index + 1
-                skip_mode = true
-              else
-                table.insert(new_items, item)
               end
               if #new_items >= 5 then
                 items = new_items
