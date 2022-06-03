@@ -273,11 +273,11 @@ return require("packer").startup {
     ---
     use "simrat39/rust-tools.nvim"
     use { -- managing crates.io dependencies
-        'saecki/crates.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('crates').setup()
-        end,
+      "saecki/crates.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("crates").setup()
+      end,
     }
 
     ---
@@ -478,9 +478,9 @@ return require("packer").startup {
     use {
       "chentoast/marks.nvim",
       config = function()
-        require "marks".setup()
-      end
-  }
+        require("marks").setup()
+      end,
+    }
     use {
       "AckslD/nvim-neoclip.lua",
       module = "neoclip",
@@ -500,6 +500,14 @@ return require("packer").startup {
     ---
     use "milisims/nvim-luaref" -- add help reference for lua
     use "nanotee/luv-vimdocs" -- add help reference for luv
+
+    ---
+    --- Local plugins
+    ---
+    use {
+      "~/.config/nvim/locals/jieba-ci",
+      run = "cargo build --release",
+    }
   end,
   config = {
     profile = {

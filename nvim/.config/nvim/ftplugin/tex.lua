@@ -1,3 +1,4 @@
+require('jieba-ci').init()
 vim.g.vimtex_quickfix_mode = 0
 
 vim.api.nvim_buf_set_keymap(0, '', 'K', '<Plug>(vimtex-doc-package)', { noremap = false })
