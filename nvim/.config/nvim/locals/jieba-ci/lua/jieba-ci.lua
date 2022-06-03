@@ -1,6 +1,6 @@
 local jobid = 0
 
-local bin_path = vim.env.HOME .. "/.config/nvim/locals/jieba.nvim/target/release/jieba_ci"
+local bin_path = packer_plugins["jieba-ci"].url .. "/target/release/jieba_ci"
 
 local init_rpc = function()
   if jobid == 0 then
