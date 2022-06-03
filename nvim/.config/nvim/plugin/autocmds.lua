@@ -143,6 +143,13 @@ api.nvim_create_autocmd("FileType", {
     keymap.set("t", "<M-i>", "<cmd>RnvimrResize<cr>", { buffer = api.nvim_get_current_buf(), silent = true })
   end,
 })
+api.nvim_create_autocmd("FileType", {
+  group = other_filetypes,
+  pattern = "toml",
+  callback = function()
+    require("cmp").setup.buffer { sources = { { name = "crates" } } }
+  end,
+})
 -- api.nvim_create_autocmd("FileType", {
 --   group = other_filetypes,
 --   pattern = "dap-repl",

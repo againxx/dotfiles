@@ -6,6 +6,7 @@ iabbrev flase false
 iabbrev Flase False
 iabbrev ture true
 iabbrev Ture True
+iabbrev asycn async
 
 " superman
 cabbrev man <c-r>=getcmdpos() == 1 && getcmdtype() == ':' ? 'Man' : 'man'<CR>

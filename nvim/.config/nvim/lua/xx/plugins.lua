@@ -272,6 +272,13 @@ return require("packer").startup {
     --- Rust
     ---
     use "simrat39/rust-tools.nvim"
+    use { -- managing crates.io dependencies
+        'saecki/crates.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('crates').setup()
+        end,
+    }
 
     ---
     --- OpenGL

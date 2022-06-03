@@ -61,19 +61,26 @@ function vim.lsp.modified_formatexpr()
 end
 
 local show_documentation = function()
-  if vim.tbl_contains({ "vim", "lua" }, vim.bo.filetype) then
-    if vim.bo.filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "lua", "help" }, filetype) then
+    if filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
       require("lspsaga.hover").render_hover_doc()
     else
       vim.cmd(string.format("h %s", vim.fn.expand "<cword>"))
     end
-  elseif vim.tbl_contains({ "rust", "cpp" }, vim.bo.filetype) then
+  elseif vim.tbl_contains({ "rust", "cpp" }, filetype) then
     -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
+  elseif filetype == "man" then
+    vim.cmd(string.format("Man %s", vim.fn.expand "<cword>"))
+  elseif vim.fn.expand "%:t" == "Cargo.toml" then
+    require("crates").show_popup()
   else
     require("lspsaga.hover").render_hover_doc()
   end
 end
+
+keymap.set("n", "K", show_documentation, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -88,8 +95,6 @@ local on_attach_default = function(client, bufnr)
   end
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-
-  keymap.set("n", "K", show_documentation, vim.tbl_extend("force", opts, { buffer = bufnr }))
 
   local success, wk = pcall(require, "which-key")
   if not success then

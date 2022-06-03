@@ -79,11 +79,52 @@ local convert_case = function(query, candidates)
   return candidates
 end
 
+function source:process_ecdict(data)
+  local lines = vim.split(data, "\r\n", {plain = true})
+  self.remained_data = table.remove(lines)
+  for _, line in ipairs(lines) do
+    local items = vim.split(line, ",", {plain = true})
+    if #items > 13 then
+      local quoted_strings = {}
+      local new_items = {}
+      for quoted in line:gmatch([["(.-)",]]) do
+        table.insert(quoted_strings, quoted)
+      end
+
+      local skip_mode = false
+      local quoted_index = 1
+      for _, item in ipairs(items) do
+        if not skip_mode then
+          if item:match([[^"]]) then
+            table.insert(new_items, quoted_strings[quoted_index])
+            quoted_index = quoted_index + 1
+            skip_mode = true
+          else
+            table.insert(new_items, item)
+          end
+        elseif item:match([["$]]) then
+          skip_mode = false
+        end
+        if #new_items >= 5 then
+          items = new_items
+          break
+        end
+      end
+    end
+    self.ecdict[items[1]:lower()] = {
+      phonetic = items[2] or '',
+      definition = items[3] or '',
+      translation = items[4] or '',
+      pos = items[5] or '',
+    }
+  end
+end
+
 function source:read_ecdict()
   self.ecdict = {}
   self.remained_data = ""
   self.count = 0
-  local chunk_size = 512
+  local chunk_size = 256
   uv.fs_open(self.dict_path:absolute(), "r", tonumber('644', 8), function(err_open, fd)
     assert(not err_open, err_open)
 
@@ -92,50 +133,12 @@ function source:read_ecdict()
       assert(not err_read, err_read)
       data = self.remained_data .. data
       if #data > 0 then
-        local lines = vim.split(data, "\r\n", {plain = true})
-        if #lines > 1 then
-          self.remained_data = table.remove(lines)
-        else
-          self.remained_data = ""
-        end
-        for _, line in ipairs(lines) do
-          local items = vim.split(line, ",", {plain = true})
-          if #items > 13 then
-            local quoted_strings = {}
-            local new_items = {}
-            for quoted in line:gmatch([["(.-)",]]) do
-              table.insert(quoted_strings, quoted)
-            end
-
-            local skip_mode = false
-            local quoted_index = 1
-            for _, item in ipairs(items) do
-              if not skip_mode then
-                if item:match([[^"]]) then
-                  table.insert(new_items, quoted_strings[quoted_index])
-                  quoted_index = quoted_index + 1
-                  skip_mode = true
-                else
-                  table.insert(new_items, item)
-                end
-              elseif item:match([["$]]) then
-                skip_mode = false
-              end
-              if #new_items >= 5 then
-                items = new_items
-                break
-              end
-            end
-          end
-          self.ecdict[items[1]:lower()] = {
-            phonetic = items[2] or '',
-            definition = items[3] or '',
-            translation = items[4] or '',
-            pos = items[5] or '',
-          }
-        end
+        self:process_ecdict(data)
         uv.fs_read(fd, chunk_size, nil, read_cb)
       else
+        if #self.remained_data > 0 then
+          self:process_ecdict(self.remained_data)
+        end
         uv.fs_close(fd, function(err_close)
           assert(not err_close, err_close)
         end)

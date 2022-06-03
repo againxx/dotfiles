@@ -2,11 +2,12 @@ vim.g.asyncrun_open = 8
 vim.g.asyncrun_rootmarks = {
   '.git',
   '.svn',
+  '.vim',
   '.root',
   '.project',
   '.hg'
 }
-vim.g.asynctasks_config_name = { '.tasks', '.vim/.tasks' }
+vim.g.asynctasks_config_name = '.vim/.tasks'
 vim.g.asynctasks_confirm = 0
 vim.g.asynctasks_term_pos = 'tab'
 vim.g.asynctasks_term_reuse = 1
@@ -19,7 +20,7 @@ local change_build_profile = function()
       break
     end
   end
-  vim.cmd [[echohl MoreMsg | echo g:asynctasks_profile | echohl None]]
+  vim.notify("Change build profile into: " .. vim.g.asynctasks_profile, vim.log.levels.INFO)
 end
 
 local success, wk = pcall(require, 'which-key')
