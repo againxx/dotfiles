@@ -86,7 +86,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "jieba_nvim"
+name = "jieba_ci"
 version = "0.1.0"
 dependencies = [
  "jieba-rs",

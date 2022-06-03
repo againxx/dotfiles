@@ -6,3 +6,4 @@ __pycache__/
 .zim/
 packer_compiled.*
 *.add.spl
+target/
