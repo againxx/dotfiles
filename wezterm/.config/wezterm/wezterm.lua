@@ -11,14 +11,14 @@ return {
   },
   -- don't spawn login shell
   default_prog = {"/usr/bin/zsh"},
-  font = font_with_fallback("VictorMono Nerd Font"),
-  font_rules = {
-    {
-      italic = true,
-      font = font_with_fallback("VictorMono Nerd Font", {italic = true, weight = "Medium"}),
-    }
-  },
-  font_size = 10.0,
+  font = font_with_fallback("RecursiveMonoXX Nerd Font"),
+  -- font_rules = {
+  --   {
+  --     intensity = "Normal",
+  --     font = font_with_fallback("RecursiveMonoXX Nerd Font", {italic = false, weight = "Medium"}),
+  --   }
+  -- },
+  font_size = 10.5,
   window_background_opacity = 0.9,
   enable_tab_bar = false,
   window_padding = {
