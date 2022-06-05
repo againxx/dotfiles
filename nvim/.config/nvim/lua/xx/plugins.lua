@@ -489,6 +489,7 @@ return require("packer").startup {
         { "nvim-telescope/telescope.nvim" },
       },
     }
+    use 'lewis6991/impatient.nvim' -- speed up startup time
 
     ---
     --- Training Vim
