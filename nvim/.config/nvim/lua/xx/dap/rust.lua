@@ -1,39 +1,41 @@
-local dap = require "dap"
 
-dap.adapters.lldb = {
-  type = "executable",
-  command = "/usr/bin/lldb-vscode",
-  name = "lldb",
-}
+-- rust-tools.nvim will setup these for us
 
-dap.configurations.rust = {
-  {
-    name = "Launch",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      local has_last_executable = false
-      if
-        vim.b.dap_last_executable
-        and #vim.b.dap_last_executable > 0
-        and vim.fn.executable(vim.b.dap_last_executable) > 0
-      then
-        has_last_executable = true
-      end
-      local default = has_last_executable and vim.b.dap_last_executable or vim.fn.getcwd() .. "/"
-      vim.b.dap_last_executable = vim.fn.input("Path to executable: ", default, "file")
-      assert(
-        #vim.b.dap_last_executable > 0 and vim.fn.executable(vim.b.dap_last_executable) > 0,
-        "Please provide valid executable file"
-      )
-      return vim.b.dap_last_executable
-    end,
-    cwd = "${workspaceFolder}",
-    stopOnEntry = false,
-    args = {},
-    runInTerminal = true,
-  },
-}
+-- local dap = require "dap"
+-- dap.adapters.lldb = {
+--   type = "executable",
+--   command = "/usr/bin/lldb-vscode",
+--   name = "lldb",
+-- }
+--
+-- dap.configurations.rust = {
+--   {
+--     name = "Launch",
+--     type = "lldb",
+--     request = "launch",
+--     program = function()
+--       local has_last_executable = false
+--       if
+--         vim.b.dap_last_executable
+--         and #vim.b.dap_last_executable > 0
+--         and vim.fn.executable(vim.b.dap_last_executable) > 0
+--       then
+--         has_last_executable = true
+--       end
+--       local default = has_last_executable and vim.b.dap_last_executable or vim.fn.getcwd() .. "/"
+--       vim.b.dap_last_executable = vim.fn.input("Path to executable: ", default, "file")
+--       assert(
+--         #vim.b.dap_last_executable > 0 and vim.fn.executable(vim.b.dap_last_executable) > 0,
+--         "Please provide valid executable file"
+--       )
+--       return vim.b.dap_last_executable
+--     end,
+--     cwd = "${workspaceFolder}",
+--     stopOnEntry = false,
+--     args = {},
+--     runInTerminal = true,
+--   },
+-- }
 
 require("dapui").setup {
   mappings = {

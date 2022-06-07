@@ -181,6 +181,17 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "set filetype=rossrv",
 })
 
+-- targets.vim
+-- disable using 'b' for multi targets
+api.nvim_create_autocmd({ "User" }, {
+  pattern = "targets#mappings#user",
+  callback = function()
+    vim.fn["targets#mappings#extend"] {
+      b = { pair = { { o = "(", c = ")" } } },
+    }
+  end,
+})
+
 -- defx file explorer, hijack netrw
 local defx_file_explorer = api.nvim_create_augroup("defx_file_explorer", {})
 api.nvim_create_autocmd("VimEnter", {
