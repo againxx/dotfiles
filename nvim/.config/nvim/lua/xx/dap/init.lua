@@ -47,9 +47,7 @@ end
 
 function M.close()
   require("dapui").close()
-  dap.disconnect()
-  dap.close()
-  vim.defer_fn(close_post_hook, 1000)
+  dap.terminate(close_post_hook)
 end
 
 function M.set_debug_args()
