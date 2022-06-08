@@ -12,10 +12,10 @@ end
 
 local set_keymaps = function()
   vim.keymap.set("n", "w", function()
-    vim.rpcnotify(jobid, "forward")
+    vim.rpcnotify(jobid, "forward", vim.v.count1)
   end)
   vim.keymap.set("n", "b", function()
-    vim.rpcnotify(jobid, "backward")
+    vim.rpcnotify(jobid, "backward", vim.v.count1)
   end)
 end
 

@@ -20,7 +20,7 @@ local change_build_profile = function()
       break
     end
   end
-  vim.notify("Change build profile into: " .. vim.g.asynctasks_profile, vim.log.levels.INFO)
+  vim.notify("Change build profile into: " .. vim.g.asynctasks_profile)
 end
 
 local success, wk = pcall(require, 'which-key')

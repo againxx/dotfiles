@@ -61,7 +61,7 @@ end
 
 local show_documentation = function()
   local filetype = vim.bo.filetype
-  if vim.tbl_contains({ "vim", "lua", "help" }, filetype) then
+  if vim.tbl_contains({ "vim", "lua" }, filetype) then
     if filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
       require("lspsaga.hover").render_hover_doc()
     else
@@ -70,16 +70,10 @@ local show_documentation = function()
   elseif vim.tbl_contains({ "rust", "cpp" }, filetype) then
     -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
-  elseif filetype == "man" then
-    vim.cmd(string.format("Man %s", vim.fn.expand "<cword>"))
-  elseif vim.fn.expand "%:t" == "Cargo.toml" then
-    require("crates").show_popup()
   else
     require("lspsaga.hover").render_hover_doc()
   end
 end
-
-keymap.set("n", "K", show_documentation, { silent = true })
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -88,6 +82,8 @@ local on_attach_default = function(client, bufnr)
   require("lsp_signature").on_attach {
     hint_prefix = "🐯 ",
   }
+
+  keymap.set("n", "K", show_documentation, { silent = true , buffer = bufnr})
 
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
@@ -147,7 +143,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 -- map buffer local keybindings when the language server attaches
 local servers = {
   pyright = true,
-  rust_analyzer = true,
+  rust_analyzer = require "xx.lsp.rust",
   clangd = require "xx.lsp.cpp",
   sumneko_lua = require "xx.lsp.lua",
   vimls = true,

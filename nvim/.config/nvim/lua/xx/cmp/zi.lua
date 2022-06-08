@@ -21,7 +21,7 @@ function source:new()
         if res.status ~= 200 then
           vim.notify(string.format("Download ecdict failed: error code %d!", res.status), vim.log.levels.ERROR)
         else
-          vim.notify("Successfully download ecdict!", vim.log.levels.INFO)
+          vim.notify("Successfully download ecdict!")
         end
       end,
     })

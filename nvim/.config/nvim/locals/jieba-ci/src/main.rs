@@ -21,51 +21,73 @@ impl EventHandler {
         EventHandler { nvim, jieba }
     }
 
-    fn fallback_move(&mut self, w: bool) {
+    fn fallback_move(&mut self, w: bool, count: u64) {
         if w {
-            self.nvim.feedkeys("w", "n", false).unwrap();
+            self.nvim.feedkeys(&format!("{}w", count), "n", false).unwrap();
         } else {
-            self.nvim.feedkeys("b", "n", false).unwrap();
+            self.nvim.feedkeys(&format!("{}b", count), "n", false).unwrap();
         }
     }
 
     // Handle events
     fn recv(&mut self) {
+        let spaces_re = Regex::new(r"\s+").unwrap();
         let receiver = self.nvim.session.start_event_loop_channel();
-        let chinese_re = Regex::new(r"^[\u4E00-\u9FFF]+$").unwrap();
 
-        for (event, _) in receiver {
+        for (event, count) in receiver {
+            let count = count[0].as_u64().unwrap_or(1);
+            let cursor = self.nvim.get_current_win().unwrap().get_cursor(&mut self.nvim).unwrap();
+            let col = cursor.1;
+            let line = self.nvim.get_current_line();
             match Messages::from(event) {
                 Messages::Forward => {
-                    let line = self.nvim.get_current_line();
                     if let Ok(line) = line {
-                        let cursor = self.nvim.get_current_win().unwrap().get_cursor(&mut self.nvim).unwrap();
-                        let col = cursor.1;
-                        let line_end = &line[col as usize..];
-                        let parts = self.jieba.cut(line_end, true);
-                        if parts.is_empty() || !chinese_re.is_match(parts[0]) {
-                            self.fallback_move(true);
+                        let line_after = &line[col as usize..];
+                        let parts = self.jieba.cut(line_after, true);
+                        if parts.is_empty() {
+                            self.fallback_move(true, count);
                         } else {
-                            self.nvim.get_current_win().unwrap().set_cursor(&mut self.nvim, (cursor.0, col + parts[0].len() as i64)).unwrap();
+                            let mut skip_count = 0;
+                            let mut skip_len = 0;
+                            for part in parts {
+                                if !spaces_re.is_match(part) || skip_count == 0 {
+                                    // Only count non-empty parts or leading white spaces
+                                    skip_count += 1;
+                                }
+                                if skip_count > count {
+                                    break;
+                                }
+                                skip_len += part.len();
+                            }
+                            self.nvim.get_current_win().unwrap().set_cursor(&mut self.nvim, (cursor.0, col + skip_len as i64)).unwrap();
                         }
                     } else {
-                        self.fallback_move(true);
+                        self.fallback_move(true, count);
                     }
                 }
                 Messages::Backward => {
-                    let line = self.nvim.get_current_line();
                     if let Ok(line) = line {
-                        let cursor = self.nvim.get_current_win().unwrap().get_cursor(&mut self.nvim).unwrap();
-                        let col = cursor.1;
-                        let line_begin = &line[..col as usize];
-                        let parts = self.jieba.cut(line_begin, true);
-                        if parts.is_empty() || !chinese_re.is_match(parts.last().unwrap()) {
-                            self.fallback_move(false);
+                        let line_before = &line[..col as usize];
+                        let parts = self.jieba.cut(line_before, true);
+                        if parts.is_empty() {
+                            self.fallback_move(false, count);
                         } else {
-                            self.nvim.get_current_win().unwrap().set_cursor(&mut self.nvim, (cursor.0, col - parts.last().unwrap().len() as i64)).unwrap();
+                            let mut skip_count = 0;
+                            let mut skip_len = 0;
+                            for part in parts {
+                                if !spaces_re.is_match(part) || skip_count == 0 {
+                                    // Only count non-empty parts or leading white spaces
+                                    skip_count += 1;
+                                }
+                                if skip_count > count {
+                                    break;
+                                }
+                                skip_len += part.len();
+                            }
+                            self.nvim.get_current_win().unwrap().set_cursor(&mut self.nvim, (cursor.0, col - skip_len as i64)).unwrap();
                         }
                     } else {
-                        self.fallback_move(false);
+                        self.fallback_move(false, count);
                     }
                 }
                 Messages::Unknonw(uevent) => {

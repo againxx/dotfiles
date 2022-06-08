@@ -16,7 +16,7 @@ require("nvim-dap-virtual-text").setup()
 require("xx.dap." .. vim.bo.filetype)
 
 local keymap_restore = {}
-dap.listeners.after["event_initialized"]["xx.mappings"] = function()
+dap.listeners.after["event_initialized"]["xx"] = function()
   for _, buf in pairs(api.nvim_list_bufs()) do
     local keymaps = api.nvim_buf_get_keymap(buf, "n")
     for _, keymap in ipairs(keymaps) do
@@ -47,7 +47,9 @@ end
 
 function M.close()
   require("dapui").close()
-  dap.terminate(close_post_hook)
+  dap.terminate()
+  dap.close()
+  vim.defer_fn(close_post_hook, 1000)
 end
 
 function M.set_debug_args()
