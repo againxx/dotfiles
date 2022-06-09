@@ -74,15 +74,15 @@ impl EventHandler {
                         } else {
                             let mut skip_count = 0;
                             let mut skip_len = 0;
-                            for part in parts {
-                                if !spaces_re.is_match(part) || skip_count == 0 {
+                            for part in parts.into_iter().rev() {
+                                if !spaces_re.is_match(part) {
                                     // Only count non-empty parts or leading white spaces
                                     skip_count += 1;
                                 }
-                                if skip_count > count {
+                                skip_len += part.len();
+                                if skip_count >= count {
                                     break;
                                 }
-                                skip_len += part.len();
                             }
                             self.nvim.get_current_win().unwrap().set_cursor(&mut self.nvim, (cursor.0, col - skip_len as i64)).unwrap();
                         }

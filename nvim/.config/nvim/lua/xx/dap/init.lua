@@ -8,7 +8,7 @@ local M = setmetatable({}, {
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "VimspectorBP", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "◕", texthl = "VimspectorBPCond", linehl = "", numhl = "" })
 vim.fn.sign_define("DapLogPoint", { text = "◐", texthl = "VimspectorBPCond", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "", texthl = "VimspectorPC", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "VimspectorPC", linehl = "", numhl = "" }) -- 👉
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "VimspectorBPCond", linehl = "", numhl = "" })
 dap.defaults.fallback.terminal_win_cmd = "belowright 10new"
 

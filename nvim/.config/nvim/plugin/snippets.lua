@@ -21,7 +21,7 @@ vim.g.luasnip_cpp_style = "google"
 -- end
 
 local luasnip = require "luasnip"
-local types = require("luasnip.util.types")
+local types = require "luasnip.util.types"
 
 luasnip.config.set_config {
   history = true,
@@ -32,10 +32,10 @@ luasnip.config.set_config {
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = {{ " choice node", "Todo" }}
-      }
-    }
-  }
+        virt_text = { { " choice node", "Todo" } },
+      },
+    },
+  },
 }
 
 vim.keymap.set(
@@ -52,7 +52,7 @@ vim.keymap.set(
   { silent = true, noremap = true }
 )
 
-require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/xx/snippets"})
+require("luasnip.loaders.from_lua").lazy_load { paths = "./lua/xx/snippets" }
 vim.cmd [[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]
 
 local success, wk = pcall(require, "which-key")
