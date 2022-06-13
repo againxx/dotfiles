@@ -20,5 +20,9 @@ keymap.set("n", "<C-e>", "<cmd>lua require('neoscroll').scroll(3, false, 80, nil
 keymap.set("n", ";", "<Plug>Lightspeed_;_ft", plug_opts)
 keymap.set("n", ",", "<Plug>Lightspeed_,_ft", plug_opts)
 
-keymap.set("n", '<M-">', "<Plug>(Marks-prev)", plug_opts)
-keymap.set("n", "<M-'>", "<Plug>(Marks-next)", plug_opts)
+require("marks").setup {
+  mappings = {
+    prev = '<M-">', -- pass false to disable only this default mapping
+    next = "<M-'>",
+  },
+}

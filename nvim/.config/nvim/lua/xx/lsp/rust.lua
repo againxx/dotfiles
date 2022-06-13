@@ -4,6 +4,9 @@ return {
       diagnostics = {
         disabled = { "unresolved-proc-macro" },
       },
+      checkOnSave = {
+        command = "clippy",
+      }
     }
   }
 }

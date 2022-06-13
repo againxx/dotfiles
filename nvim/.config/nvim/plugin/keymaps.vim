@@ -9,10 +9,10 @@ onoremap ir i]
 onoremap ar a]
 onoremap ia i>
 onoremap aa a>
-vnoremap ir i]
-vnoremap ar a]
-vnoremap ia i>
-vnoremap aa a>
+xnoremap ir i]
+xnoremap ar a]
+xnoremap ia i>
+xnoremap aa a>
 
 " map g[ to reselect previous yank text
 nnoremap <expr> g[ '`[' . strpart(getregtype(), 0, 1) . '`]'

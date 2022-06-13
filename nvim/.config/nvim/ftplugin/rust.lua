@@ -37,15 +37,10 @@ wk.register({
   rr = { "<cmd>RustRunnables<cr>", "Run runnables" },
   rp = { choice_project_target, "Build whole project" },
   dR = { "<cmd>RustDebuggables<cr>", "Debug debuggables" },
+  rK = { "<cmd>RustMoveItemUp<cr>", "Move item up" },
+  rJ = { "<cmd>RustMoveItemDown<cr>", "Move item down" },
 }, {
   prefix = "<leader>",
-  buffer = vim.api.nvim_get_current_buf(),
-})
-
-wk.register({
-  ["[a"] = { "<cmd>RustMoveItemUp<cr>", "Move item up" },
-  ["]a"] = { "<cmd>RustMoveItemDown<cr>", "Move item down" },
-}, {
   buffer = vim.api.nvim_get_current_buf(),
 })
 

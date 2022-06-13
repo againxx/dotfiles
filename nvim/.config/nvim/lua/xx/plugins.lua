@@ -475,12 +475,7 @@ return require("packer").startup {
       end,
     }
     use "voldikss/vim-translator"
-    use {
-      "chentoast/marks.nvim",
-      config = function()
-        require("marks").setup()
-      end,
-    }
+    use "chentoast/marks.nvim"
     use {
       "AckslD/nvim-neoclip.lua",
       module = "neoclip",
@@ -489,7 +484,19 @@ return require("packer").startup {
         { "nvim-telescope/telescope.nvim" },
       },
     }
-    use 'lewis6991/impatient.nvim' -- speed up startup time
+    use "lewis6991/impatient.nvim" -- speed up startup time
+    use {
+      "anuvyklack/pretty-fold.nvim",
+      -- requires = "anuvyklack/nvim-keymap-amend", -- only for preview
+      config = function()
+        require("pretty-fold").setup {
+          fill_char = "·",
+        }
+        -- require("pretty-fold.preview").setup {
+        --   border = 'shadow',
+        -- }
+      end,
+    }
 
     ---
     --- Training Vim
@@ -507,6 +514,10 @@ return require("packer").startup {
     ---
     use {
       "~/.config/nvim/locals/jieba-ci",
+      run = "cargo build --release",
+    }
+    use {
+      "~/.config/nvim/locals/cmp-zi",
       run = "cargo build --release",
     }
   end,

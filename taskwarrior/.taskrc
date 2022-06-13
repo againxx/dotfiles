@@ -26,8 +26,8 @@ weekstart=Monday
 taskd.certificate=~/Documents/tasks/ustc-1314.cert.pem
 taskd.key=~/Documents/tasks/ustc-1314.key.pem
 taskd.ca=~/Documents/tasks/ustc-1314.ca.pem
-taskd.server=35.73.183.75:53589
-taskd.credentials=USTC/ustc-1314/71858fe3-ce63-4669-9ee7-837cfc0f3c0c
+taskd.server=8.130.28.126:53589
+taskd.credentials=Againxx/Xi Xia/26f5a7ed-8bd0-4314-9de8-0c8ea08f4677
 taskd.trust=ignore hostname
 
 # Reports

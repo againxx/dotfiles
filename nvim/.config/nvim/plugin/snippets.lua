@@ -23,7 +23,7 @@ vim.g.luasnip_cpp_style = "google"
 local luasnip = require "luasnip"
 local types = require "luasnip.util.types"
 
-luasnip.config.set_config {
+luasnip.config.setup {
   history = true,
   update_events = "TextChanged,TextChangedI",
   delete_check_events = "TextChanged",
