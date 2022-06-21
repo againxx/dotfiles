@@ -13,26 +13,25 @@ for i = 1, #dap.configurations.python do
 end
 
 require("dapui").setup {
-  sidebar = {
-    open_on_start = false,
-    -- You can change the order of elements in the sidebar
-    elements = {
-      -- Provide as ID strings or tables with "id" and "size" keys
-      {
-        id = "stacks",
-        size = 0.25, -- Can be float or integer > 1
+  layouts = {
+    {
+      open_on_start = false,
+      -- You can change the order of elements in the sidebar
+      elements = {
+        -- Provide as ID strings or tables with "id" and "size" keys
+        "stacks",
+        "breakpoints",
+        "watches",
       },
-      { id = "breakpoints", size = 0.25 },
-      { id = "watches", size = 0.25 },
+      size = 50,
+      position = "left", -- Can be "left" or "right"
     },
-    size = 40,
-    position = "left", -- Can be "left" or "right"
-  },
-  tray = {
-    open_on_start = false,
-    elements = { "scopes" },
-    size = 15,
-    position = "bottom", -- Can be "bottom" or "top"
+    {
+      open_on_start = false,
+      elements = { "scopes" },
+      size = 15,
+      position = "bottom", -- Can be "bottom" or "top"
+    },
   },
   floating = {
     max_height = 0.6, -- These can be integers or a float between 0 and 1.

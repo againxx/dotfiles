@@ -8,8 +8,13 @@ return require("packer").startup {
     ---
     --- LSP & Autocompletion
     ---
+    use {
+      "williamboman/nvim-lsp-installer",
+      config = function()
+        require("nvim-lsp-installer").setup {}
+      end,
+    }
     use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -66,17 +71,18 @@ return require("packer").startup {
     ---
     --- Filesystem
     ---
-    -- use {
-    --     'kyazdani42/nvim-tree.lua',
-    --     requires = {
-    --       'kyazdani42/nvim-web-devicons', -- for file icon
-    --     },
-    --     config = function() require'nvim-tree'.setup {} end
-    -- }
     use {
-      "Shougo/defx.nvim",
-      requires = { "kristijanhusak/defx-icons" },
-      run = ":UpdateRemotePlugins",
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+        {
+          "s1n7ax/nvim-window-picker",
+          tag = "1.*",
+        },
+      },
     }
     use "kevinhwang91/rnvimr"
 
@@ -159,7 +165,6 @@ return require("packer").startup {
     ---
     --- Window & Buffer & Keybindings
     ---
-    use "t9md/vim-choosewin"
     use {
       "folke/which-key.nvim",
       config = function()
@@ -274,6 +279,7 @@ return require("packer").startup {
     use "simrat39/rust-tools.nvim"
     use { -- managing crates.io dependencies
       "saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
       requires = { "nvim-lua/plenary.nvim" },
       config = function()
         require("crates").setup()

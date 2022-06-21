@@ -51,10 +51,10 @@ pub async fn read_ecdict(path: impl AsRef<path::Path>) -> io::Result<Vec<WordDef
         result.push(
             WordDef {
                 word: record.get(0).unwrap().to_lowercase(),
-                phonetic: record.get(1).unwrap_or("").to_string(),
-                definition: record.get(2).unwrap_or("").to_string(),
-                translation: record.get(3).unwrap_or("").to_string(),
-                pos: record.get(4).unwrap_or("").to_string(),
+                phonetic: record.get(1).unwrap_or("").to_owned(),
+                definition: record.get(2).unwrap_or("").to_owned(),
+                translation: record.get(3).unwrap_or("").to_owned(),
+                pos: record.get(4).unwrap_or("").to_owned(),
             },
         );
     }

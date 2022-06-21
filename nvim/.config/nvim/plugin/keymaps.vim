@@ -61,6 +61,11 @@ xnoremap <M-s> :s/
 " exit terminal
 tnoremap <C-o> <C-\><C-n>
 
+" distinguish <CR> with <C-m>
+nnoremap <CR> <CR>
+nnoremap <C-m> `
+nnoremap <C-m><C-m> ``
+
 " ===
 " === Window Navigate
 " ===
@@ -79,8 +84,8 @@ nnoremap <M-p> <Cmd>TmuxNavigatePrevious<CR>
 " ===
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
-cnoremap <M-k> <S-Left>
-cnoremap <M-j> <S-Right>
+cnoremap <M-S-h> <S-Left>
+cnoremap <M-S-l> <S-Right>
 
 " ===
 " === Window Resize

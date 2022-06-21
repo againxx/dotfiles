@@ -65,5 +65,6 @@ return {
     { key="+", mods="CTRL", action="IncreaseFontSize" },
     { key="_", mods="CTRL", action="DecreaseFontSize" },
     { key=")", mods="CTRL", action="ResetFontSize" },
+    { key="m", mods="CTRL", action=wezterm.action {SendString = "\x1b[109;5u"} },
   }
 }

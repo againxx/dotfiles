@@ -17,16 +17,8 @@ highlight link markdownError NONE
 highlight link htmlTagError NONE
 highlight link TranslatorBorder DapUIFloatBorder
 
-highlight DefxCursorHiddenCursor gui=reverse blend=100
+highlight NeotreeCursorHiddenCursor gui=reverse blend=100
 let g:VM_Extend_hl = 'VMExtend'
 let g:VM_Cursor_hl = 'VMCursor'
 let g:VM_Mono_hl = 'VMMono'
 " lua require('colorbuddy').colorscheme('xx.ayu', false, { disable_defaults = true })
-
-" choosewin
-let g:choosewin_color_label = {
-      \ 'gui': ['#399EE6', '#1F2430', 'bold'],
-      \ }
-let g:choosewin_color_other = {
-      \ 'gui': ['#232834', '#232834'],
-      \ }

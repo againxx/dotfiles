@@ -175,8 +175,8 @@ cmp.setup.cmdline(":", {
     end, { "i", "c" }),
   },
   sources = cmp.config.sources({
-    { name = "path" },
+    { name = "path", max_item_count = 20 },
   }, {
-    { name = "cmdline", keyword_length = 3 },
+    { name = "cmdline", keyword_length = 3, max_item_count = 20 },
   }),
 })

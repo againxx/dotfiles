@@ -177,9 +177,9 @@ local setup_server = function(server_name, config)
   config = vim.tbl_deep_extend("force", {
     on_attach = on_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = nil,
-    },
+    -- flags = { -- figure out why we don't need debounce_text_changes
+    --   debounce_text_changes = nil,
+    -- },
   }, config)
 
   local server_available, server = lsp_installer_servers.get_server(server_name)
