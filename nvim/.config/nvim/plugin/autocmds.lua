@@ -87,7 +87,7 @@ api.nvim_create_autocmd("User", {
     keymap.set("n", "<C-k>", "<Plug>(VM-Add-Cursor-Up)", { buffer = bufnr })
     keymap.set("n", "<C-l>", "<Plug>(VM-Single-Select-l)", { buffer = bufnr })
     keymap.set("n", "<C-h>", "<Plug>(VM-Single-Select-h)", { buffer = bufnr })
-    vim.cmd "Searchlight!"
+    require('xx.vmlens').start()
     local keymaps = api.nvim_buf_get_keymap(bufnr, "i")
     for _, existing_map in ipairs(keymaps) do
       if existing_map.lhs == "<BS>" then
@@ -106,7 +106,7 @@ api.nvim_create_autocmd("User", {
     keymap.del("n", "<C-k>", { buffer = bufnr })
     keymap.del("n", "<C-l>", { buffer = bufnr })
     keymap.del("n", "<C-h>", { buffer = bufnr })
-    vim.cmd "Searchlight"
+    require('xx.vmlens').exit()
     keymap.set(restored_bs_map.mode, restored_bs_map.lhs, restored_bs_map.rhs or restored_bs_map.callback, {
       noremap = restored_bs_map.noremap == 1,
       silent = restored_bs_map.silent == 1,

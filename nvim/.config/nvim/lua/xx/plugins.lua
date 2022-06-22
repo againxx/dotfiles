@@ -216,7 +216,6 @@ return require("packer").startup {
     use "againxx/python-syntax"
     use "againxx/vim-valgrind"
     use "aklt/plantuml-syntax"
-    use "PeterRincker/vim-searchlight" -- highlight current search match
     use "norcalli/nvim-terminal.lua" -- highlight terminal escape sequences
     use "kevinoid/vim-jsonc"
     use "RRethy/vim-illuminate" -- highlight other use of the current word
@@ -224,7 +223,7 @@ return require("packer").startup {
     ---
     --- Search & Move
     ---
-    use "romainl/vim-cool" -- disables search highlighting automatically
+    use "kevinhwang91/nvim-hlslens"
     use {
       "ggandor/lightspeed.nvim",
       config = function()
