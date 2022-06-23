@@ -44,7 +44,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{010}\u2570%F{green}\uF460%F{071}\u
 
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator user dir_writable dir vcs anaconda virtualenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator user dir_writable dir vcs anaconda virtualenv rust_version proxy)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ranger vi_mode)
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time vi_mode)
