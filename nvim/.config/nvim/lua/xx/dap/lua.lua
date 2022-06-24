@@ -32,7 +32,6 @@ require('dapui').setup({
   },
   layouts = {
     {
-      open_on_start = false,
       elements = {
         "stacks",
         "breakpoints",
@@ -42,7 +41,6 @@ require('dapui').setup({
       position = "left",
     },
     {
-      open_on_start = false,
       elements = { "scopes" },
       size = 20,
       position = "bottom",

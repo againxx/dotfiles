@@ -1,12 +1,18 @@
 local keymap_opts = { silent = true }
 
 vim.keymap.set('n', 'n', function()
-  vim.cmd("normal! " .. vim.v.count1 .. 'n')
+  local ok, result = pcall(vim.cmd, "normal! " .. vim.v.count1 .. 'n')
+  if not ok then
+    vim.cmd(string.format("echo '%s'", string.match(result, "E%d+: .*$")))
+  end
   require("hlslens").start()
 end, keymap_opts)
 
 vim.keymap.set('n', 'N', function()
-  vim.cmd("normal! " .. vim.v.count1 .. 'N')
+  local ok, result = pcall(vim.cmd, "normal! " .. vim.v.count1 .. 'N')
+  if not ok then
+    vim.cmd(string.format("echo '%s'", string.match(result, "E%d+: .*$")))
+  end
   require("hlslens").start()
 end, keymap_opts)
 

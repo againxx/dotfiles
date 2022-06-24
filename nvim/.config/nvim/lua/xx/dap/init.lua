@@ -16,17 +16,27 @@ require("nvim-dap-virtual-text").setup()
 require("xx.dap." .. vim.bo.filetype)
 
 local keymap_restore = {}
-dap.listeners.after["event_initialized"]["xx"] = function()
-  for _, buf in pairs(api.nvim_list_bufs()) do
-    local keymaps = api.nvim_buf_get_keymap(buf, "n")
-    for _, keymap in ipairs(keymaps) do
-      if keymap.lhs == "K" then
-        table.insert(keymap_restore, keymap)
-        api.nvim_buf_del_keymap(buf, "n", "K")
+dap.listeners.after["event_initialized"]["xx"] = function(session)
+  if vim.tbl_isempty(keymap_restore) then
+    for _, buf in pairs(api.nvim_list_bufs()) do
+      local keymaps = api.nvim_buf_get_keymap(buf, "n")
+      for _, keymap in ipairs(keymaps) do
+        if keymap.lhs == "K" then
+          table.insert(keymap_restore, keymap)
+          api.nvim_buf_del_keymap(buf, "n", "K")
+        end
       end
     end
+    if session.capabilities.supportsEvaluateForHovers then
+      vim.keymap.set({ "n", "v" }, "K", require("dapui").eval, { silent = true })
+    else
+      vim.keymap.set({ "n", "v" }, "K", function()
+        require("dapui").eval(nil, { context = "watch" })
+      end, {
+        silent = true,
+      })
+    end
   end
-  vim.keymap.set({ "n", "v" }, "K", require("dapui").eval, { silent = true })
 end
 
 local close_post_hook = function()
