@@ -43,8 +43,8 @@ wk.register({
 }, { buffer = vim.api.nvim_get_current_buf() })
 
 if vim.g.colors_name == 'ayu' then
-  vim.cmd [[hi pythonSelf gui=italic guifg=#B695E0 guibg=NONE]]
-  vim.cmd [[hi pythonInclude gui=bold,italic guifg=#FFD580]]
-  vim.cmd [[hi! link pythonParam TSParameter]]
-  vim.cmd [[hi! link pythonDocstring pythonComment]]
+  vim.cmd [[hi pythonTSSelf gui=italic guifg=#B695E0 guibg=NONE]]
+  vim.cmd [[hi pythonTSInclude gui=bold,italic guifg=#FFD580]]
+  vim.cmd [[hi! link pythonTSDocstring pythonComment]]
+  vim.cmd [[hi! link pythonTSField Normal]]
 end

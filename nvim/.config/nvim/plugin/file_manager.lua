@@ -73,6 +73,19 @@ require("neo-tree").setup {
           state.commands["open"](state)
         end
       end,
+      ["a"] = function(state)
+        local node = state.tree:get_node()
+        if state.current_position == "current" and not node:is_expanded() then
+          local fs_actions = require("neo-tree.sources.filesystem.lib.fs_actions")
+          local parent_id = node:get_parent_id()
+          fs_actions.create_node(parent_id, nil, parent_id)
+        else
+          state.commands["add"](state)
+        end
+      end,
+      ["d"] = "none",
+      ["df"] = "delete",
+      ["dd"] = "cut_to_clipboard",
       ["s"] = "none",
       ["S"] = "none",
       ["c"] = "none",

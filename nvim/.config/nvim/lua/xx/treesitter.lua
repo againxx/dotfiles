@@ -43,7 +43,6 @@ require("nvim-treesitter.configs").setup {
   },
   highlight = {
     enable = true,
-    disable = { "python" },
   },
   indent = {
     enable = true,
@@ -127,6 +126,12 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+require("nvim-treesitter.highlight").set_custom_captures {
+  ["python.self"] = "pythonTSSelf",
+  ["python.docstring"] = "pythonTSDocstring",
+  ["lua.vim"] = "Constructor",
+}
+
 local success, wk = pcall(require, "which-key")
 if not success then
   return
@@ -154,7 +159,9 @@ wk.register({
   ["ac"] = "a class (with class keyword)",
   ["i,"] = "inner parameter",
   ["a,"] = "a parameter with type",
-}, { mode = "x" })
+}, {
+  mode = "x",
+})
 
 wk.register({
   ["if"] = "inner function",
@@ -163,4 +170,6 @@ wk.register({
   ["ac"] = "a class (with class keyword)",
   ["i,"] = "inner parameter",
   ["a,"] = "a parameter with type",
-}, { mode = "o" })
+}, {
+  mode = "o",
+})

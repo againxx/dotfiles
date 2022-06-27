@@ -150,6 +150,12 @@ function M.edit_dotfiles()
   }
 end
 
+function M.git_files()
+  require("telescope.builtin").git_files {
+    cwd = vim.b.gitsigns_status_dict.root,
+  }
+end
+
 function M.edit_dictionaries()
   local opts = require("telescope.themes").get_dropdown {
     cwd = "~/dotfiles/vim/cSpell_dictionaries",

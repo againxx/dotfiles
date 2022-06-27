@@ -63,7 +63,7 @@ vim.g.fastfold_savehook = false
 vim.g.fastfold_fold_movement_commands = { "]z", "[z" }
 
 -- vim-translator
-vim.g.translator_default_engines = { "bing" }
+vim.g.translator_default_engines = { "haici" }
 
 -- Firenvim settings
 vim.g.firenvim_config = {
