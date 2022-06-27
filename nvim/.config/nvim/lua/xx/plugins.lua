@@ -275,7 +275,7 @@ return require("packer").startup {
     ---
     --- Rust
     ---
-    use "simrat39/rust-tools.nvim"
+    use { "againxx/rust-tools.nvim", branch = "fix/inlay-hints" }
     use { -- managing crates.io dependencies
       "saecki/crates.nvim",
       event = { "BufRead Cargo.toml" },
