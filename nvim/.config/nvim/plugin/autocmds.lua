@@ -160,6 +160,11 @@ api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+api.nvim_create_autocmd("FileType", {
+  group = other_filetypes,
+  pattern = "LspsagaCodeAction",
+  command = "autocmd BufLeave <buffer> ++once quit",
+})
 -- api.nvim_create_autocmd("FileType", {
 --   group = other_filetypes,
 --   pattern = "dap-repl",

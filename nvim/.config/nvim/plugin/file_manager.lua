@@ -75,7 +75,7 @@ require("neo-tree").setup {
       end,
       ["a"] = function(state)
         local node = state.tree:get_node()
-        if state.current_position == "current" and not node:is_expanded() then
+        if state.current_position == "current" and not node:is_expanded() and node:has_children() then
           local fs_actions = require("neo-tree.sources.filesystem.lib.fs_actions")
           local parent_id = node:get_parent_id()
           fs_actions.create_node(parent_id, nil, parent_id)

@@ -473,12 +473,12 @@ return require("packer").startup {
     use { "szw/vim-maximizer", cmd = "MaximizerToggle" }
     use "jeffkreeftmeijer/vim-numbertoggle"
     -- embed neovim in browser input box
-    use {
-      "glacambre/firenvim",
-      run = function()
-        vim.fn["firenvim#install"](0)
-      end,
-    }
+    -- use {
+    --   "glacambre/firenvim",
+    --   run = function()
+    --     vim.fn["firenvim#install"](0)
+    --   end,
+    -- }
     use "voldikss/vim-translator"
     use "chentoast/marks.nvim"
     use {

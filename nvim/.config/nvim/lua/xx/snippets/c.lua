@@ -2,6 +2,7 @@
 local show_line_begin = require("xx.snippets.utils").show_line_begin
 local get_left_curly_brace_style = require("xx.snippets.utils").get_left_curly_brace_style
 local get_right_curly_brace_style = require("xx.snippets.utils").get_right_curly_brace_style
+local VISUAL = require("xx.snippets.utils").VISUAL
 
 local include_std_header = function(trigger, header_file)
   return s(trigger, t("#include <" .. header_file .. ">"), {
@@ -25,11 +26,9 @@ local branch_block_with_choice = function(branch_type)
       {
         t(branch_type),
         r(1, "condition", i(nil, "/* condition */")),
-        f(get_left_curly_brace_style, {}),
-        f(function(_, snip)
-          return snip.parent.env.SELECT_DEDENT
-        end, {}),
-        i(2),
+        f(get_left_curly_brace_style),
+        VISUAL(),
+        i(0),
       }
     ),
     fmt(
@@ -40,10 +39,8 @@ local branch_block_with_choice = function(branch_type)
       {
         t(branch_type),
         r(1, "condition"),
-        f(function(_, snip)
-          return snip.parent.env.SELECT_DEDENT
-        end, {}),
-        i(2),
+        VISUAL(),
+        i(0),
       }
     ),
   })
@@ -63,10 +60,8 @@ local snippets = {
       }
       ]],
         {
-          f(get_left_curly_brace_style, {}),
-          f(function(_, snip)
-            return snip.parent.env.SELECT_DEDENT
-          end, {}),
+          f(get_left_curly_brace_style),
+          VISUAL(),
           i(1),
         }
       ),
@@ -76,9 +71,7 @@ local snippets = {
       	{}{}
       ]],
         {
-          f(function(_, snip)
-            return snip.parent.env.SELECT_DEDENT
-          end, {}),
+          VISUAL(),
           i(1),
         }
       ),
@@ -96,18 +89,51 @@ local snippets = {
       ]],
       {
         i(1, "/* condition */"),
-        f(get_left_curly_brace_style, {}),
-        f(function(_, snip)
-          return snip.env.SELECT_DEDENT
-        end, {}),
+        f(get_left_curly_brace_style),
+        VISUAL(),
         i(2),
         f(get_right_curly_brace_style, {}, { user_args = { "else" } }),
-        f(function(_, snip)
-          return snip.env.SELECT_DEDENT
-        end, {}),
+        VISUAL(),
         i(0),
       }
     )
+  ),
+  s(
+    "for",
+    c(1, {
+      fmta(
+        [[
+    for (<>)<>
+    	<><>
+    }
+    ]],
+        {
+          r(1, "loop_body"),
+          f(get_left_curly_brace_style),
+          VISUAL(),
+          i(2),
+        }
+      ),
+      fmt(
+        [[
+      for ({})
+      	{}{}
+      ]],
+        {
+          r(1, "loop_body"),
+          VISUAL(),
+          i(0),
+        }
+      ),
+    }),
+    {
+      stored = {
+        loop_body = fmt(
+          [[{} {} = {}; {} < {}; ++{}]],
+          { i(4, "int"), i(1, "i"), i(3, "0"), rep(1), i(2, "count"), rep(1) }
+        ),
+      },
+    }
   ),
   include_std_header("incio", "stdio.h"),
   include_std_header("inclib", "stdlib.h"),
@@ -141,10 +167,8 @@ local snippets = {
     ]],
       {
         c(2, { t "", t "int argc, char* argv[]" }),
-        f(get_left_curly_brace_style, {}),
-        f(function(_, snip)
-          return snip.env.SELECT_DEDENT
-        end, {}),
+        f(get_left_curly_brace_style),
+        VISUAL(),
         i(1),
       }
     )
@@ -163,9 +187,7 @@ local snippets = {
       {
         dl(1, l.TM_FILENAME_BASE:gsub("[^A-Za-z0-9]+", "_"):upper(), {}),
         rep(1),
-        f(function(_, snip)
-          return snip.env.SELECT_DEDENT
-        end, {}),
+        VISUAL(),
         i(0),
         rep(1),
       }
