@@ -17,7 +17,7 @@ gui:
     selectedLineBgColor:
       - default
     selectedRangeBgColor:
-      - black
+      - reverse
   commitLength:
     show: true
   mouseEvents: true
@@ -25,6 +25,7 @@ gui:
   skipStashWarning: true
   showFileTree: true
   showCommandLog: false
+  showIcons: true
 git:
   paging:
     colorArg: always

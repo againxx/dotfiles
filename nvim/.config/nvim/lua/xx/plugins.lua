@@ -377,6 +377,13 @@ return require("packer").startup {
       },
     }
     use "jbyuki/nabla.nvim" -- visualize latex as ascii symbols
+    use {
+      "askfiy/nvim-picgo",
+      cmd = { "UploadClipboard", "UploadImagefile" },
+      config = function()
+        require("nvim-picgo").setup {}
+      end,
+    }
 
     ---
     --- Task system

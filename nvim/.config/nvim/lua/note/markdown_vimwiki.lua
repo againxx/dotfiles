@@ -38,6 +38,7 @@ local switch_definitions = [==[
       '^====== \(.*\) ======$': '###### \1',
       '{{\([^|]\+\)|\([^|]*\)|style="width:\(\d\+\)px"}}': '!\[\2\](\1 =\3x)',
       '!\[\([^]]*\)\](\([^)]\+\) =\(\d\+\)x)': '{{\2|\1|style="width:\3px"}}',
+      '!\[\([^]]*\)\](\([^)]\+\))': '{{\2|\1|style="width:750px"}}',
     },
     ['\\rightarrow', '\\longrightarrow', '\\Rightarrow', '\\Longrightarrow'],
     ['\\leftarrow', '\\longleftarrow', '\\Leftarrow', '\\Longleftarrow'],

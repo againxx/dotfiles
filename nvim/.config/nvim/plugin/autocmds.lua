@@ -19,6 +19,11 @@ api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   group = common,
   callback = function()
     vim.o.cursorline = true
+  end,
+})
+api.nvim_create_autocmd("InsertLeave", {
+  group = common,
+  callback = function()
     local active_choice_node = require("luasnip").session.active_choice_node
     if active_choice_node and active_choice_node.active then
       active_choice_node.mark:update_opts(active_choice_node.ext_opts.passive)
@@ -31,6 +36,11 @@ api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     if vim.bo.filetype ~= "neo-tree" then
       vim.o.cursorline = false
     end
+  end,
+})
+api.nvim_create_autocmd("InsertEnter", {
+  group = common,
+  callback = function()
     local ls = require "luasnip"
     local active_choice_node = ls.session.active_choice_node
     if active_choice_node and not ls.exit_out_of_region(active_choice_node) then
@@ -87,7 +97,7 @@ api.nvim_create_autocmd("User", {
     keymap.set("n", "<C-k>", "<Plug>(VM-Add-Cursor-Up)", { buffer = bufnr })
     keymap.set("n", "<C-l>", "<Plug>(VM-Single-Select-l)", { buffer = bufnr })
     keymap.set("n", "<C-h>", "<Plug>(VM-Single-Select-h)", { buffer = bufnr })
-    require('xx.vmlens').start()
+    require("xx.vmlens").start()
     local keymaps = api.nvim_buf_get_keymap(bufnr, "i")
     for _, existing_map in ipairs(keymaps) do
       if existing_map.lhs == "<BS>" then
@@ -106,7 +116,7 @@ api.nvim_create_autocmd("User", {
     keymap.del("n", "<C-k>", { buffer = bufnr })
     keymap.del("n", "<C-l>", { buffer = bufnr })
     keymap.del("n", "<C-h>", { buffer = bufnr })
-    require('xx.vmlens').exit()
+    require("xx.vmlens").exit()
     keymap.set(restored_bs_map.mode, restored_bs_map.lhs, restored_bs_map.rhs or restored_bs_map.callback, {
       noremap = restored_bs_map.noremap == 1,
       silent = restored_bs_map.silent == 1,

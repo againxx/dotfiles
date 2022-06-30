@@ -92,3 +92,4 @@ dataset
 Variational
 BFGS
 VAE
+softmax
