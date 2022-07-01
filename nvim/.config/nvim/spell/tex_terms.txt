@@ -1,0 +1,8 @@
+pmatrix
+bmatrix
+vmatrix
+mathbb
+infty
+lbrack
+rbrack
+doteq

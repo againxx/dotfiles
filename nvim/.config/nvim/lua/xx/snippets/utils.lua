@@ -69,7 +69,7 @@ function M.VISUAL(default)
   return f(function(_, snip)
     if snip.env and #snip.env.SELECT_DEDENT ~= 0 then
       return snip.env.SELECT_DEDENT
-    elseif #snip.parent.env.SELECT_DEDENT ~= 0 then
+    elseif snip.parent and snip.parent.env and #snip.parent.env.SELECT_DEDENT ~= 0 then
       return snip.parent.env.SELECT_DEDENT
     else
       return default
