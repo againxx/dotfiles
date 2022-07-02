@@ -64,7 +64,7 @@ wk.register({
     name = "+change/command",
     b = { gitsigns.toggle_current_line_blame, "Toggle git blame for current line" },
   },
-  ["<C-g>"] = { "<cmd>LazyGit<cr>", "Lazygit" },
+  ["<C-g>"] = { "<cmd>Lazygit<cr>", "Lazygit" },
   m = {
     name = "+mergetool",
     t = { "<Plug>(MergetoolToggle)", "Toggle mergetool" },

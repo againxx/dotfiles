@@ -66,7 +66,7 @@ return require("packer").startup {
     use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
     use "lewis6991/gitsigns.nvim"
     use "samoshkin/vim-mergetool"
-    use { "kdheepak/lazygit.nvim", cmd = "LazyGit" }
+    -- use { "kdheepak/lazygit.nvim", cmd = "LazyGit" }
 
     ---
     --- Filesystem
@@ -84,7 +84,23 @@ return require("packer").startup {
         },
       },
     }
-    use "kevinhwang91/rnvimr"
+    -- use "kevinhwang91/rnvimr"
+    use {
+      "is0n/fm-nvim",
+      cmd = { "Lazygit", "Lf" },
+      config = function()
+        require("fm-nvim").setup {
+          ui = {
+            float = {
+              border = "rounded",
+              border_hl = "TelescopeBorder",
+              height = 0.9,
+              width = 0.9,
+            },
+          },
+        }
+      end,
+    }
 
     ---
     --- Colorscheme & Icons

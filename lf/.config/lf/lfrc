@@ -25,8 +25,6 @@ set icons
 set previewer lf-ueberzug-previewer
 set cleaner lf-ueberzug-cleaner
 
-export ZLUA_ROOT=$HOME/.config/zsh/.zim/modules/z.lua
-
 # use enter for shell commands
 map <enter> shell
 
@@ -68,6 +66,12 @@ map cl clear
 map H jump-prev
 map L jump-next
 map <backspace> set hidden!
+map <c-j> push 5j
+map <c-k> push 5k
+
+map bf push :touch<space>
+map bd push :mkcd<space>
+map bg &set_wallpaper $f
 
 # execute current file (must be executable)
 map x $$f
@@ -80,6 +84,9 @@ map O $mimeopen --ask $f
 cmd goto_media ${{
 
 }}
+
+cmd touch $touch $1
+cmd mkcd $mkdir $1; lf -remote "send ${id} cd '$1'"
 
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
@@ -121,9 +128,23 @@ cmd trash ${{
 
 cmd zlua ${{
     result="$(read -p 'Dir: ' input && $HOME/.config/zsh/.zim/modules/z.lua/z.lua -I -e $input)"
-    [[ -z "$result" ]] && read '?No directory. Press Enter to continue' || lf -remote "send ${id} cd '${result}'"
+    [[ -z "$result" ]] && read -p 'No directory. Press Enter to continue' || lf -remote "send ${id} cd '${result}'"
 }}
 
+# show git related information
+# cmd on-cd &{{
+#     # display git repository status in your prompt
+#     source /usr/share/git/completion/git-prompt.sh
+#     GIT_PS1_SHOWDIRTYSTATE=auto
+#     GIT_PS1_SHOWSTASHSTATE=auto
+#     GIT_PS1_SHOWUNTRACKEDFILES=auto
+#     GIT_PS1_SHOWUPSTREAM=auto
+#     GIT_PS1_COMPRESSSPARSESTATE=auto
+#     git=$(__git_ps1 " [GIT BRANCH:> %s]") || true
+#     fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w\033[0m\033[33;1m$git\033[0m"
+#     lf -remote "send $id set promptfmt \"$fmt\""
+# }}
+#
 # use '<delete>' key for either 'trash' or 'delete' command
 # map <delete> trash
 # map <delete> delete

@@ -53,8 +53,8 @@ db.custom_center = {
   {
     icon = "  ",
     desc = "File browser                            ",
-    shortcut = "SPC r a",
-    action = "RnvimrToggle",
+    shortcut = "SPC l f",
+    action = "Lf",
   },
   {
     icon = "  ",

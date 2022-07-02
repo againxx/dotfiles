@@ -263,19 +263,19 @@ wk.register({
     },
     h = { "<cmd>edit %:h<cr>", "Edit current file's directory" },
   },
-  ra = { "<cmd>RnvimrToggle<cr>", "Ranger" },
+  lf = { "<cmd>Lf<cr>", "Lf" },
 }, {
   prefix = "<leader>",
 })
 
 -- rnvimr
 -- Make Ranger replace netrw and be the file explorer
-vim.g.rnvimr_enable_ex = false
-vim.g.rnvimr_layout = {
-  relative = "editor",
-  width = math.ceil(0.8 * vim.o.columns),
-  height = math.ceil(0.8 * vim.o.lines),
-  col = math.floor(0.1 * vim.o.columns),
-  row = math.floor(0.1 * vim.o.lines),
-  style = "minimal",
-}
+-- vim.g.rnvimr_enable_ex = false
+-- vim.g.rnvimr_layout = {
+--   relative = "editor",
+--   width = math.ceil(0.8 * vim.o.columns),
+--   height = math.ceil(0.8 * vim.o.lines),
+--   col = math.floor(0.1 * vim.o.columns),
+--   row = math.floor(0.1 * vim.o.lines),
+--   style = "minimal",
+-- }
