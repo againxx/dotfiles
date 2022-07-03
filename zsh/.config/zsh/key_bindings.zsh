@@ -21,7 +21,7 @@ bindkey "^[." insert-last-word
 
 zle -N fzf-choose-dirs-widget
 bindkey "^[m" fzf-choose-dirs-widget
-bindkey -s '^[r' 'racd^M'
+bindkey -s '^O' 'lfcd^M'
 
 # zsh-vi-mode
 zvm_after_lazy_keybindings() {

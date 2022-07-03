@@ -59,6 +59,16 @@ racd() {
     fi
 }
 
+lfcd() {
+    tmp="$(mktemp /tmp/lf-cd.XXXXXX)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$PWD" ] && cd "$dir"
+    fi
+}
+
 vinfo() {
     nvim -R -M -c "Info $1 $2" -c "wincmd w" +bwipeout
 }
