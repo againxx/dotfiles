@@ -174,7 +174,7 @@ function Subprocesses:render_one_session(session, canvas)
     loop.run()
   end)
   canvas:write "\n"
-  if thread and not vim.tbl_isempty(thread.state:threads()) and expanded then
+  if thread and thread.state and not vim.tbl_isempty(thread.state:threads()) and expanded then
     thread:render(canvas, 2)
     canvas:write "\n"
   end
