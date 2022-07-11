@@ -33,6 +33,7 @@ wk.register({
     o = { "<cmd>lua require('xx.telescope').jumplist()<cr>", 'Jump list' },
     m = { "<cmd>lua require('xx.telescope').marks()<cr>", 'Marks' },
     k = { "<cmd>lua require('xx.telescope').keymaps()<cr>", 'Key mappings' },
+    r = { "<cmd>lua require('xx.telescope').registers()<cr>", 'Registers' },
     u = { '<cmd>UndotreeToggle<cr>', 'Undo tree' },
     ['/'] = { "<cmd>lua require('xx.telescope').search_history()<cr>", 'Search history' },
   },
