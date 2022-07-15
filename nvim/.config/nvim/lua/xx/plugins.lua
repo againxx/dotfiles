@@ -1,5 +1,11 @@
 vim.cmd [[packadd packer.nvim]]
 
+if vim.fn.has("mac") then
+  require("packer").init {
+    max_jobs = 60
+  }
+end
+
 return require("packer").startup {
   function(use)
     -- Packer can manage itself
