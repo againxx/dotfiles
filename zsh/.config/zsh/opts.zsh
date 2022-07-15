@@ -5,7 +5,9 @@ fi
 
 if command -v brew &> /dev/null; then
     # Use USTC homebrew bottle source
-    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
 fi
 
 if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
@@ -22,8 +24,4 @@ fi
 
 if [ -f "$HOME/.config/broot/launcher/bash/br" ]; then
     source "$HOME/.config/broot/launcher/bash/br"
-fi
-
-if [ -f "$HOME/.ghcup/env" ]; then
-    source "$HOME/.ghcup/env" # ghcup-env
 fi
