@@ -28,7 +28,7 @@ local branch_block_with_choice = function(branch_type)
         r(1, "condition", i(nil, "/* condition */")),
         f(get_left_curly_brace_style),
         VISUAL(),
-        i(0),
+        i(2),
       }
     ),
     fmt(
@@ -40,7 +40,7 @@ local branch_block_with_choice = function(branch_type)
         t(branch_type),
         r(1, "condition"),
         VISUAL(),
-        i(0),
+        i(2),
       }
     ),
   })
