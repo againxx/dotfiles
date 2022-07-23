@@ -62,9 +62,9 @@ return {
   keys = {
     { key="v", mods="CTRL|SHIFT", action=wezterm.action{ PasteFrom="Clipboard" } },
     { key="c", mods="CTRL|SHIFT", action=wezterm.action{ CopyTo="Clipboard" } },
-    { key="+", mods="CTRL", action="IncreaseFontSize" },
-    { key="_", mods="CTRL", action="DecreaseFontSize" },
-    { key=")", mods="CTRL", action="ResetFontSize" },
+    { key="+", mods="CTRL|SHIFT", action="IncreaseFontSize" },
+    { key="_", mods="CTRL|SHIFT", action="DecreaseFontSize" },
+    { key=")", mods="CTRL|SHIFT", action="ResetFontSize" },
     { key="m", mods="CTRL", action=wezterm.action {SendString = "\x1b[109;5u"} },
   }
 }
