@@ -38,7 +38,7 @@ map gL cd -r %f
 map go cd /opt
 map gv cd ~/dotfiles/nvim/.config/nvim/
 map gV cd /var
-map gm $lf -remote "send $id cd /media/$USER"
+map gm $[ -d /media/$USER ] && lf -remote "send $id cd /media/$USER" || lf -remote "send $id cd /run/media/$USER"
 map gi cd ~/Git_Repo
 map gM cd /mnt
 map gs cd /srv
