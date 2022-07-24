@@ -28,7 +28,7 @@ local cppcheck = {
 }
 
 local cpplint = {
-  lintCommand = "cpplint --filter=-build/include_subdir,-build/header_guard,-build/c++11,-legal/copyright ${INPUT}",
+  lintCommand = "cpplint --filter=-build/include_subdir,-build/header_guard,-build/c++11,-legal/copyright,-whitespace/line_length ${INPUT}",
   lintStdin = false,
   lintFormats = {
     "%f:%l:  %m [%t]",
