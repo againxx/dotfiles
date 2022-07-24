@@ -112,7 +112,14 @@ local on_attach_default = function(client, bufnr)
   wk.register({
     r = {
       n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
-      f = { "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", "Format the whole file" },
+      f = { function()
+        -- neovim 0.8
+        if vim.lsp.buf.format then
+          vim.lsp.buf.format { async = true }
+        else
+          vim.lsp.buf.formatting()
+        end
+      end, "Format the whole file" },
     },
     d = {
       g = { "<cmd>lua require('xx.telescope').diagnostics{bufnr = 0}<cr>", "Current buffer diagnostics" },
