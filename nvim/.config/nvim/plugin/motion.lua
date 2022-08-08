@@ -26,3 +26,15 @@ require("marks").setup {
     next = "<M-'>",
   },
 }
+
+local success, wk = pcall(require, 'which-key')
+if not success then
+  return
+end
+
+wk.register({
+  a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", 'Add harpoon mark' },
+  m = { "<cmd>lua require('xx.telescope').harpoon_marks()<cr>", 'View all harpoon marks' },
+  j = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", 'Goto next harpoon mark' },
+  k = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", 'Goto previous harpoon mark' },
+}, { prefix = '<leader>m' })

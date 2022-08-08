@@ -406,4 +406,14 @@ function M.lsp_range_code_actions()
   require("telescope.builtin").lsp_range_code_actions(opts)
 end
 
+function M.harpoon_marks()
+  local opts = require("telescope.themes").get_dropdown {
+    layout_config = {
+      height = 20,
+      width = 0.8,
+    },
+  }
+  require("telescope").extensions.harpoon.marks(opts)
+end
+
 return M

@@ -241,7 +241,11 @@ end
 
 vim.g.symbols_outline = {
   width = 35,
+  auto_preview = false,
   preview_bg_highlight = "NormalFloat",
+  keymaps = { -- These keymaps can be a string or a table for multiple keys
+    toggle_preview = "p",
+  },
 }
 
 require("fidget").setup {

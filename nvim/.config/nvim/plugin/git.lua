@@ -66,7 +66,7 @@ wk.register({
   },
   ["<C-g>"] = { "<cmd>Lazygit<cr>", "Lazygit" },
   m = {
-    name = "+mergetool",
+    name = "+mergetool/mark",
     t = { "<Plug>(MergetoolToggle)", "Toggle mergetool" },
     b = { "<cmd>call mergetool#toggle_layout('mr,b')<cr>", "Toggle base" },
   }

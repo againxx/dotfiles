@@ -510,6 +510,7 @@ return require("packer").startup {
     -- }
     use "voldikss/vim-translator"
     use "chentoast/marks.nvim"
+    use "ThePrimeagen/harpoon"
     use {
       "AckslD/nvim-neoclip.lua",
       module = "neoclip",
