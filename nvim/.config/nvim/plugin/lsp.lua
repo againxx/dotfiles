@@ -79,9 +79,9 @@ end
 -- after the language server attaches to the current buffer
 local on_attach_default = function(client, bufnr)
   require("illuminate").on_attach(client)
-  require("lsp_signature").on_attach {
-    hint_prefix = "🐯 ",
-  }
+  -- require("lsp_signature").on_attach {
+  --   hint_prefix = "🐯 ",
+  -- }
 
   keymap.set("n", "K", show_documentation, { silent = true , buffer = bufnr})
 

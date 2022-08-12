@@ -95,6 +95,7 @@ require("neo-tree").setup {
       ["yc"] = "copy_to_clipboard",
       ["<c-v>"] = "open_vsplit",
       ["<c-x>"] = "open_split",
+      ["<space>"] = "none",
     },
   },
   filesystem = {
