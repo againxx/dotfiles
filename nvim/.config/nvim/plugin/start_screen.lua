@@ -1,4 +1,8 @@
-local db = require "dashboard"
+local ok, db = pcall(require, "dashboard")
+if not ok then
+  return
+end
+
 db.custom_header = function()
   local header = {}
   for _ = 1,10 do
