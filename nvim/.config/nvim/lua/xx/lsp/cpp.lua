@@ -36,7 +36,7 @@ return {
     "--suggest-missing-includes",
     "--clang-tidy",
     "--header-insertion=never",
-    "--path-mappings=/Users/againxx/Projects=/home/administrator/workspace",
+    "--path-mappings=" .. vim.env.HOME .. "/Projects=/home/administrator/workspace",
   },
   filetypes = {
     "c",
