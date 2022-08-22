@@ -331,9 +331,13 @@ function M.grep_last_search(opts)
   require("telescope.builtin").grep_string(opts)
 end
 
--- function M.live_grep()
---   require('telescope').extensions.fzf_writer.staged_grep()
--- end
+function M.live_grep()
+  require("telescope.builtin").live_grep {
+    path_display = {
+      shorten = 2,
+    },
+  }
+end
 
 function M.luasnip()
   require("telescope").extensions.luasnip.luasnip {
