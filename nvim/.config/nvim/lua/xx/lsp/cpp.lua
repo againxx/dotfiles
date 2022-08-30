@@ -25,7 +25,11 @@ local function project_name_to_container_name()
   local project_dirname = root_pattern(filename) or lspconfig.util.path.dirname(filename)
 
   -- And finally perform what is essentially a `basename` on this directory
-  return vim.fn.fnamemodify(lspconfig.util.find_git_ancestor(project_dirname), ":t")
+  local git_dir = lspconfig.util.find_git_ancestor(project_dirname)
+  if git_dir and git_dir:sub(-1) == '/' then
+    git_dir = git_dir:sub(1, -2)
+  end
+  return vim.fn.fnamemodify(git_dir, ":t")
 end
 
 return {
@@ -50,11 +54,4 @@ return {
   },
   -- handlers = lsp_status.extensions.clangd.setup(),
   capabilities = capabilities,
-  -- Use clangd for formatting
-  on_attach_extra = function(client)
-    if client.name == "efm" then
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-    end
-  end
 }

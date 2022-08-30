@@ -40,6 +40,9 @@ require("telescope").setup {
         preview_width = 0.65,
       },
     },
+    path_display = {
+      truncate = 1,
+    },
   },
   extensions = {
     fzf_writer = {
@@ -298,6 +301,10 @@ end
 
 function M.grep_prompt()
   require("telescope.builtin").grep_string {
+    layout_strategy = "vertical",
+    layout_config = {
+      prompt_position = "top",
+    },
     path_display = {
       shorten = 1,
     },
@@ -307,6 +314,10 @@ end
 
 function M.grep_cursor_word()
   require("telescope.builtin").grep_string {
+    layout_strategy = "vertical",
+    layout_config = {
+      prompt_position = "top",
+    },
     path_display = {
       shorten = 1,
     },
@@ -333,6 +344,10 @@ end
 
 function M.live_grep()
   require("telescope.builtin").live_grep {
+    layout_strategy = "vertical",
+    layout_config = {
+      prompt_position = "top",
+    },
     path_display = {
       shorten = 2,
     },

@@ -239,7 +239,7 @@ for server_name, config in pairs(servers) do
   setup_server(server_name, config)
 end
 
-vim.g.symbols_outline = {
+require("symbols-outline").setup {
   width = 35,
   auto_preview = false,
   preview_bg_highlight = "NormalFloat",

@@ -1,5 +1,6 @@
 local black = {
-  formatCommand = "black --quiet --stdin-filename ${INPUT} -", formatStdin = true,
+  formatCommand = "black --quiet --stdin-filename ${INPUT} -",
+  formatStdin = true,
 }
 
 local pylint = {
@@ -30,6 +31,7 @@ local cppcheck = {
 local cpplint = {
   lintCommand = "cpplint --filter=-build/include_subdir,-build/header_guard,-build/c++11,-legal/copyright,-whitespace/line_length ${INPUT}",
   lintStdin = false,
+  lintIgnoreExitCode = true,
   lintFormats = {
     "%f:%l:  %m [%t]",
     "%f:%l:%c %m [%t]",
@@ -69,7 +71,7 @@ local stylua = {
 return {
   cmd = { "efm-langserver", "-logfile", "/tmp/efm.log", "-loglevel", "5" },
   init_options = { documentFormatting = true },
-  filetypes = { 'lua', 'python', 'cpp', 'vim', 'sh' },
+  filetypes = { "lua", "python", "cpp", "vim", "sh" },
   settings = {
     rootMarkers = { ".git/", ".vim/" },
     languages = {
@@ -89,13 +91,15 @@ return {
       },
       sh = {
         shellcheck,
-      }
+      },
     },
   },
   on_attach_extra = function(client, bufnr)
+    -- Use clangd for formatting
     if vim.api.nvim_buf_get_option(bufnr, "filetype") == "cpp" then
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
+      client.resolved_capabilities.documentFormattingProvider = false
+      client.resolved_capabilities.documentRangeFormattingProvider = false
+      client.resolved_capabilities.document_formatting = false
     end
-  end
+  end,
 }
