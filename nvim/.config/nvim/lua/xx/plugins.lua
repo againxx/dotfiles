@@ -1,8 +1,8 @@
 vim.cmd [[packadd packer.nvim]]
 
-if vim.fn.has("mac") then
+if vim.fn.has "mac" then
   require("packer").init {
-    max_jobs = 60
+    max_jobs = 60,
   }
 end
 
@@ -45,9 +45,6 @@ return require("packer").startup {
       "filipdutescu/renamer.nvim",
       branch = "master",
       requires = { { "nvim-lua/plenary.nvim" } },
-      config = function()
-        require("renamer").setup {}
-      end,
     }
 
     ---

@@ -79,11 +79,11 @@ end
 -- after the language server attaches to the current buffer
 local on_attach_default = function(client, bufnr)
   require("illuminate").on_attach(client)
-  -- require("lsp_signature").on_attach {
-  --   hint_prefix = "🐯 ",
-  -- }
+  require("lsp_signature").on_attach {
+    hint_prefix = "🐯 ",
+  }
 
-  keymap.set("n", "K", show_documentation, { silent = true , buffer = bufnr})
+  keymap.set("n", "K", show_documentation, { silent = true, buffer = bufnr })
 
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
@@ -112,14 +112,17 @@ local on_attach_default = function(client, bufnr)
   wk.register({
     r = {
       n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
-      f = { function()
-        -- neovim 0.8
-        if vim.lsp.buf.format then
-          vim.lsp.buf.format { async = true }
-        else
-          vim.lsp.buf.formatting()
-        end
-      end, "Format the whole file" },
+      f = {
+        function()
+          -- neovim 0.8
+          if vim.lsp.buf.format then
+            vim.lsp.buf.format { async = true }
+          else
+            vim.lsp.buf.formatting()
+          end
+        end,
+        "Format the whole file",
+      },
     },
     d = {
       g = { "<cmd>lua require('xx.telescope').diagnostics{bufnr = 0}<cr>", "Current buffer diagnostics" },
@@ -257,6 +260,23 @@ require("fidget").setup {
   },
   fmt = {
     stack_upwards = false,
+  },
+}
+
+require("renamer").setup {
+  mappings = {
+    ["<M-h>"] = function()
+      vim.api.nvim_input "<left>"
+    end,
+    ["<M-l>"] = function()
+      vim.api.nvim_input "<right>"
+    end,
+    ["<C-b>"] = function()
+      require("renamer.mappings.utils").set_cursor_to_start()
+    end,
+    ["<C-e>"] = function()
+      require("renamer.mappings.utils").set_cursor_to_end()
+    end,
   },
 }
 

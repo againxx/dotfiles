@@ -38,7 +38,7 @@ end
 
 wk.register({
   g = {
-    name = "+git",
+    name = "+git/diff",
     a = { gitsigns.stage_hunk, "Stage hunk" },
     u = { gitsigns.undo_stage_hunk, "Undo stage hunk" },
     r = { gitsigns.reset_hunk, "Reset hunk" },
@@ -51,6 +51,8 @@ wk.register({
     c = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", "Current buffer commits" },
     C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", "All commits" },
     B = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
+    h = { "<cmd>DiffviewFileHistory %<cr>", "Current file history" },
+    q = { "<cmd>DiffviewClose %<cr>", "Close diffview" },
     b = {
       function()
         gitsigns.blame_line { full = true }
