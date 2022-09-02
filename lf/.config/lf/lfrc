@@ -77,6 +77,8 @@ map bg &set_wallpaper $f
 map x $$f
 map X !$f
 
+map <c-f> :fzf_jump
+
 # dedicated keys for file opener actions
 map o &mimeopen $f
 map O $mimeopen --ask $f
@@ -203,4 +205,16 @@ cmd bulk-rename ${{
     done
     rm -- "$old" "$new"
     lf -remote "send $id unselect"
+}}
+
+cmd fzf_jump ${{
+    res="$(fd -HI | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
 }}

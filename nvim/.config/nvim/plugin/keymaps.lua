@@ -79,6 +79,7 @@ wk.register({
   ['g*'] = 'Forward search word (without word boundary)',
   ['g#'] = 'Backward search word (without word boundary)',
   ['z;'] = { 'za', 'Toggle fold under cursor' },
+  ['zV'] = { 'zczO', 'Open all folds under cursor' },
   ['[q'] = { '<cmd>cfirst<cr>', 'Go to first quickfix term' },
   [']q'] = { '<cmd>clast<cr>', 'Go to last quickfix term' },
   ['[a'] = { "<cmd>execute 'move -1-'.v:count1<cr>==", 'Move current line up' },
