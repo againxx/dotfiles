@@ -52,7 +52,7 @@ wk.register({
     C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", "All commits" },
     B = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
     h = { "<cmd>DiffviewFileHistory %<cr>", "Current file history" },
-    q = { "<cmd>DiffviewClose %<cr>", "Close diffview" },
+    q = { "<cmd>DiffviewClose<cr>", "Close diffview" },
     b = {
       function()
         gitsigns.blame_line { full = true }
