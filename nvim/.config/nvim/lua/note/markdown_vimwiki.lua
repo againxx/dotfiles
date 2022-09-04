@@ -72,15 +72,15 @@ end
 
 wk.register({
   [';'] = {
-    w = { '<Esc>/<++><CR>:nohlsearch<CR>"_cf>', 'Go to next word' },
-    e = { '<Esc>/<Space>\\?<++><CR>:nohlsearch<CR>"_cf>', 'Go to end' },
-    o = { '<Esc>/<Space>\\?<++><CR>:nohlsearch<CR>"_cf><CR>', 'Go to new line' },
+    w = { [[<Esc><Cmd>call search('<++>')<CR>"_cf>]], 'Go to next word' },
+    e = { [[<Esc><Cmd>call search('\s\?<++>')<CR>"_cf>]], 'Go to end' },
+    o = { [[<Esc><Cmd>call search('\s\?<++>')<CR>"_cf><CR>]], 'Go to new line' },
     m = { '$$<++><C-o>F$', 'Inline math' },
     c = { '``<Space><++><C-o>F`', 'Emphasis' },
     t = { '-<Space>[<Space>]<Space>', 'Check list' },
     T = { '*<Space>[<Space>]<Space>', 'Task list' },
     n = { [[<Esc>A<Space>\\<CR>]], 'New line in math block' },
-    q = { '<Esc>/[)}\\]]<CR>:nohlsearch<CR>a', 'Go out of )}]' },
+    q = { [=[<Esc><Cmd>call search('[)}\]]')<CR>a]=], 'Go out of )}]' },
     [';'] = { ';', 'Literal ;' },
     -- when packer first load TableMode the TableModeEnable command does not have effect,
     -- the cursor will also jump to some strange place, use `. to jump to the original place
