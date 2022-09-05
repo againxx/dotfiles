@@ -97,7 +97,7 @@ return {
   on_attach_extra = function(client, bufnr)
     -- Use clangd for formatting
     if vim.api.nvim_buf_get_option(bufnr, "filetype") == "cpp" then
-      if vim.fn.has("nvim-0.8.0") then
+      if vim.fn.has("nvim-0.8.0") == 1 then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
         client.server_capabilities.document_formatting = false
