@@ -132,6 +132,7 @@ keybinding:
     viewResetOptions: 'D'
     fetch: 'f'
     toggleTreeView: '`'
+    openStatusFilter: 'F'
   branches:
     createPullRequest: 'o'
     checkoutBranchByName: 'c'
