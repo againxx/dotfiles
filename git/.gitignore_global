@@ -32,3 +32,6 @@ compile_commands.json
 # gdb
 .gdb_history
 peda-session*
+
+# pdc
+.container_name
