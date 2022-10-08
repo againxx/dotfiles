@@ -26,7 +26,7 @@ local function project_name_to_container_name()
 
   -- And finally perform what is essentially a `basename` on this directory
   local git_dir = lspconfig.util.find_git_ancestor(project_dirname)
-  if vim.fn.filereadable(git_dir .. "/.container_name") then
+  if git_dir and vim.fn.filereadable(git_dir .. "/.container_name") then
     local container_file = io.open(git_dir .. "/.container_name")
     if container_file then
       local container_name =  container_file:read()
