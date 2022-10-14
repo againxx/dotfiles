@@ -32,15 +32,9 @@ return {
   -- Use efm with stylua for formatting
   on_attach_extra = function(client)
     if client.name == "sumneko_lua" then
-      if vim.fn.has("nvim-0.8.0") == 1 then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.document_formatting = false
-      else
-        client.resolved_capabilities.documentFormattingProvider = false
-        client.resolved_capabilities.documentRangeFormattingProvider = false
-        client.resolved_capabilities.document_formatting = false
-      end
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      client.server_capabilities.document_formatting = false
     end
   end
 }
