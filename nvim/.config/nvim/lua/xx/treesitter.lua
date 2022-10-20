@@ -126,11 +126,9 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
-require("nvim-treesitter.highlight").set_custom_captures {
-  ["python.self"] = "pythonTSSelf",
-  ["python.docstring"] = "pythonTSDocstring",
-  ["lua.vim"] = "Constructor",
-}
+vim.api.nvim_set_hl(0, "@python.self", { link = "pythonTSSelf" })
+vim.api.nvim_set_hl(0, "@python.docstring", { link = "pythonTSDocstring" })
+vim.api.nvim_set_hl(0, "@lua.vim", { link = "Constructor" })
 
 local success, wk = pcall(require, "which-key")
 if not success then
