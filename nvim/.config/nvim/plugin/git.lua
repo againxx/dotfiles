@@ -76,6 +76,7 @@ wk.register({
 
 wk.register({
   ih = { "<cmd>Gitsigns select_hunk<cr>", "inner git hunk" },
+  gh = { ":DiffviewFileHistory %<cr>", "Current file history"  }
 }, { mode = "x" })
 
 -- navigate chunks of current buffer
