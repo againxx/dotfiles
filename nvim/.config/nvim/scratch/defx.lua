@@ -71,6 +71,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
 vim.api.nvim_create_autocmd("BufHidden", {
   buffer = bufnr,
   callback = function()
-    require'bufferline.state'.set_offset(0); vim.g.defx_open_in_vertical_split = false
+    require'bufferline.api'.set_offset(0); vim.g.defx_open_in_vertical_split = false
   end
 })

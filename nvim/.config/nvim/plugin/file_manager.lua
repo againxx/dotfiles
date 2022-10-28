@@ -15,7 +15,7 @@ vim.g.neotree_explorer_presets = {
 }
 
 local open_neotree = function(preset)
-  require("bufferline.state").set_offset(40, "")
+  require("bufferline.api").set_offset(40, "")
   if preset then
     local preset_config = vim.g.neotree_explorer_presets[preset]
     if preset_config then

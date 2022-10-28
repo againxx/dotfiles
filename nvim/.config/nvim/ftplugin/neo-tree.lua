@@ -7,6 +7,6 @@ end
 vim.api.nvim_create_autocmd("BufHidden", {
   buffer = bufnr,
   callback = function()
-    require'bufferline.state'.set_offset(0)
+    require'bufferline.api'.set_offset(0)
   end
 })

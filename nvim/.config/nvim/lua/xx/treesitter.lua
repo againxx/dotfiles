@@ -105,22 +105,22 @@ require("nvim-treesitter.configs").setup {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        ["]f"] = "@function.name",
-        ["]]"] = "@class.outer",
-        ["]h"] = "@include",
+        ["]f"] = { query = "@function.outer", desc = "Next function start" },
+        ["]]"] = { query = "@class.outer", desc = "Next class start" },
+        ["]h"] = { query = "@include", desc = "Next include/import statement" },
       },
       goto_next_end = {
-        ["]F"] = "@function.outer",
-        ["]["] = "@class.outer",
+        ["]F"] = { query = "@function.outer", desc = "Next function end" },
+        ["]["] = { query = "@class.outer", desc = "Next class end" },
       },
       goto_previous_start = {
-        ["[f"] = "@function.name",
-        ["[["] = "@class.outer",
-        ["[h"] = "@include",
+        ["[f"] = { query = "@function.outer", desc = "Previous function start" },
+        ["[["] = { query = "@class.outer", desc = "Previous class start" },
+        ["[h"] = { query = "@include", desc = "Previous include/import statement" },
       },
       goto_previous_end = {
-        ["[F"] = "@function.outer",
-        ["[]"] = "@class.outer",
+        ["[F"] = { query = "@function.outer", desc = "Previous function end" },
+        ["[]"] = { query = "@class.outer", desc = "Previous class end" },
       },
     },
   },
@@ -130,22 +130,26 @@ vim.api.nvim_set_hl(0, "@python.self", { link = "pythonTSSelf" })
 vim.api.nvim_set_hl(0, "@python.docstring", { link = "pythonTSDocstring" })
 vim.api.nvim_set_hl(0, "@lua.vim", { link = "Constructor" })
 
+-- vim.treesitter.set_query(
+--   "cpp",
+--   "textobjects",
+--   [=[
+-- (function_definition
+--   declarator: (function_declarator
+--     declarator: [
+--         (identifier) @function.name
+--         (qualified_identifier
+--             name: (identifier) @function.name)
+-- ]))
+-- ]=]
+-- )
+
 local success, wk = pcall(require, "which-key")
 if not success then
   return
 end
 
 wk.register {
-  ["[f"] = "Previous function start",
-  ["[F"] = "Previous function end",
-  ["]f"] = "Next function start",
-  ["]F"] = "Next function end",
-  ["[h"] = "Previous include/import statement",
-  ["]h"] = "Next include/import statement",
-  ["[["] = "Previous class start",
-  ["[]"] = "Previous class end",
-  ["]]"] = "Next class start",
-  ["]["] = "Next class end",
   ["<leader>rj"] = "Swap with next parameter",
   ["<leader>rk"] = "Swap with previous parameter",
 }
