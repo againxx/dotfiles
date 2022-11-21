@@ -103,6 +103,8 @@ configuration {
 	kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
 	kb-row-down: "Down,Control+n,Control+j";
 	kb-row-tab: "";
+    kb-element-next: "Control+Alt+period";
+    kb-element-prev: "Control+Alt+comma";
 /*	kb-page-prev: "Page_Up";*/
 /*	kb-page-next: "Page_Down";*/
 /*	kb-row-first: "Home,KP_Home";*/

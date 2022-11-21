@@ -3,7 +3,8 @@
 * {
     font: "JetBrainsMono Nerd Font 11";
     foreground: #f8f8f2;
-    background-color: #282a36;
+    background: #282a36;
+    background-color: @background;
     active-background: #bd93f9;
     urgent-background: #ff5555;
     selected-background: #6272a4;
@@ -76,7 +77,7 @@
 }
 #element.normal.urgent {
     background-color: @urgent-background;
-    text-color:       @urgent-foreground;
+    text-color:       @foreground;
 }
 #element.normal.active {
     background-color: @active-background;
