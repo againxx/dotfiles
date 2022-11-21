@@ -32,6 +32,7 @@ stow --target="$HOME" tldr/
 stow --target="$HOME" ranger/
 
 ln -sf "$dotfiles_dir/python_scripts/unzip_cn.py" ~/.local/bin/unzip_cn
+ln -sf "$dotfiles_dir/bash_scripts/cclangd" ~/.local/bin/cclangd
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -100,6 +101,8 @@ elif [[ -x "$(command -v pacman)" ]]; then
     pacman_pack[atool]=atool
     pacman_pack[xclip]=xclip
     pacman_pack[btm]=bottom
+    pacman_pack[words]=words
+    pacman_pack[lf]=lf
 
     for exec_name in "${!pacman_pack[@]}"; do
         if command -v $exec_name &> /dev/null; then
