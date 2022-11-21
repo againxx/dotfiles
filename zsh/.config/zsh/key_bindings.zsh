@@ -1,7 +1,16 @@
+# bindkey ctrl+j for partial accept zsh-autosuggestions
+# bindkey ctrl+l for complete accept zsh-autosuggestions
+# bindkey alt+l for clear screen
+bindkey -M viins "^J" forward-word
+bindkey -M viins "^L" autosuggest-accept
+bindkey -M viins "^B" beginning-of-line
+bindkey -M viins "^[l" clear-screen
+bindkey -M viins "^[." insert-last-word
+
 # zsh-history-substring-search
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
 
 # Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
@@ -13,15 +22,15 @@ fi
 # bindkey ctrl+j for partial accept zsh-autosuggestions
 # bindkey ctrl+l for complete accept zsh-autosuggestions
 # bindkey alt+l for clear screen
-bindkey "^J" forward-word
-bindkey "^L" autosuggest-accept
-bindkey "^B" beginning-of-line
-bindkey "^[l" clear-screen
-bindkey "^[." insert-last-word
+bindkey -M viins "^J" forward-word
+bindkey -M viins "^L" autosuggest-accept
+bindkey -M viins "^B" beginning-of-line
+bindkey -M viins "^[l" clear-screen
+bindkey -M viins "^[." insert-last-word
 
 zle -N fzf-choose-dirs-widget
-bindkey "^[m" fzf-choose-dirs-widget
-bindkey -s '^O' 'lfcd^M'
+bindkey -M viins "^[m" fzf-choose-dirs-widget
+bindkey -M viins -s '^O' 'lfcd^M'
 
 # zsh-vi-mode
 zvm_after_lazy_keybindings() {

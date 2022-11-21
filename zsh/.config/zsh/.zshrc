@@ -25,7 +25,9 @@ setopt HIST_IGNORE_ALL_DUPS
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 # bindkey -v
 # KEYTIMEOUT=1
-ZVM_KEYTIMEOUT=0.01
+function zvm_config() {
+    ZVM_KEYTIMEOUT=0.01
+}
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
