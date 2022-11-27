@@ -18,7 +18,6 @@ fi
 
 export EDITOR=nvim
 export VISUAL=nvim
-export ZDOTDIR="$HOME/.config/zsh"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export BAT_THEME=Dracula
