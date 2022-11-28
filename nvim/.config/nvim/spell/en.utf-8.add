@@ -100,3 +100,6 @@ Udev's
 Awk
 ConvNet
 #emory Allocation
+OSQP
+ADMM
+optimality
