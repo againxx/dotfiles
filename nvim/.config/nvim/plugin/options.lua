@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.hidden = true -- Allow buffer switch without saving
 opt.lazyredraw = true
+opt.cmdheight = 0
 opt.showcmd = true -- Show (partial) command in status line
 opt.showmatch = true -- Show matching brackets
 opt.ignorecase = true -- Do case insensitive matching

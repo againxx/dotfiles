@@ -29,12 +29,12 @@ local function project_name_to_container_name()
   if git_dir and vim.fn.filereadable(git_dir .. "/.container_name") then
     local container_file = io.open(git_dir .. "/.container_name")
     if container_file then
-      local container_name =  container_file:read()
+      local container_name = container_file:read()
       container_file:close()
       return container_name
     end
   end
-  if git_dir and git_dir:sub(-1) == '/' then
+  if git_dir and git_dir:sub(-1) == "/" then
     git_dir = git_dir:sub(1, -2)
   end
   return vim.fn.fnamemodify(git_dir, ":t")
@@ -48,7 +48,13 @@ return {
     "--suggest-missing-includes",
     "--clang-tidy",
     "--header-insertion=never",
-    "--path-mappings=" .. vim.env.HOME .. "/Projects=/home/administrator/workspace",
+    "--path-mappings="
+      .. vim.env.HOME
+      .. "/Projects=/home/administrator/workspace,"
+      .. vim.env.HOME
+      .. "/Data=/home/administrator/Data,"
+      .. vim.env.HOME
+      .. "/Projects=/home/administrator",
   },
   filetypes = {
     "c",
