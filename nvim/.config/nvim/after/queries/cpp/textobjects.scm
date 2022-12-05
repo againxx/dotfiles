@@ -1,3 +1,5 @@
+;; extends
+
 (parameter_declaration
     (identifier) @param.inner) @param.outer
 

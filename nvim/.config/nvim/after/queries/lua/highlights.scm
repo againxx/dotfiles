@@ -1,3 +1,5 @@
+;; extends
+
 (
     dot_index_expression
         table: (identifier) @lua.vim

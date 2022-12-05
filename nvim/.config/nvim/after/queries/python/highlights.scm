@@ -1,3 +1,5 @@
+;; extends
+
 (
     (identifier) @python.self (#any-of? @python.self "self" "cls")
 )
