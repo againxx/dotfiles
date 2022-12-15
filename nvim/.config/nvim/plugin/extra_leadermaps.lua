@@ -75,6 +75,18 @@ local change_dir = function()
   vim.cmd('lcd ' .. vim.fn.expand('%:p:h'))
 end
 
+-- neoscroll is not smooth over ssh, we may want to disable it temporarily
+local disable_neoscroll = function()
+  vim.keymap.del("n", "<C-u>")
+  vim.keymap.del("n", "<C-d>")
+  vim.keymap.del("n", "<C-y>")
+  vim.keymap.del("n", "<C-e>")
+  vim.keymap.del("n", "zt")
+  vim.keymap.del("n", "zz")
+  vim.keymap.del("n", "zb")
+  _G.disable_neoscroll = true
+end
+
 local success, wk = pcall(require, 'which-key')
 if not success then
   return
@@ -95,6 +107,7 @@ wk.register({
     d = { change_dir, 'Change window directory' },
     D = { "<cmd>execute 'lcd '.expand('%:p:h')<cr>", 'Change window directory to current directory' },
     i = { '<cmd>IndentBlanklineToggle<cr>', 'Toggle indent line' },
+    s = { disable_neoscroll, 'Disable neoscroll' },
   },
   s = {
     h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", 'Syntax highlighting group' },
