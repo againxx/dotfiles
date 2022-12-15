@@ -105,7 +105,7 @@ require("nvim-treesitter.configs").setup {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        ["]f"] = { query = "@function.outer", desc = "Next function start" },
+        ["]f"] = { query = "@function.name", desc = "Next function start" },
         ["]]"] = { query = "@class.outer", desc = "Next class start" },
         ["]h"] = { query = "@include", desc = "Next include/import statement" },
       },
@@ -114,7 +114,7 @@ require("nvim-treesitter.configs").setup {
         ["]["] = { query = "@class.outer", desc = "Next class end" },
       },
       goto_previous_start = {
-        ["[f"] = { query = "@function.outer", desc = "Previous function start" },
+        ["[f"] = { query = "@function.name", desc = "Previous function start" },
         ["[["] = { query = "@class.outer", desc = "Previous class start" },
         ["[h"] = { query = "@include", desc = "Previous include/import statement" },
       },
