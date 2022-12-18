@@ -539,6 +539,12 @@ return require("packer").startup {
         -- }
       end,
     }
+    use {  -- peek the buffer while entering line number
+      'nacro90/numb.nvim',
+      config = function()
+        require('numb').setup()
+      end,
+    }
 
     ---
     --- Training Vim
