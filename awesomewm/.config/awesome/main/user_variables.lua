@@ -5,7 +5,7 @@ local M = {
   -- Default modkeys
   mod_key = "Mod4", -- It's the Windows logo key on the keyboard.
   alt_key = "Mod1", -- Additional modkey.
-  ctrl_key = "Contrl", -- Control button just in case.
+  ctrl_key = "Control", -- Control button just in case.
   browser = "google-chrome-stable",
   terminal = "wezterm",
   editor = os.getenv("EDITOR") or "vim",
