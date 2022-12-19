@@ -487,6 +487,7 @@ return require("packer").startup {
     ---
     use "tpope/vim-abolish"
     use "tpope/vim-capslock"
+    use "tpope/vim-sleuth" -- automatically adjust indentation options
     use "AndrewRadev/switch.vim"
     use "Konfekt/FastFold"
     use {
