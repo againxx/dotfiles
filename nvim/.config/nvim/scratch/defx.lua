@@ -50,7 +50,7 @@ end
 
 local setup_cursor = function()
   vim.o.guicursor = "n:DefxCursorHiddenCursor"
-  vim.cmd [[hi CursorLine guibg=#4c6482]]
+  vim.api.nvim_set_hl(0, "CursorLine", {bg = "#4c6482"})
   vim.wo.cursorline = true
 end
 setup_cursor()
@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
   buffer = bufnr,
   callback = function()
     vim.o.guicursor = _G.DefxSavedCursor
-    vim.cmd [[hi CursorLine guibg=#191e2a]]
+    vim.api.nvim_set_hl(0, "CursorLine", {bg = "#191e2a"})
   end
 })
 
