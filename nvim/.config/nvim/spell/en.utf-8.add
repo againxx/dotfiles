@@ -109,6 +109,13 @@ xxd
 ld
 Objcopy
 ABI
+UEFI
+bootloader
+vmlinuz
+initramfs
+PID
+ARGV
+ARGC
 Malloc
 glibc
 malloc
