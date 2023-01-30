@@ -109,3 +109,6 @@ xxd
 ld
 Objcopy
 ABI
+Malloc
+glibc
+malloc
