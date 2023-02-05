@@ -3,6 +3,8 @@ if not ok then
   return
 end
 
+local plugin_count = #vim.tbl_keys(packer_plugins)
+
 db.setup {
   theme = "doom",
   config = {
@@ -76,9 +78,11 @@ db.setup {
         action = "DashboardNewFile",
       },
     },
-    --   footer = function()
-    --     local count = #vim.tbl_keys(packer_plugins)
-    --     return { "", "", "", "Happy Hacking 🎉 neovim loaded " .. count .. " plugins" }
-    --   end
+    footer = {
+      "",
+      "",
+      "",
+      "Happy Hacking 🎉 neovim loaded " .. plugin_count .. " plugins",
+    },
   },
 }
