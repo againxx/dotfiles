@@ -15,14 +15,13 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
-local saga = require "lspsaga"
-saga.init_lsp_saga {
-  use_saga_diagnostic_sign = false,
-  code_action_icon = " ",
-  code_action_prompt = {
-    virtual_text = false,
-    sign_priority = 10,
+require("lspsaga").setup {
+  ui = {
+    code_action = " ",
   },
+  lightbulb = {
+    virtual_text = false,
+  }
 }
 
 function vim.lsp.modified_formatexpr()
@@ -68,7 +67,7 @@ local show_documentation = function()
   local filetype = vim.bo.filetype
   if vim.tbl_contains({ "vim", "lua" }, filetype) then
     if filetype == "lua" and not vim.fn.expand("<cWORD>"):match "vim%." then
-      require("lspsaga.hover").render_hover_doc()
+      require("lspsaga.hover"):render_hover_doc()
     else
       vim.cmd(string.format("h %s", vim.fn.expand "<cword>"))
     end
@@ -76,7 +75,7 @@ local show_documentation = function()
     -- use rust-tools hover for extra code actions
     vim.lsp.buf.hover()
   else
-    require("lspsaga.hover").render_hover_doc()
+    require("lspsaga.hover"):render_hover_doc()
   end
 end
 
@@ -105,7 +104,7 @@ local on_attach_default = function(client, bufnr)
   wk.register({
     d = { "<cmd>lua require('xx.telescope').lsp_definitions()<cr>", "Go to definitions" },
     D = { "<cmd>lua vim.lsp.buf.delcaration()<cr>", "Go to delcarations" },
-    h = { "<cmd>Lspsaga preview_definition<cr>", "Preview definitions" },
+    h = { "<cmd>Lspsaga peek_definition<cr>", "Peek definitions" },
     l = { "<cmd>lua require('xx.telescope').lsp_implementations()<cr>", "Go to implementations" },
     r = { "<cmd>lua require('xx.telescope').lsp_references()<cr>", "Go to references" },
     y = { "<cmd>lua require('xx.telescope').lsp_type_definitions()<cr>", "Go to type definitions" },
@@ -211,7 +210,7 @@ local servers = {
   pyright = true,
   rust_analyzer = require "xx.lsp.rust",
   clangd = require "xx.lsp.cpp",
-  sumneko_lua = require "xx.lsp.lua",
+  lua_ls = require "xx.lsp.lua",
   vimls = true,
   efm = require "xx.lsp.efm",
   bashls = true,

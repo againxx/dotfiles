@@ -77,10 +77,10 @@ api.nvim_create_autocmd("CursorHold", {
     if
       not (
         vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview)
-        or require("lspsaga.hover").has_saga_hover()
+        or require("lspsaga.hover"):has_hover()
       )
     then
-      vim.diagnostic.open_float { scope = "cursor" }
+      require("lspsaga.diagnostic"):show_diagnostics(nil, "cursor")
     end
   end,
 })
