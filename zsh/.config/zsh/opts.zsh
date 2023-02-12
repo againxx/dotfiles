@@ -14,9 +14,10 @@ if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     . "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 
-if [ -z "$ROS_ROOT" ] && command -v conda &> /dev/null; then
-    conda activate base
-fi
+# If we have ROS then do not source anaconda automatically
+# if [ -z "$ROS_ROOT" ] && command -v conda &> /dev/null; then
+#     conda activate base
+# fi
 
 if command -v kitty &> /dev/null; then
     kitty + complete setup zsh | source /dev/stdin
