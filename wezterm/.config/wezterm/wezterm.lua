@@ -5,6 +5,13 @@ local font_with_fallback = function(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 
+-- Different machine may use different font size, we try to seperate this config into a non-git managed file
+local font_size_file = io.open(os.getenv("HOME") .. "/.config/wezterm/font_size.txt")
+local font_size = 10.5
+if font_size_file then
+  font_size = font_size_file:read("n")
+end
+
 return {
   set_environment_variables = {
     ZSH_TMUX_AUTOSTART = "true",
@@ -18,7 +25,7 @@ return {
   --     font = font_with_fallback("RecursiveMonoXX Nerd Font", {italic = false, weight = "Medium"}),
   --   }
   -- },
-  font_size = 10.5,
+  font_size = font_size,
   window_background_opacity = 0.9,
   enable_tab_bar = false,
   window_padding = {

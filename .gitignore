@@ -7,3 +7,4 @@ __pycache__/
 packer_compiled.*
 *.add.spl
 target/
+font_size.txt
