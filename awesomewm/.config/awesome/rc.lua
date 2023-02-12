@@ -48,7 +48,7 @@ local freedesktop   =   require("freedesktop")
 -- when client with a matching name is openend:
 local hotkeys_popup =   require("awful.hotkeys_popup").widget
                         require("awful.hotkeys_popup.keys")
-local myTable       =   awful.util.table or gears.table -- 4.{0,1} compatibility
+local table_utils       =   awful.util.table or gears.table -- 4.{0,1} compatibility
 -- }}}
 
 RC = {} -- global namespace, on top before require any modules
@@ -59,6 +59,8 @@ local ctrl_key = RC.vars.ctrl_key
 
 -- Error handling
 require("main.error_handling")
+require("main.layouts")
+require("main.tags")(mod_key)
 
 -- {{{ To autostart windowsless processes.
 local function run_once(cmd_list)
@@ -92,57 +94,7 @@ beautiful.init(pathOfTheme)
 -- {{{ awesome variables
 awful.util.terminal = RC.vars.terminal
 
--- Tage names
--- Use this for reference : https://fontawesome.com/cheatsheet
-
--- awful.util.tagnames = {  "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
-awful.util.tagnames = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
--- awful.util.tagnames = {  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
---awful.util.tagnames = { " DEV ", " WWW ", " SYS ", " DOC ", " VBOX ", " CHAT ", " MUS ", " VID ", " GFX " }
---awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
---awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
---awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
--- }}}
-
--- {{{ Layouts
-awful.layout.suit.tile.left.mirror = true
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
-    --awful.layout.suit.corner.se,
-    awful.layout.suit.floating,
-}
-
-awful.util.taglist_buttons = myTable.join(
-    awful.button({ }, 1, function(t) t:view_only() end),
-    awful.button({ mod_key }, 1, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({ }, 3, awful.tag.viewtoggle),
-    awful.button({ mod_key }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-)
-
-awful.util.tasklist_buttons = myTable.join(
+awful.util.tasklist_buttons = table_utils.join(
     awful.button({ }, 1, function (c)
         if c == client.focus then
             c.minimized = true
@@ -221,7 +173,7 @@ end)
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
 -- {{{ Mosue bindings.
-root.buttons(myTable.join(
+root.buttons(table_utils.join(
     awful.button({ }, 3, function () awful.util.rcMainMenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
@@ -229,7 +181,7 @@ root.buttons(myTable.join(
 -- }}}
 
 -- {{{ Key bindings
-local globalKeys = myTable.join(
+local globalKeys = table_utils.join(
     -- {{{ Personal keybindings.
     --[[ dmenu
     awful.key({ modkey, "Shift" }, "d",
@@ -484,7 +436,7 @@ local globalKeys = myTable.join(
     -- }}}
 )
 
-local clientKeys = myTable.join(
+local clientKeys = table_utils.join(
     awful.key({ alt_key, "Shift" }, "m", lain.util.magnify_client,
               {description = "Magnify client", group = "Client"}),
     awful.key({ mod_key }, "f",
@@ -530,7 +482,7 @@ for i = 1, 9 do
         descr_move = {description = "Move focused client to tag #", group = "Tag"}
         descr_toggle_focus = {description = "Toggle focused client on tag #", group = "Tag"}
     end
-    globalKeys = myTable.join(globalKeys,
+    globalKeys = table_utils.join(globalKeys,
         -- View tag only.
         awful.key({ mod_key }, "#" .. i + 9,
                   function ()
