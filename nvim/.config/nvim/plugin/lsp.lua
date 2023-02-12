@@ -1,14 +1,19 @@
+local has_lsp, lspconfig = pcall(require, "lspconfig")
+if not has_lsp then
+  return
+end
+
 local keymap = vim.keymap
+
+require("mason").setup()
+require("mason-lspconfig").setup {
+  automatic_installation = true,
+}
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   -- Use a sharp border with `FloatBorder` highlights
   border = "rounded",
 })
-
-local has_lsp, lsp_installer_servers = pcall(require, "nvim-lsp-installer.servers")
-if not has_lsp then
-  return
-end
 
 local saga = require "lspsaga"
 saga.init_lsp_saga {
@@ -139,22 +144,6 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = {
-  pyright = true,
-  rust_analyzer = require "xx.lsp.rust",
-  clangd = require "xx.lsp.cpp",
-  sumneko_lua = require "xx.lsp.lua",
-  vimls = true,
-  efm = require "xx.lsp.efm",
-  bashls = true,
-  hls = true,
-  cmake = true,
-  dockerls = true,
-  ltex = require "xx.lsp.ltex",
-}
-
 local setup_server = function(server_name, config)
   if not config then
     return
@@ -182,51 +171,55 @@ local setup_server = function(server_name, config)
     -- },
   }, config)
 
-  local server_available, server = lsp_installer_servers.get_server(server_name)
-  if server_available then
-    server:on_ready(function()
-      if server.name == "rust_analyzer" then
-        local extension_path = vim.env.HOME .. "/Manually_Installed/codelldb-x86_64-linux/extension/"
-        local codelldb_path = extension_path .. "adapter/codelldb"
-        local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-        -- initialize the LSP via rust-tools instead
-        require("rust-tools").setup {
-          tools = {
-            runnables = {
-              telescope = true,
-            },
-            inlay_hints = {
-              parameter_hints_prefix = " ",
-              other_hints_prefix = " ",
-              highlight = "LspInlayHint",
-            },
-          },
-          dap = {
-            adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-          },
-          server = vim.tbl_deep_extend("force", server:get_default_options(), config),
-        }
-        server:attach_buffers()
-      elseif server.name == "clangd" then
-        require("clangd_extensions").setup {
-          extensions = {
-            inlay_hints = {
-              parameter_hints_prefix = " ",
-              other_hints_prefix = " ",
-              highlight = "LspInlayHint",
-            },
-          },
-          server = vim.tbl_deep_extend("force", server:get_default_options(), config),
-        }
-      else
-        server:setup(config)
-      end
-    end)
-    if not server:is_installed() then
-      server:install()
-    end
+  if server_name == "rust_analyzer" then
+    local extension_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
+    local codelldb_path = extension_path .. "adapter/codelldb"
+    local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+    -- initialize the LSP via rust-tools instead
+    require("rust-tools").setup {
+      tools = {
+        inlay_hints = {
+          parameter_hints_prefix = " ",
+          other_hints_prefix = " ",
+          highlight = "LspInlayHint",
+        },
+      },
+      dap = {
+        adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+      },
+      server = config,
+    }
+  elseif server_name == "clangd" then
+    require("clangd_extensions").setup {
+      extensions = {
+        inlay_hints = {
+          parameter_hints_prefix = " ",
+          other_hints_prefix = " ",
+          highlight = "LspInlayHint",
+        },
+      },
+      server = config,
+    }
+  else
+    lspconfig[server_name].setup(config)
   end
 end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = {
+  pyright = true,
+  rust_analyzer = require "xx.lsp.rust",
+  clangd = require "xx.lsp.cpp",
+  sumneko_lua = require "xx.lsp.lua",
+  vimls = true,
+  efm = require "xx.lsp.efm",
+  bashls = true,
+  hls = true,
+  cmake = true,
+  dockerls = true,
+  ltex = require "xx.lsp.ltex",
+}
 
 for server_name, config in pairs(servers) do
   setup_server(server_name, config)

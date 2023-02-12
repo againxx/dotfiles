@@ -14,12 +14,8 @@ return require("packer").startup {
     ---
     --- LSP & Autocompletion
     ---
-    use {
-      "williamboman/nvim-lsp-installer",
-      config = function()
-        require("nvim-lsp-installer").setup {}
-      end,
-    }
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
@@ -410,7 +406,9 @@ return require("packer").startup {
       "askfiy/nvim-picgo",
       cmd = { "UploadClipboard", "UploadImagefile" },
       config = function()
-        require("nvim-picgo").setup {}
+        require("nvim-picgo").setup {
+          image_name = true,
+        }
       end,
     }
 
@@ -540,10 +538,10 @@ return require("packer").startup {
         -- }
       end,
     }
-    use {  -- peek the buffer while entering line number
-      'nacro90/numb.nvim',
+    use { -- peek the buffer while entering line number
+      "nacro90/numb.nvim",
       config = function()
-        require('numb').setup()
+        require("numb").setup()
       end,
     }
 
