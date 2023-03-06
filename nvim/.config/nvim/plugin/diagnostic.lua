@@ -12,12 +12,14 @@ end
 wk.register {
   ["[e"] = {
     function()
+      vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
     end,
     "Go to previous error",
   },
   ["]e"] = {
     function()
+      vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
     end,
     "Go to next error",

@@ -21,6 +21,9 @@ require("lspsaga").setup {
   },
   lightbulb = {
     virtual_text = false,
+  },
+  diagnostic = {
+    on_insert = false,
   }
 }
 
