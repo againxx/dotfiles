@@ -1,6 +1,6 @@
 P = function(...)
-  if vim.pretty_print then
-    return vim.pretty_print(...)
+  if vim.print then
+    return vim.print(...)
   else
     local objects = {}
     for i = 1, select('#', ...) do

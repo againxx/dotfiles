@@ -56,6 +56,14 @@ return require("packer").startup {
       branch = "master",
       requires = { { "nvim-lua/plenary.nvim" } },
     }
+    use {
+      "SmiteshP/nvim-navbuddy",
+      requires = {
+        "neovim/nvim-lspconfig",
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+      },
+    }
 
     ---
     --- Debugger
@@ -170,10 +178,6 @@ return require("packer").startup {
         }
         vim.notify = require "notify"
       end,
-    }
-    use {
-      "SmiteshP/nvim-gps", -- statusline component that shows current scope
-      requires = "nvim-treesitter/nvim-treesitter",
     }
 
     ---

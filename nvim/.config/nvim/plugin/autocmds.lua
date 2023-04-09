@@ -74,13 +74,15 @@ local lsp_special = api.nvim_create_augroup("lsp_special", {})
 api.nvim_create_autocmd("CursorHold", {
   group = lsp_special,
   callback = function()
+    local lspsaga_diagnostic_winid = require("lspsaga.diagnostic").winid
     if
       not (
-        vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview)
+        (vim.b.lsp_floating_preview and api.nvim_win_is_valid(vim.b.lsp_floating_preview))
+        or (lspsaga_diagnostic_winid and api.nvim_win_is_valid(lspsaga_diagnostic_winid))
         or require("lspsaga.hover"):has_hover()
       )
     then
-      require("lspsaga.diagnostic"):show_diagnostics(nil, "cursor")
+      require("lspsaga.showdiag"):show_diagnostics { cursor = true, arg = "++unfocus" }
     end
   end,
 })

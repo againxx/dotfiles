@@ -89,6 +89,9 @@ local on_attach_default = function(client, bufnr)
   require("lsp_signature").on_attach {
     hint_prefix = "🐯 ",
   }
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navbuddy").attach(client, bufnr)
+  end
 
   keymap.set("n", "K", show_documentation, { silent = true, buffer = bufnr })
 
@@ -217,7 +220,7 @@ local servers = {
   vimls = true,
   efm = require "xx.lsp.efm",
   bashls = true,
-  hls = true,
+  hls = false,
   cmake = true,
   dockerls = true,
   ltex = require "xx.lsp.ltex",
