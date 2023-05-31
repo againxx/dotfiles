@@ -21,7 +21,6 @@ require("barbar").setup {
   maximum_padding = 1,
   maximum_length = 40,
   sidebar_filetypes = {
-    ["neo-tree"] = { event = "BufWipeout" },
     undotree = true,
   },
 }
