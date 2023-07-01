@@ -14,7 +14,10 @@ return require("packer").startup {
     ---
     --- LSP & Autocompletion
     ---
-    use "williamboman/mason.nvim"
+    use {
+      "williamboman/mason.nvim",
+      run = ":MasonUpdate",
+    }
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/cmp-nvim-lsp"
@@ -128,6 +131,7 @@ return require("packer").startup {
     ---
     use "tjdevries/colorbuddy.nvim"
     use "againxx/ayu-vim"
+    use "folke/tokyonight.nvim"
     use {
       "kyazdani42/nvim-web-devicons",
       config = function()
@@ -373,25 +377,25 @@ return require("packer").startup {
         require("neorg").setup {
           load = {
             ["core.defaults"] = {},
-            ["core.norg.dirman"] = {
+            ["core.dirman"] = {
               config = {
                 workspaces = {
                   wiki = "~/Documents/Vimwiki/neorg",
                 },
               },
             },
-            ["core.norg.concealer"] = {
+            ["core.concealer"] = {
               config = {
                 icon_preset = "varied",
               },
             },
-            ["core.norg.completion"] = {
+            ["core.completion"] = {
               config = {
                 engine = "nvim-cmp",
               },
             },
             ["core.integrations.telescope"] = {},
-            ["core.norg.manoeuvre"] = {},
+            ["core.manoeuvre"] = {},
             ["core.keybinds"] = {
               config = {
                 hook = function(keybinds)

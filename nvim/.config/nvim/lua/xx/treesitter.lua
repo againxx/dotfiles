@@ -40,6 +40,7 @@ require("nvim-treesitter.configs").setup {
     "norg",
     "norg_meta",
     "norg_table",
+    "starlark",
   },
   highlight = {
     enable = true,
