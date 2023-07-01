@@ -110,7 +110,7 @@ wk.register({
     s = { disable_neoscroll, 'Disable neoscroll' },
   },
   s = {
-    h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", 'Syntax highlighting group' },
+    h = { "<cmd>Inspect<cr>", 'Syntax highlighting group' },
     H = { query_syntax_stack, 'Syntax highlighting stack' },
     t = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'TreeSitter highlighting under cursor' },
     T = { '<cmd>terminal tokei<cr>', 'Tokei code statistic' },

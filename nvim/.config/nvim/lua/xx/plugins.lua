@@ -407,6 +407,7 @@ return require("packer").startup {
           },
         }
       end,
+      run = ":Neorg sync-parsers",
       requires = {
         { "nvim-lua/plenary.nvim" },
         { "nvim-telescope/telescope.nvim" },
