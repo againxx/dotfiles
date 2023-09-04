@@ -35,9 +35,8 @@ return require("packer").startup {
     use "onsails/lspkind-nvim"
     use "ray-x/lsp_signature.nvim"
     use {
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-      requires = { { "nvim-tree/nvim-web-devicons" } },
+      "nvimdev/lspsaga.nvim",
+      after = "nvim-lspconfig",
     }
     use {
       "simrat39/symbols-outline.nvim",
