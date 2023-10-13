@@ -235,10 +235,7 @@ return require("packer").startup {
       module = "telescope._extensions.ros",
     }
     use "nvim-telescope/telescope-ui-select.nvim"
-    use {
-      "nvim-telescope/telescope-frecency.nvim",
-      requires = "tami5/sqlite.lua",
-    }
+    use "nvim-telescope/telescope-frecency.nvim"
 
     ---
     --- Highlighting
