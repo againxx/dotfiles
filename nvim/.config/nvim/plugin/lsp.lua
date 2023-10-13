@@ -196,16 +196,12 @@ local setup_server = function(server_name, config)
     }
   elseif server_name == "clangd" then
     require("clangd_extensions").setup {
-      extensions = {
-        inlay_hints = {
-          parameter_hints_prefix = " ",
-          other_hints_prefix = " ",
-          highlight = "LspInlayHint",
-        },
+      inlay_hints = {
+        parameter_hints_prefix = " ",
+        other_hints_prefix = " ",
+        highlight = "LspInlayHint",
       },
-      server = config,
     }
-  else
     lspconfig[server_name].setup(config)
   end
 end
