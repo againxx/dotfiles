@@ -220,6 +220,7 @@ local servers = {
   cmake = true,
   dockerls = true,
   ltex = require "xx.lsp.ltex",
+  starlark_rust = true,
 }
 
 for server_name, config in pairs(servers) do
