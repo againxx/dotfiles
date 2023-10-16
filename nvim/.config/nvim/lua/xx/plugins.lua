@@ -171,7 +171,7 @@ return require("packer").startup {
     ---
     --- Statusline & Notification
     ---
-    use "hoob3rt/lualine.nvim"
+    use "nvim-lualine/lualine.nvim"
     use "romgrk/barbar.nvim"
     use {
       "rcarriga/nvim-notify",
@@ -462,7 +462,18 @@ return require("packer").startup {
     ---
     --- QuickFix
     ---
-    use { "kevinhwang91/nvim-bqf", ft = "qf" }
+    use {
+      "kevinhwang91/nvim-bqf",
+      ft = "qf",
+      config = function()
+        require("bqf").setup {
+          preview = {
+            -- nvim core now has problems related to winblend which turn the background into black, so disable it for now.
+            winblend = 0,
+          },
+        }
+      end,
+    }
     use {
       "stevearc/qf_helper.nvim",
       config = function()

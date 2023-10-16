@@ -176,6 +176,14 @@ require("neo-tree").setup {
       end,
     },
     {
+      -- this event handler is needed because when we close neo-tree at sidebar with `q`, the hidden cursor may not restore
+      event = "neo_tree_window_after_close",
+      handler = function()
+        vim.o.guicursor = _G.NeotreeSavedCursor
+        vim.cmd [[hi CursorLine guibg=#191e2a guifg=NONE gui=NONE]]
+      end,
+    },
+    {
       event = "neo_tree_popup_buffer_enter",
       handler = function()
         vim.keymap.set('i', '<c-j>', '<down>', { buffer = 0, remap = true, silent = true})

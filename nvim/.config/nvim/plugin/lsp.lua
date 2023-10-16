@@ -27,6 +27,14 @@ require("lspsaga").setup {
   }
 }
 
+require("clangd_extensions").setup {
+  inlay_hints = {
+    parameter_hints_prefix = " ",
+    other_hints_prefix = " ",
+    highlight = "LspInlayHint",
+  },
+}
+
 function vim.lsp.modified_formatexpr()
   local timeout_ms = 1000
 
@@ -194,14 +202,7 @@ local setup_server = function(server_name, config)
       },
       server = config,
     }
-  elseif server_name == "clangd" then
-    require("clangd_extensions").setup {
-      inlay_hints = {
-        parameter_hints_prefix = " ",
-        other_hints_prefix = " ",
-        highlight = "LspInlayHint",
-      },
-    }
+  else
     lspconfig[server_name].setup(config)
   end
 end

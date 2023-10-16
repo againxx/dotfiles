@@ -238,5 +238,5 @@ require("lualine").setup {
     },
   },
   tabline = {},
-  extensions = { "quickfix", defx_explorer, undotree },
+  extensions = { "neo-tree", defx_explorer, undotree },
 }
