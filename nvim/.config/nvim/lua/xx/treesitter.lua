@@ -19,6 +19,7 @@ require("nvim-treesitter.configs").setup {
     "cuda",
     "javascript",
     "starlark",
+    "bash",
   },
   highlight = {
     enable = true,
