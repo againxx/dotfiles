@@ -24,7 +24,7 @@ require("lspsaga").setup {
   },
   diagnostic = {
     on_insert = false,
-  }
+  },
 }
 
 require("clangd_extensions").setup {
@@ -104,10 +104,10 @@ local on_attach_default = function(client, bufnr)
   keymap.set("n", "K", show_documentation, { silent = true, buffer = bufnr })
 
   if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.modified_formatexpr()")
+    vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.modified_formatexpr()", { buf = bufnr })
   end
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+  vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
 
   local success, wk = pcall(require, "which-key")
   if not success then
@@ -185,7 +185,7 @@ local setup_server = function(server_name, config)
   }, config)
 
   if server_name == "rust_analyzer" then
-    local extension_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
+    local extension_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/") or ""
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
     -- initialize the LSP via rust-tools instead
@@ -229,14 +229,16 @@ for server_name, config in pairs(servers) do
 end
 
 require("fidget").setup {
-  text = {
-    spinner = "moon",
+  notification = {
+    window = {
+      winblend = 0,
+    },
   },
-  window = {
-    blend = 0,
-  },
-  fmt = {
-    stack_upwards = false,
+  progress = {
+    display = {
+      progress_icon = { "moon" },
+      progress_style = "Todo",
+    },
   },
 }
 

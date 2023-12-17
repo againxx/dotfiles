@@ -61,6 +61,7 @@ opt.foldnestmax = 5
 -- sessions do no save the default fold method to manual
 opt.sessionoptions:remove('folds')
 opt.sessionoptions:append('globals')
+opt.swapfile = false -- lspsaga will generate error about too many swapfile
 
 if not vim.env.KITTY_WINDOW_ID then
   opt.pumblend = 15

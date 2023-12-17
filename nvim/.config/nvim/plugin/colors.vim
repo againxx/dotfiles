@@ -1,4 +1,3 @@
-set termguicolors
 set background=dark
 let g:ayucolor = 'mirage'
 let g:ayutrans = v:true

@@ -132,7 +132,7 @@ end
 
 function M.edit_vim_plugins()
   require("telescope.builtin").find_files {
-    cwd = vim.fn.stdpath "data" .. "/site/pack/packer/",
+    cwd = vim.fn.stdpath "data" .. "/lazy",
     prompt_title = "Vim Plugins",
     layout_strategy = "horizontal",
     layout_config = {

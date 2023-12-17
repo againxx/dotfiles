@@ -5,7 +5,7 @@ local types = require "cmp.types"
 local uv = vim.loop
 local source = {}
 
-local bin_path = packer_plugins["cmp-zi"].url .. "/target/release/cmp-zi"
+local bin_path = vim.env.HOME .. "/.config/nvim/locals/cmp-zi/target/release/cmp-zi"
 
 function source:new(use_external)
   local obj = setmetatable({}, { __index = self })

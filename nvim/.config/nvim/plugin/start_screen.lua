@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-local plugin_count = #vim.tbl_keys(packer_plugins)
+local plugin_count = require("lazy").stats().loaded
 
 db.setup {
   theme = "doom",

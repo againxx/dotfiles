@@ -21,7 +21,7 @@ nnoremap <expr> g[ '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <C-q> @@
 
 " Use <C-h> as <BS> since autopairs will auto delete with <BS>
-imap <C-h> <BS>
+inoremap <C-h> <BS>
 
 " neovim native <C-c> seems to conflict with slime.vim, unbind <C-c> and move
 " it into <C-c><C-x>
