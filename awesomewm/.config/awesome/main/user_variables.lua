@@ -13,6 +13,7 @@ local M = {
   file_manager = "thunar",
   screen_locker = "light-locker-command -l",
   app_searcher = "rofi -show combi -theme dracula-icon",
+  screen_shooter = "flameshot gui",
   auto_run = true,
 }
 

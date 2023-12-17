@@ -266,8 +266,8 @@ local globalKeys = table_utils.join(
         {description = "EndeavourOS rank mirrors.", group = "EOS Apps" }),
 
     -- Screenshots
-    awful.key({ }, "Print", function () awful.util.spawn( "xfce4-screenshooter -i" ) end,
-        {description = "Use xfce screenshooter.", group = "Screenshots" }),
+    awful.key({ }, "Print", function () awful.util.spawn( RC.vars.screen_shooter ) end,
+        {description = "Open screenshooter.", group = "Screenshots" }),
 
     -- Layout switching
     awful.key({ alt_key, "Shift" }, "l", function () awful.tag.incmwfact( 0.05) end,
