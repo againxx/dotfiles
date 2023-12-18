@@ -502,7 +502,17 @@ return {
   },
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
   "tpope/vim-eunuch", -- Delete, Move, Mkdir, Rename, Chmod, etc.
-  "lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require("ibl").setup {
+        exclude = {
+          filetypes = { "dashboard" },
+        }
+      }
+    end,
+  },
   { "rlue/vim-barbaric", ft = { "markdown", "vimwiki", "tex" } },
   { "szw/vim-maximizer", cmd = "MaximizerToggle" },
   "jeffkreeftmeijer/vim-numbertoggle",

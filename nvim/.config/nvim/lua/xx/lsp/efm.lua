@@ -13,7 +13,7 @@ local pylint = {
 }
 
 local cppcheck = {
-  lintCommand = "cppcheck --language=c++ --template={line}:{column}:{severity}:{message} --enable=style --force --inconclusive --inline-suppr --quiet ${INPUT}",
+  lintCommand = "cppcheck --language=c++ --project=compile_commands.json --template={line}:{column}:{severity}:{message} --enable=style --force --inconclusive --inline-suppr --quiet ${INPUT}",
   lintStdin = false,
   lintFormats = {
     "%l:%c:%trror:%m",
