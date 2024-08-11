@@ -7,6 +7,11 @@ local source = {}
 
 local bin_path = vim.env.HOME .. "/.config/nvim/locals/cmp-zi/target/release/cmp-zi"
 
+if not vim.uv.fs_stat(bin_path) then
+  return
+end
+
+
 function source:new(use_external)
   local obj = setmetatable({}, { __index = self })
   local data_path = Path:new(vim.fn.stdpath "data" .. "/cmp-zi/")

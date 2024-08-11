@@ -23,6 +23,7 @@ zmodule esc/conda-zsh-completion
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after zsh-users/zsh-completions
 zmodule completion
+zmodule Aloxaf/fzf-tab
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions
 # Fish-like syntax highlighting for Zsh.
@@ -34,7 +35,6 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 
 zmodule fzf
-zmodule Aloxaf/fzf-tab
 zmodule skywind3000/z.lua
 zmodule paulirish/git-open
 zmodule hlissner/zsh-autopair

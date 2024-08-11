@@ -12,7 +12,7 @@ keymap.set("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<cr>")
 
 require("bufferline").setup {
   options = {
-    indicator_icon = '',
+    indicator_icon = "",
     separator_style = "thick",
     show_buffer_close_icons = false,
     show_close_icon = false,
@@ -66,30 +66,32 @@ if not success then
   return
 end
 
-wk.register {
-  ["[b"] = {
+wk.add {
+  { "<leader>b", group = "buffer" },
+  { "<leader>bb", "<cmd>BufferPick<cr>", desc = "Pick buffer" },
+  -- sort automatically by
+  { "<leader>bd", "<cmd>BufferOrderByDirectory<cr>", desc = "Sort buffer by directory" },
+  { "<leader>bl", "<cmd>BufferOrderByLanguage<cr>", desc = "Sort buffer by language" },
+  { "<leader>bp", "<cmd>BufferPin<cr>", desc = "Pin current buffer" },
+  { "<leader>qa", close_all_but_current_or_pinned, desc = "Close all buffer but current/pinned" },
+  { "<leader>qq", close_qf_first, desc = "Only close buffer" },
+  { "<leader>qw", "<cmd>BufferWipeout!<cr>", desc = "Wipeout buffer" },
+  { "[B", "<cmd>BufferGoto 1<cr>", desc = "Go to first buffer" },
+  {
+    "[b",
     function()
       goto_buf_in_other_win(-1)
     end,
-    "Go to previous buf in other win",
+    desc = "Go to previous buf in other win",
   },
-  ["]b"] = {
+  {
+    "]b",
     function()
       goto_buf_in_other_win(1)
     end,
-    "Go to next buf in other win",
+    desc = "Go to next buf in other win",
   },
-  ["[t"] = { "<cmd>tabprevious<cr>", "Switch to previous tab" },
-  ["]t"] = { "<cmd>tabnext<cr>", "Switch to next tab" },
-  ["<leader>qq"] = { close_qf_first, "Only close buffer" },
-  ["<leader>qw"] = { "<cmd>BufferWipeout!<cr>", "Wipeout buffer" },
-  ["<leader>qa"] = { close_all_but_current_or_pinned, "Close all buffer but current/pinned" },
-  ["<leader>b"] = {
-    name = "+buffer",
-    b = { "<cmd>BufferLinePick<cr>", "Pick buffer" },
-    -- sort automatically by
-    d = { "<cmd>BufferLineSortByDirectory<cr>", "Sort buffer by directory" },
-    l = { "<cmd>BufferLineSortByExtension<cr>", "Sort buffer by language" },
-    p = { "<cmd>BufferLineTogglePin<cr>", "Pin current buffer" },
-  },
+  { "[t", "<cmd>tabprevious<cr>", desc = "Switch to previous tab" },
+  { "]B", "<cmd>BufferGoto -1<cr>", desc = "Go to last buffer" },
+  { "]t", "<cmd>tabnext<cr>", desc = "Switch to next tab" },
 }

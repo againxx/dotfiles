@@ -72,33 +72,32 @@ if not success then
   return
 end
 
-wk.register {
-  ["[b"] = {
+wk.add {
+  { "<leader>b", group = "buffer" },
+  { "<leader>bb", "<cmd>BufferPick<cr>", desc = "Pick buffer" },
+  -- sort automatically by
+  { "<leader>bd", "<cmd>BufferOrderByDirectory<cr>", desc = "Sort buffer by directory" },
+  { "<leader>bl", "<cmd>BufferOrderByLanguage<cr>", desc = "Sort buffer by language" },
+  { "<leader>bp", "<cmd>BufferPin<cr>", desc = "Pin current buffer" },
+  { "<leader>qa", close_all_but_current_or_pinned, desc = "Close all buffer but current/pinned" },
+  { "<leader>qq", close_qf_first, desc = "Only close buffer" },
+  { "<leader>qw", "<cmd>BufferWipeout!<cr>", desc = "Wipeout buffer" },
+  { "[B", "<cmd>BufferGoto 1<cr>", desc = "Go to first buffer" },
+  {
+    "[b",
     function()
       goto_buf_in_other_win(-1)
     end,
-    "Go to previous buf in other win",
+    desc = "Go to previous buf in other win",
   },
-  ["]b"] = {
+  { "[t", "<cmd>tabprevious<cr>", desc = "Switch to previous tab" },
+  { "]B", "<cmd>BufferGoto -1<cr>", desc = "Go to last buffer" },
+  {
+    "]b",
     function()
       goto_buf_in_other_win(1)
     end,
-    "Go to next buf in other win",
+    desc = "Go to next buf in other win",
   },
-  ["[B"] = { "<cmd>BufferGoto 1<cr>", "Go to first buffer" },
-  ["]B"] = { "<cmd>BufferGoto -1<cr>", "Go to last buffer" },
-  ["[t"] = { "<cmd>tabprevious<cr>", "Switch to previous tab" },
-  ["]t"] = { "<cmd>tabnext<cr>", "Switch to next tab" },
-  ["<leader>qq"] = { close_qf_first, "Only close buffer" },
-  ["<leader>qw"] = { "<cmd>BufferWipeout!<cr>", "Wipeout buffer" },
-  ["<leader>qa"] = { close_all_but_current_or_pinned, "Close all buffer but current/pinned" },
-  ["<leader>b"] = {
-    name = "+buffer",
-    b = { "<cmd>BufferPick<cr>", "Pick buffer" },
-    -- sort automatically by
-    d = { "<cmd>BufferOrderByDirectory<cr>", "Sort buffer by directory" },
-    l = { "<cmd>BufferOrderByLanguage<cr>", "Sort buffer by language" },
-    p = { "<cmd>BufferPin<cr>", "Pin current buffer" },
-  },
+  { "]t", "<cmd>tabnext<cr>", desc = "Switch to next tab" },
 }
-

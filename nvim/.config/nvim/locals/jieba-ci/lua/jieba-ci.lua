@@ -2,6 +2,11 @@ local jobid = 0
 
 local bin_path = vim.env.HOME .. "/.config/nvim/locals/jieba-ci/target/release/jieba_ci"
 
+if not vim.uv.fs_stat(bin_path) then
+  -- return an empty init function when jieba-ci has not been compiled
+  return { init = function() end }
+end
+
 local init_rpc = function()
   if jobid == 0 then
     return vim.fn.jobstart({ bin_path }, { rpc = true })

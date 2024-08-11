@@ -27,6 +27,10 @@ if [[ -x "$(command -v exa)" ]]; then
     alias l="exa --icons"
     alias ll"=exa -l --icons"
     alias la="exa -al --icons"
+elif [[ -x "$(command -v eza)" ]]; then
+    alias l="eza --icons"
+    alias ll"=eza -l --icons"
+    alias la="eza -al --icons"
 fi
 
 # suffix aliases

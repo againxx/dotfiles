@@ -94,6 +94,15 @@ local git_diff = function()
   return vim.trim(diff)
 end
 
+local show_macro_recording = function()
+    local recording_register = vim.fn.reg_recording()
+    if recording_register == "" then
+        return ""
+    else
+        return "Recording @" .. recording_register
+    end
+end
+
 local read_only = function()
   local blacklist = { "help", "defx" }
   if vim.bo.readonly and not vim.tbl_contains(blacklist, vim.bo.filetype) then
@@ -101,20 +110,6 @@ local read_only = function()
   else
     return ""
   end
-end
-
-local treesitter_status = function()
-  local status = vim.fn["nvim_treesitter#statusline"] {
-    indicator_size = 200,
-    type_patterns = { "class", "function", "method" },
-  }
-  if status and status ~= vim.NIL and #status > 0 then
-    if vim.bo.filetype == "cpp" then
-      status = status:gsub("%w+::", "")
-    end
-    return "%<" .. symbols.treesitter_status .. status
-  end
-  return ""
 end
 
 local ros_package = function()
@@ -175,6 +170,7 @@ require("lualine").setup {
         padding = { left = 0 },
         cond = hide_when_narrow(140),
       },
+      show_macro_recording,
     },
     lualine_c = {
       {

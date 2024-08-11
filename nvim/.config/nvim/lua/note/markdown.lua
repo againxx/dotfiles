@@ -2,6 +2,7 @@
 vim.g.vim_markdown_math = true
 vim.g.vim_markdown_folding_style_pythonic = true
 vim.g.vim_markdown_new_list_item_indent = false
+vim.g.vim_markdown_frontmatter = true
 
 -- markdown-preview
 vim.g.mkdp_refresh_slow = true

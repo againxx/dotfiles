@@ -9,7 +9,7 @@ lspkind.init {
     Constructor = "",
     Variable = "",
     Snippet = "",
-    Reference = "渚",
+    Reference = "",
   },
 }
 

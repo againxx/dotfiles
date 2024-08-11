@@ -9,23 +9,18 @@ end
 
 gitsigns.setup {
   signs = {
-    add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitSignsChange", text = "░", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitSignsDelete", text = "▁", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = { hl = "GitSignsDelete", text = "▔", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = {
-      hl = "GitSignsChangeDelete",
-      text = "▒",
-      numhl = "GitSignsChangeNr",
-      linehl = "GitSignsChangeLn",
-    },
+    add = { text = "▎" },
+    change = { text = "░" },
+    delete = { text = "▁" },
+    topdelete = { text = "▔" },
+    changedelete = { text = "▒" },
   },
 }
 
 local on_mergetool_set_layout = function(split)
-  if split.layout == 'mr,b' and split.split == 'b' then
+  if split.layout == "mr,b" and split.split == "b" then
     vim.wo.diff = false
-    vim.cmd("resize 15")
+    vim.cmd "resize 15"
   end
 end
 
@@ -36,52 +31,48 @@ if not wk_success then
   return
 end
 
-wk.register({
-  g = {
-    name = "+git/diff",
-    a = { gitsigns.stage_hunk, "Stage hunk" },
-    u = { gitsigns.undo_stage_hunk, "Undo stage hunk" },
-    r = { gitsigns.reset_hunk, "Reset hunk" },
-    R = { gitsigns.reset_buffer, "Reset current buffer" },
-    -- show chunk diff at current position
-    d = { gitsigns.preview_hunk, "Hunk diff" },
-    D = { gitsigns.diffthis, "Diff current file" },
-    x = { gitsigns.toggle_deleted, "Toggle deleted" },
-    -- show commit contains current position
-    c = { "<cmd>lua require('xx.telescope').git_bcommits()<cr>", "Current buffer commits" },
-    C = { "<cmd>lua require('xx.telescope').git_commits()<cr>", "All commits" },
-    B = { "<cmd>lua require('xx.telescope').git_branches()<cr>", "Branches" },
-    h = { "<cmd>DiffviewFileHistory %<cr>", "Current file history" },
-    q = { "<cmd>DiffviewClose<cr>", "Close diffview" },
-    b = {
-      function()
-        gitsigns.blame_line { full = true }
-      end,
-      "Git blame for current hunk",
-    },
-    -- s = { "<cmd>lua require('xx.telescope').git_status()<cr>", "Status" },
-    s = { "<cmd>Neogit<cr>", "Status" },
+wk.add {
+  { "<leader><C-g>", "<cmd>Lazygit<cr>", desc = "Lazygit" },
+  { "<leader>c", group = "change/command" },
+  { "<leader>ga", gitsigns.stage_hunk, desc = "Stage hunk" },
+  { "<leader>gu", gitsigns.undo_stage_hunk, desc = "Undo stage hunk" },
+  { "<leader>gr", gitsigns.reset_hunk, desc = "Reset hunk" },
+  { "<leader>gR", gitsigns.reset_buffer, desc = "Reset current buffer" },
+  -- show chunk diff at current position
+  { "<leader>gd", gitsigns.preview_hunk, desc = "Hunk diff" },
+  { "<leader>gD", gitsigns.diffthis, desc = "Diff current file" },
+  { "<leader>gx", gitsigns.toggle_deleted, desc = "Toggle deleted" },
+  -- show commit contains current position
+  { "<leader>gc", "<cmd>lua require('xx.telescope').git_bcommits()<cr>", desc = "Current buffer commits" },
+  { "<leader>gC", "<cmd>lua require('xx.telescope').git_commits()<cr>", desc = "All commits" },
+  { "<leader>gB", "<cmd>lua require('xx.telescope').git_branches()<cr>", desc = "Branches" },
+  { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "Current file history" },
+  { "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Close diffview" },
+  {
+    "<leader>gb",
+    function()
+      gitsigns.blame_line { full = true }
+    end,
+    desc = "Git blame for current hunk",
   },
-  c = {
-    name = "+change/command",
-    b = { gitsigns.toggle_current_line_blame, "Toggle git blame for current line" },
-  },
-  ["<C-g>"] = { "<cmd>Lazygit<cr>", "Lazygit" },
-  m = {
-    name = "+mergetool/mark",
-    t = { "<Plug>(MergetoolToggle)", "Toggle mergetool" },
-    b = { "<cmd>call mergetool#toggle_layout('mr,b')<cr>", "Toggle base" },
-  }
-}, { prefix = "<leader>" })
+  { "<leader>gs", "<cmd>Neogit<cr>", desc = "Status" },
+  { "<leader>c", group = "change/command" },
+  { "<leader>cb", gitsigns.toggle_current_line_blame, desc = "Toggle git blame for current line" },
+  { "<leader>m", group = "mergetool/mark" },
+  { "<leader>mb", "<cmd>call mergetool#toggle_layout('mr,b')<cr>", desc = "Toggle base" },
+  { "<leader>mt", "<Plug>(MergetoolToggle)", desc = "Toggle mergetool" },
+}
 
-wk.register({
-  ih = { "<cmd>Gitsigns select_hunk<cr>", "inner git hunk" },
-  gh = { ":DiffviewFileHistory %<cr>", "Current file history"  }
-}, { mode = "x" })
+wk.add {
+  mode = { "x" },
+  { "ih", "<cmd>Gitsigns select_hunk<cr>", desc = "inner git hunk" },
+  { "gh", "<cmd>DiffviewFileHistory %<cr>", desc = "Current file history" },
+}
 
 -- navigate chunks of current buffer
-wk.register {
-  ["[c"] = {
+wk.add {
+  {
+    "[c",
     function()
       if vim.o.diff then
         vim.cmd "normal! [c"
@@ -89,9 +80,10 @@ wk.register {
         vim.cmd "Gitsigns prev_hunk"
       end
     end,
-    "Go to previous git hunk",
+    desc = "Go to previous git hunk",
   },
-  ["]c"] = {
+  {
+    "]c",
     function()
       if vim.o.diff then
         vim.cmd "normal! ]c"
@@ -99,10 +91,10 @@ wk.register {
         vim.cmd "Gitsigns next_hunk"
       end
     end,
-    "Go to next git hunk",
+    desc = "Go to next git hunk",
   },
-  ["[g"] = { "<Plug>(MergetoolDiffExchangeLeft)", "Push hunk to left" },
-  ["]g"] = { "<Plug>(MergetoolDiffExchangeRight)", "Push hunk to right" },
+  { "[g", "<Plug>(MergetoolDiffExchangeLeft)", desc = "Push hunk to left" },
+  { "]g", "<Plug>(MergetoolDiffExchangeRight)", desc = "Push hunk to right" },
 }
 
 local neogit_success, neogit = pcall(require, "neogit")

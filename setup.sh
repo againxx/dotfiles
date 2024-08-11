@@ -7,7 +7,9 @@ if [[ ! -x "$(command -v stow)" ]]; then
     exit 1
 fi
 
-mkdir -p ~/.config/gtk-3.0
+if [[ "$(uname)" != "Darwin" ]]; then
+    mkdir -p ~/.config/gtk-3.0
+fi
 mkdir -p ~/.config/zsh
 mkdir -p ~/.config/zsh-st
 mkdir -p ~/Documents/tasks
@@ -54,7 +56,7 @@ if [[ -x "$(command -v brew)" ]]; then
     cd "$dotfiles_dir"
 
     declare -A brew_pack
-    brew_pack[lazygit]=jesseduffield/lazygit/lazygit
+    brew_pack[lazygit]=lazygit
     brew_pack[delta]=git-delta
     brew_pack[clang-format]=llvm
     brew_pack[clangd]=llvm

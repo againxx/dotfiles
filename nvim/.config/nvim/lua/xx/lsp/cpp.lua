@@ -50,11 +50,7 @@ return {
     "--header-insertion=never",
     "--path-mappings="
       .. vim.env.HOME
-      .. "/Projects=/home/administrator/workspace,"
-      .. vim.env.HOME
-      .. "/Data=/home/administrator/Data,"
-      .. vim.env.HOME
-      .. "/Projects=/home/administrator",
+      .. "/Projects=/home/udeer/Projects,"
   },
   filetypes = {
     "c",

@@ -75,7 +75,7 @@ require("neo-tree").setup {
       ["a"] = function(state)
         local node = state.tree:get_node()
         if state.current_position == "current" and not node:is_expanded() and node:has_children() then
-          local fs_actions = require("neo-tree.sources.filesystem.lib.fs_actions")
+          local fs_actions = require "neo-tree.sources.filesystem.lib.fs_actions"
           local parent_id = node:get_parent_id()
           fs_actions.create_node(parent_id, nil, parent_id)
         else
@@ -126,7 +126,7 @@ require("neo-tree").setup {
         require("neo-tree.sources.manager").set_cwd(state)
         vim.notify("Change CWD to " .. state.path)
         state.path = saved_path
-      end
+      end,
     },
     components = {
       diagnostics = function(config, node, state)
@@ -157,8 +157,8 @@ require("neo-tree").setup {
             highlight = "Diagnostic" .. severity,
           }
         end
-      end
-    }
+      end,
+    },
   },
   event_handlers = {
     {
@@ -186,11 +186,11 @@ require("neo-tree").setup {
     {
       event = "neo_tree_popup_buffer_enter",
       handler = function()
-        vim.keymap.set('i', '<c-j>', '<down>', { buffer = 0, remap = true, silent = true})
-        vim.keymap.set('i', '<c-k>', '<up>', { buffer = 0, remap = true, silent = true})
+        vim.keymap.set("i", "<c-j>", "<down>", { buffer = 0, remap = true, silent = true })
+        vim.keymap.set("i", "<c-k>", "<up>", { buffer = 0, remap = true, silent = true })
         vim.cmd [[hi CursorLine guibg=#4c6482 gui=bold]]
-      end
-    }
+      end,
+    },
   },
 }
 
@@ -215,66 +215,67 @@ if not success then
   return
 end
 
-wk.register({
-  e = {
-    name = "+edit/explorer",
-    r = { "<cmd>AsyncTaskEdit<cr>", "Edit local tasks" },
-    R = { "<cmd>AsyncTaskEdit!<cr>", "Edit global tasks" },
-    t = { "<cmd>lua require('xx.telescope').edit_tmuxp()<cr>", "Edit tmuxp configs" },
-    T = {
-      function()
-        open_neotree "tmuxp"
-      end,
-      "Explore tmuxp config folder",
-    },
-    c = {
-      function()
-        open_neotree "%:p:h"
-      end,
-      "Explore current folder",
-    },
-    m = {
-      ":<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-f><left>",
-      "Edit macro / register",
-    },
-    e = {
-      function()
-        if vim.b.gitsigns_status_dict then
-          open_neotree(vim.b.gitsigns_status_dict.root)
-        else
-          open_neotree()
-        end
-      end,
-      "Explore current git repo",
-    },
-    p = { "<cmd>lua require('xx.telescope').edit_vim_plugins()<cr>", "Edit nvim plugin files" },
-    v = { "<cmd>lua require('xx.telescope').edit_vimrc()<cr>", "Edit nvim config" },
-    V = {
-      function()
-        open_neotree "vimrc"
-      end,
-      "Explore nvim config folder",
-    },
-    d = { "<cmd>lua require('xx.telescope').edit_dotfiles()<cr>", "Edit dotfiles" },
-    D = {
-      function()
-        open_neotree "dotfiles"
-      end,
-      "Explore dotfile folder",
-    },
-    w = { "<cmd>lua require('xx.telescope').edit_dictionaries()<cr>", "Edit cSpell dictionaries" },
-    W = {
-      function()
-        open_neotree "dictionaries"
-      end,
-      "Explore cSpell dictionary folder",
-    },
-    h = { "<cmd>edit %:h<cr>", "Edit current file's directory" },
+wk.add {
+  { "<leader>e", group = "edit/explorer" },
+  {
+    "<leader>eD",
+    function()
+      open_neotree "dotfiles"
+    end,
+    desc = "Explore dotfile folder",
   },
-  lf = { "<cmd>Lf<cr>", "Lf" },
-}, {
-  prefix = "<leader>",
-})
+  { "<leader>eR", "<cmd>AsyncTaskEdit!<cr>", desc = "Edit global tasks" },
+  {
+    "<leader>eT",
+    function()
+      open_neotree "tmuxp"
+    end,
+    desc = "Explore tmuxp config folder",
+  },
+  {
+    "<leader>eV",
+    function()
+      open_neotree "vimrc"
+    end,
+    desc = "Explore nvim config folder",
+  },
+  {
+    "<leader>eW",
+    function()
+      open_neotree "dictionaries"
+    end,
+    desc = "Explore cSpell dictionary folder",
+  },
+  {
+    "<leader>ec",
+    "<cmd>Oil<cr>",
+    desc = "Explore current folder",
+  },
+  { "<leader>ed", "<cmd>lua require('xx.telescope').edit_dotfiles()<cr>", desc = "Edit dotfiles" },
+  {
+    "<leader>ee",
+    function()
+      if vim.b.gitsigns_status_dict then
+        open_neotree(vim.b.gitsigns_status_dict.root)
+      else
+        open_neotree()
+      end
+    end,
+    desc = "Explore current git repo",
+  },
+  { "<leader>eh", "<cmd>edit %:h<cr>", desc = "Edit current file's directory" },
+  {
+    "<leader>em",
+    ":<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-f><left>",
+    desc = "Edit macro / register",
+  },
+  { "<leader>ep", "<cmd>lua require('xx.telescope').edit_vim_plugins()<cr>", desc = "Edit nvim plugin files" },
+  { "<leader>er", "<cmd>AsyncTaskEdit<cr>", desc = "Edit local tasks" },
+  { "<leader>et", "<cmd>lua require('xx.telescope').edit_tmuxp()<cr>", desc = "Edit tmuxp configs" },
+  { "<leader>ev", "<cmd>lua require('xx.telescope').edit_vimrc()<cr>", desc = "Edit nvim config" },
+  { "<leader>ew", "<cmd>lua require('xx.telescope').edit_dictionaries()<cr>", desc = "Edit cSpell dictionaries" },
+  { "<leader>lf", "<cmd>Lf<cr>", desc = "Lf" },
+}
 
 -- rnvimr
 -- Make Ranger replace netrw and be the file explorer

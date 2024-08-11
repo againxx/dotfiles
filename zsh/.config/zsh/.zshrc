@@ -136,3 +136,7 @@ source $HOME/.config/zsh/completions.zsh
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/fzf.zsh
 source $HOME/.config/zsh/opts.zsh
+
+if [[ -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" ]]; then
+  source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
+fi

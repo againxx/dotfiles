@@ -60,7 +60,7 @@ if not success then
   return
 end
 
-wk.register {
-  ["<leader>ls"] = { "<cmd>lua require('xx.telescope').luasnip()<cr>", "List available snippets" },
-  ["<leader>es"] = { "<cmd>LuaSnipEdit<cr>", "Edit snippets" },
+wk.add {
+  { "<leader>es", "<cmd>LuaSnipEdit<cr>", desc = "Edit snippets" },
+  { "<leader>ls", "<cmd>lua require('xx.telescope').luasnip()<cr>", desc = "List available snippets" },
 }

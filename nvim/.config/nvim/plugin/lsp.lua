@@ -115,44 +115,65 @@ local on_attach_default = function(client, bufnr)
   end
 
   -- GoTo code navigation.
-  wk.register({
-    d = { "<cmd>lua require('xx.telescope').lsp_definitions()<cr>", "Go to definitions" },
-    D = { "<cmd>lua vim.lsp.buf.delcaration()<cr>", "Go to delcarations" },
-    h = { "<cmd>Lspsaga peek_definition<cr>", "Peek definitions" },
-    l = { "<cmd>lua require('xx.telescope').lsp_implementations()<cr>", "Go to implementations" },
-    r = { "<cmd>lua require('xx.telescope').lsp_references()<cr>", "Go to references" },
-    y = { "<cmd>lua require('xx.telescope').lsp_type_definitions()<cr>", "Go to type definitions" },
-  }, {
-    prefix = "g",
-    buffer = vim.api.nvim_get_current_buf(),
-  })
+  wk.add {
+    {
+      "gd",
+      "<cmd>lua require('xx.telescope').lsp_definitions()<cr>",
+      desc = "Go to definitions",
+      buffer = bufnr,
+    },
+    {
+      "gD",
+      "<cmd>lua vim.lsp.buf.delcaration()<cr>",
+      desc = "Go to delcarations",
+      buffer = bufnr,
+    },
+    { "gh", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definitions", buffer = bufnr },
+    {
+      "gl",
+      "<cmd>lua require('xx.telescope').lsp_implementations()<cr>",
+      desc = "Go to implementations",
+      buffer = bufnr,
+    },
+    {
+      "gr",
+      "<cmd>lua require('xx.telescope').lsp_references()<cr>",
+      desc = "Go to references",
+      buffer = bufnr,
+    },
+    {
+      "gy",
+      "<cmd>lua require('xx.telescope').lsp_type_definitions()<cr>",
+      desc = "Go to type definitions",
+      buffer = bufnr,
+    },
+  }
 
-  wk.register({
-    r = {
-      n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
-      f = { "<cmd>lua vim.lsp.buf.format{async = true}<cr>", "Format the whole file" },
+  wk.add {
+    { "<leader>a", group = "action" },
+    { "<leader>aa", "<cmd>Lspsaga code_action<cr>", desc = "Action under cursor", buffer = bufnr },
+    {
+      "<leader>dG",
+      "<cmd>lua require('xx.telescope').diagnostics()<cr>",
+      desc = "Workspace diagnostics",
+      buffer = bufnr,
     },
-    d = {
-      g = { "<cmd>lua require('xx.telescope').diagnostics{bufnr = 0}<cr>", "Current buffer diagnostics" },
-      G = { "<cmd>lua require('xx.telescope').diagnostics()<cr>", "Workspace diagnostics" },
+    {
+      "<leader>dg",
+      "<cmd>lua require('xx.telescope').diagnostics{bufnr = 0}<cr>",
+      desc = "Current buffer diagnostics",
+      buffer = bufnr,
     },
-    os = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
-    a = {
-      name = "+action",
-      a = { "<cmd>Lspsaga code_action<cr>", "Action under cursor" },
-    },
-  }, {
-    prefix = "<leader>",
-    buffer = vim.api.nvim_get_current_buf(),
-  })
+    { "<leader>os", "<cmd>SymbolsOutline<cr>", desc = "Symbols outline", buffer = bufnr },
+    { "<leader>rf", "<cmd>lua vim.lsp.buf.format{async = true}<cr>", desc = "Format the whole file", buffer = bufnr },
+    { "<leader>rn", "<cmd>lua require('renamer').rename()<cr>", desc = "Rename symbol", buffer = bufnr },
+  }
 
-  wk.register({
-    a = { ":<C-u>Lspsaga range_code_action<cr>", "Action for selected" },
-    n = { "<cmd>lua require('renamer').rename()<cr>", "Rename symbol" },
-  }, {
-    mode = "x",
-    prefix = "<leader>",
-  })
+  wk.add {
+    mode = { "x" },
+    { "<leader>a", "<cmd>Lspsaga range_code_action<cr>", desc = "Action for selected" },
+    { "<leader>n", "<cmd>lua require('renamer').rename()<cr>", desc = "Rename symbol" },
+  }
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -221,7 +242,8 @@ local servers = {
   cmake = true,
   dockerls = true,
   ltex = require "xx.lsp.ltex",
-  starlark_rust = true,
+  gopls = true,
+  -- starlark_rust = true,
 }
 
 for server_name, config in pairs(servers) do

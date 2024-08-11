@@ -21,35 +21,39 @@ if not success then
   return
 end
 
-wk.register {
-  ["[e"] = {
+wk.add {
+  {
+    "[e",
     function()
       vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
     end,
-    "Go to previous error",
+    desc = "Go to previous error",
   },
-  ["]e"] = {
+  {
+    "]e",
     function()
       vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
     end,
-    "Go to next error",
+    desc = "Go to next error",
   },
-  ["[w"] = {
+  {
+    "[w",
     function()
       -- Trigger the autocmds for CursorMoved otherwise the previous diagnostic
       -- window won't be closed when we press [w for several times
       vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_prev()
     end,
-    "Go to previous diagnostic",
+    desc = "Go to previous diagnostic",
   },
-  ["]w"] = {
+  {
+    "]w",
     function()
       vim.cmd.doautocmd "CursorMoved"
       require("lspsaga.diagnostic"):goto_next()
     end,
-    "Go to next diagnostic",
+    desc = "Go to next diagnostic",
   },
 }

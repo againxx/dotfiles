@@ -91,6 +91,12 @@ return {
       { "s1n7ax/nvim-window-picker", version = "2.*" },
     },
   },
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  },
   -- use "kevinhwang91/rnvimr"
   {
     "is0n/fm-nvim",
@@ -187,9 +193,10 @@ return {
   ---
   {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {}
-    end,
+    event = "VeryLazy",
+    opts = {
+      icons = { rules = false },
+    },
   },
 
   ---
@@ -213,7 +220,6 @@ return {
   --- Highlighting
   ---
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "p00f/nvim-ts-rainbow",
   "pboettch/vim-cmake-syntax",
@@ -310,7 +316,7 @@ return {
   ---
   -- this plugin is needed by vim-markdown and can be used to align text
   { "godlygeek/tabular", ft = "markdown" },
-  "plasticboy/vim-markdown",
+  "preservim/vim-markdown",
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
@@ -331,8 +337,8 @@ return {
   ---
   --- Note taking
   ---
-  { "againxx/vimwiki-1", branch = "dev" },
-  "tools-life/taskwiki",
+  { "againxx/vimwiki-1", branch = "dev", ft = "vimwiki" },
+  -- "tools-life/taskwiki",
   {
     "michal-h21/vim-zettel",
     ft = "vimwiki",
@@ -346,40 +352,38 @@ return {
   },
   {
     "nvim-neorg/neorg",
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {},
-          ["core.dirman"] = {
-            config = {
-              workspaces = {
-                wiki = "~/Documents/Vimwiki/neorg",
-              },
-            },
-          },
-          ["core.concealer"] = {
-            config = {
-              icon_preset = "varied",
-            },
-          },
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp",
-            },
-          },
-          ["core.integrations.telescope"] = {},
-          ["core.manoeuvre"] = {},
-          ["core.keybinds"] = {
-            config = {
-              hook = function(keybinds)
-                keybinds.remap_key("norg", "n", "<M-j>", "<M-d>")
-                keybinds.remap_key("norg", "n", "<M-k>", "<M-u>")
-              end,
+    ft = "norg",
+    opts = {
+      load = {
+        ["core.defaults"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              wiki = "~/Documents/Vimwiki/neorg",
             },
           },
         },
-      }
-    end,
+        ["core.concealer"] = {
+          config = {
+            icon_preset = "varied",
+          },
+        },
+        ["core.completion"] = {
+          config = {
+            engine = "nvim-cmp",
+          },
+        },
+        ["core.integrations.telescope"] = {},
+        ["core.keybinds"] = {
+          config = {
+            hook = function(keybinds)
+              keybinds.remap_key("norg", "n", "<M-j>", "<M-d>")
+              keybinds.remap_key("norg", "n", "<M-k>", "<M-u>")
+            end,
+          },
+        },
+      },
+    },
     build = ":Neorg sync-parsers",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -396,6 +400,84 @@ return {
         image_name = true,
       }
     end,
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    cmd = { "ObsidianNew", "ObsidianNewFromTemplate", "ObsidianTags", "ObsidianOpen" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "main",
+          path = "~/Documents/Obsidian-Notes",
+        },
+      },
+      log_level = vim.log.levels.WARN,
+      daily_notes = {
+        folder = "6-Dailies",
+      },
+      new_notes_location = "current_dir",
+      note_id_func = function(title)
+        local prefix = ""
+        if title ~= nil then
+          -- If title is given, transform it into valid file name and only keep the first four words if the name is too long.
+          prefix = title:gsub("[^A-Za-z0-9- ]", ""):lower()
+          local words = vim.split(prefix, " ", { trimempty = true })
+          local first_four_words = {}
+          for i = 1, math.min(4, #words) do
+            table.insert(first_four_words, words[i])
+          end
+          prefix = vim.iter(first_four_words):join "_"
+        else
+          -- If title is nil, just add 4 random uppercase letters to the suffix.
+          for _ = 1, 4 do
+            prefix = prefix .. string.char(math.random(65, 90))
+          end
+        end
+        -- Get the current date and time
+        local current_date = os.date "*t"
+
+        -- Extract the year, month, and day
+        local year = current_date.year % 100 -- Get last two digits of the year
+        local month = current_date.month
+        local day = current_date.day
+
+        -- Format the year, month, and day to ensure two digits each
+        local formatted_date = string.format("%02d%02d%02d", year, month, day)
+
+        return prefix .. "-" .. formatted_date
+      end,
+      note_frontmatter_func = function(note)
+        -- Add the title of the note as an alias.
+        if note.title then
+          note:add_alias(note.title)
+        end
+
+        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+        -- `note.metadata` contains any manually added fields in the frontmatter.
+        -- So here we just make sure those fields are kept in the frontmatter.
+        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
+        end
+
+        if out.date == nil then
+          -- add date property to the frontmatter as well
+          out.date = os.date "%Y-%m-%d %H:%M"
+        end
+
+        return out
+      end,
+    },
   },
 
   ---
@@ -536,7 +618,9 @@ return {
     },
   },
   {
-    "anuvyklack/pretty-fold.nvim",
+    -- use a forked version before this PR is merged
+    -- https://github.com/anuvyklack/pretty-fold.nvim/pull/41
+    "bbjornstad/pretty-fold.nvim",
     -- requires = "anuvyklack/nvim-keymap-amend", -- only for preview
     config = function()
       require("pretty-fold").setup {

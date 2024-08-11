@@ -11,8 +11,10 @@ require("nvim-treesitter.configs").setup {
     "c",
     "cpp",
     "vim",
+    "vimdoc",
     "query",
     "java",
+    "json",
     "rust",
     "python",
     "lua",
@@ -23,6 +25,7 @@ require("nvim-treesitter.configs").setup {
   },
   highlight = {
     enable = true,
+    disable = { "markdown" },
   },
   indent = {
     enable = true,
@@ -129,29 +132,27 @@ if not success then
   return
 end
 
-wk.register {
-  ["<leader>rj"] = "Swap with next parameter",
-  ["<leader>rk"] = "Swap with previous parameter",
-}
-
-wk.register({
-  ["if"] = "inner function",
-  ["af"] = "a function (with signature)",
-  ["ic"] = "inner class",
-  ["ac"] = "a class (with class keyword)",
-  ["i,"] = "inner parameter",
-  ["a,"] = "a parameter with type",
-}, {
-  mode = "x",
+wk.add({
+  { "<leader>rj", desc = "Swap with next parameter" },
+  { "<leader>rk", desc = "Swap with previous parameter" },
 })
 
-wk.register({
-  ["if"] = "inner function",
-  ["af"] = "a function (with signature)",
-  ["ic"] = "inner class",
-  ["ac"] = "a class (with class keyword)",
-  ["i,"] = "inner parameter",
-  ["a,"] = "a parameter with type",
-}, {
-  mode = "o",
+wk.add({
+  mode = { "x" },
+  { "if", desc = "inner function" },
+  { "af", desc = "a function (with signature)" },
+  { "ic", desc = "inner class" },
+  { "ac", desc = "a class (with class keyword)" },
+  { "i,", desc = "inner parameter" },
+  { "a,", desc = "a parameter with type" },
+})
+
+wk.add({
+  mode = { "o" },
+  { "if", desc = "inner function" },
+  { "af", desc = "a function (with signature)" },
+  { "ic", desc = "inner class" },
+  { "ac", desc = "a class (with class keyword)" },
+  { "i,", desc = "inner parameter" },
+  { "a,", desc = "a parameter with type" },
 })
