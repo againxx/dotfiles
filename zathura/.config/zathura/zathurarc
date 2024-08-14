@@ -5,3 +5,4 @@ map . zoom in
 map d scroll half-down
 map u scroll half-up
 map <C-d> toggle_page_mode
+set selection-clipboard clipboard
