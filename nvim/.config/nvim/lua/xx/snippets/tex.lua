@@ -24,7 +24,12 @@ local snippets = {
     t("\\mathcal{"),
     i(1),
     t("}")
-  })
+  }),
+  math_s({trig = "align"}, fmta([[
+    \begin{align}
+      <>
+    \end{align}
+  ]], { i(1) })),
 }
 
 local auto_backslash = function(triggers)
@@ -176,6 +181,7 @@ local auto_snippets = {
     "max",
     "min",
     "arg",
+    "eta",
   },
 }
 

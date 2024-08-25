@@ -1,12 +1,12 @@
 local ls = require "luasnip"
 local s = ls.snippet
 local f = ls.function_node
-local conds = require("luasnip.extras.expand_conditions")
+local conds = require "luasnip.extras.expand_conditions"
 
 M = {}
 
 function M.show_line_begin(line_to_cursor, trigger)
-  local removed_space = line_to_cursor:match("^%s*(%w*)")
+  local removed_space = line_to_cursor:match "^%s*(%w*)"
   return #removed_space > 0 and trigger:match("^" .. removed_space)
 end
 
@@ -38,23 +38,24 @@ function M.math_s(...)
   local in_mathzone = function()
     if vim.bo.filetype == "tex" then
       return vim.fn["vimtex#syntax#in_mathzone"]() == 1
-    elseif vim.bo.filetype == "vimwiki" then
-      local cursor_pos = vim.api.nvim_win_get_cursor(0)
-      local groups = vim.fn.synstack(cursor_pos[1], cursor_pos[2])
-      for _, gid in ipairs(groups) do
-        if vim.fn.synIDattr(gid, "name") == "textSnipTEX" then
-          return true
-        end
+    elseif vim.bo.filetype == "markdown" then
+      local cursor = require("luasnip.util.util").get_cursor_0ind()
+      -- Since we are in insert mode when triggering this test, the column index needs to be subtracted by 1
+      local node = vim.treesitter.get_node { pos = { cursor[1], cursor[2] - 1 }, lang = "markdown_inline" }
+      if node and node:type() == "latex_block" then
+        return true
       end
       return false
     end
     return false
   end
-  local params = {...}
+  local params = { ... }
   -- normally we only need to customize condition
   if params[#params].condition then
     local original_condition = params[#params].condition
-    params[#params].condition = function(...) return in_mathzone() and original_condition(...) end
+    params[#params].condition = function(...)
+      return in_mathzone() and original_condition(...)
+    end
   else
     table.insert(params, {
       condition = in_mathzone,

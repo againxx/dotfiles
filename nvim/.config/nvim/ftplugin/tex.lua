@@ -33,43 +33,35 @@ if not success then
   return
 end
 
-wk.register({
-  name = "+latex",
-  i = { "Information about current project" },
-  I = { "Information about all projects" },
-  t = { "Open table of contents" },
-  T = { "Toggle table of contents" },
-  q = { "Show message log" },
-  v = { "View pdf" },
-  r = { "Reverse search" },
-  l = { "Toggle compiler" },
-  L = { "Compile selected part" },
-  k = { "Stop compilation" },
-  K = { "Stop compilation of all projects" },
-  e = { "Open quickfix for errors/warnings" },
-  o = { "Open file redirected by compiler output" },
-  g = { "Show compilation status" },
-  G = { "Show compilation status for all projects" },
-  c = { "Clean auxiliary files" },
-  C = { "Clean auxiliary/output files" },
-  m = { "Show list of insert mappings" },
-  x = { "Reload VimTeX scripts" },
-  X = { "Reload state for current buffer" },
-  s = { "Toggle main file" },
-  a = { "Show context menu" },
-}, {
-  prefix = "<localleader>l",
-  buffer = vim.api.nvim_get_current_buf(),
-})
+local bufnr = vim.api.nvim_get_current_buf()
 
-wk.register({
-  name = "+latex",
-  L = { "Compiler" },
-}, {
-  mode = "x",
-  prefix = "<localleader>l",
-  buffer = vim.api.nvim_get_current_buf(),
-})
+wk.add {
+  { "<localleader>l", buffer = bufnr, group = "latex" },
+  { "<localleader>lC", buffer = bufnr, desc = "Clean auxiliary/output files" },
+  { "<localleader>lG", buffer = bufnr, desc = "Show compilation status for all projects" },
+  { "<localleader>lI", buffer = bufnr, desc = "Information about all projects" },
+  { "<localleader>lK", buffer = bufnr, desc = "Stop compilation of all projects" },
+  { "<localleader>lL", buffer = bufnr, desc = "Compile selected part" },
+  { "<localleader>lT", buffer = bufnr, desc = "Toggle table of contents" },
+  { "<localleader>lX", buffer = bufnr, desc = "Reload state for current buffer" },
+  { "<localleader>la", buffer = bufnr, desc = "Show context menu" },
+  { "<localleader>lc", buffer = bufnr, desc = "Clean auxiliary files" },
+  { "<localleader>le", buffer = bufnr, desc = "Open quickfix for errors/warnings" },
+  { "<localleader>lg", buffer = bufnr, desc = "Show compilation status" },
+  { "<localleader>li", buffer = bufnr, desc = "Information about current project" },
+  { "<localleader>lk", buffer = bufnr, desc = "Stop compilation" },
+  { "<localleader>ll", buffer = bufnr, desc = "Toggle compiler" },
+  { "<localleader>lm", buffer = bufnr, desc = "Show list of insert mappings" },
+  { "<localleader>lo", buffer = bufnr, desc = "Open file redirected by compiler output" },
+  { "<localleader>lq", buffer = bufnr, desc = "Show message log" },
+  { "<localleader>lr", buffer = bufnr, desc = "Reverse search" },
+  { "<localleader>ls", buffer = bufnr, desc = "Toggle main file" },
+  { "<localleader>lt", buffer = bufnr, desc = "Open table of contents" },
+  { "<localleader>lv", buffer = bufnr, desc = "View pdf" },
+  { "<localleader>lx", buffer = bufnr, desc = "Reload VimTeX scripts" },
+  { "<localleader>l", buffer = bufnr, group = "latex", mode = "x" },
+  { "<localleader>lL", buffer = bufnr, desc = "Compiler", mode = "x" },
+}
 
 -- add $ into autopairs
 local Rule = require "nvim-autopairs.rule"
