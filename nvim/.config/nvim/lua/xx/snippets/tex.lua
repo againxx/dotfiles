@@ -25,6 +25,11 @@ local snippets = {
     i(1),
     t("}")
   }),
+  math_s({trig = "bf", wordTrig = false}, {
+    t("\\bf{"),
+    i(1),
+    t("}")
+  }),
   math_s({trig = "align"}, fmta([[
     \begin{align}
       <>

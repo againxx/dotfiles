@@ -18,10 +18,10 @@ end
 local set_keymaps = function()
   vim.keymap.set("n", "w", function()
     vim.rpcnotify(jobid, "forward", vim.v.count1)
-  end)
+  end, { buffer = true })
   vim.keymap.set("n", "b", function()
     vim.rpcnotify(jobid, "backward", vim.v.count1)
-  end)
+  end, { buffer = true })
 end
 
 local init = function()

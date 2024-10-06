@@ -15,6 +15,10 @@ if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     . "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 
+if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+    . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+fi
+
 # If we have ROS then do not source anaconda automatically
 # if [ -z "$ROS_ROOT" ] && command -v conda &> /dev/null; then
 #     conda activate base
