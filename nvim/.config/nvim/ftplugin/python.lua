@@ -1,5 +1,5 @@
 vim.opt_local.foldlevel = 1
-vim.opt_local.colorcolumn = '101'
+vim.opt_local.colorcolumn = "101"
 
 -- vim.fn['coc#config']('snippets.loadFromExtensions', 0)
 -- vim.fn['coc#config']('diagnostic-languageserver.linters', {
@@ -29,20 +29,22 @@ local switch_definitions = [[
     }
   ]
 ]]
-vim.cmd(switch_definitions:gsub('\n', ''))
+vim.cmd(switch_definitions:gsub("\n", ""))
 
-local success, wk = pcall(require, 'which-key')
+local success, wk = pcall(require, "which-key")
 if not success then
   return
 end
 
-wk.register({
-  ['<space><space>'] = { '0/TODO<cr><cmd>nohlsearch<cr>"_c4l', 'Replace next TODO' },
-  ['[i'] = { '?def __init__<cr><cmd>nohlsearch<cr>', 'Goto previous __init__' },
-  [']i'] = { '/def __init__<cr><cmd>nohlsearch<cr>', 'Goto next __init__' },
-}, { buffer = vim.api.nvim_get_current_buf() })
+local bufnr = vim.api.nvim_get_current_buf()
 
-if vim.g.colors_name == 'ayu' then
+wk.add {
+  { "<space><space>", '0/TODO<cr><cmd>nohlsearch<cr>"_c4l', buffer = bufnr, desc = "Replace next TODO" },
+  { "[i", "?def __init__<cr><cmd>nohlsearch<cr>", buffer = bufnr, desc = "Goto previous __init__" },
+  { "]i", "/def __init__<cr><cmd>nohlsearch<cr>", buffer = bufnr, desc = "Goto next __init__" },
+}
+
+if vim.g.colors_name == "ayu" then
   vim.cmd [[hi pythonTSSelf gui=italic guifg=#B695E0 guibg=NONE]]
   vim.cmd [[hi pythonTSInclude gui=bold,italic guifg=#FFD580]]
   vim.cmd [[hi! link pythonTSDocstring pythonComment]]
