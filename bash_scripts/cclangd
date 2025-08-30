@@ -13,5 +13,5 @@ if [ -z "$(docker ps -q -f name="$container_name" -f status=running)" ]; then
     clangd $@
 else
     # Important part here is both the '-i' and the redirection of STDERR
-    docker exec -i "$container_name" /usr/local/bin/clangd $@ 2>/dev/null
+    docker exec -i "$container_name" clangd $@ 2>/dev/null
 fi

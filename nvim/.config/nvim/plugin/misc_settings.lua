@@ -1,16 +1,4 @@
 vim.env.ZDOTDIR = vim.env.HOME .. "/.config/zsh-st"
--- Rainbow
-vim.g.rainbow_active = true -- set to 0 if you want to enable it later via :RainbowToggle
--- Disable it for CMake files, since it breaks cmake syntax highlighting
-vim.g.rainbow_conf = {
-  separately = {
-    cmake = 0,
-    vimwiki = 0,
-    fzf = 0,
-    cpp = 0,
-  },
-}
-
 -- indent_blankline
 vim.g.indent_blankline_char = "│" -- │┃
 vim.g.indent_blankline_use_treesitter = true

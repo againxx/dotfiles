@@ -163,7 +163,10 @@ return {
   --- Statusline & Notification
   ---
   "nvim-lualine/lualine.nvim",
-  "romgrk/barbar.nvim",
+  {
+    "romgrk/barbar.nvim",
+    init = function() vim.g.barbar_auto_setup = false end,
+  },
   {
     "rcarriga/nvim-notify",
     config = function()
@@ -261,7 +264,6 @@ return {
       require("Comment").setup {}
     end,
   },
-  "luochen1990/rainbow",
   "andymass/vim-matchup",
 
   ---
