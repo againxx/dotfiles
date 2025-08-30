@@ -221,7 +221,7 @@ return {
   ---
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   "nvim-treesitter/nvim-treesitter-textobjects",
-  "p00f/nvim-ts-rainbow",
+  "hiphish/rainbow-delimiters.nvim",
   "pboettch/vim-cmake-syntax",
   "vim-scripts/SyntaxAttr.vim",
   "againxx/python-syntax",

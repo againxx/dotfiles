@@ -32,17 +32,16 @@ vim.keymap.set("x", "K", function()
   require("rust-tools.hover_range").hover_range()
 end, { silent = true })
 
-wk.register({
-  oC = { "<cmd>RustOpenCargo<cr>", "Open Cargo.toml" },
-  rr = { "<cmd>RustRunnables<cr>", "Run runnables" },
-  rp = { choice_project_target, "Build whole project" },
-  dR = { "<cmd>RustDebuggables<cr>", "Debug debuggables" },
-  rK = { "<cmd>RustMoveItemUp<cr>", "Move item up" },
-  rJ = { "<cmd>RustMoveItemDown<cr>", "Move item down" },
-}, {
-  prefix = "<leader>",
-  buffer = vim.api.nvim_get_current_buf(),
-})
+bufnr = vim.api.nvim_get_current_buf()
+
+wk.add {
+  { "<leader>oC", "<cmd>RustOpenCargo<cr>", desc = "Open Cargo.toml", buffer = bufnr },
+  { "<leader>rr", "<cmd>RustRunnables<cr>", desc = "Run runnables", buffer = bufnr },
+  { "<ledaer>rp", choice_project_target, desc = "Build whole project", buffer = bufnr },
+  { "<leader>dR", "<cmd>RustDebuggables<cr>", desc = "Debug debuggables", buffer = bufnr },
+  { "<leader>rK", "<cmd>RustMoveItemUp<cr>", desc = "Move item up", buffer = bufnr },
+  { "<leader>rJ", "<cmd>RustMoveItemDown<cr>", desc = "Move item down", buffer = bufnr },
+}
 
 -- add < into autopairs
 -- local Rule = require('nvim-autopairs.rule')

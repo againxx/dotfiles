@@ -9,12 +9,12 @@ local opts = { silent = true, nowait = true }
 local plug_opts = { silent = true, nowait = true, remap = true }
 
 -- Scroll floating window up and down
-keymap.set("n", "<C-f>", "<cmd>lua require('xx.neoscroll')(vim.api.nvim_win_get_height(0), true, 500)<cr>", opts)
-keymap.set("n", "<C-b>", "<cmd>lua require('xx.neoscroll')(-vim.api.nvim_win_get_height(0), true, 500)<cr>", opts)
-keymap.set("v", "<C-f>", "<cmd>lua require('xx.neoscroll')(vim.api.nvim_win_get_height(0), true, 500)<cr>", opts)
-keymap.set("v", "<C-b>", "<cmd>lua require('xx.neoscroll')(-vim.api.nvim_win_get_height(0), true, 500)<cr>", opts)
-keymap.set("n", "<C-y>", "<cmd>lua require('neoscroll').scroll(-3, false, 80, nil)<cr>", opts)
-keymap.set("n", "<C-e>", "<cmd>lua require('neoscroll').scroll(3, false, 80, nil)<cr>", opts)
+keymap.set("n", "<C-f>", function() require('xx.neoscroll')(vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 500 }) end, opts)
+keymap.set("n", "<C-b>", function() require('xx.neoscroll')(-vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 500 }) end, opts)
+keymap.set("v", "<C-f>", function() require('xx.neoscroll')(vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 500 }) end, opts)
+keymap.set("v", "<C-b>", function() require('xx.neoscroll')(-vim.api.nvim_win_get_height(0), { move_cursor = true, duration = 500 }) end, opts)
+keymap.set("n", "<C-y>", function() require('neoscroll').scroll(-3, { move_cursor = false, duration = 80 }) end, opts)
+keymap.set("n", "<C-e>", function() require('neoscroll').scroll(3, { move_cursor = false, duration = 80 }) end, opts)
 
 -- lightspeed 'cold' repeat
 keymap.set("n", ";", "<Plug>Lightspeed_;_ft", plug_opts)

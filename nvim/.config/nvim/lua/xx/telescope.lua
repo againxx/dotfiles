@@ -326,7 +326,7 @@ function M.grep_cursor_word()
 end
 
 function M.grep_selected()
-  local lines = require("xx.utils").fetch_selection "n"
+  local lines = require("xx.utils").fetch_selection "x"
   require("telescope.builtin").grep_string { search = table.concat(lines) }
 end
 

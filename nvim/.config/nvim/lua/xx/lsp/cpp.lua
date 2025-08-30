@@ -1,5 +1,6 @@
 -- local lsp_status = require "lsp-status"
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local Path = require("pathlib")
 capabilities.offsetEncoding = { "utf-16" }
 
 local lspconfig = require "lspconfig"
@@ -18,8 +19,7 @@ local function project_name_to_container_name()
   local bufname = vim.api.nvim_buf_get_name(0)
 
   -- Turned into a filename
-  local filename = lspconfig.util.path.is_absolute(bufname) and bufname
-    or lspconfig.util.path.join(vim.loop.cwd(), bufname)
+  local filename = Path(bufname):is_absolute() and bufname or tostring(Path.cwd() / bufname)
 
   -- Then the directory of the project
   local project_dirname = root_pattern(filename) or lspconfig.util.path.dirname(filename)

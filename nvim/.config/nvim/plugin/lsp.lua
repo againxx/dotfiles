@@ -5,6 +5,11 @@ end
 
 local keymap = vim.keymap
 
+keymap.del('n', 'grn')
+keymap.del({'n', 'v'}, 'gra')
+keymap.del('n', 'grr')
+keymap.del('n', 'gri')
+
 require("mason").setup()
 require("mason-lspconfig").setup {
   automatic_installation = true,
@@ -106,8 +111,6 @@ local on_attach_default = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.modified_formatexpr()", { buf = bufnr })
   end
-  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-  vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
 
   local success, wk = pcall(require, "which-key")
   if not success then
@@ -120,7 +123,7 @@ local on_attach_default = function(client, bufnr)
       "gd",
       "<cmd>lua require('xx.telescope').lsp_definitions()<cr>",
       desc = "Go to definitions",
-      buffer = bufnr,
+      -- buffer = bufnr,
     },
     {
       "gD",
